@@ -23,3 +23,8 @@ processing.json
 *.key
 *.p12
 demo-output/
+*.xcodeproj/
+*.xcworkspace/
+.swiftpm/
+*.xcresult/
+*.app/

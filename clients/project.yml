@@ -1,0 +1,49 @@
+name: Xinlika
+options:
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    SWIFT_STRICT_CONCURRENCY: targeted
+    CODE_SIGN_STYLE: Automatic
+targets:
+  Xinlika:
+    type: application
+    platform: iOS
+    sources:
+      - path: iOS
+        excludes: [Tests]
+      - path: Sources/LuyinbiCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.xinlika.app
+        INFOPLIST_FILE: iOS/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+    scheme:
+      testTargets: [XinlikaTests, XinlikaUITests]
+  XinlikaTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: iOS/Tests
+    dependencies:
+      - target: Xinlika
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.xinlika.app.tests
+        GENERATE_INFOPLIST_FILE: YES
+  XinlikaUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: UITests
+    dependencies:
+      - target: Xinlika
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.xinlika.app.uitests
+        GENERATE_INFOPLIST_FILE: YES

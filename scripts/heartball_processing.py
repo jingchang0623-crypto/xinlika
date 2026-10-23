@@ -651,7 +651,11 @@ class Processor:
     @classmethod
     def configured(cls, store, path):
         cfg = json.loads(path.read_text()) if path.exists() else {}
+        if cfg.get('asr') and cfg.get('voxgate_config'):
+            raise ValueError('Choose one ASR adapter, not both asr and voxgate_config')
+        from heartball_asr import CompatibleASR
         return cls(store, ModelAdapter(cfg["model"]) if cfg.get("model") else None,
+                   CompatibleASR(cfg['asr']) if cfg.get('asr') else
                    VoxgateAdapter(Path(cfg["voxgate_config"]).expanduser()) if cfg.get("voxgate_config") else None)
 
     def _extract(self, state):

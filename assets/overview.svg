@@ -8,5 +8,5 @@
 <g font-size="23" font-weight="600"><text x="89" y="261">随身采集</text><text x="311" y="261">保留来源</text><text x="533" y="261">整理事件</text><text x="755" y="261">关联主题</text><text x="977" y="261" fill="white">Personal Agent</text></g>
 <g font-size="14" fill="#6b806e"><text x="89" y="291">设备适配方向</text><text x="311" y="291">原句 / 时间 / 修订</text><text x="533" y="291">分包不等于事项</text><text x="755" y="291">跨对话的具体进展</text><text x="977" y="291" fill="#c7d7c2">观察 → 反馈 → 复核</text></g>
 <g font-size="22" fill="#7e977b"><text x="258" y="280">→</text><text x="480" y="280">→</text><text x="702" y="280">→</text><text x="924" y="280">→</text></g>
-<text x="64" y="381" font-size="16" fill="#667d69">首发公开后端、协议、提示词与合成演示；原生客户端待授权核清。独立项目，与 OPPO 无关联。</text>
+<text x="64" y="381" font-size="16" fill="#667d69">原生 iPhone / Mac · 客户端 GPL-3.0 · 后端 MIT · 独立项目，与 OPPO 无关联。</text>
 </g></svg>

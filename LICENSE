@@ -1,3 +1,6 @@
+Scope: this MIT license applies to the backend, prompts and original root documentation.
+It does not apply to clients/, which is GPL-3.0-only; see clients/LICENSE.
+
 MIT License
 
 Copyright (c) 2026 Xinlika contributors

@@ -1,0 +1,43 @@
+name: Native clients
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  apple:
+    runs-on: macos-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-heartball.lock
+      - run: brew install xcodegen
+      - name: Build Mac and capture executable
+        run: |
+          swift build --package-path clients --scratch-path .build/swift --product XinlikaMac
+          swift build --package-path clients --scratch-path .build/swift --product cb08-probe
+          swift run --package-path clients --scratch-path .build/swift CB08ProbeSelfTest
+          swift run --package-path clients --scratch-path .build/swift XinlikaWorkspaceCheck
+      - name: Native iPhone to backend to Mac integration
+        shell: bash
+        run: |
+          mkdir -p .build
+          python examples/native-test-server.py --root .build/native-ci --port 28788 > .build/native-server.log 2>&1 &
+          fixture_pid=$!
+          trap 'kill "$fixture_pid" 2>/dev/null || true' EXIT
+          python - <<'PY'
+          import json,time,urllib.request
+          from pathlib import Path
+          for _ in range(100):
+              try:
+                  urllib.request.urlopen('http://127.0.0.1:28788/health',timeout=1)
+                  break
+              except OSError: time.sleep(.2)
+          else: raise RuntimeError('Fixture did not start')
+          Path('.build/fixture-connection.json').write_text(json.dumps({'baseURL':'http://127.0.0.1:28788','token':'native-test-local-only'}))
+          PY
+          xcodegen generate --spec clients/project.yml
+          simulator_id=$(xcrun simctl list devices available --json | python -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for k,rows in d["devices"].items() if "iOS" in k for x in rows if "iPhone" in x["name"]))')
+          xcodebuild -project clients/Xinlika.xcodeproj -scheme Xinlika -destination "platform=iOS Simulator,id=$simulator_id" -derivedDataPath .build/ios CODE_SIGNING_ALLOWED=NO test > .build/native-tests.log 2>&1 || { tail -100 .build/native-tests.log; exit 1; }
+          swift run --package-path clients --scratch-path .build/swift NativeWorkspaceCheck .build/fixture-connection.json

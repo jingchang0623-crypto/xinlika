@@ -2,6 +2,8 @@
 
 **把随身记录变成 Personal Agent 的持续上下文。**
 
+**v0.2.0：已包含原生 iPhone / Mac 客户端。** [从 clone 跑通完整应用](docs/full-app.md) · 后端 MIT / 客户端 GPL-3.0-only。
+
 受 OPPO 心力球启发，心力卡探索一条可自部署、可追溯、可纠正的开放路线：录音卡采集声音，服务端整理事件与主题，Agent 在有用时反馈。
 
 [English](README.en.md) · [快速体验](docs/quickstart.md) · [真实验证与限制](docs/evidence.md) · [架构](docs/architecture.md) · [路线图](ROADMAP.md)
@@ -10,7 +12,7 @@
 
 ## 先体验，再接硬件
 
-首发公开 **Python 处理后端、四阶段 Agent 循环、中文提示词、恢复协议和回归测试**。无需录音卡、API Key 或付费调用，也能运行脱敏演示：
+现已公开 **原生 iPhone/Mac 客户端、Python 处理后端、四阶段 Agent 循环、中文提示词、恢复协议和回归测试**。无需录音卡、API Key 或付费调用，也能运行脱敏演示：
 
 ```bash
 git clone https://github.com/jingchang0623-crypto/xinlika.git
@@ -27,7 +29,7 @@ python examples/demo.py
 
 上图为可运行后端生成的合成演示报告，不是已发布原生 App。
 
-真实模型和共享服务接入见[快速开始](docs/quickstart.md)。开发阶段已存在的 iPhone / Mac 客户端暂未收入本仓库：其旧上游没有声明许可证，需核清授权。下载本仓库尚不能直接在 iPhone 上使用完整产品。
+真实模型和共享服务接入见[快速开始](docs/quickstart.md)。iPhone/Mac 客户端已纳入 `clients/`，经权利人确认按 GPL-3.0-only 发布；后端仍为 MIT。完整原生构建、配置和录音流程见[完整应用指南](docs/full-app.md)。模型/ASR 使用你自己的授权服务，厂商二进制 SDK 无需安装。
 
 ## 为什么做这个
 
@@ -43,7 +45,7 @@ python examples/demo.py
 
 | 模块 | 公开内容 | 当前边界 |
 |---|---|---|
-| 可靠接收 | 身份、序号、哈希、幂等回执、卡上参考对齐、跨物理续段关联 | 服务端协议；不含首发原生 BLE 客户端 |
+| 可靠接收 | 身份、序号、哈希、幂等回执、卡上参考对齐、跨物理续段关联 | 服务端协议；包含原生 BLE 客户端；实际设备/固件需按指南核对 |
 | 事件与主题 | 原句引用、录制时间、活动容器、可逆归并/拆分、纠正失效 | 跨对话关联仍漏报；自动活动边界未独立验收 |
 | 个人 Agent | 持久观察、生成、独立复核、冷却、去重、中文角色提示词 | App 内反馈；无外部消息推送或受托执行 |
 | 多设备空间 | 可撤销设备凭据、只读/编辑权限、修订快照、备份恢复 | 单用户多设备；不是公开注册的多租户服务 |
@@ -77,4 +79,4 @@ python -m unittest discover -s examples -p 'test_*.py'
 
 复用 LangGraph、SQLite、OpenAI 兼容 SDK 和 Pydantic。Omi、OpenClaw、Hermes、OpenMuse 是设计参考，不等于已部署其整套产品。语音研究适配器的第三方服务条件需单独核对。见 [第三方说明](THIRD_PARTY_NOTICES.md)。
 
-[MIT License](LICENSE) · 实验阶段 v0.1.0 · 面向开发者和早期体验者
+[后端 MIT / 客户端 GPL-3.0-only](docs/client-licensing.md) · 实验阶段 v0.2.0 · 面向开发者和早期体验者

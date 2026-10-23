@@ -1,0 +1,213 @@
+{
+  "snapshot_date": "2026-10-23",
+  "authorization": "Rights holder confirmed authority to republish relevant client code under GPL-3.0 on 2026-10-23; no MIT grant for clients",
+  "upstream_commit": "9587788",
+  "files": [
+    {
+      "source": "Sources/LuyinbiCore/BLEClient.swift",
+      "path": "clients/Sources/LuyinbiCore/BLEClient.swift",
+      "source_sha256": "e872247f79e09eeeb77c3b1658676b43fb2adf85c5af8c648a0ebc304c3cf3a3",
+      "export_sha256": "710e6b6631ecfef03d5d7934acc47047eea20670fb764dd47756d0e3e1b0ecee"
+    },
+    {
+      "source": "Sources/LuyinbiCore/Commands.swift",
+      "path": "clients/Sources/LuyinbiCore/Commands.swift",
+      "source_sha256": "0f18e54fa3481d0838aed0e7c543249a64c84b7147f970edd6894a4e34984e7f",
+      "export_sha256": "dbec08e84ee7835599acd5d83653470de9479c24da122ce2286310176a5d85fa"
+    },
+    {
+      "source": "Sources/LuyinbiCore/Protocol.swift",
+      "path": "clients/Sources/LuyinbiCore/Protocol.swift",
+      "source_sha256": "3d49803dcb8c1beca66a646d456dcb144433094d7395c3d18e06a919491046c6",
+      "export_sha256": "9b7253eff2bc51b6a9da22046094907124e771e5721e903a6db59bdeb9363d26"
+    },
+    {
+      "source": "Sources/LuyinbiCore/FrameParser.swift",
+      "path": "clients/Sources/LuyinbiCore/FrameParser.swift",
+      "source_sha256": "18c8335e3ae70fe89ed98cb0c244f878d5fe11f943b267e5b017e1e017588a56",
+      "export_sha256": "5979c50aeaa3fa405dc8409e184224799a42919613d4184d51dfe964ed9de82a"
+    },
+    {
+      "source": "Sources/LuyinbiCore/FileList.swift",
+      "path": "clients/Sources/LuyinbiCore/FileList.swift",
+      "source_sha256": "44153a344cc2a2cc563c049e8f4669bd4d0e1870614bf48fa775c9f70d1e401a",
+      "export_sha256": "7759f0e905afb33733a53f7c180e9cd3d0322fe6e047f7ba75396dca808f0a98"
+    },
+    {
+      "source": "Sources/LuyinbiCore/OggWrap.swift",
+      "path": "clients/Sources/LuyinbiCore/OggWrap.swift",
+      "source_sha256": "d58ccf8e1350ee6974220305ad39a8023817668a588455451b40a32b6237f524",
+      "export_sha256": "fbb99bbad6a53e46d22023204387bab720fab7e6a7a44a38d96795d9f58b738e"
+    },
+    {
+      "source": "Sources/LuyinbiCore/Continuation.swift",
+      "path": "clients/Sources/LuyinbiCore/Continuation.swift",
+      "source_sha256": "ebe9491e5d37ec8cb798e7e00e6c2e4d64be3779857acac1eb8d0a03d94fccc3",
+      "export_sha256": "7564534c22b99f1c6b207bdffb7906cdb64647fe76572448adf5f930f9e00790"
+    },
+    {
+      "source": "Sources/LuyinbiCore/RecordingControl.swift",
+      "path": "clients/Sources/LuyinbiCore/RecordingControl.swift",
+      "source_sha256": "b153735f088e6544c82f861c80c9eef0d1d3b1be81b5e8cbbbc2c71f4a622a08",
+      "export_sha256": "4890b5eb252c88f64fbeb4a425039f68d400e8da4256fca0c65bf64200b9cc3f"
+    },
+    {
+      "source": "Sources/LuyinbiCore/RecorderButtonHandshake.swift",
+      "path": "clients/Sources/LuyinbiCore/RecorderButtonHandshake.swift",
+      "source_sha256": "21a12b097d5152abea292b701ff4fdf344ef57dc0cc72c275caf686c6222a75d",
+      "export_sha256": "6f424e21c0afe473da8dc4648e9dcf225ca08c75ea34e3991f636cabb7c16d8d"
+    },
+    {
+      "source": "Sources/LuyinbiCore/CardSegmentDiscovery.swift",
+      "path": "clients/Sources/LuyinbiCore/CardSegmentDiscovery.swift",
+      "source_sha256": "f5a9e73b09f60f64ab44d9ddf8cfae9fe214ae6bbdc2fea83f359c2a52b3ab8b",
+      "export_sha256": "08148ac41872ade11d8f3a5071ccd8c9a9407da15c06c7439155e37344f52f33"
+    },
+    {
+      "source": "Sources/LuyinbiCore/HeartballClient.swift",
+      "path": "clients/Sources/LuyinbiCore/HeartballClient.swift",
+      "source_sha256": "05cbe5230c6d5f6f4233211614030e04117e940ed339c86cdaf9c8f0e9274102",
+      "export_sha256": "66237c037495f6417e3596c620582c415dbb29c73fd44a75b5ff4b8d59fa68f2"
+    },
+    {
+      "source": "Sources/LuyinbiCore/HeartballRecordCollection.swift",
+      "path": "clients/Sources/LuyinbiCore/HeartballRecordCollection.swift",
+      "source_sha256": "6c28ef9f96a2a983dae681a9d4612a4937628b5959818bf3deb475b7538b4af9",
+      "export_sha256": "c3d571f4182c9b9a5c842273ecfa938d5558983e70809a35f20c8bf744f8771f"
+    },
+    {
+      "source": "Sources/HeartballLab/AgentPanel.swift",
+      "path": "clients/Sources/HeartballLab/AgentPanel.swift",
+      "source_sha256": "67d001089bca9d373bf99bb0b8a1286d69c395adfe415ceaf6991f4662a75098",
+      "export_sha256": "fff9c2831d1ed4294341956dfc361dffdd9f72979509186d6452191aab2681bc"
+    },
+    {
+      "source": "Sources/HeartballLab/SharedWorkspace.swift",
+      "path": "clients/Sources/HeartballLab/SharedWorkspace.swift",
+      "source_sha256": "e1117919d1ab901bf8a386ffa438aabd4a997714ccd9d2166dd12bcbf5f9b90c",
+      "export_sha256": "7a295c9d944a1ac33723ccfde985358aa81d0447d5e6b53443bb9e593eb74b4f"
+    },
+    {
+      "source": "Sources/HeartballLab/WorkspaceComponents.swift",
+      "path": "clients/Sources/HeartballLab/WorkspaceComponents.swift",
+      "source_sha256": "94c1831273004bae6498af2e04c8c5496aba6304347180ba9cafc4b7886ec9eb",
+      "export_sha256": "30b6b6d2cd6747868d2885a7d9bbac2c88f061229446f6a7899592be327bac81"
+    },
+    {
+      "source": "Sources/HeartballLab/WorkspaceView.swift",
+      "path": "clients/Sources/HeartballLab/WorkspaceView.swift",
+      "source_sha256": "99067ee9b2499588527808f27526da9b598bb455edb8fddb5bf119723896f5c4",
+      "export_sha256": "b069e826c10f417f5f00a066018573d9e418fbc63691c0e92d80eecf9464cd52"
+    },
+    {
+      "source": "Sources/HeartballLab/HeartballLab.swift",
+      "path": "clients/Sources/HeartballLab/HeartballLab.swift",
+      "source_sha256": "b20e4e1d6007d788e2d5b9479dfa95e9f7e6282075279a5b81c4e2ea4626332e",
+      "export_sha256": "5c2e38d64769a7178416ef67a262266368bd791cde62dfbe95232910ac47ad36"
+    },
+    {
+      "source": "Sources/CB08ProbeSupport/CaptureJournal.swift",
+      "path": "clients/Sources/CB08ProbeSupport/CaptureJournal.swift",
+      "source_sha256": "ab64907700604674d3effd21b4f301731cc4f0e955960d8cc2cbda956762918e",
+      "export_sha256": "ce4684ba738f619f37982872da31f078020353566a66713671afdf5bed54f9e0"
+    },
+    {
+      "source": "Sources/CB08ProbeSupport/ProbeConfiguration.swift",
+      "path": "clients/Sources/CB08ProbeSupport/ProbeConfiguration.swift",
+      "source_sha256": "32c9210865b707ad1736b38669880511ebc3c1084e304f9a12fec82e05d8c855",
+      "export_sha256": "1519139ce0070c03c81af5dbb27b290c39e84251bd4780d62eeed8ebfdaca7e4"
+    },
+    {
+      "source": "Sources/CB08ProbeSupport/DeviceButtonCandidate.swift",
+      "path": "clients/Sources/CB08ProbeSupport/DeviceButtonCandidate.swift",
+      "source_sha256": "565a16edb5f53e35737d03eb67c9a2eaee9c125cf845a9df82ba29bb28f4bef1",
+      "export_sha256": "e5ac73fc1e1e0acb644d033112bca53598a05c66065fe540b07e3d753d0d4f08"
+    },
+    {
+      "source": "Sources/CB08ProbeSupport/ReferenceDownloadSink.swift",
+      "path": "clients/Sources/CB08ProbeSupport/ReferenceDownloadSink.swift",
+      "source_sha256": "df44355c4be29bbb1c7d7b358d875a110facee28089034ec635b1802b517811c",
+      "export_sha256": "907951bb1ca267b558e34e2f073e4c9d024bcfb0701c3c2c2d6dc5bcb45fd00b"
+    },
+    {
+      "source": "Sources/cb08-probe/main.swift",
+      "path": "clients/Sources/cb08-probe/main.swift",
+      "source_sha256": "83cfd14fb16c96434651df0fbf3c5ac6d8ea973f9ab8a5beb03171e9494838b5",
+      "export_sha256": "5ccb29a923e0b453bd8eff380e8758c0987efbc1015a704da64c59370a2c8c00"
+    },
+    {
+      "source": "Sources/cb08-probe/Info.plist",
+      "path": "clients/Sources/cb08-probe/Info.plist",
+      "source_sha256": "438fd3900cc29602ae4c9fb6bd3290f410322bee4318d2f7970fef2704777ba0",
+      "export_sha256": "b6d693d9473707106d96adba7355980c80d0f1a7f9b548c9533ab684b569b83d"
+    },
+    {
+      "source": "Sources/CB08ProbeSelfTest/main.swift",
+      "path": "clients/Sources/CB08ProbeSelfTest/main.swift",
+      "source_sha256": "6bd62ae40b84a04bd84156b0bbe8d235ad1b728f27a295edf74c2cf9cac70652",
+      "export_sha256": "e32cb35eb568e0cee7bff95d2d6c86de41e46973b94a965bfe3d98109be50b67"
+    },
+    {
+      "source": "Sources/HeartballClientCheck/main.swift",
+      "path": "clients/Sources/HeartballClientCheck/main.swift",
+      "source_sha256": "12866e6dcec6ff0ec18a43c3f354af45783b0a745a3768f0e4b1546b6f143035",
+      "export_sha256": "2ffda87bf93e0d9249624e0938cb2b2a784cbaf2b889d6e82a54af7d5d441f58"
+    },
+    {
+      "source": "Sources/XinlikaWorkspaceCheck/main.swift",
+      "path": "clients/Sources/XinlikaWorkspaceCheck/main.swift",
+      "source_sha256": "5acf9989e8f86273358909659421314ee6248689b900983a6106291c37ce97d4",
+      "export_sha256": "45dfed47f0b7b7957a7d969b57dd50454184858add8f6b57e180bc33f47e06c7"
+    },
+    {
+      "source": "iOS/XinlikaModel.swift",
+      "path": "clients/iOS/XinlikaModel.swift",
+      "source_sha256": "fa31bf9eebef1be21bad82e8c92806a12d637931fd77f441208807b7e2f76df6",
+      "export_sha256": "b1c19add1bdd948151c2cffaaa6e8c4925bb28d4e58db1e6c736bf6c723f3db9"
+    },
+    {
+      "source": "iOS/XinlikaCaptureStore.swift",
+      "path": "clients/iOS/XinlikaCaptureStore.swift",
+      "source_sha256": "128acdb1a9f9c196c3450934584db3de1a2608a018da427cf1bbcd073130931a",
+      "export_sha256": "1c811567c9aa8cd563eb0618db723b645cc7df93f13ee14717b9561ae6c5c695"
+    },
+    {
+      "source": "iOS/XinlikaConnection.swift",
+      "path": "clients/iOS/XinlikaConnection.swift",
+      "source_sha256": "2cbf3bc2e3855c801bd3c7b1cbeb20b067c3c3042625eac40eef0fe864ef67b0",
+      "export_sha256": "7975d6bbf19c6a2b57a36e1f6a01a98ad485ae65b3b5ebb9259d23bf9131b922"
+    },
+    {
+      "source": "iOS/XinlikaRootView.swift",
+      "path": "clients/iOS/XinlikaRootView.swift",
+      "source_sha256": "cae11a3a81651d89692576e7ca54d94065fb9a615c1dc1d7abb00b9a997cbfb9",
+      "export_sha256": "82b5c4827446273c9500c44513ca79f6434c68617c06f4d1cf2fdb8d6a886352"
+    },
+    {
+      "source": "iOS/BackgroundUploader.swift",
+      "path": "clients/iOS/BackgroundUploader.swift",
+      "source_sha256": "55863eb7973e08c9538514dafbb96e7c8418afad49daf122d941c2dd303967e9",
+      "export_sha256": "4ade040b7a5c88a1fe4847cb048d5d4edd45dce676726c8e62e47274789b1b85"
+    },
+    {
+      "source": "iOS/DownloadCheckpoint.swift",
+      "path": "clients/iOS/DownloadCheckpoint.swift",
+      "source_sha256": "dba62bfc97ef5af10075caec3f618a5d470470f444afd0e45972d556fd6956ae",
+      "export_sha256": "67fc43d520f285cbcf2872fdfabc21671dcd33150d910b130d21e9180cea6ade"
+    },
+    {
+      "source": "iOS/Tests/XinlikaCaptureTests.swift",
+      "path": "clients/iOS/Tests/XinlikaCaptureTests.swift",
+      "source_sha256": "64a595c48886923d91ad8143e5ec7c76e34d3675704c4484ca489aa08ee0d610",
+      "export_sha256": "ef67e9401477d53d643e32a749d649c84ebce8913bde0a479bd78fea6b8e3e2b"
+    }
+  ],
+  "changes": [
+    "Clock payload independently re-expressed from published fields",
+    "Account/backend/Markdown paths omitted",
+    "Names, signing identifiers and private test URLs replaced",
+    "Text input records occurrence time",
+    "Model/ASR capability gates added",
+    "Isolated UI integration test namespace"
+  ]
+}

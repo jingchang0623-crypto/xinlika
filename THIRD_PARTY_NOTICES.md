@@ -15,4 +15,4 @@ MIT 只适用于本仓库发布且有权许可的代码与文档，不为外部�
 
 Omi、OpenClaw、Hermes、OpenMuse 是行为或架构参考。中文提示词为本项目编写，固定参考版本见 [SOURCES](prompts/personal-agent/SOURCES.md)。没有复制其完整系统提示词或声称已运行整套应用。
 
-旧 Swift 客户端基于 `qiuyiwu1989-star/shennao-mac` 等既有工程。2026-10-23 GitHub 元数据未声明许可证，故未将这些客户端及厂商 SDK 纳入 MIT 发布。独立后端不需要这些文件即可运行。用户或贡献者提供未来客户端代码时，须说明其权利来源。
+原生客户端现位于 `clients/`，经权利人明确确认按 GPL-3.0-only 再发布，根 MIT 不适用于该路径。其 Swift 原生实现不链接厂商静态库/AAR/HAR/固件，也不包含旧账户接口或 Swift Markdown 阅读路径。逐项来源和授权边界见 [客户端授权核查](docs/client-licensing.md) 与 [客户端来源](clients/PROVENANCE.md)。

@@ -6,7 +6,7 @@ Inspired by the product idea behind OPPO's AI Xinliqiu, Xinlika explores self-ho
 
 [中文](README.md) · [Quickstart](docs/quickstart.md) · [Evidence and limitations](docs/evidence.md)
 
-This first release contains the Python backend, persistent LangGraph workflows, Chinese agent prompts, device ingestion/recovery protocols and regression tests. The existing development iPhone/Mac clients are excluded while upstream licensing is clarified. This repository is not an installable mobile app.
+This first release contains the Python backend, persistent LangGraph workflows, Chinese agent prompts, device ingestion/recovery protocols and regression tests. Version 0.2.0 includes native iPhone/Mac source under GPL-3.0-only, with the backend remaining MIT after the rights holder confirmed relicensing authority. Follow the [full app guide](docs/full-app.md) to build, configure your own model/ASR services and connect a CB08 recorder. No vendor binary SDK is required.
 
 ```bash
 git clone https://github.com/jingchang0623-crypto/xinlika.git
@@ -31,4 +31,4 @@ Development hardware tests covered iPhone locked capture, recovery after a 75-se
 
 Good fork directions include new capture adapters, grounded personal-agent prompts, Chinese event segmentation, authorized ASR adapters and a read-only MCP bridge. **No MCP server or Watch app is included yet.**
 
-Independent project; not affiliated with OPPO, and not a client for OPPO hardware or services. No equivalent-quality or cost-saving claims. MIT applies to the code published here; model weights and external services have separate terms. See [third-party notices](THIRD_PARTY_NOTICES.md).
+Independent project; not affiliated with OPPO, and not a client for OPPO hardware or services. No equivalent-quality or cost-saving claims. MIT applies to the backend; clients/ is GPL-3.0-only; model weights and external services have separate terms. See [third-party notices](THIRD_PARTY_NOTICES.md).

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>org.xinlika.cb08-probe</string>
+	<key>CFBundleName</key>
+	<string>CB08 Realtime Probe</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>验证指定 CB08 的实时音频、断连恢复和文件切段，音频仅保存在本机。</string>
+</dict>
+</plist>
