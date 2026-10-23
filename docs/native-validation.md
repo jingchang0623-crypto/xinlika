@@ -7,7 +7,7 @@
 - iPhone 原生 UI 完成：填写处理服务与设备凭据 → 补充文字 → 自动出现当日事件 → 打开原句 → 纠正来源文字 → Agent 回答使用更正。1 项完整 UI 测试通过。
 - 随后使用 Mac 原生客户端同一套 Swift API 对同一服务只读复核，确认收到 iPhone 创建的事件、已纠正原文、录制日期和非空引用答案。
 - Core/探针 90 项、事件会话与时间 10 项检查通过，均为合成控制测试；没有连接实际录音卡。
-- Python 后端 192 项回归通过（含新增兼容 ASR 的严格容器/空结果/地址检查）；独立演示回归仍通过。具体远端结果以当前提交 Checks 为准。
+- Python 后端 193 项回归通过（含新增兼容 ASR 的严格容器/空结果/地址检查，以及真实 SDK 的 loopback multipart/JSON 协议测试）；独立演示回归仍通过。具体远端结果以当前提交 Checks 为准。
 
 UI 集成使用实际 HTTP 服务、持久账本、LangGraph、原生 URLSession 与真实界面操作，模型响应是固定合成夹具；不调用用户模型、ASR 或真实录音。它证明原生路径可运行和纠正可传播，不是语音/主题理解质量基准。
 
@@ -16,3 +16,7 @@ Mac 窗口自动化工具本轮超时，未把原生 API 读回冒充 Mac 窗口
 本轮不包含：新包标识下的实体 iPhone 锁屏/BLE 实测、其他 CB08 固件、真人声纹、全天耗电、实际外部 ASR/模型质量或生产服务部署。此前开发版本的具体硬件证据见 [evidence](evidence.md)，不能等同此次新公开构建在所有设备都通过。
 
 复现所用入口：`examples/native-test-server.py`、`XinlikaTests`、`XinlikaUITests`、`NativeWorkspaceCheck`，以及 `.github/workflows/native.yml`。这些测试无需私有配置或模型密钥。实际使用需要自己的服务密钥及设备，不会悄悄连接维护者服务。
+
+## 干净 clone 复核
+
+从已提交源码创建独立 clone，未复制 `.venv`、`.build`、Xcode 派生产物或 `private-config`。按仓库入口重新安装锁定依赖、构建 Mac 与 iPhone；同一完整 iPhone UI 流程再次通过。测试服务使用新建的独立合成账本，Mac API 再读回更正后的相同结果。

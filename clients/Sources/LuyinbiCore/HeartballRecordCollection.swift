@@ -37,4 +37,3 @@ public struct HeartballRecordCollection: Identifiable, Sendable {
         }
     }
 }
-
