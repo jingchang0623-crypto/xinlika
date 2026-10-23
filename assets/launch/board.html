@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>心力卡 · 发布素材画板</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#e9eee8;color:#173f34;font-family:"PingFang SC","Noto Sans CJK SC",sans-serif}
+main{position:relative;width:1280px;height:720px;overflow:hidden;padding:54px 64px}
+.eyebrow{font:600 14px ui-monospace,monospace;letter-spacing:3px}
+h1{font-size:100px;letter-spacing:-5px;line-height:1.12;margin:30px 0 20px;font-weight:750}
+h2{font-size:38px;line-height:1.42;font-weight:600;margin:0 0 24px;letter-spacing:-1px}
+.copy{width:690px}.copy p{font-size:23px;line-height:1.7;margin:0 0 20px;color:#476357}
+.line{height:1px;background:#b7c9bd;margin:28px 0 22px;width:615px}
+.status{font-size:20px;font-weight:650;line-height:1.9}
+.price{font-size:21px;margin-top:7px}.price strong{font-size:32px}
+.phone{position:absolute;right:82px;top:42px;height:585px;width:269px;object-fit:contain;box-shadow:0 14px 40px #173f3428;border-radius:30px;background:white}
+.cap{position:absolute;top:646px;right:55px;width:325px;text-align:center;color:#536c60;font-size:13px;line-height:1.6}
+footer{position:absolute;left:64px;bottom:35px;font-size:14px;color:#536c60;line-height:1.8}
+footer strong{font:600 17px ui-monospace,monospace;color:#173f34}
+.step{display:none}.step h1{font-size:82px;letter-spacing:-3px;margin-top:72px;margin-bottom:28px}.step h2{font-size:34px}
+.step p{max-width:610px}.num{font:500 17px ui-monospace,monospace;letter-spacing:2px}
+body.social main{height:640px}body.social h1{font-size:80px;margin:22px 0 16px}body.social h2{font-size:34px;margin-bottom:16px}body.social .copy p{font-size:20px;line-height:1.6;margin-bottom:14px}body.social .line{margin:20px 0 16px}body.social .status{font-size:18px}body.social .price{font-size:18px}body.social .price strong{font-size:28px}body.social .phone{height:510px;width:235px;top:30px;right:100px}body.social .cap{top:552px;right:55px}body.social footer{bottom:26px}
+.steps{margin-top:36px;display:flex;gap:22px;align-items:center;font-size:17px;color:#6b8176}.steps b{color:#173f34;border-bottom:2px solid #173f34;padding-bottom:9px}
+@media(prefers-reduced-motion:no-preference){body.interactive .phone{animation:arrive .5s ease-out both}body.interactive h1{animation:arrive .35s ease-out both}.steps span:hover{color:#173f34;transform:translateY(-2px);transition:.2s}}
+@keyframes arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+<main>
+<div class="eyebrow">XINLIKA / OPEN PERSONAL CONTEXT</div>
+<section class="copy cover">
+<h1>心力卡<span style="font-size:27px;letter-spacing:1px;margin-left:20px;font-weight:450">Xinlika</span></h1>
+<h2>iPhone 也能拥有<br>随身上下文。</h2>
+<p>找到原句，纠正一次，再问你的 Agent。</p>
+<div class="line"></div>
+<div class="status">iPhone + Mac 已开源 · Android 规划中</div>
+<div class="price">项目所用录音卡硬件 <strong>不到 ¥200</strong></div>
+<p style="font-size:14px;margin-top:8px">维护者提供价格参考 · ASR / 模型 / 服务器另计</p>
+</section>
+<section class="copy step"><h1 id="title"></h1><h2 id="subtitle"></h2><p id="detail"></p><div class="steps"><span>01 记录</span><span>02 原句</span><span>03 再问</span></div></section>
+<img class="phone" src="native-event.png" alt="实际原生 iPhone 模拟器界面，使用合成输入与模型响应">
+<div class="cap">实际原生界面 · 合成输入与模型响应<br>演示链路，不代表识别或理解质量</div>
+<footer><strong>github.com/jingchang0623-crypto/xinlika</strong><br><span id="foot">受 OPPO 心力球启发的独立项目 · 与 OPPO 无关联 · 需自行构建</span></footer>
+</main>
+<script>
+const params=new URLSearchParams(location.search), step=Number(params.get('step'));
+if(params.has('social'))document.body.classList.add('social');
+if(params.has('interactive'))document.body.classList.add('interactive');
+const frames=[
+['先记下来。','一句补记，进入今天的事件。','输入 Camera prototype delivery is Wednesday.\n原生 App 连接实际后端，生成事件。','native-event.png'],
+['回到原句。','答案之前，先看它依据什么。','打开事件原文。接着把交付时间纠正为 Thursday；原文版本改变后，再提问。','native-source.png'],
+['纠正后，再问。','新依据进入后续回答。','固定测试模型回显包含 Thursday 的更新主题，原界面保留原样。这是控制链路测试，不是模型质量演示。','native-answer.png']];
+if(step>=1&&step<=3){const f=frames[step-1];document.querySelector('.cover').style.display='none';document.querySelector('.step').style.display='block';document.querySelector('#title').textContent=f[0];document.querySelector('#subtitle').textContent=f[1];document.querySelector('#detail').textContent=f[2];document.querySelector('.phone').src=f[3];document.querySelectorAll('.steps span')[step-1].innerHTML='<b>'+document.querySelectorAll('.steps span')[step-1].textContent+'</b>';document.querySelector('#foot').textContent='三张截图轮播，非连续录像 · 实际 HTTP / SQLite / LangGraph · 固定合成响应';}
+</script>
+</html>

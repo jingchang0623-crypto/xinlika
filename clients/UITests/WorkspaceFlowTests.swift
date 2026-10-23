@@ -2,6 +2,13 @@
 import XCTest
 
 final class WorkspaceFlowTests: XCTestCase {
+    private func capture(_ name: String, app: XCUIApplication) {
+        let shot = XCTAttachment(screenshot: app.screenshot())
+        shot.name = name
+        shot.lifetime = .keepAlways
+        add(shot)
+    }
+
     func testNativeConnectionTextEventSourceAndQuestion() throws {
         continueAfterFailure = false
         let app = XCUIApplication()
@@ -26,9 +33,11 @@ final class WorkspaceFlowTests: XCTestCase {
         app.buttons["submitTextRecord"].tap()
         let event = app.staticTexts["相机计划讨论"].firstMatch
         XCTAssertTrue(event.waitForExistence(timeout: 30))
+        capture("01 Synthetic native event", app: app)
         event.tap()
         XCTAssertTrue(app.staticTexts["Camera prototype delivery is Wednesday."].firstMatch.waitForExistence(timeout: 10))
         XCTAssertTrue(app.buttons["纠正内容或来源"].firstMatch.exists)
+        capture("02 Synthetic native literal source", app: app)
         app.buttons["纠正内容或来源"].firstMatch.tap()
         let correction = app.textViews["correctionText"]
         XCTAssertTrue(correction.waitForExistence(timeout: 5)); correction.tap()
@@ -44,6 +53,6 @@ final class WorkspaceFlowTests: XCTestCase {
         app.buttons["sendQuestion"].tap()
         let answer = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "Thursday")).firstMatch
         XCTAssertTrue(answer.waitForExistence(timeout: 30))
-        let shot = XCTAttachment(screenshot: app.screenshot()); shot.name = "Synthetic native corrected answer"; shot.lifetime = .keepAlways; self.add(shot)
+        capture("03 Synthetic native corrected answer", app: app)
     }
 }

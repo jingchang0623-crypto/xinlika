@@ -1,34 +1,64 @@
 # Xinlika · 心力卡
 
-**Turn everyday recordings into continuous context for a personal agent.**
+**Everyday context for your personal agent, on iPhone too. Trace a claim, correct its source, ask again.**
 
-Inspired by the product idea behind OPPO's AI Xinliqiu, Xinlika explores self-hosted processing, source-linked events, evolving topics and feedback that can be corrected.
+An independent open-source project inspired by OPPO's AI Xinliqiu. Native **iPhone + Mac source is available**; cross-brand Android is planned. Self-host the backend and choose your ASR and text model.
 
-[中文](README.md) · [Quickstart](docs/quickstart.md) · [Evidence and limitations](docs/evidence.md)
+[中文](README.md) · [Full app setup](docs/full-app.md) · [No-hardware quickstart](docs/quickstart.md) · [Demo kit](docs/launch/demo.md) · [Fork guide](docs/fork-guide.md)
 
-This first release contains the Python backend, persistent LangGraph workflows, Chinese agent prompts, device ingestion/recovery protocols and regression tests. Version 0.2.0 includes native iPhone/Mac source under GPL-3.0-only, with the backend remaining MIT after the rights holder confirmed relicensing authority. Follow the [full app guide](docs/full-app.md) to build, configure your own model/ASR services and connect a CB08 recorder. No vendor binary SDK is required.
+![Xinlika: iPhone and Mac today; Android planned](assets/launch/cover.png)
+
+Developer preview [v0.2.0](https://github.com/jingchang0623-crypto/xinlika/releases/tag/v0.2.0). Backend MIT; native clients GPL-3.0-only. Build from source; no pre-signed app is supplied.
+
+## What makes it worth trying?
+
+- **iPhone today, Android next.** iOS 17+ and macOS 14+ clients are included. No public Android or Watch app exists yet. Android is a concrete [staged contribution plan](docs/android-plan.md), not a universal compatibility claim.
+- **A low hardware entry point.** The maintainer reports a sub-CNY 200 price for the recorder used in this project (2026-10-23). This is a hardware-only reference, not a verified current retailer quote or total running cost. Verify CB08 model/firmware before purchase; ASR, models, servers and storage are extra.
+- **Your deployment, your model choice.** Use your own service and device credentials. When you use external models, the relevant content is sent to those services.
+- **Sources that can be corrected.** Keep literal sources and revisions; corrections invalidate dependent answers. A transport batch is not automatically a semantic event, and a topic may span conversations.
+- **Code you can extend.** Capture/recovery protocols, event/topic processing and observe → respond → review → publish prompts are included. MCP remains unimplemented.
+
+The [October 16 GeekPark hands-on report](https://www.geekpark.net/news/372428) described the Xinliqiu preview as requiring OPPO, OnePlus or Realme phones, with other brands unsupported at that time. This dated report is not a permanent official compatibility list. Xinlika uses **CB08, not OPPO hardware or services**. See [comparison sources and boundaries](docs/oppo-context.md).
+
+## Watch the native path
+
+![Three native iPhone screenshots: synthetic event, literal source and corrected answer](assets/launch/native-walkthrough.gif)
+
+This is a three-screenshot slideshow from the actual iPhone simulator, not continuous footage. Inputs and model responses are synthetic fixtures; native UI, HTTP, SQLite and LangGraph are real. It demonstrates the workflow, not ASR or model quality. [Originals and reproduction](docs/launch/demo.md).
+
+## Run it
+
+For the no-credential, no-hardware synthetic demo:
 
 ```bash
 git clone https://github.com/jingchang0623-crypto/xinlika.git
 cd xinlika
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements-heartball.txt
-python examples/demo.py
+PYTHON=python3.12 ./scripts/bootstrap.sh
+.venv/bin/python examples/demo.py
 ```
 
-Python 3.11+; release validation currently covers macOS. The demo needs no hardware, credentials or paid calls. It uses explicitly synthetic inputs and deterministic model responses with the actual persistence, source-validation, query and correction workflows. It writes an HTML report. It does not evaluate ASR or model intelligence.
+Use an installed Python 3.11+ executable. Open the HTML path printed by the demo to compare a timeline, linked topics and cited answers before/after a correction.
 
-Core ideas:
+For the complete app: provision your own model/ASR services, generate private connection files, start the shared backend, then build the Mac and iPhone clients. Follow the [full guide](docs/full-app.md). A Mac, Xcode and XcodeGen are required; physical iPhone installation needs your signing setup. Start with text input without a recorder. The CB08 path additionally needs authorized ASR. A physical phone cannot reach a Mac through the phone's own `127.0.0.1`.
 
-- Transport batches are not semantic events; events are not whole activities; topics can span conversations.
-- Recording time is distinct from upload or processing time.
-- Preserve literal sources and revisions; a correction invalidates dependent answers and suggestions.
-- Observe → respond → review → publish. Stay quiet without a useful change.
-- A voice match or first-person sentence is not proof of the recorder owner's experience.
+The recommended shared path is CB08 → iPhone → your backend → iPhone/Mac. Optional Mac-local capture uses a separate workspace and does not automatically forward into the shared one.
 
-Development hardware tests covered iPhone locked capture, recovery after a 75-second server outage, and same-file CB08 streaming recovery under specific firmware conditions. All-day continuity, battery life, general speaker attribution, automatic activity boundaries and long-term coaching quality remain unverified. See the [evidence table](docs/evidence.md).
+## Fork something concrete
 
-Good fork directions include new capture adapters, grounded personal-agent prompts, Chinese event segmentation, authorized ASR adapters and a read-only MCP bridge. **No MCP server or Watch app is included yet.**
+| Direction | First deliverable |
+|---|---|
+| Android | Connect, sync and add text; then correction/Q&A, microphone/BLE and device-specific background tests |
+| Read-only MCP | Authenticated search/source/topic tools with revisions, timestamps and revocation checks |
+| Personal-agent prompts | Grounded, quiet responses with counterexamples and correction invalidation |
+| Hardware / ASR | One documented format/device with immutable retry, hashes and source preservation |
+| Event and topic quality | Reproducible rescheduling, retraction, late upload and source-correction cases |
 
-Independent project; not affiliated with OPPO, and not a client for OPPO hardware or services. No equivalent-quality or cost-saving claims. MIT applies to the backend; clients/ is GPL-3.0-only; model weights and external services have separate terms. See [third-party notices](THIRD_PARTY_NOTICES.md).
+The [fork guide](docs/fork-guide.md) lists source files and acceptance criteria. [Report a first run](https://github.com/jingchang0623-crypto/xinlika/issues/new?template=first-run.yml), including failures, without sharing private audio or credentials. [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md)
+
+## Evidence and limits
+
+v0.2.0 passed clean-clone builds, 193 backend tests, 23 iPhone capture tests, one full native UI flow and 100 core/session-clock checks. The native model is synthetic; Mac native API readback is not a completed Mac window test. [Native validation](docs/native-validation.md).
+
+Earlier development builds have specific locked-iPhone, 75-second outage and CB08 recovery evidence. The new public bundle still needs physical BLE/lock-screen revalidation. All-day lossless capture, battery life, general speaker attribution, automatic activity boundaries and long-term advice quality remain unverified. [Evidence table](docs/evidence.md).
+
+Independent project, not affiliated with or endorsed by OPPO. No equivalent-quality, universal-device, free-service or quantified savings claim. Backend MIT; `clients/` and native-derived launch visuals GPL-3.0-only. Vendor binaries, firmware and model weights are excluded. [Licensing](docs/client-licensing.md) · [Architecture](docs/architecture.md) · [Third-party notices](THIRD_PARTY_NOTICES.md).

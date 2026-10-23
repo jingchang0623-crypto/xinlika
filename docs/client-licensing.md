@@ -17,6 +17,7 @@
 ## 路径授权
 
 - `clients/**`：GPL-3.0-only，包括原生 App、Swift 核心、探针及桌面本机采集服务。见 [客户端许可证](../clients/LICENSE) 与 [来源说明](../clients/PROVENANCE.md)。
+- `assets/launch/**`：GPL-3.0-only，原生截图与其衍生视觉素材；原图哈希和合成标注见[素材说明](../assets/launch/README.md)。
 - 后端 `scripts/**`、`prompts/**`、独立演示及根文档：MIT，除明确标注的第三方文件外。
 - GPL 不是禁止商业使用；分发修改后的 GPL 客户端时需要满足相应源码、许可证和声明要求。后端 MIT 不把客户端改成 MIT。
 

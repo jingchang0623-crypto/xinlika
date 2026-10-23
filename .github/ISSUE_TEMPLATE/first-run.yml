@@ -1,0 +1,34 @@
+name: 第一次运行 / First run
+description: 告诉我们你在哪一步跑通或遇到阻碍，无需私人录音。
+title: "[体验] "
+body:
+  - type: dropdown
+    id: path
+    attributes:
+      label: 运行路径
+      options:
+        - 无硬件合成演示
+        - iPhone / Mac 文字闭环
+        - CB08 真实采集
+        - Fork 扩展
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 环境与版本
+      description: 仓库提交/版本、系统、Python/Xcode；硬件场景补型号与固件，勿填设备唯一标识。
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 步骤、结果与预期
+      description: 可填写成功跑通的步骤，或脱敏失败命令、错误及预期。不要附密钥、服务凭据、私人原文、录音或声纹。
+    validations:
+      required: true
+  - type: textarea
+    id: next
+    attributes:
+      label: 你想继续用它做什么？
+      description: 可选。写一个真实使用场景或你想 fork 的具体目标。

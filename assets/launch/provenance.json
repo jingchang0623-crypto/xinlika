@@ -1,0 +1,31 @@
+{
+  "scenario": "Synthetic inputs and fixed model responses; actual native UI/HTTP/SQLite/LangGraph",
+  "capture_dates": [
+    "2026-10-23"
+  ],
+  "license": "GPL-3.0-only",
+  "originals_unmodified": true,
+  "files": [
+    {
+      "file": "native-event.png",
+      "attachment": "01 Synthetic native event",
+      "test": "WorkspaceFlowTests/testNativeConnectionTextEventSourceAndQuestion()",
+      "captured_at": "2026-10-23T10:59:47.497000+08:00",
+      "sha256": "8cb75322171ff3a28d4d3b400e269327a778c6b3087c595714e420a38f0c9a7b"
+    },
+    {
+      "file": "native-source.png",
+      "attachment": "02 Synthetic native literal source",
+      "test": "WorkspaceFlowTests/testNativeConnectionTextEventSourceAndQuestion()",
+      "captured_at": "2026-10-23T10:59:50.009000+08:00",
+      "sha256": "dba9cc51dc61340988a686b94fc1282bc16a579dc1ef8f4e7878ef7f6c2c2c21"
+    },
+    {
+      "file": "native-answer.png",
+      "attachment": "03 Synthetic native corrected answer",
+      "test": "WorkspaceFlowTests/testNativeConnectionTextEventSourceAndQuestion()",
+      "captured_at": "2026-10-23T11:00:13.750000+08:00",
+      "sha256": "e44106cbf62403f791c0f045fea3c988b8c84aa992992115d19870c36b3141c9"
+    }
+  ]
+}
