@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-23",
+  "license": "GPL-3.0-only",
+  "source": "Existing synthetic native XCTest screenshots; HTML typography layout; X cover reused byte-for-byte",
+  "github": "https://github.com/jingchang0623-crypto/xinlika",
+  "files": [
+    {
+      "file": "x/01-cover.png",
+      "width": 1280,
+      "height": 640,
+      "sha256": "556e28b32dbd221aad5d0411cb7eb64da89541860a3c68da62c427dd98fd3448"
+    },
+    {
+      "file": "xiaohongshu/01-cover.png",
+      "width": 1080,
+      "height": 1440,
+      "sha256": "cd521941cb2ccfb8ff547450848efa671d0c71fcd36b8cbc1abdbd4368c7eee1"
+    },
+    {
+      "file": "xiaohongshu/02-workflow.png",
+      "width": 1080,
+      "height": 1440,
+      "sha256": "fcb027ad25f0b3b46b68069892c377a1055eaef1d1daf1dbb54b312d053385c2"
+    },
+    {
+      "file": "xiaohongshu/03-cost.png",
+      "width": 1080,
+      "height": 1440,
+      "sha256": "792233d2d6d0f71fd08de59c38594efdf45cbfab0a5a399c7c40017a59243881"
+    },
+    {
+      "file": "xiaohongshu/04-run.png",
+      "width": 1080,
+      "height": 1440,
+      "sha256": "48bd11ca00266eeb2e034709e6fa4a0cfec657b20d91b2bcc6908d02bb728a4d"
+    },
+    {
+      "file": "xiaohongshu/05-fork.png",
+      "width": 1080,
+      "height": 1440,
+      "sha256": "3d4e4c630ed5dff3d1b7380b0ee25adce478516b0f1b1a91a9e54c54192c78b3"
+    }
+  ]
+}

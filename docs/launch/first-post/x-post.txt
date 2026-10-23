@@ -1,0 +1,6 @@
+看过 OPPO 心力球，但用 iPhone？
+心力卡开源了：iPhone/Mac 原生源码，录音卡硬件不到 ¥200*，可自部署、可改。
+记录→带出处问答，原文可纠正。
+*维护者参考价，服务费另计。需自行构建；Android 规划中。
+图为合成演示，与 OPPO 无关联。欢迎 Fork：
+https://github.com/jingchang0623-crypto/xinlika
