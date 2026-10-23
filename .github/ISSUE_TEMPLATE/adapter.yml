@@ -1,0 +1,15 @@
+name: 设备或 Agent 适配
+description: 认领一个有验收条件的适配方向
+body:
+  - type: textarea
+    id: target
+    attributes:
+      label: 设备、服务或 Agent，以及公开授权资料
+    validations:
+      required: true
+  - type: textarea
+    id: plan
+    attributes:
+      label: 最小实现与可复现验收办法
+    validations:
+      required: true

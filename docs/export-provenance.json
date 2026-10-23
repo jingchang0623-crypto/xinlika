@@ -1,0 +1,331 @@
+{
+  "export_date": "2026-10-23",
+  "scope": "new Python processing and prompt code; excludes legacy Swift, credentials, recordings and vendor sources",
+  "adaptations": [
+    "HTTP handler extracted; Mac hardware engine excluded",
+    "Mobile service and HTTP test load extracted handler",
+    "Public HTTP regression replaces private Mac Engine case with no-hardware route check",
+    "Synthetic demonstration and minimal authenticated CLI added",
+    "Public lock regenerated from clean Python 3.12 environment; original development tree untouched"
+  ],
+  "files": [
+    {
+      "source": "scripts/heartball_prompts.py",
+      "export": "scripts/heartball_prompts.py",
+      "source_sha256": "32f0e1c035b39d3071c052a4b5f53606b90b40bd4718dc64bfae3427768fdd37",
+      "export_sha256": "32f0e1c035b39d3071c052a4b5f53606b90b40bd4718dc64bfae3427768fdd37"
+    },
+    {
+      "source": "scripts/heartball_event_refinement.py",
+      "export": "scripts/heartball_event_refinement.py",
+      "source_sha256": "b9c6dbd479337d23d5283a237fe3a4092913e637d4da362683b4b736ccd749ff",
+      "export_sha256": "b9c6dbd479337d23d5283a237fe3a4092913e637d4da362683b4b736ccd749ff"
+    },
+    {
+      "source": "scripts/heartball_acoustic_engine.py",
+      "export": "scripts/heartball_acoustic_engine.py",
+      "source_sha256": "38b354dc763d1ca8e41c26cf4a4ec834beddb3ff5579c5929bc8c5202824861a",
+      "export_sha256": "38b354dc763d1ca8e41c26cf4a4ec834beddb3ff5579c5929bc8c5202824861a"
+    },
+    {
+      "source": "scripts/heartball_mobile.py",
+      "export": "scripts/heartball_mobile.py",
+      "source_sha256": "cb23150daf0686c1cc99bdc4aef9dbc3432310df9e06001f205d2efe220ccea9",
+      "export_sha256": "cb23150daf0686c1cc99bdc4aef9dbc3432310df9e06001f205d2efe220ccea9"
+    },
+    {
+      "source": "scripts/heartball_voice.py",
+      "export": "scripts/heartball_voice.py",
+      "source_sha256": "12be3b0541eb6862904b2ff8782d19df59f9a5c70af8d996ffcba29fb89d15ca",
+      "export_sha256": "12be3b0541eb6862904b2ff8782d19df59f9a5c70af8d996ffcba29fb89d15ca"
+    },
+    {
+      "source": "scripts/heartball-import.py",
+      "export": "scripts/heartball-import.py",
+      "source_sha256": "ae6e3275f5d31605c5c9fc09bbfc40906206d7cf1580db5af442721bdaa357b6",
+      "export_sha256": "ae6e3275f5d31605c5c9fc09bbfc40906206d7cf1580db5af442721bdaa357b6"
+    },
+    {
+      "source": "scripts/heartball_event_merge.py",
+      "export": "scripts/heartball_event_merge.py",
+      "source_sha256": "b6ccdea5496b6f85862480bc2f3f7fce455188b260b9f0f9fee7a9c203dc84b2",
+      "export_sha256": "b6ccdea5496b6f85862480bc2f3f7fce455188b260b9f0f9fee7a9c203dc84b2"
+    },
+    {
+      "source": "scripts/heartball_card_segments.py",
+      "export": "scripts/heartball_card_segments.py",
+      "source_sha256": "f9f8728e2b3d2920af2f2a17a219770cf5f03e6f32a6c92998f8a3773f0eb0fc",
+      "export_sha256": "f9f8728e2b3d2920af2f2a17a219770cf5f03e6f32a6c92998f8a3773f0eb0fc"
+    },
+    {
+      "source": "scripts/heartball_recall.py",
+      "export": "scripts/heartball_recall.py",
+      "source_sha256": "f876925434e23ea831299d36c7a5f2db1530560c807824c09917485f382c677e",
+      "export_sha256": "f876925434e23ea831299d36c7a5f2db1530560c807824c09917485f382c677e"
+    },
+    {
+      "source": "scripts/heartball_agent_store.py",
+      "export": "scripts/heartball_agent_store.py",
+      "source_sha256": "9e169f0335c1c06721f0d6033065d7d89fada83a69d32c29801f298ce4619a71",
+      "export_sha256": "9e169f0335c1c06721f0d6033065d7d89fada83a69d32c29801f298ce4619a71"
+    },
+    {
+      "source": "scripts/heartball_personal_agent.py",
+      "export": "scripts/heartball_personal_agent.py",
+      "source_sha256": "aa9b20f58dc2925c972b09962f398da4351c211382e21c8f22c2272dd5bf1ece",
+      "export_sha256": "aa9b20f58dc2925c972b09962f398da4351c211382e21c8f22c2272dd5bf1ece"
+    },
+    {
+      "source": "scripts/heartball_organization.py",
+      "export": "scripts/heartball_organization.py",
+      "source_sha256": "5397915211bd6cbf1a32cfcc1693e3b6d2ea5fdaa66e23ac792e53a793e83696",
+      "export_sha256": "5397915211bd6cbf1a32cfcc1693e3b6d2ea5fdaa66e23ac792e53a793e83696"
+    },
+    {
+      "source": "scripts/heartball_activities.py",
+      "export": "scripts/heartball_activities.py",
+      "source_sha256": "795f399c3a5a1ad78c917d43574ebb9145dde8efbcebc9379478fe20edd66dbe",
+      "export_sha256": "795f399c3a5a1ad78c917d43574ebb9145dde8efbcebc9379478fe20edd66dbe"
+    },
+    {
+      "source": "scripts/heartball-shared-service.py",
+      "export": "scripts/heartball-shared-service.py",
+      "source_sha256": "a5609a633e8e90930a8389efb1a631dd340038703c241d9260a9576e02a3e1ce",
+      "export_sha256": "a5609a633e8e90930a8389efb1a631dd340038703c241d9260a9576e02a3e1ce"
+    },
+    {
+      "source": "scripts/heartball_backup.py",
+      "export": "scripts/heartball_backup.py",
+      "source_sha256": "87d307ab47a16c27e392c8121fac5823e86d6b438b5e342078d5d67d267f79a3",
+      "export_sha256": "87d307ab47a16c27e392c8121fac5823e86d6b438b5e342078d5d67d267f79a3"
+    },
+    {
+      "source": "scripts/heartball_audio_context.py",
+      "export": "scripts/heartball_audio_context.py",
+      "source_sha256": "17a17ed1cb79df2b0ea62a5b7ab5719a3f8a8ee3e6adf46160df2d268eb60111",
+      "export_sha256": "17a17ed1cb79df2b0ea62a5b7ab5719a3f8a8ee3e6adf46160df2d268eb60111"
+    },
+    {
+      "source": "scripts/heartball_day.py",
+      "export": "scripts/heartball_day.py",
+      "source_sha256": "e6c6b0ae5d89f224d8bb4040889686c5a4dbff0c0715dec870fe3e9d664a7671",
+      "export_sha256": "e6c6b0ae5d89f224d8bb4040889686c5a4dbff0c0715dec870fe3e9d664a7671"
+    },
+    {
+      "source": "scripts/heartball_acoustic_worker.py",
+      "export": "scripts/heartball_acoustic_worker.py",
+      "source_sha256": "8f56882e7a2bdce7a46afd73700c49dc06e80504f5e6c2a5d7ea8328f94c02b0",
+      "export_sha256": "8f56882e7a2bdce7a46afd73700c49dc06e80504f5e6c2a5d7ea8328f94c02b0"
+    },
+    {
+      "source": "scripts/heartball-mobile-service.py",
+      "export": "scripts/heartball-mobile-service.py",
+      "source_sha256": "142f30a036a23e84a5fcb732e9bdfdaf9b13e1efef53e1f7214905359dee2add",
+      "export_sha256": "8b85de6acc030ca009979e20f2e7c753ab1a3c8d8b7cb7db9e6890bb3f83dd71"
+    },
+    {
+      "source": "scripts/heartball_processing.py",
+      "export": "scripts/heartball_processing.py",
+      "source_sha256": "3f4e5989ee936c3ccbfee8613a11dfa4bcfb0e8e4c4dd138b518e097ba2daa41",
+      "export_sha256": "3f4e5989ee936c3ccbfee8613a11dfa4bcfb0e8e4c4dd138b518e097ba2daa41"
+    },
+    {
+      "source": "scripts/heartball_content.py",
+      "export": "scripts/heartball_content.py",
+      "source_sha256": "cf2d4e76870ae59a1e9dfa939c5c3ab32feee1f34a7aa40d61ec7541859c6e1f",
+      "export_sha256": "cf2d4e76870ae59a1e9dfa939c5c3ab32feee1f34a7aa40d61ec7541859c6e1f"
+    },
+    {
+      "source": "scripts/heartball_store.py",
+      "export": "scripts/heartball_store.py",
+      "source_sha256": "cc862c8434f2c778eb4651dbf022a8ff0af24ea2d8df40486ddc91bb349ad539",
+      "export_sha256": "cc862c8434f2c778eb4651dbf022a8ff0af24ea2d8df40486ddc91bb349ad539"
+    },
+    {
+      "source": "scripts/heartball_timeline.py",
+      "export": "scripts/heartball_timeline.py",
+      "source_sha256": "3cb86763c2189dc0830e916e3db7cfa11847562b94251561803381f7a1fe2426",
+      "export_sha256": "3cb86763c2189dc0830e916e3db7cfa11847562b94251561803381f7a1fe2426"
+    },
+    {
+      "source": "scripts/heartball_shared.py",
+      "export": "scripts/heartball_shared.py",
+      "source_sha256": "390f6e075750a765aaeba2c84cb19f2b4f45981cb6bdf934a1dcffcfea2b3ef8",
+      "export_sha256": "390f6e075750a765aaeba2c84cb19f2b4f45981cb6bdf934a1dcffcfea2b3ef8"
+    },
+    {
+      "source": "scripts/heartball_recording_time.py",
+      "export": "scripts/heartball_recording_time.py",
+      "source_sha256": "c67f1d92a8a9d535fe424e71317550cb7df3e7a981513127258ae38944db23f3",
+      "export_sha256": "c67f1d92a8a9d535fe424e71317550cb7df3e7a981513127258ae38944db23f3"
+    },
+    {
+      "source": "scripts/heartball_topics.py",
+      "export": "scripts/heartball_topics.py",
+      "source_sha256": "62c8fa6c0836b7b40e7af74c8497561754b413f15aba7e7f88ff0cd4b538e052",
+      "export_sha256": "62c8fa6c0836b7b40e7af74c8497561754b413f15aba7e7f88ff0cd4b538e052"
+    },
+    {
+      "source": "scripts/test_heartball_answer_sources.py",
+      "export": "scripts/test_heartball_answer_sources.py",
+      "source_sha256": "2ef9665b7d534f2b4fb982cb43f94e73d7411d3b29a45135a0a3ef31a06e5750",
+      "export_sha256": "2ef9665b7d534f2b4fb982cb43f94e73d7411d3b29a45135a0a3ef31a06e5750"
+    },
+    {
+      "source": "scripts/test_heartball_recording_time.py",
+      "export": "scripts/test_heartball_recording_time.py",
+      "source_sha256": "862ad300d8036e7cade7f485774b9afc190eaa150e068a0e6a92fde5b3a16be7",
+      "export_sha256": "862ad300d8036e7cade7f485774b9afc190eaa150e068a0e6a92fde5b3a16be7"
+    },
+    {
+      "source": "scripts/test_heartball_processing.py",
+      "export": "scripts/test_heartball_processing.py",
+      "source_sha256": "0971679b13443e0b475b7fce49595a1f74fac24ad77ef4f4cc5c91a98c2a1e04",
+      "export_sha256": "0971679b13443e0b475b7fce49595a1f74fac24ad77ef4f4cc5c91a98c2a1e04"
+    },
+    {
+      "source": "scripts/test_heartball_shared.py",
+      "export": "scripts/test_heartball_shared.py",
+      "source_sha256": "5c5d3091ab62731b31b20ecff89db7d6f5e4342e7e33fba66621b4b4845656b4",
+      "export_sha256": "5c5d3091ab62731b31b20ecff89db7d6f5e4342e7e33fba66621b4b4845656b4"
+    },
+    {
+      "source": "scripts/test_heartball_topics.py",
+      "export": "scripts/test_heartball_topics.py",
+      "source_sha256": "fb2eacf9993411f9e1dc5cd5ca380d11660e2dd1ca8e49095ee87d4a28d88b7f",
+      "export_sha256": "fb2eacf9993411f9e1dc5cd5ca380d11660e2dd1ca8e49095ee87d4a28d88b7f"
+    },
+    {
+      "source": "scripts/test_heartball_agent_api.py",
+      "export": "scripts/test_heartball_agent_api.py",
+      "source_sha256": "f1df1bf15173a5f43afff512f217855b1d92dd123aabda86c3987e2b667dacad",
+      "export_sha256": "51b44fc12416b186e3203063dc10e0c55c3dd91243631997d2ce773f70991eaf"
+    },
+    {
+      "source": "scripts/test_heartball_store.py",
+      "export": "scripts/test_heartball_store.py",
+      "source_sha256": "a7b9e3a6960f76b5bc6a621b6fe7c0af42659aaca7b3e3322a23b452dc0cba99",
+      "export_sha256": "a7b9e3a6960f76b5bc6a621b6fe7c0af42659aaca7b3e3322a23b452dc0cba99"
+    },
+    {
+      "source": "scripts/test_heartball_event_merge.py",
+      "export": "scripts/test_heartball_event_merge.py",
+      "source_sha256": "e388d26c15e9a3e4faf7dcad016f45ab7e3139fb41a9104732006f90cb3ad740",
+      "export_sha256": "e388d26c15e9a3e4faf7dcad016f45ab7e3139fb41a9104732006f90cb3ad740"
+    },
+    {
+      "source": "scripts/test_heartball_recall.py",
+      "export": "scripts/test_heartball_recall.py",
+      "source_sha256": "2f6f661c64b283ba10c361b8ed7eed062ff615649438387a1c941d9b9e4f7fad",
+      "export_sha256": "2f6f661c64b283ba10c361b8ed7eed062ff615649438387a1c941d9b9e4f7fad"
+    },
+    {
+      "source": "scripts/test_heartball_personal_agent.py",
+      "export": "scripts/test_heartball_personal_agent.py",
+      "source_sha256": "6282095ea6d7873df4b7b32ecd2254fca9c494145c661c71003c63af86695b78",
+      "export_sha256": "6282095ea6d7873df4b7b32ecd2254fca9c494145c661c71003c63af86695b78"
+    },
+    {
+      "source": "scripts/test_heartball_backup.py",
+      "export": "scripts/test_heartball_backup.py",
+      "source_sha256": "457278478416fb939b96bdf4f276eddba1c7d5f98531f1f1978269b77bb0db58",
+      "export_sha256": "457278478416fb939b96bdf4f276eddba1c7d5f98531f1f1978269b77bb0db58"
+    },
+    {
+      "source": "scripts/test_heartball_day.py",
+      "export": "scripts/test_heartball_day.py",
+      "source_sha256": "07f76b58e9d5cbb68bd32350a24bd676c22154811ddb939704e0945f9f576f22",
+      "export_sha256": "07f76b58e9d5cbb68bd32350a24bd676c22154811ddb939704e0945f9f576f22"
+    },
+    {
+      "source": "scripts/test_heartball_event_refinement.py",
+      "export": "scripts/test_heartball_event_refinement.py",
+      "source_sha256": "5a5e5b761c9e007833eae97dccda206a5ea8b67a52b039e5e9e03c41d3af5802",
+      "export_sha256": "5a5e5b761c9e007833eae97dccda206a5ea8b67a52b039e5e9e03c41d3af5802"
+    },
+    {
+      "source": "scripts/test_heartball_activities.py",
+      "export": "scripts/test_heartball_activities.py",
+      "source_sha256": "a29b0874573ab850552dc8fc16249e57c948712249f05990fd43f42fbe3b40b7",
+      "export_sha256": "a29b0874573ab850552dc8fc16249e57c948712249f05990fd43f42fbe3b40b7"
+    },
+    {
+      "source": "scripts/test_heartball_organization.py",
+      "export": "scripts/test_heartball_organization.py",
+      "source_sha256": "2c59fd4fe1ae9f7daa123996a2649f572dc762780bf1c3bd318cb48f8451daa8",
+      "export_sha256": "2c59fd4fe1ae9f7daa123996a2649f572dc762780bf1c3bd318cb48f8451daa8"
+    },
+    {
+      "source": "scripts/test_heartball_voice.py",
+      "export": "scripts/test_heartball_voice.py",
+      "source_sha256": "7ae7369a40c9dec925a2161307ca7a627240a5d2949ebc334107330be889ddfb",
+      "export_sha256": "7ae7369a40c9dec925a2161307ca7a627240a5d2949ebc334107330be889ddfb"
+    },
+    {
+      "source": "scripts/test_heartball_mobile.py",
+      "export": "scripts/test_heartball_mobile.py",
+      "source_sha256": "d50773a383d7004d6de8371cbcdc1d7e8be06117d55ad5b5169ca7bc4bf9e184",
+      "export_sha256": "d50773a383d7004d6de8371cbcdc1d7e8be06117d55ad5b5169ca7bc4bf9e184"
+    },
+    {
+      "source": "scripts/test_heartball_audio_context.py",
+      "export": "scripts/test_heartball_audio_context.py",
+      "source_sha256": "39c5b0d2f8a5b2ba55adb0de0ae4f0e450189ca0cb4e96d848157b745533d75a",
+      "export_sha256": "39c5b0d2f8a5b2ba55adb0de0ae4f0e450189ca0cb4e96d848157b745533d75a"
+    },
+    {
+      "source": "scripts/analyze-cb08-capture.py",
+      "export": "scripts/analyze-cb08-capture.py",
+      "source_sha256": "ddbbccbac3306115ddaa302bbb5848754b5dd9386b6843bf5ae12c650196a878",
+      "export_sha256": "ddbbccbac3306115ddaa302bbb5848754b5dd9386b6843bf5ae12c650196a878"
+    },
+    {
+      "source": "scripts/test_cb08_capture_analysis.py",
+      "export": "scripts/test_cb08_capture_analysis.py",
+      "source_sha256": "8d178a0f3b407cd060140149b40afd8dc63c6ee5f340e0c9b24a2bc13cfea531",
+      "export_sha256": "8d178a0f3b407cd060140149b40afd8dc63c6ee5f340e0c9b24a2bc13cfea531"
+    },
+    {
+      "source": "prompts/personal-agent/SOURCES.md",
+      "export": "prompts/personal-agent/SOURCES.md",
+      "source_sha256": "1ad5d306d6313fa67dde5b50eb27624807e8f1abc8d2b2d59abbb4d391c667d6",
+      "export_sha256": "1ad5d306d6313fa67dde5b50eb27624807e8f1abc8d2b2d59abbb4d391c667d6"
+    },
+    {
+      "source": "prompts/personal-agent/respond.zh-CN.md",
+      "export": "prompts/personal-agent/respond.zh-CN.md",
+      "source_sha256": "c6d9a19a2418e7c052b493627f4d745bb6bcf2d1244200239b2a2fba7db81d93",
+      "export_sha256": "c6d9a19a2418e7c052b493627f4d745bb6bcf2d1244200239b2a2fba7db81d93"
+    },
+    {
+      "source": "prompts/personal-agent/review.zh-CN.md",
+      "export": "prompts/personal-agent/review.zh-CN.md",
+      "source_sha256": "e1c6a6c3c075a2141114383cbcdad053d352fdd69d4aa42b339f75d5fb06a2d6",
+      "export_sha256": "e1c6a6c3c075a2141114383cbcdad053d352fdd69d4aa42b339f75d5fb06a2d6"
+    },
+    {
+      "source": "prompts/personal-agent/observe.zh-CN.md",
+      "export": "prompts/personal-agent/observe.zh-CN.md",
+      "source_sha256": "dcf04da1858b25cd9458f17d7fea79be803fa4927ca29bd179be805d399294f8",
+      "export_sha256": "dcf04da1858b25cd9458f17d7fea79be803fa4927ca29bd179be805d399294f8"
+    },
+    {
+      "source": "prompts/personal-agent/contract.zh-CN.md",
+      "export": "prompts/personal-agent/contract.zh-CN.md",
+      "source_sha256": "8cfa4790880dbb2e65186c5360e4df1c3beedc000f026309f0d4503f5ab61914",
+      "export_sha256": "8cfa4790880dbb2e65186c5360e4df1c3beedc000f026309f0d4503f5ab61914"
+    },
+    {
+      "source": "requirements-heartball.txt",
+      "export": "requirements-heartball.txt",
+      "source_sha256": "1d2ac5d4af41ce646c4255799e47017f3b0e79bd7b184566dcef3966b8b0268b",
+      "export_sha256": "1d2ac5d4af41ce646c4255799e47017f3b0e79bd7b184566dcef3966b8b0268b"
+    },
+    {
+      "source": "requirements-heartball.lock",
+      "export": "requirements-heartball.lock",
+      "source_sha256": "46512415dd92785a128b5837ef872640ba5fe67844779c2618b74c7c58bcd2bd",
+      "export_sha256": "8f66cfc103740e6cb4ec57128047db0fb6d182346e3902401146647bed0ada7f"
+    }
+  ]
+}

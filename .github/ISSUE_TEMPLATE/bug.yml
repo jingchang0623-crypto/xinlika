@@ -1,0 +1,20 @@
+name: 可复现问题
+description: 报告协议、来源、纠正或处理错误
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: 实际结果和预期结果
+      description: 请使用合成数据；不要上传私人录音、逐字稿、声纹或密钥。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤、版本和运行环境
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 脱敏日志或最小示例

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-label="心力卡：采集、来源、事件、主题到 Personal Agent 的流程">
+<rect width="1200" height="430" rx="22" fill="#f2f4ec"/>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" fill="#244332">
+<text x="64" y="69" font-size="16" letter-spacing="5">XINLIKA / 心力卡</text>
+<text x="64" y="129" font-size="37" font-weight="650">让随身记录，成为 Agent 的持续上下文。</text>
+<text x="64" y="168" font-size="18" fill="#667d69">可自部署 · 来源可追溯 · 纠正会生效</text>
+<g fill="white" stroke="#cbd7c5"><rect x="64" y="218" width="184" height="102" rx="14"/><rect x="286" y="218" width="184" height="102" rx="14"/><rect x="508" y="218" width="184" height="102" rx="14"/><rect x="730" y="218" width="184" height="102" rx="14"/><rect x="952" y="218" width="184" height="102" rx="14" fill="#244332"/></g>
+<g font-size="23" font-weight="600"><text x="89" y="261">随身采集</text><text x="311" y="261">保留来源</text><text x="533" y="261">整理事件</text><text x="755" y="261">关联主题</text><text x="977" y="261" fill="white">Personal Agent</text></g>
+<g font-size="14" fill="#6b806e"><text x="89" y="291">设备适配方向</text><text x="311" y="291">原句 / 时间 / 修订</text><text x="533" y="291">分包不等于事项</text><text x="755" y="291">跨对话的具体进展</text><text x="977" y="291" fill="#c7d7c2">观察 → 反馈 → 复核</text></g>
+<g font-size="22" fill="#7e977b"><text x="258" y="280">→</text><text x="480" y="280">→</text><text x="702" y="280">→</text><text x="924" y="280">→</text></g>
+<text x="64" y="381" font-size="16" fill="#667d69">首发公开后端、协议、提示词与合成演示；原生客户端待授权核清。独立项目，与 OPPO 无关联。</text>
+</g></svg>
