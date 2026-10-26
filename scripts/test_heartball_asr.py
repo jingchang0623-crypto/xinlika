@@ -60,4 +60,24 @@ class ASRTests(unittest.TestCase):
             server.shutdown(); server.server_close(); thread.join()
 
 
+
+
+class ProcessingASRConfigurationTests(unittest.TestCase):
+    def test_ambiguous_asr_is_rejected_before_native_runtime(self):
+        from heartball_processing import configured_asr
+        with self.assertRaisesRegex(ValueError, 'Choose one ASR'):
+            configured_asr({'asr': {'model': 'fixture'}, 'voxgate_config': '/unused'})
+
+    def test_generic_asr_is_preserved_when_selecting_native_runtime(self):
+        from heartball_processing import Processor
+        with tempfile.TemporaryDirectory() as folder:
+            config = Path(folder) / 'config.json'
+            config.write_text(json.dumps({'asr': {'model': 'fixture'}, 'agent_runtime': {'runtime': 'fixture'}}))
+            adapter = object()
+            with patch('heartball_asr.CompatibleASR', return_value=adapter) as compatible, patch('heartball_native_processing.NativeProcessor') as native:
+                Processor.configured('isolated-store', config)
+                compatible.assert_called_once_with({'model': 'fixture'})
+                native.assert_called_once_with('isolated-store', {'runtime': 'fixture'}, adapter)
+
+
 if __name__ == '__main__': unittest.main()

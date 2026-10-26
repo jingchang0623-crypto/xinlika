@@ -10,6 +10,12 @@
 
 开发者预览 [v0.2.0](https://github.com/jingchang0623-crypto/xinlika/releases/tag/v0.2.0) · 后端 MIT / 客户端 GPL-3.0-only · 需要自行构建，无预签名安装包。
 
+## 2026-10-26 · main 更新
+
+已同步 iPhone 0.3.10 的持续采集、机身录音接入、持久补传队列、统一事件时间线和可撤销的关注反馈。服务端新增版本化 v6 Skill、增量事项续写、滚动复核、跨对话关联，以及只读 MCP 与聊天导出文件导入。
+
+[本轮更新与验证](docs/github-sync-2026-10-26.md) · [启用 v6 / MCP / 文件导入](docs/runtime-v6.md)。v6 需安装可选 Agent 依赖并明确选择处理配置；默认兼容原有部署。真实资料不随仓库发布，质量限制保留在验证说明中。
+
 ## 看过心力球，用 iPhone 的你可以从这里开始
 
 心力球让更多人开始问：**个人 Agent 怎样用上我们在现实生活中说过、决定过的事？** 心力卡沿着这个问题，提供一个可以自己运行、检查和改造的实现。
@@ -74,7 +80,7 @@ open clients/Xinlika.xcodeproj
 | **接手边的硬件或模型** | 一个能重试、保留来源且可复现的适配器 | ASR 适配器、mobile ingest、CoreBluetooth 参考 |
 | **改进中文事件与跨天主题** | 改期、撤回、旧录音回填的授权对照集 | organization / topics / recall 回归 |
 
-**Android、MCP server 和 Watch App 目前都未实现。** [Fork 指南](docs/fork-guide.md)给出各方向的文件入口、最小输出与验收方法；[路线图](ROADMAP.md)区分已交付和待做。欢迎带着运行环境、失败步骤或你 fork 的一个具体目标来[提交 Issue](https://github.com/jingchang0623-crypto/xinlika/issues/new/choose)。无需上传私人录音或凭据。[贡献指南](CONTRIBUTING.md)
+**Android 和 Watch App 尚未实现；只读 MCP server 已提供，需自行配置。** [Fork 指南](docs/fork-guide.md)给出各方向的文件入口、最小输出与验收方法；[路线图](ROADMAP.md)区分已交付和待做。欢迎带着运行环境、失败步骤或你 fork 的一个具体目标来[提交 Issue](https://github.com/jingchang0623-crypto/xinlika/issues/new/choose)。无需上传私人录音或凭据。[贡献指南](CONTRIBUTING.md)
 
 ## 验证过什么，尚未验证什么
 

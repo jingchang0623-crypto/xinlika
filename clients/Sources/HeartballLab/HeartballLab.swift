@@ -21,6 +21,10 @@ final class LabModel {
     var processing = true
     var sourceKind = "live_conversation"
     var draftText = ""
+    var selectedDay: Date?
+    #if DEBUG
+    private(set) var timelinePreview = false
+    #endif
     var memoryQuestion = ""
     @ObservationIgnored private var player: AVAudioPlayer?
     @ObservationIgnored private var client: HeartballClient?
@@ -47,6 +51,20 @@ final class LabModel {
         } else if let configured = Bundle.main.object(forInfoDictionaryKey: "HeartballSharedRuntimePath") as? String {
             sharedFile = URL(fileURLWithPath: configured)
         } else { sharedFile = SharedWorkspaceConnection.file }
+        #if DEBUG
+        let previewIndex=args.firstIndex(of: "--timeline-preview")
+        let previewPath=previewIndex.flatMap { args.indices.contains($0+1) ? args[$0+1] : nil } ?? (Bundle.main.object(forInfoDictionaryKey:"HeartballTimelinePreviewPath") as? String)
+        if let previewPath {
+            timelinePreview = true
+            do {
+                let decoder=JSONDecoder();decoder.keyDecodingStrategy = .convertFromSnakeCase
+                agentState=try decoder.decode(HeartballAgentState.self,from:Data(contentsOf:URL(fileURLWithPath:previewPath)))
+                let f=DateFormatter();f.calendar=Calendar(identifier:.gregorian);f.locale=Locale(identifier:"en_US_POSIX");f.timeZone = .current;f.dateFormat="yyyy-MM-dd"
+                selectedDay=agentState?.today.flatMap { f.date(from:$0.date) }
+            } catch { message="离线界面回放无法读取" }
+            return // No runtime/config reads, service connection or capture actions.
+        }
+        #endif
         if FileManager.default.fileExists(atPath: sharedFile.path) {
             usingSharedWorkspace = true
             do {
@@ -62,6 +80,9 @@ final class LabModel {
     var running: Bool { ["starting", "recording", "stopping", "reconciling"].contains(state?.session?.status ?? "") }
 
     func refresh(allowBusy: Bool = false) async {
+        #if DEBUG
+        if timelinePreview { return }
+        #endif
         guard allowBusy || !busy else { return }
         let generation = workspaceGeneration
         var localFailure: String?
@@ -85,11 +106,11 @@ final class LabModel {
         do {
             if usingSharedWorkspace {
                 guard let sharedClient else { throw NSError(domain: "XinlikaShared", code: 0, userInfo: [NSLocalizedDescriptionKey: sharedLoadError ?? "请重新设置共享连接"]) }
-                let next = try await sharedClient.refresh()
+                let next = try await sharedClient.refresh(on: selectedDay)
                 guard generation == workspaceGeneration else { return }
                 if let next, next != agentState { agentState = next; lastUpdated = .now }
             } else if captureConnected, state?.agentConfigured == true {
-                let nextAgentState = try await client!.agentState()
+                let nextAgentState = try await client!.agentState(on: selectedDay)
                 guard generation == workspaceGeneration else { return }
                 if agentState != nextAgentState { agentState = nextAgentState; lastUpdated = .now }
             } else if let localFailure {
@@ -103,6 +124,11 @@ final class LabModel {
             connectionMessage = usingSharedWorkspace ? "共享服务未连接，保留上次记录。\(error.localizedDescription)" : "本机服务未连接，采集状态尚未确认。"
             connected = false
         }
+    }
+
+    func selectDay(_ day: Date?) async {
+        selectedDay=day;workspaceGeneration += 1
+        await refresh()
     }
 
     func configureShared(address: String, token: String) async -> Bool {

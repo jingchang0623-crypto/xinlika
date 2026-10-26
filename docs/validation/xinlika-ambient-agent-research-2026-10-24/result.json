@@ -1,0 +1,96 @@
+{
+  "review_date": "2026-10-24",
+  "discovery": "Ego Lite browser Google searches and upstream GitHub repositories",
+  "evidence": [
+    {
+      "repository": "BasedHardware/omi",
+      "commit": "4b4e35fdc9d61a5fb74380202cbc65d0432ecc6e",
+      "root_license": "MIT",
+      "inspected_paths": [
+        "backend/utils/episodes/ARCHITECTURE.md",
+        "backend/utils/episodes/incremental.py",
+        "backend/config/episodes.py",
+        "backend/utils/llm/proactive_notification.py"
+      ],
+      "verification": "static_source_review_only_not_product_quality_acceptance"
+    },
+    {
+      "repository": "volcengine/MineContext",
+      "commit": "171c7a9ea8091e326ddcf0f10718aa1b58c83c65",
+      "root_license": "Apache-2.0",
+      "inspected_paths": [
+        "opencontext/context_processing/processor/screenshot_processor.py",
+        "opencontext/context_processing/merger/context_merger.py",
+        "opencontext/managers/consumption_manager.py"
+      ],
+      "verification": "static_source_review_only_not_product_quality_acceptance"
+    },
+    {
+      "repository": "JerryZLiu/Dayflow",
+      "commit": "730d6f84b919998158ff7fdab15e3f032f7d8135",
+      "root_license": "MIT",
+      "inspected_paths": [
+        "Dayflow/Dayflow/Core/AI/LLMTypes.swift",
+        "Dayflow/Dayflow/Core/AI/LLMService.swift",
+        "Dayflow/Dayflow/Core/AI/ClaudeTimelinePrompt.swift",
+        "Dayflow/Dayflow/Core/Recording/StorageManager+TimelineCards.swift"
+      ],
+      "verification": "static_source_review_only_not_product_quality_acceptance"
+    },
+    {
+      "repository": "KarSri7694/Ambient-AI",
+      "commit": "55f36e0374456e528ec6585e8a505f5b694ba69c",
+      "root_license": "MIT",
+      "inspected_paths": [
+        "src/application/services/autonomy_coordinator_service.py",
+        "src/application/services/opportunity_judgment_service.py",
+        "src/application/services/temporal_memory_service.py"
+      ],
+      "verification": "static_source_review_only_not_product_quality_acceptance"
+    },
+    {
+      "repository": "GetPercept/percept",
+      "commit": "db9ffdbf9fee9aa795645244817d4bb4f0f75355",
+      "root_license": "MIT",
+      "inspected_paths": [
+        "percept/audio/receiver.py",
+        "percept/audio/context_engine.py",
+        "percept/initiatives/engine/core.py",
+        "percept/pipeline/pipeline.py"
+      ],
+      "verification": "static_source_review_only_not_product_quality_acceptance"
+    },
+    {
+      "repository": "screenpipe/screenpipe",
+      "commit": "5d84243ab130270c951543846f87fdec367cf19a",
+      "root_license": "Screenpipe Commercial License",
+      "inspected_paths": [
+        "README.md",
+        "LICENSE.md",
+        "crates/screenpipe-core/assets/skills/screenpipe-cli/SKILL.md",
+        "crates/screenpipe-core/assets/skills/screenpipe-workflow-maintenance/SKILL.md"
+      ],
+      "verification": "static_source_review_only_not_product_quality_acceptance"
+    }
+  ],
+  "main_reference_candidates": [
+    "Omi incremental Episodes",
+    "Dayflow rolling timeline",
+    "MineContext producer-consumer separation"
+  ],
+  "not_verified": [
+    "Chinese restaurant and meeting quality on these upstream runtimes",
+    "full upstream deployment",
+    "production accuracy or cost",
+    "physical CB08 integration"
+  ],
+  "operational_invariants": {
+    "model_calls": 0,
+    "asr_calls": 0,
+    "private_recording_or_transcript_uploads": 0,
+    "hardware_commands": 0,
+    "service_restarts": 0,
+    "deployments": 0,
+    "git_commit_push": false
+  }
+}

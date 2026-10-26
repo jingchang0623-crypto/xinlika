@@ -101,6 +101,37 @@ class SharedTests(unittest.TestCase):
         self.assertEqual(self.request('/v1/acoustics',self.mac)[0],200)
         self.assertEqual(self.request('/v1/voice',self.phone,{'action':'revoke'})[0],200)
 
+    def test_context_api_and_cloud_mcp_reader_use_current_authority(self):
+        from heartball_mcp import CloudContextReader
+        self.request('/v1/mobile/ingest',self.phone,self.batch());self.tick()
+        doc=self.sync()[1]['state']['documents'][0]
+        path=self.root/'reader.json';path.write_text(json.dumps({'baseURL':self.base,'token':self.reader['token']}))
+        from unittest.mock import patch
+        with patch.dict(__import__('os').environ,{'HTTP_PROXY':'http://127.0.0.1:1','HTTPS_PROXY':'http://127.0.0.1:1','ALL_PROXY':'http://127.0.0.1:1','NO_PROXY':''}):
+            client=CloudContextReader(path)
+        try:
+            source=client.source(doc['id']);self.assertEqual(source['revision'],doc['revision'])
+            self.assertEqual(source['occurred_at'],'2026-10-21T14:00:00+08:00')
+            self.assertTrue(client.search(source['text'][:3])['records'])
+            self.assertEqual(self.request('/v1/context/source?id='+doc['id'])[0],401)
+            self.assertEqual(self.request('/v1/context/source?id='+doc['id']+'&offset=-1',self.reader)[0],400)
+            self.request('/v1/feedback',self.phone,self.correction(doc,'这是更正后的文字'))
+            self.assertEqual(self.request('/v1/context/source?id='+doc['id'],self.reader)[0],409)
+        finally:client.client.close()
+
+    def test_file_import_auth_dedup_recording_time_and_no_asr(self):
+        raw=json.dumps({'conversation_id':'export-chat','messages':[{'id':'one','timestamp':'2026-10-20 12:30:00','sender':'participant','content':'维修项目进展。'}]},ensure_ascii=False).encode()
+        body={'filename':'messages.json','content_base64':base64.b64encode(raw).decode(),'account_id':'my-export','analyze':True}
+        self.assertEqual(self.request('/v1/context/import',self.reader,body)[0],403)
+        code,result=self.request('/v1/context/import',self.phone,body);self.assertEqual(code,200)
+        self.assertEqual(result['imported_messages'],1);self.assertEqual(self.asr.calls,0)
+        self.assertEqual(self.request('/v1/context/import',self.phone,body)[1]['duplicates'],1)
+        did=result['documents'][0]
+        code,source=self.request('/v1/context/source?id='+did,self.reader)
+        self.assertEqual(code,200);self.assertEqual(source['occurred_at'],'2026-10-20T12:30:00+08:00')
+        self.assertEqual(source['source_kind'],'unknown')
+        self.assertEqual(self.store.db.execute("SELECT count(*) FROM jobs WHERE kind='asr_audio'").fetchone()[0],0)
+
     def test_phone_ingest_mac_view_bidirectional_correction_and_stale_conflict(self):
         batch=self.batch();self.assertEqual(self.request('/v1/mobile/ingest',self.phone,batch)[0],200);self.tick()
         _,snapshot=self.sync();doc=snapshot['state']['documents'][0]

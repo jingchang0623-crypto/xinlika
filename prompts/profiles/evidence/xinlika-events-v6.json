@@ -1,0 +1,392 @@
+{
+  "schema": 1,
+  "accepted_for_opt_in_incremental_profile": true,
+  "small_sample_only": true,
+  "automatic_production_activation": false,
+  "candidate_bundle_sha256": "0d75b39c818fa500fe176659d6fe353a3f51aedb24d47c7a56cbf8715bc7d3aa",
+  "development": {
+    "v3": {
+      "candidate": {
+        "status": "completed",
+        "source_integrity": {
+          "expected_spans": 57,
+          "assigned_spans": 57,
+          "missing_spans": 0,
+          "duplicate_spans": 0,
+          "stale_ranges": 0,
+          "original_documents_unchanged": true,
+          "passed": true
+        },
+        "homepage_events": 10,
+        "checks": [
+          {
+            "id": "cross_visual_creation_continuation",
+            "kind": "same_relation",
+            "result": "failed"
+          },
+          {
+            "id": "cross_model_selection_is_distinct",
+            "kind": "different_relation",
+            "result": "passed"
+          },
+          {
+            "id": "style_vs_ipad_reference",
+            "kind": "different_events",
+            "result": "passed"
+          }
+        ],
+        "passed": 2,
+        "failed": 1,
+        "unscored": 0,
+        "independent_positive_cross_conversation": null,
+        "cost": {
+          "calls": 7,
+          "calls_with_usage": 7,
+          "prompt_tokens": 21274,
+          "completion_tokens": 2240,
+          "total_tokens": 23514,
+          "cached_tokens": 1336,
+          "usage_complete": true,
+          "currency_cost": null
+        }
+      },
+      "actual_provider_usage": {
+        "calls": 13,
+        "calls_with_usage": 13,
+        "prompt_tokens": 40215,
+        "completion_tokens": 4313,
+        "total_tokens": 44528,
+        "cached_tokens": 4520
+      },
+      "baseline_rerun": true
+    },
+    "v4": {
+      "candidate": {
+        "status": "completed",
+        "source_integrity": {
+          "expected_spans": 57,
+          "assigned_spans": 57,
+          "missing_spans": 0,
+          "duplicate_spans": 0,
+          "stale_ranges": 0,
+          "original_documents_unchanged": true,
+          "passed": true
+        },
+        "homepage_events": 7,
+        "checks": [
+          {
+            "id": "cross_visual_creation_continuation",
+            "kind": "same_relation",
+            "result": "failed"
+          },
+          {
+            "id": "cross_model_selection_is_distinct",
+            "kind": "different_relation",
+            "result": "passed"
+          },
+          {
+            "id": "style_vs_ipad_reference",
+            "kind": "different_events",
+            "result": "passed"
+          }
+        ],
+        "passed": 2,
+        "failed": 1,
+        "unscored": 0,
+        "independent_positive_cross_conversation": null,
+        "cost": {
+          "calls": 7,
+          "calls_with_usage": 7,
+          "prompt_tokens": 23964,
+          "completion_tokens": 1662,
+          "total_tokens": 25626,
+          "cached_tokens": 7080,
+          "usage_complete": true,
+          "currency_cost": null
+        }
+      },
+      "actual_provider_usage": {
+        "calls": 13,
+        "calls_with_usage": 13,
+        "prompt_tokens": 43482,
+        "completion_tokens": 3608,
+        "total_tokens": 47090,
+        "cached_tokens": 16545
+      },
+      "baseline_rerun": true
+    },
+    "v5": {
+      "candidate": {
+        "status": "completed",
+        "source_integrity": {
+          "expected_spans": 57,
+          "assigned_spans": 57,
+          "missing_spans": 0,
+          "duplicate_spans": 0,
+          "stale_ranges": 0,
+          "original_documents_unchanged": true,
+          "passed": true
+        },
+        "homepage_events": 8,
+        "checks": [
+          {
+            "id": "cross_visual_creation_continuation",
+            "kind": "same_relation",
+            "result": "failed"
+          },
+          {
+            "id": "cross_model_selection_is_distinct",
+            "kind": "different_relation",
+            "result": "passed"
+          },
+          {
+            "id": "style_vs_ipad_reference",
+            "kind": "different_events",
+            "result": "passed"
+          }
+        ],
+        "passed": 2,
+        "failed": 1,
+        "unscored": 0,
+        "independent_positive_cross_conversation": null,
+        "cost": {
+          "calls": 8,
+          "calls_with_usage": 8,
+          "prompt_tokens": 26436,
+          "completion_tokens": 2162,
+          "total_tokens": 28598,
+          "cached_tokens": 9663,
+          "usage_complete": true,
+          "currency_cost": null
+        }
+      },
+      "actual_provider_usage": {
+        "calls": 15,
+        "calls_with_usage": 15,
+        "prompt_tokens": 46990,
+        "completion_tokens": 4283,
+        "total_tokens": 51273,
+        "cached_tokens": 11511
+      },
+      "baseline_rerun": true
+    },
+    "v6": {
+      "candidate": {
+        "status": "completed",
+        "source_integrity": {
+          "expected_spans": 57,
+          "assigned_spans": 57,
+          "missing_spans": 0,
+          "duplicate_spans": 0,
+          "stale_ranges": 0,
+          "original_documents_unchanged": true,
+          "passed": true
+        },
+        "homepage_events": 9,
+        "checks": [
+          {
+            "id": "cross_visual_creation_continuation",
+            "kind": "same_relation",
+            "result": "passed"
+          },
+          {
+            "id": "cross_model_selection_is_distinct",
+            "kind": "different_relation",
+            "result": "passed"
+          },
+          {
+            "id": "style_vs_ipad_reference",
+            "kind": "different_events",
+            "result": "passed"
+          }
+        ],
+        "passed": 3,
+        "failed": 0,
+        "unscored": 0,
+        "independent_positive_cross_conversation": null,
+        "cost": {
+          "calls": 7,
+          "calls_with_usage": 7,
+          "prompt_tokens": 25213,
+          "completion_tokens": 2089,
+          "total_tokens": 27302,
+          "cached_tokens": 9663,
+          "usage_complete": true,
+          "currency_cost": null
+        }
+      },
+      "actual_provider_usage": {
+        "calls": 7,
+        "calls_with_usage": 7,
+        "prompt_tokens": 25213,
+        "completion_tokens": 2089,
+        "total_tokens": 27302,
+        "cached_tokens": 9663
+      },
+      "baseline_rerun": false
+    }
+  },
+  "independent": {
+    "baseline": {
+      "status": "completed",
+      "source_integrity": {
+        "expected_spans": 83,
+        "assigned_spans": 83,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "homepage_events": 7,
+      "checks": [
+        {
+          "id": "owner_confirmed_playback_handling_continuation",
+          "kind": "same_relation",
+          "result": "passed"
+        },
+        {
+          "id": "cross_recording_events_keep_identity",
+          "kind": "different_events",
+          "result": "passed"
+        },
+        {
+          "id": "filtering_vs_focus_control_distinct",
+          "kind": "different_events",
+          "result": "passed"
+        },
+        {
+          "id": "brief_physical_focus_feedback_visible",
+          "kind": "visible",
+          "result": "passed"
+        },
+        {
+          "id": "played_plot_vs_product_demo_separate",
+          "kind": "different_events",
+          "result": "passed"
+        }
+      ],
+      "passed": 5,
+      "failed": 0,
+      "unscored": 0,
+      "independent_positive_cross_conversation": "one owner-confirmed continuing item across 22/23 Oct; not ASR accuracy",
+      "cost": {
+        "calls": 7,
+        "calls_with_usage": 7,
+        "prompt_tokens": 32132,
+        "completion_tokens": 4709,
+        "total_tokens": 36841,
+        "cached_tokens": 10464,
+        "usage_complete": true,
+        "currency_cost": null
+      }
+    },
+    "candidate": {
+      "status": "completed",
+      "source_integrity": {
+        "expected_spans": 83,
+        "assigned_spans": 83,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "homepage_events": 10,
+      "checks": [
+        {
+          "id": "owner_confirmed_playback_handling_continuation",
+          "kind": "same_relation",
+          "result": "passed"
+        },
+        {
+          "id": "cross_recording_events_keep_identity",
+          "kind": "different_events",
+          "result": "passed"
+        },
+        {
+          "id": "filtering_vs_focus_control_distinct",
+          "kind": "different_events",
+          "result": "passed"
+        },
+        {
+          "id": "brief_physical_focus_feedback_visible",
+          "kind": "visible",
+          "result": "passed"
+        },
+        {
+          "id": "played_plot_vs_product_demo_separate",
+          "kind": "different_events",
+          "result": "passed"
+        }
+      ],
+      "passed": 5,
+      "failed": 0,
+      "unscored": 0,
+      "independent_positive_cross_conversation": "one owner-confirmed continuing item across 22/23 Oct; not ASR accuracy",
+      "cost": {
+        "calls": 9,
+        "calls_with_usage": 9,
+        "prompt_tokens": 45406,
+        "completion_tokens": 5766,
+        "total_tokens": 51172,
+        "cached_tokens": 14872,
+        "usage_complete": true,
+        "currency_cost": null
+      }
+    }
+  },
+  "independent_replay_count_per_role": 1,
+  "old_holdout_model_replays": 0,
+  "owner_confirmed_positive_pairs": 1,
+  "source_overlap_with_old_holdout": 0,
+  "registered_independent_checks": 5,
+  "evidence_cost_probe": {
+    "status": "completed",
+    "same_original_evidence": true,
+    "roundtrip_sha256": "fdefdef9333c0292282349c850d9a1284c65bb78d2b3be1b733b17122d70c9a0",
+    "old_file_count": 75,
+    "unique_contents": 24,
+    "old_prompt_tokens": 353455,
+    "new_prompt_tokens": 132910,
+    "old_total_tokens": 354278,
+    "new_total_tokens": 133464,
+    "prompt_token_reduction_percent": 62.396910497800285,
+    "calls": 1,
+    "usage_complete": true,
+    "currency_cost": null,
+    "candidate_skill_modified": false,
+    "independent_test_read": false,
+    "reflection_returned_xml": true
+  },
+  "known_false_merge_veto": {
+    "passed": true,
+    "approved_indices": [],
+    "source": "unchanged real development proposal",
+    "asr_calls": 0
+  },
+  "whole_task_provider_usage": {
+    "calls": 66,
+    "calls_with_usage": 66,
+    "prompt_tokens": 367884,
+    "completion_tokens": 25328,
+    "total_tokens": 393212,
+    "cached_tokens": 67575,
+    "usage_complete": true,
+    "currency_cost": null
+  },
+  "safety": {
+    "asr_calls": 0,
+    "hardware_commands": 0,
+    "production_writes": 0,
+    "service_restarts": 0,
+    "personal_claims_created_in_final_runs": 0
+  },
+  "limitations": [
+    "Independent baseline also passed 5/5; no claim of general accuracy improvement.",
+    "Only one newly confirmed cross-conversation positive; not all-day recall.",
+    "Labels refer to existing ASR and user item identity; not relistened word accuracy.",
+    "Independent candidate tokens exceed baseline by 38.90%; evidence-editor saving is separate.",
+    "Post-evaluation changes only add activation/cache guards and a profile selector; no subsequent model calls."
+  ]
+}

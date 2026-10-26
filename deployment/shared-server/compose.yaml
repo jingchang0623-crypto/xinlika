@@ -1,0 +1,18 @@
+services:
+  xinlika:
+    image: xinlika-shared:local
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 370s
+    ports:
+      - "127.0.0.1:18778:18778"
+    volumes:
+      - xinlika-data:/data
+      - ./private-config:/config:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  xinlika-data:

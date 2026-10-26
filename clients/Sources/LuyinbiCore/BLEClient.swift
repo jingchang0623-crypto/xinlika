@@ -154,7 +154,7 @@ public final class BLEClient: NSObject, @unchecked Sendable {
         super.init()
         #if os(iOS)
         central = CBCentralManager(delegate: self, queue: queue, options: [
-            CBCentralManagerOptionRestoreIdentifierKey: "org.xinlika.app.ble.v1"])
+            CBCentralManagerOptionRestoreIdentifierKey: "org.xinlika.app.ble.v1"]) // gitleaks:allow -- Public CoreBluetooth state-restoration identifier.
         #else
         central = CBCentralManager(delegate: self, queue: queue)
         #endif

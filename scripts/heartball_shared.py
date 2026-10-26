@@ -28,7 +28,7 @@ class SharedWorkspace:
             # Observe the existing ledger, including processing/correction invalidation.
             # There is one truth, not a second memory/event database to reconcile.
             tables = ('sessions','streams','batches','focuses','jobs','documents','claims','advice',
-                      'memory_answers','feedback','processing_policies','workspace_events',
+                      'memory_answers','feedback','event_interest_ratings','event_interest_predictions','processing_policies','workspace_events',
                       'workspace_event_sources','workspace_topics','workspace_event_topics','workspace_timeline_decisions',
                       'workspace_activities','workspace_activity_events','acoustic_observations',
                       'voice_enrollments','voice_samples','voice_profiles','voice_matches')

@@ -63,6 +63,19 @@ class DayTests(unittest.TestCase):
         save(self.db,event,'detail','模型误判');self.db.commit()
         self.assertEqual(sum(len(g['events']) for g in self.day()['groups']),1)
 
+    def test_canonical_timeline_keeps_complete_events_independent_of_activity_container(self):
+        a,_,sid=self.event('2026-10-21T14:00:00+08:00',duration=60)
+        b,_,_=self.event('2026-10-21T15:00:00+08:00',sid,duration=60)
+        from heartball_timeline import save
+        for eid,style in [(a,'summary'),(b,'compact')]:
+            e=dict(self.db.execute('SELECT * FROM workspace_events WHERE id=?',(eid,)).fetchone())
+            save(self.db,e,'event','完整事项',category='work',card_style=style)
+        day=self.day()
+        self.assertEqual(day['timeline_version'],1);self.assertEqual([e['id'] for e in day['timeline']],[b,a])
+        self.assertEqual(day['timeline'][0]['card_style'],'compact');self.assertEqual(len(day['groups']),1)
+        self.assertEqual(len(day['timeline']),2)
+        self.assertTrue(all(e['boundary_precision']=='observed_source_envelope' for e in day['timeline']))
+
     def test_dense_day_is_complete_beyond_recent_caps_and_sources_stay_reachable(self):
         sid = str(uuid.uuid4()); expected = set(); docs = set()
         for minute in range(140):

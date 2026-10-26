@@ -27,7 +27,7 @@ private struct XinlikaWorkspaceView: View {
                     VStack(alignment: .leading, spacing: 6) {
                         Text(topic.title).font(.headline)
                         Text(topic.summary).font(.subheadline).foregroundStyle(.secondary)
-                        Text("\(topic.conversationCount) 段对话").font(.caption).foregroundStyle(.secondary)
+                        Text("\(topic.conversationCount) 段记录").font(.caption).foregroundStyle(.secondary)
                     }
                 }.navigationTitle("主题")
             }.tabItem { Label("主题", systemImage: "square.stack") }.tag(1)
@@ -54,38 +54,25 @@ private struct XinlikaWorkspaceView: View {
 private struct XinlikaTodayView: View {
     @Bindable var model: XinlikaModel
     @State private var search = ""
-    @State private var showDates = false
-    @State private var focusOnly = false
     @State private var showTextEntry = false
     @State private var draft = ""
+    @State private var showDates = false
+    @State private var interestFilter = "recommended"
+    @State private var showSearch = false
     private var events: [HeartballAgentState.SemanticEvent] {
         guard model.agent?.today?.date == dateKey else { return [] }
-        var seen = Set<String>()
-        return (model.agent?.today?.groups.flatMap(\.events) ?? [])
-            .filter { seen.insert($0.id).inserted }
-            .filter { !focusOnly || $0.kind == "focus" }
-            .filter { search.isEmpty || ($0.title + $0.summary).localizedStandardContains(search) }
-            .sorted { ($0.recordingDate ?? .distantPast, $0.id) > ($1.recordingDate ?? .distantPast, $1.id) }
-    }
-    private enum Item: Identifiable {
-        case event(HeartballAgentState.SemanticEvent)
-        case activity(HeartballAgentState.Day.Group)
-        var id: String { switch self { case .event(let e): return "event:" + e.id; case .activity(let g): return g.id } }
-        var date: Date { switch self { case .event(let e): return e.recordingDate ?? .distantPast; case .activity(let g): return xinlikaTimelineDate(g.startLocal) ?? .distantPast } }
-    }
-    private var items: [Item] {
-        guard model.agent?.today?.date == dateKey else { return [] }
-        guard !focusOnly && search.isEmpty else { return events.map(Item.event) }
-        var used = Set<String>(), output: [Item] = []
-        for group in model.agent?.today?.groups ?? [] {
-            let ordinary = group.events.filter { $0.kind != "focus" }
-            // Only an actual AI activity is a container. A physical session is not a scene.
-            if let kind = group.activityKind, kind != "unclassified", kind != "unknown", ordinary.count > 1 {
-                output.append(.activity(group)); used.formUnion(ordinary.map(\.id))
+        return (model.agent?.today?.timelineEvents ?? [])
+            .filter { event in
+                let interest = model.interest(for: event)
+                switch interestFilter {
+                case "important": return interest == "important"
+                case "unimportant": return interest == "unimportant"
+                case "focus": return event.kind == "focus"
+                case "all": return true
+                default: return interest != "unimportant" && (interest == "important" || event.suggestedInterest != "low")
+                }
             }
-        }
-        output += events.filter { !used.contains($0.id) }.map(Item.event)
-        return output.sorted { ($0.date, $0.id) > ($1.date, $1.id) }
+            .filter { search.isEmpty || ($0.title + $0.summary).localizedStandardContains(search) }
     }
     private var date: Date { model.selectedDay ?? .now }
     private var dateKey: String {
@@ -97,8 +84,18 @@ private struct XinlikaTodayView: View {
         return formatter.string(from: date)
     }
     var body: some View {
-        ScrollView {
+        List {
             VStack(alignment: .leading, spacing: 22) {
+                if showSearch {
+                    HStack(spacing: 10) {
+                        Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
+                        TextField("搜索这一天", text: $search).textInputAutocapitalization(.never)
+                        Button {
+                            search = ""; showSearch = false
+                        } label: { Image(systemName: "xmark.circle.fill").foregroundStyle(.secondary) }
+                            .accessibilityLabel("关闭搜索")
+                    }.padding(12).background(.background, in: .rect(cornerRadius: 14))
+                }
                 HStack {
                     Button { showDates = true } label: {
                         HStack(spacing: 6) {
@@ -108,10 +105,13 @@ private struct XinlikaTodayView: View {
                     }.tint(.primary)
                     Spacer()
                     Menu {
-                        Button("全部事件") { focusOnly = false }
-                        Button("重点片段") { focusOnly = true }
+                        Button("为我筛选") { interestFilter = "recommended" }
+                        Button("全部事项") { interestFilter = "all" }
+                        Button("重要事项") { interestFilter = "important" }
+                        Button("不重要事项") { interestFilter = "unimportant" }
+                        Button("重点片段") { interestFilter = "focus" }
                     } label: {
-                        Label(focusOnly ? "重点" : "全部", systemImage: "line.3.horizontal.decrease").font(.subheadline)
+                        Label(["recommended":"为我筛选", "all":"全部", "important":"重要", "unimportant":"不重要", "focus":"重点片段"][interestFilter] ?? "全部", systemImage: "line.3.horizontal.decrease").font(.subheadline)
                     }.tint(.secondary)
                 }
                 if model.recording || model.pending > 0 {
@@ -122,36 +122,77 @@ private struct XinlikaTodayView: View {
                         if model.pending > 0 { Text("\(model.pending)").monospacedDigit() }
                     }.font(.caption).foregroundStyle(.secondary)
                 }
-                LazyVStack(spacing: 14) {
-                    ForEach(items) { item in
-                        switch item {
-                        case .event(let event):
-                            NavigationLink { XinlikaEventView(model: model, event: event) } label: { XinlikaTimelineRow(event: event) }.buttonStyle(.plain)
-                        case .activity(let group):
-                            NavigationLink { XinlikaActivityView(model: model, group: group) } label: { XinlikaActivityRow(group: group) }.buttonStyle(.plain)
-                        }
-                    }
+                if model.supportsInterest {
+                    Text("右滑重要 · 左滑不重要，可在全部事项中改回")
+                        .font(.caption).foregroundStyle(.secondary)
                 }
-                if model.connection == nil {
-                    ContentUnavailableView("连接你的心力卡服务", systemImage: "network", description: Text("点右上角设置，填写自己的服务地址和设备凭据。"))
-                } else if model.agent?.today?.date != dateKey {
+            }.listRowInsets(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
+                .listRowBackground(Color.clear).listRowSeparator(.hidden)
+            ForEach(events) { event in
+                            NavigationLink { XinlikaEventView(model: model, event: event) } label: {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    XinlikaTimelineRow(event: event)
+                                    XinlikaInterestBadge(model: model, event: event).padding(.leading, 43)
+                                }
+                            }.buttonStyle(.plain).accessibilityIdentifier("interest-event-\(event.id)")
+                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            if model.supportsInterest {
+                                Button("重要", systemImage: "star.fill") { model.rateInterest(event, value: "important") }.tint(.orange)
+                            }
+                        }
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                            if model.supportsInterest {
+                                Button("不重要", systemImage: "minus.circle") { model.rateInterest(event, value: "unimportant") }.tint(.gray)
+                            }
+                        }
+                        .contextMenu {
+                            if model.supportsInterest {
+                                Button("重要", systemImage: "star") { model.rateInterest(event, value: "important") }
+                                Button("不重要", systemImage: "minus.circle") { model.rateInterest(event, value: "unimportant") }
+                                Button("取消标记", systemImage: "arrow.uturn.backward") { model.rateInterest(event, value: "neutral") }
+                            }
+                        }
+            }.listRowInsets(EdgeInsets(top: 7, leading: 20, bottom: 7, trailing: 20))
+                .listRowBackground(Color.clear).listRowSeparator(.hidden)
+            Group {
+                if model.agent?.today?.date != dateKey {
                     ProgressView("载入记录").frame(maxWidth: .infinity).padding(.vertical, 40)
                 } else if events.isEmpty {
-                    ContentUnavailableView(search.isEmpty ? "还没有整理好的事件" : "没有找到事件", systemImage: "waveform")
+                    ContentUnavailableView(search.isEmpty ? "这里暂时没有事项" : "没有找到事项", systemImage: "waveform",
+                        description: Text(interestFilter == "recommended" ? "可切换到全部事项查看未筛选的记录。" : "试试其他筛选或日期。"))
                 }
                 if let unknown = model.agent?.today?.unknownTimeCount, unknown > 0 {
                     Text("\(unknown) 项录制时间待核对").font(.caption).foregroundStyle(.secondary)
                 }
-            }.padding(.horizontal, 20).padding(.vertical, 12)
+            }.listRowBackground(Color.clear).listRowSeparator(.hidden)
         }
+        .listStyle(.plain).scrollContentBackground(.hidden)
         .background(Color(uiColor: .systemGroupedBackground))
         .navigationTitle("今天")
-        .searchable(text: $search, prompt: "搜索这一天")
+        .safeAreaInset(edge: .bottom) {
+            VStack(spacing: 0) {
+                if let text = model.interestNotice {
+                    Text(text).font(.caption).padding(12).frame(maxWidth: .infinity).background(.regularMaterial)
+                }
+                if let last = model.lastInterest {
+                HStack {
+                    Text("已\(model.interest(for: last.event) == "neutral" ? "取消标记" : "标记为" + (model.interest(for: last.event) == "important" ? "重要" : "不重要"))")
+                        .font(.subheadline)
+                    Spacer()
+                    Button("撤销") { model.undoInterest() }
+                    Button { model.lastInterestDismiss() } label: { Image(systemName: "xmark") }.accessibilityLabel("关闭反馈提示")
+                }.padding(14).background(.regularMaterial)
+                }
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            Button("补充记录", systemImage: "plus") { showTextEntry = true }
-                .disabled(model.connection == nil).accessibilityIdentifier("addTextRecord")
-            NavigationLink { XinlikaConnectionView(model: model) } label: { Image(systemName: "gearshape") }
-                .accessibilityLabel("设置").accessibilityIdentifier("connectionSettings")
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button("补记", systemImage: "plus") { showTextEntry = true }
+                    .disabled(model.connection == nil).accessibilityIdentifier("addTextRecord")
+                Button { showSearch = true } label: { Image(systemName: "magnifyingglass") }.accessibilityLabel("搜索这一天")
+                NavigationLink { XinlikaConnectionView(model: model) } label: { Image(systemName: "gearshape") }.accessibilityLabel("设置").accessibilityIdentifier("connectionSettings")
+            }
         }
         .sheet(isPresented: $showTextEntry) {
             NavigationStack {
@@ -271,7 +312,7 @@ private struct XinlikaTimelineRow: View {
         if let raw = event.recordedLocalTime { return String(raw.dropFirst(11).prefix(5)) }
         return "时间待核对"
     }
-    private var rich: Bool { event.kind == "focus" || (event.sources.count >= 3 && event.summary.count > 65) }
+    private var rich: Bool { event.showsTimelineSummary }
     var body: some View {
         HStack(alignment: .top, spacing: 13) {
             VStack(spacing: 10) {
@@ -279,8 +320,11 @@ private struct XinlikaTimelineRow: View {
                 Rectangle().fill(.quaternary).frame(width: 1).frame(maxHeight: .infinity)
             }.frame(width: 12).padding(.top, 24)
             VStack(alignment: .leading, spacing: 10) {
+                if rich, let category = event.categoryLabel {
+                    Text(category).font(.caption).foregroundStyle(.secondary)
+                }
                 HStack(alignment: .firstTextBaseline, spacing: 10) {
-                    Text(event.title).font(.headline).foregroundStyle(.primary).fixedSize(horizontal: false, vertical: true)
+                    Text(event.title).font(.headline).foregroundStyle(.primary).lineLimit(2)
                     Spacer(minLength: 0)
                     Text(clock).font(.caption).foregroundStyle(.secondary).monospacedDigit()
                 }
@@ -298,7 +342,7 @@ private struct XinlikaEventView: View {
     @State private var player: AVAudioPlayer?
     @State private var editing: HeartballAgentState.Document?
     private var currentEvent: HeartballAgentState.SemanticEvent? {
-        let events = (model.agent?.today?.groups.flatMap(\.events) ?? []) + (model.agent?.events ?? [])
+        let events = (model.agent?.today?.timelineEvents ?? []) + (model.agent?.events ?? [])
         return events.first { $0.id == event.id }
     }
     private var documents: [HeartballAgentState.Document] {
@@ -323,6 +367,20 @@ private struct XinlikaEventView: View {
     var body: some View {
         List {
             if let currentEvent {
+                if model.supportsInterest {
+                    Section {
+                        XinlikaInterestBadge(model: model, event: currentEvent)
+                        Button("重要", systemImage: "star") { model.rateInterest(currentEvent, value: "important") }
+                        Button("不重要", systemImage: "minus.circle") { model.rateInterest(currentEvent, value: "unimportant") }
+                        if model.interest(for: currentEvent) != "neutral" {
+                            Button("取消标记", systemImage: "arrow.uturn.backward") { model.rateInterest(currentEvent, value: "neutral") }
+                        }
+                        if let reason = currentEvent.interestReason, model.interest(for: currentEvent) == "neutral" {
+                            Text(reason).font(.caption).foregroundStyle(.secondary)
+                        }
+                    } header: { Text("对你的重要程度") }
+                    footer: { Text("多次标记会帮助 Agent 理解你关心的具体内容。不重要的事项仍保留原文，可随时改回。") }
+                }
                 Section {
                     Text(currentEvent.summary).textSelection(.enabled)
                     if let date = currentEvent.recordingDate {
@@ -356,7 +414,7 @@ private struct XinlikaEventView: View {
                         }
                     }
                     Button("纠正内容或来源") { editing = doc }
-                } header: { Text(sourceTime(for: doc)) }
+                } header: { if documents.count > 1 { Text(sourceTime(for: doc)) } }
             }
         }.navigationTitle(currentEvent?.title ?? "记录已更新").navigationBarTitleDisplayMode(.inline)
         .sheet(item: $editing) { doc in XinlikaCorrectionView(model: model, document: doc) }
@@ -378,7 +436,6 @@ private struct XinlikaCorrectionView: View {
                     Text("现场对话").tag("live_conversation")
                     Text("背景播放").tag("background_playback")
                     Text("尚未确定").tag("unknown")
-                    Text("文字记录").tag("verified_text")
                 }
                 if let message = model.message { Text(message).foregroundStyle(.orange) }
             }.navigationTitle("纠正记录")
@@ -406,6 +463,13 @@ private struct XinlikaMemoryView: View {
             Picker("内容", selection: $section) { ForEach(["聊天", "记忆", "约定"], id: \.self) { Text($0) } }
                 .pickerStyle(.segmented).padding()
             List {
+                if let profile = model.agent?.interestProfile {
+                    Section("关注偏好") {
+                        Text("当前参考 \(profile.labelledEventCount) 项标记")
+                        Text(profile.readyForSuggestions ? "Agent 会参考多次标记中的具体关心点。建议会标为“猜你关注”或“猜你少关注”，你可以随时改回。" : "在今天的事项上右滑重要、左滑不重要。积累几次反馈后，Agent 才开始参考你的偏好。")
+                            .font(.caption).foregroundStyle(.secondary)
+                    }
+                }
                 if section == "聊天" {
                     ForEach(model.agent?.answers ?? []) { answer in
                         VStack(alignment: .leading, spacing: 10) {
@@ -447,13 +511,12 @@ private struct XinlikaMemoryView: View {
 
 private struct XinlikaCardView: View {
     @Bindable var model: XinlikaModel
-    @State private var source = "unknown"
-    @State private var processing = true
     var body: some View {
         Form {
             if let session = model.session {
                 Section("本次记录") {
                     LabeledContent("状态", value: model.captureLabel)
+                    if let origin = session.captureOrigin { LabeledContent("采集入口", value: origin == "hardware" ? "机身录音自动接入" : "App 发起") }
                     LabeledContent("已收原声", value: "\(session.streams.reduce(0) { $0 + $1.received } / 2000) 秒")
                     LabeledContent("待传", value: "\(model.pending) 项")
                     if model.held > 0 { LabeledContent("校验冲突保留", value: "\(model.held) 项") }
@@ -477,27 +540,29 @@ private struct XinlikaCardView: View {
                     Button("查找附近录音卡") { Task { await model.scan() } }.disabled(model.busy)
                     ForEach(model.devices, id: \.peripheral.identifier) { device in
                         Button {
-                            model.selectedDevice = device.peripheral.identifier
+                            Task { await model.selectDevice(device.peripheral.identifier) }
                         } label: {
                             HStack { Text(device.name); Spacer(); if model.selectedDevice == device.peripheral.identifier { Image(systemName: "checkmark") } }
-                        }
+                        }.disabled(model.busy)
                     }
-                    Picker("声音来源", selection: $source) {
+                    Picker("声音来源", selection: $model.capturePreferences.source) {
                         Text("现场对话").tag("live_conversation")
                         Text("背景播放").tag("background_playback")
                         Text("尚未确定").tag("unknown")
                     }
-                    Toggle("自动转写并整理", isOn: $processing)
-                    Button("开始持续记录", systemImage: "record.circle") { Task { await model.start(source: source, processing: processing) } }
-                        .disabled(model.selectedDevice == nil || model.busy || model.store == nil)
+                    Toggle("自动转写并整理", isOn: $model.capturePreferences.processing)
+                    Toggle("机身录音自动采集", isOn: $model.capturePreferences.automaticHardwareCapture)
+                    if let name = model.capturePreferences.deviceName { LabeledContent("已选录音卡", value: name) }
+                    Text(model.capturePreferences.automaticHardwareCapture ? model.hardwareStatus : "机身录音自动采集已关闭")
+                        .font(.caption).foregroundStyle(.secondary)
+                    Text("机身开始录音后自动接入；声音来源与整理设置沿用上方选择。App 需已连接录音卡；被强制退出后无法实时接收，重新打开后会检查正在进行的录音。")
+                        .font(.caption).foregroundStyle(.secondary)
+                    Button("开始持续记录", systemImage: "record.circle") { Task { await model.start(source: model.capturePreferences.source, processing: model.capturePreferences.processing) } }
+                        .disabled(model.selectedDevice == nil || !model.canStartCapture || model.store == nil)
                 }
             }
             Section {
                 Text(model.serviceMessage).foregroundStyle(.secondary)
-                if model.connection != nil {
-                    LabeledContent("文字整理", value: model.agentConfigured ? "已配置" : "未配置")
-                    LabeledContent("语音识别", value: model.asrConfigured ? "已配置" : "未配置")
-                }
                 if let message = model.message ?? model.capture.error { Text(message).foregroundStyle(.orange) }
                 Button("重试连接和待传录音") { model.retryUploads() }
                 NavigationLink("处理服务") { XinlikaConnectionView(model: model) }

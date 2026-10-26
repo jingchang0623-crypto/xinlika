@@ -53,11 +53,45 @@ class Handler(mobile_http.Handler):
             return self.reply(200,self.server.mobile.agent.voice.status())
         if route.path=='/v1/acoustics':
             return self.reply(200,self.server.acoustic_queue.status())
+        if route.path in {'/v1/context/search','/v1/context/source'}:
+            from heartball_agent_runtime import ContextReader
+            query=parse_qs(route.query)
+            try:
+                with self.server.engine.store.lock:
+                    reader=ContextReader(self.server.engine.store.db)
+                    if route.path.endswith('/search'):
+                        result=reader.search(query.get('q',[''])[0],int(query.get('limit',['8'])[0]))
+                    else:
+                        result=reader.source(query.get('id',[''])[0],int(query.get('offset',['0'])[0]),int(query.get('limit',['8000'])[0]))
+                return self.reply(200,result)
+            except PermissionError:return self.reply(403,{'error':'Source access revoked'})
+            except Conflict:return self.reply(409,{'error':'Source corrected; refresh context'})
+            except (ValueError,TypeError):return self.reply(400,{'error':'Invalid context request'})
         return super().do_GET()
 
     def do_POST(self):
         if not self.authorized():return self.reply(401,{'error':'Unauthorized'})
         if self.device['access']!='editor':return self.reply(403,{'error':'This device has read-only access'})
+        if self.path=='/v1/context/import':
+            try:
+                import base64,hashlib
+                from heartball_external_import import ExternalImporter,load_messages
+                length=int(self.headers.get('Content-Length','0'))
+                if not 0<length<=27_000_000 or self.headers.get('Content-Type','').split(';')[0]!='application/json':raise ValueError('Invalid import')
+                body=json.loads(self.rfile.read(length));suffix=Path(body['filename']).suffix.lower()
+                if suffix not in {'.json','.txt','.html','.htm'} or type(body.get('analyze',False)) is not bool:raise ValueError('Invalid export format')
+                raw=base64.b64decode(body['content_base64'],validate=True)
+                if len(raw)>20_000_000:raise ValueError('Export exceeds 20 MB')
+                folder=self.server.engine.store.root/'imports'/'originals';folder.mkdir(parents=True,exist_ok=True,mode=0o700)
+                original=folder/(hashlib.sha256(raw).hexdigest()+suffix)
+                if not original.exists():
+                    with original.open('xb') as output:output.write(raw)
+                    original.chmod(0o600)
+                parsed=load_messages(original,conversation_id=body.get('conversation_id'),time_zone=body.get('time_zone','Asia/Shanghai'))
+                result=ExternalImporter(self.server.mobile.agent).ingest(parsed,account_id=body['account_id'],analyze=body.get('analyze',False))
+                return self.reply(200,result)
+            except Conflict:return self.reply(409,{'error':'Message identity conflicts with a preserved original'})
+            except (ValueError,KeyError,TypeError,UnicodeError):return self.reply(400,{'error':'Unsupported export or missing original time/sender/conversation'})
         if self.path=='/v1/voice':
             try:
                 length=int(self.headers.get('Content-Length','0'))

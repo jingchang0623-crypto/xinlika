@@ -1,0 +1,3 @@
+# Optional isolated optimizer; not a dependency of the recording service.
+-r requirements-heartball.txt
+harness2 @ git+https://github.com/google-research/harness2.git@1cfe254e8d25b15f37048c3730134686abe60335

@@ -30,7 +30,20 @@ final class BackgroundUploader: NSObject {
     private var generation = 0
     private var cancelledTasks = Set<Int>()
     private let directory: URL
+    private var needsPostReconciliation = true
     private(set) var storageError: Error?
+    private let postRedirectDelegate = XinlikaPostRedirectDelegate()
+    private lazy var immediateSession: URLSession = {
+        let c = URLSessionConfiguration.default
+        c.waitsForConnectivity = false
+        c.timeoutIntervalForRequest = 20
+        c.timeoutIntervalForResource = 45
+        c.httpMaximumConnectionsPerHost = 1
+        c.allowsCellularAccess = true
+        c.allowsExpensiveNetworkAccess = true
+        c.allowsConstrainedNetworkAccess = true
+        return URLSession(configuration: c, delegate: postRedirectDelegate, delegateQueue: nil)
+    }()
     private lazy var session: URLSession = {
         let c = URLSessionConfiguration.background(withIdentifier: Self.identifier)
         c.sessionSendsLaunchEvents = true
@@ -49,12 +62,83 @@ final class BackgroundUploader: NSObject {
         do { try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true) }
         catch { storageError = error }
     }
+    /// Isolated transport tests use a private receipt directory and URLProtocol;
+    /// they never attach to the user's system background transfer session.
+    init(directory: URL, postSession: URLSession) {
+        self.directory = directory
+        super.init()
+        immediateSession = postSession
+        needsPostReconciliation = false
+        do { try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true) }
+        catch { storageError = error }
+    }
 
     func restore() { _ = session }
 
-    /// Immutable phone envelopes use their own authenticated POST contract. The
-    /// existing system-owned file transport and relaunch receipts remain shared.
+    /// Minute-sized live envelopes should run immediately while the app has
+    /// execution time, rather than queue behind the OS background scheduler.
+    /// Durable outbox identities make interrupted requests safe to replay.
     func postFile(_ file: URL, to url: URL, token: String, identity: String, attempt: Int) async throws -> Int {
+        try Task.checkCancellation()
+        guard XinlikaConnection.isAllowed(url), !token.isEmpty else { throw TransferError.invalidAddress }
+        guard storageError == nil else { throw TransferError.storage }
+        let key = CaptureDigest.sha256(url.absoluteString + "|" + CaptureDigest.sha256(token) + "|" + identity + "|" + CaptureDigest.sha256(try Data(contentsOf: file)))
+        if let status = successfulPostReceipt(key) { return status }
+        // Adopt the previous process's POST by immutable identity. Cancel only
+        // that request before expediting it; unrelated legacy PUTs stay intact.
+        if needsPostReconciliation {
+            needsPostReconciliation = false
+            // A slow nsurlsessiond task inventory must not block live uploads.
+            // If both requests reach the server during reconciliation, its
+            // immutable message receipt deduplicates the replay.
+            Task { [weak self] in
+                guard let self else { return }
+                let previous = await tasks()
+                guard waiters[key] == nil else { return }
+                for task in previous where Self.transferKey(task.taskDescription) == key &&
+                    task.originalRequest?.httpMethod == "POST" && task.state != .completed && task.state != .canceling {
+                    cancelledTasks.insert(task.taskIdentifier); task.cancel()
+                }
+            }
+        }
+        try Task.checkCancellation()
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        let sending = Task { try await immediateSession.upload(for: request, fromFile: file) }
+        var leaseExpired = false
+        let lease = BackgroundLease(name: "XinlikaLiveUpload") { leaseExpired = true; sending.cancel() }
+        defer { lease.end() }
+        do {
+            let (_, response) = try await withTaskCancellationHandler { try await sending.value }
+                onCancel: { sending.cancel() }
+            try Task.checkCancellation()
+            let status = (response as? HTTPURLResponse)?.statusCode ?? 0
+            let receipt = TransferReceipt(key: key, status: status, errorCode: nil)
+            do {
+                try JSONEncoder().encode(receipt).write(to: directory.appendingPathComponent(key + ".json"),
+                    options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+            } catch { throw TransferError.storage }
+            return status
+        } catch {
+            try Task.checkCancellation()
+            // Only expiration of the OS execution grant hands this request to
+            // background URLSession. Ordinary network failures use queue backoff.
+            if leaseExpired { return try await postBackgroundFile(file, to: url, token: token, identity: identity) }
+            throw error
+        }
+    }
+    private func successfulPostReceipt(_ key: String) -> Int? {
+        guard let receipt = try? JSONDecoder().decode(TransferReceipt.self,
+            from: Data(contentsOf: directory.appendingPathComponent(key + ".json"))),
+            receipt.key == key, receipt.errorCode == nil, receipt.status == 200 else { return nil }
+        return receipt.status
+    }
+    /// System-owned fallback survives suspension/relaunch. When execution
+    /// resumes, its watchdog prevents a stalled POST from holding the queue all day.
+    private func postBackgroundFile(_ file: URL, to url: URL, token: String, identity: String) async throws -> Int {
+        needsPostReconciliation = true
         guard XinlikaConnection.isAllowed(url), !token.isEmpty else { throw TransferError.invalidAddress }
         guard storageError == nil else { throw TransferError.storage }
         let key = CaptureDigest.sha256(url.absoluteString + "|" + CaptureDigest.sha256(token) + "|" + identity + "|" + CaptureDigest.sha256(try Data(contentsOf: file)))
@@ -73,13 +157,23 @@ final class BackgroundUploader: NSObject {
         request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         let task = live ?? session.uploadTask(with: request, fromFile: file)
         task.taskDescription = identity + "|" + key
-        if live == nil, attempt > 0 {
-            task.earliestBeginDate = Date().addingTimeInterval(min(900, pow(2, Double(min(attempt, 9)))))
+        let watchdog = Task { [weak self] in
+            do { try await Task.sleep(for: .seconds(90)) } catch { return }
+            self?.cancelPost(task, key: key, error: TransferError.interrupted(NSURLErrorTimedOut))
         }
-        return try await withCheckedThrowingContinuation { cont in
-            waiters[key, default: []].append(cont)
-            task.resume()
-        }
+        defer { watchdog.cancel() }
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { cont in
+                guard !Task.isCancelled else { cont.resume(throwing: CancellationError()); return }
+                waiters[key, default: []].append(cont)
+                task.resume()
+            }
+        } onCancel: { Task { @MainActor in self.cancelPost(task, key: key, error: CancellationError()) } }
+    }
+    private func cancelPost(_ task: URLSessionTask, key: String, error: Error) {
+        guard let continuations = waiters.removeValue(forKey: key) else { return }
+        cancelledTasks.insert(task.taskIdentifier); task.cancel()
+        for continuation in continuations { continuation.resume(throwing: error) }
     }
     func cancelAll() async {
         generation += 1
@@ -164,6 +258,12 @@ final class BackgroundUploader: NSObject {
     }
 }
 
+private final class XinlikaPostRedirectDelegate: NSObject, URLSessionTaskDelegate {
+    func urlSession(_ session: URLSession, task: URLSessionTask,
+        willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest,
+        completionHandler: @escaping (URLRequest?) -> Void) { completionHandler(nil) }
+}
+
 extension BackgroundUploader: URLSessionTaskDelegate, URLSessionDataDelegate {
     nonisolated func urlSession(_ session: URLSession, task: URLSessionTask,
         willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest,
@@ -190,10 +290,14 @@ extension BackgroundUploader: URLSessionTaskDelegate, URLSessionDataDelegate {
 }
 
 final class ShennaoAppDelegate: NSObject, UIApplicationDelegate {
+    private var usesXinlika: Bool {
+        let environment = ProcessInfo.processInfo.environment
+        return !["SHENNAO_UI_FIXTURE", "SHENNAO_SYNC_FIXTURE", "SHENNAO_LEGACY"].contains { environment[$0] == "1" }
+    }
     func application(_ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         // Restore the owner before a scene is rendered, including Bluetooth wakes.
-        _ = XinlikaModel.shared
+        if usesXinlika { _ = XinlikaModel.shared }
         return true
     }
     func application(_ application: UIApplication,
@@ -201,7 +305,7 @@ final class ShennaoAppDelegate: NSObject, UIApplicationDelegate {
         completionHandler: @escaping () -> Void) {
         guard identifier == BackgroundUploader.identifier else { completionHandler(); return }
         BackgroundUploader.shared.backgroundCompletion = completionHandler
-        _ = XinlikaModel.shared
+        if usesXinlika { _ = XinlikaModel.shared }
         BackgroundUploader.shared.restore()
     }
 }

@@ -45,13 +45,15 @@ def daily_workspace(db, day=None, time_zone='Asia/Shanghai'):
                 clock,start,stop=documents[source['document_id']]
                 row=db.execute('SELECT session_id FROM documents WHERE id=?',(source['document_id'],)).fetchone()
                 if start is not None:activity_intervals.setdefault(activity['id'],[]).append((row[0],start,stop,activity))
+    from heartball_interest import project as interest_project, profile_key
+    interest_profile=profile_key(db)
     grouped, unknown = {}, 0
     for row in db.execute("SELECT * FROM workspace_events WHERE status='active'"):
         event = dict(row)
         from heartball_timeline import visible
         if not visible(db,event):continue
         from heartball_timeline import project
-        event=project(db,event)
+        event=interest_project(db,project(db,event),interest_profile)
         refs = sources.get(event['id'], [])
         if event['kind']!='focus' and refs and not has_semantic_content(' '.join(s['quote'] for s in refs)):continue
         known = [documents[s['document_id']] for s in refs if s['document_id'] in documents and documents[s['document_id']][1] is not None]
@@ -63,6 +65,10 @@ def daily_workspace(db, day=None, time_zone='Asia/Shanghai'):
             continue
         first = min(known, key=lambda x: x[1])
         event.update(first[0]); event['sources'] = refs
+        event['card_style']=event.get('card_style') or ('summary' if event['kind']=='focus' else 'compact')
+        event['start_local']=min(start for _,start,_ in known).isoformat()
+        event['end_local']=max(stop for _,_,stop in known).isoformat()
+        event['boundary_precision']='observed_source_envelope'
         event['_day_sort'] = min(a for a, _ in intervals).timestamp()
         topic = db.execute('SELECT topic_id FROM workspace_all_event_topics WHERE event_id=?', (event['id'],)).fetchone()
         event['topic_id'] = topic[0] if topic else None
@@ -104,4 +110,9 @@ def daily_workspace(db, day=None, time_zone='Asia/Shanghai'):
         group['observed_audio_seconds']=sum((b-a).total_seconds() for a,b in covered)
         groups.append(group)
     groups.sort(key=lambda g: (g['start_local'], g['id']), reverse=True)
-    return {'date': date.isoformat(), 'time_zone': time_zone, 'groups': groups, 'event_count': sum(g['event_count'] for g in groups), 'focus_count': sum(g['focus_count'] for g in groups), 'unknown_time_count': unknown}
+    # One canonical sequence for phone and desktop. Activities stay available
+    # as drill-down context, never replace independent events on the home page.
+    timeline={e['id']:e for g in groups for e in g['events']}
+    timeline=sorted(timeline.values(),key=lambda e:(dt.datetime.fromisoformat(e['start_local']).timestamp(),e['id']),reverse=True)
+    return {'date': date.isoformat(), 'time_zone': time_zone, 'groups': groups,'timeline':timeline,'timeline_version':1,
+        'event_count': sum(g['event_count'] for g in groups), 'focus_count': sum(g['focus_count'] for g in groups), 'unknown_time_count': unknown}

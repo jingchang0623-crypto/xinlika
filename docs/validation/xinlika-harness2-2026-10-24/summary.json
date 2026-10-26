@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "recording_or_production_configuration_changed": false,
+  "actual_official_framework_run": true,
+  "independent_measured_gate": {
+    "accepted": true,
+    "reasons": [],
+    "automatic_activation": false,
+    "scope": "eight pre-registered holdout checks only"
+  },
+  "deployment_decision": {
+    "activate": false,
+    "reason": [
+      "two known development semantic failures",
+      "no confirmed independent positive cross-conversation case",
+      "single stochastic trial; no causal improvement proof"
+    ]
+  },
+  "cost_comparison": {
+    "baseline_tokens": 384240,
+    "candidate_tokens": 439176,
+    "candidate_token_change_percent": 14.297314178638354,
+    "baseline_calls": 43,
+    "candidate_calls": 47,
+    "currency_cost": null,
+    "note": "Cached tokens differ; token change is not a currency-cost estimate."
+  },
+  "whole_task_actual_provider_usage": {
+    "calls": 161,
+    "calls_with_usage": 161,
+    "prompt_tokens": 1903086,
+    "completion_tokens": 125185,
+    "total_tokens": 2028271,
+    "cached_tokens": 207936,
+    "usage_complete": true,
+    "currency_cost": null
+  },
+  "included_phases": [
+    "failed initial interface trial",
+    "two protocol compatibility probes",
+    "structured trial including editor/probe/compose/reflection",
+    "independent baseline and candidate"
+  ],
+  "asr_calls": 0,
+  "candidate_unchanged_after_freeze": true,
+  "checks": {
+    "baseline_passed": 7,
+    "candidate_passed": 8,
+    "registered_independent_checks": 8
+  },
+  "post_run_hardening": "Duplicate-run guard, full engine/configuration fingerprints, failed proposal trace, automatic evaluator registration. No subsequent model runs."
+}

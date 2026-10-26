@@ -1,0 +1,19 @@
+{
+  "tests_passed": 231,
+  "final_test_log": "final-tests-pinned.log",
+  "frozen_candidate_unchanged": true,
+  "same_evaluated_engine_for_development_and_independent": true,
+  "evaluated_engine_sha256": "eccd9d1c7891e0c12853ed08df05df3df3176900ec93f60224d4aa779e0983b5",
+  "registered_checks_unchanged": true,
+  "old_holdout_model_replays": 0,
+  "independent_replays_per_role": 1,
+  "finished_holdout_retry_additional_model_calls": 0,
+  "source_only_packaged_profile_passed": true,
+  "post_evaluation_hardening": "Profile/engine pinning and activation-epoch guards only; no semantic prompt/model changes or additional model requests.",
+  "model_input_epoch_equivalence_unit_test_passed": true,
+  "actual_model_requests": 66,
+  "actual_tokens": 393212,
+  "asr_calls": 0,
+  "production_writes": 0,
+  "service_restarts": 0
+}

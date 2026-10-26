@@ -28,3 +28,16 @@ demo-output/
 .swiftpm/
 *.xcresult/
 *.app/
+
+# Development-only inputs and artifacts
+/research/
+/Config/Local.xcconfig
+*.pcm
+*.flac
+*.aac
+*.mp3
+*.mobileprovision
+*.ipa
+*.p8
+node_modules/
+venv/

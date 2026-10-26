@@ -10,13 +10,17 @@ An independent open-source project inspired by OPPO's AI Xinliqiu. Native **iPho
 
 Developer preview [v0.2.0](https://github.com/jingchang0623-crypto/xinlika/releases/tag/v0.2.0). Backend MIT; native clients GPL-3.0-only. Build from source; no pre-signed app is supplied.
 
+## Main update · 2026-10-26
+
+The latest source includes iPhone 0.3.10 capture/recovery queues, a shared event timeline, reversible interest feedback, versioned v6 Skills, incremental/rolling event processing, cross-conversation links and read-only MCP. [Update evidence](docs/github-sync-2026-10-26.md) · [Optional runtime setup](docs/runtime-v6.md). The v0.2.0 tag remains unchanged. This export does not claim a new physical-device or semantic-quality acceptance test.
+
 ## What makes it worth trying?
 
 - **iPhone today, Android next.** iOS 17+ and macOS 14+ clients are included. No public Android or Watch app exists yet. Android is a concrete [staged contribution plan](docs/android-plan.md), not a universal compatibility claim.
 - **A low hardware entry point.** The maintainer reports a sub-CNY 200 price for the recorder used in this project (2026-10-23). This is a hardware-only reference, not a verified current retailer quote or total running cost. Verify CB08 model/firmware before purchase; ASR, models, servers and storage are extra.
 - **Your deployment, your model choice.** Use your own service and device credentials. When you use external models, the relevant content is sent to those services.
 - **Sources that can be corrected.** Keep literal sources and revisions; corrections invalidate dependent answers. A transport batch is not automatically a semantic event, and a topic may span conversations.
-- **Code you can extend.** Capture/recovery protocols, event/topic processing and observe → respond → review → publish prompts are included. MCP remains unimplemented.
+- **Code you can extend.** Capture/recovery protocols, event/topic processing and observe → respond → review → publish prompts are included. Read-only MCP export and explicit chat-file import are now included; see [runtime setup](docs/runtime-v6.md).
 
 The [October 16 GeekPark hands-on report](https://www.geekpark.net/news/372428) described the Xinliqiu preview as requiring OPPO, OnePlus or Realme phones, with other brands unsupported at that time. This dated report is not a permanent official compatibility list. Xinlika uses **CB08, not OPPO hardware or services**. See [comparison sources and boundaries](docs/oppo-context.md).
 

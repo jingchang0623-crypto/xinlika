@@ -108,3 +108,5 @@ swift run --package-path clients --scratch-path .build/swift XinlikaWorkspaceChe
 iPhone UI 集成测试用 `examples/native-test-server.py` 启动独立 loopback 合成服务，随后运行 `XinlikaUITests`；它不调用真实 ASR/模型或录音卡。CI 的原生任务执行相同入口。详细证据见 [native-validation](native-validation.md)。
 
 源码授权：后端 MIT；`clients/` GPL-3.0-only。厂商二进制 SDK、固件、模型权重均不包含。
+
+新版可选增量处理、MCP 和导出文件导入见 [v6 运行说明](runtime-v6.md)。包含 MCP/原生运行时的完整后端回归需先安装 `requirements-agent-runtime.txt`；核心运行仍只依赖基础 requirements。

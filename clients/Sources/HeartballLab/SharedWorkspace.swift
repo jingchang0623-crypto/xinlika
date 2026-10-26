@@ -68,13 +68,13 @@ actor SharedWorkspaceClient {
             throw URLError(.badServerResponse)
         }
     }
-    func refresh(reset: Bool = false) async throws -> HeartballAgentState? {
+    func refresh(reset: Bool = false, on date: Date? = nil) async throws -> HeartballAgentState? {
         if reset { cursor = nil; viewKey = nil }
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .gregorian)
         formatter.locale = Locale(identifier: "en_US_POSIX"); formatter.timeZone = .current
         formatter.dateFormat = "yyyy-MM-dd"
-        var query = [URLQueryItem(name: "day", value: formatter.string(from: .now)), URLQueryItem(name: "time_zone", value: TimeZone.current.identifier)]
+        var query = [URLQueryItem(name: "day", value: formatter.string(from: date ?? .now)), URLQueryItem(name: "time_zone", value: TimeZone.current.identifier)]
         if let cursor { query.append(URLQueryItem(name: "cursor", value: String(cursor))) }
         if let viewKey { query.append(URLQueryItem(name: "view", value: viewKey)) }
         do {
@@ -85,7 +85,7 @@ actor SharedWorkspaceClient {
             return snapshot.state
         } catch let error as NSError where error.domain == "XinlikaShared" && error.code == 409 && !reset {
             // Restored/replaced server state requires a fresh authoritative snapshot.
-            return try await refresh(reset: true)
+            return try await refresh(reset: true, on: date)
         }
     }
 }

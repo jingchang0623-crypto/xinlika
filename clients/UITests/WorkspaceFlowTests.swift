@@ -23,7 +23,7 @@ final class WorkspaceFlowTests: XCTestCase {
         let token = app.secureTextFields["deviceToken"]
         token.tap(); token.typeText("native-test-local-only")
         app.buttons["saveConnection"].tap()
-        XCTAssertTrue(app.staticTexts["已同步"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "整理结果已同步")).firstMatch.waitForExistence(timeout: 15))
         app.navigationBars.buttons.element(boundBy: 0).tap()
         let addRecord = app.buttons["addTextRecord"]
         XCTAssertTrue(addRecord.waitForExistence(timeout: 5)); addRecord.tap()

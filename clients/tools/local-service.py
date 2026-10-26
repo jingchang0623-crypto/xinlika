@@ -2,6 +2,7 @@
 #!/usr/bin/env python3
 """Authenticated loopback capture/focus service with opt-in processing adapters."""
 from __future__ import annotations
+
 import sys
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parents[2] / "scripts"))
 
@@ -312,7 +313,8 @@ class Handler(BaseHTTPRequestHandler):
             elif self.path == "/v1/focus/end":
                 engine.store.focus_end(body["id"])
             elif self.path == "/v1/feedback" and processor:
-                processor.agent.feedback(body)
+                receipt=processor.agent.feedback(body)
+                if body.get('action')=='rate_event':return self.reply(200,{"eventInterestProtocol":1,**receipt})
                 return self.reply(200, processor.agent.state())
             elif self.path == "/v1/memory/ask" and processor:
                 if processor.model is None:
@@ -323,7 +325,7 @@ class Handler(BaseHTTPRequestHandler):
                 jid = identifier(body["id"])
                 with engine.store.lock, engine.store.transaction():
                     job = engine.store.db.execute("SELECT * FROM jobs WHERE id=?", (jid,)).fetchone()
-                    if not job or job["kind"] not in {"asr_audio", "ambient_analysis", "focus_analysis", "text_analysis", "memory_query", "semantic_analysis", "topic_reconcile","event_consolidate","personal_analysis","activity_analysis"}:
+                    if not job or job["kind"] not in {"asr_audio", "ambient_analysis", "focus_analysis", "text_analysis", "memory_query", "semantic_analysis", "topic_reconcile","event_consolidate","personal_analysis","activity_analysis","native_agent_analysis"}:
                         raise ValueError("Unknown processing job")
                     if job["status"] in {"failed", "blocked_provider", "retryable"}:
                         engine.store.db.execute("UPDATE jobs SET status='queued',attempts=0,error=NULL,available_at=0 WHERE id=?", (jid,))

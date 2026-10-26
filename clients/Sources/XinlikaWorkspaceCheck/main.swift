@@ -40,3 +40,35 @@ check(local.recordingDate != nil && utc.recordingDate != nil && local.recordingD
 let unknown = try document("unknown", created: "2026-10-22T08:00:00+08:00")
 check(unknown.recordingDate == nil, "A processing timestamp must never become a recording date")
 print("10 session/focus, revision and recording-clock checks passed. No hardware, ASR or model calls.")
+
+// The canonical day is independent from activity containers and source counts.
+let summaryEvent: [String: Any] = ["id":"short-feedback", "session_id":"s", "kind":"ambient", "title":"操作没有响应",
+    "summary":"一条有明确现象的短反馈。", "source_kind":"unknown", "created_at":"2026-10-24T12:00:00Z", "occurred_at":"2026-10-21T14:00:00+08:00",
+    "version":1, "sources":[["document_id":"d1", "revision":1, "quote":"原句"]], "category":"feedback", "card_style":"summary"]
+var compactEvent = summaryEvent;compactEvent["id"]="simple-event";compactEvent["card_style"]="compact"
+compactEvent["sources"] = (1...4).map { ["document_id":"d\($0)", "revision":1, "quote":"原句"] as [String:Any] }
+let group: [String:Any] = ["id":"long-meeting", "kind":"meeting", "title":"一场会议", "start_local":"2026-10-21T14:00:00+08:00",
+    "end_local":"2026-10-21T16:00:00+08:00", "session_count":1, "event_count":2, "focus_count":0,"events":[summaryEvent,compactEvent]]
+var day: [String:Any] = ["date":"2026-10-21", "time_zone":"Asia/Shanghai", "groups":[group], "event_count":2,"focus_count":0,"unknown_time_count":0,
+    "timeline":[compactEvent,summaryEvent],"timeline_version":1]
+let decoder=JSONDecoder();decoder.keyDecodingStrategy = .convertFromSnakeCase
+func readDay(_ value: [String:Any]) throws -> HeartballAgentState.Day {
+    try decoder.decode(HeartballAgentState.Day.self,from:JSONSerialization.data(withJSONObject:value))
+}
+let canonical = try readDay(day)
+check(canonical.timelineEvents.map(\.id)==["simple-event","short-feedback"],"Both clients must keep server event identity and order; a meeting container cannot replace them")
+check(!canonical.timelineEvents[0].showsTimelineSummary && canonical.timelineEvents[1].showsTimelineSummary,"Card hierarchy is semantic, never source count")
+day["timeline"] = []
+let emptyCanonical = try readDay(day)
+check(emptyCanonical.timelineEvents.isEmpty,"An explicitly empty canonical timeline must not leak hidden group contents")
+day.removeValue(forKey:"timeline");day.removeValue(forKey:"timeline_version")
+let legacyDay = try readDay(day)
+check(legacyDay.timelineEvents.count==2,"Old servers remain readable without treating containers as events")
+if let index=CommandLine.arguments.firstIndex(of:"--day-state"),CommandLine.arguments.indices.contains(index+1) {
+    let state = try decoder.decode(HeartballAgentState.self,from:Data(contentsOf:URL(fileURLWithPath:CommandLine.arguments[index+1])))
+    guard let realDay=state.today else { fatalError("Missing real day") }
+    check(realDay.timeline != nil,"Real validation must use the server canonical timeline")
+    check(Set(realDay.timelineEvents.map(\.id)).count==realDay.timelineEvents.count,"No duplicate real home events")
+    print("Real canonical day decoded: \(realDay.date), \(realDay.timelineEvents.count) events; no client regrouping or device access.")
+}
+print("4 canonical timeline, legacy compatibility and semantic-card checks passed.")

@@ -16,6 +16,7 @@ final class XinlikaCaptureStore: @unchecked Sendable {
         var sourceKind: String
         var processing: Bool
         var status: String
+        var captureOrigin: String?
         var streams: [Stream] = []
         var gaps: Int = 0
         var sequence: Int = 0
@@ -183,8 +184,27 @@ final class XinlikaCaptureStore: @unchecked Sendable {
                 throw NSError(domain: "Xinlika", code: 1, userInfo: [NSLocalizedDescriptionKey: "上一段录音需先恢复或结束"])
             }
             state.sessions.append(Session(id: UUID().uuidString.lowercased(), deviceID: device.uuidString.lowercased(),
-                startedAt: Self.stamp(), cardFile: "", batchSeconds: seconds, sourceKind: source, processing: processing, status: "preparing", serviceURL: serviceURL, automaticReference: true))
+                startedAt: Self.stamp(), cardFile: "", batchSeconds: seconds, sourceKind: source, processing: processing, status: "preparing", captureOrigin: "app", serviceURL: serviceURL, automaticReference: true))
             try persist()
+        }
+    }
+    /// Atomic admission and persistent identity deduplication, including after relaunch.
+    /// Only the caller's twice-confirmed running filename may enter here.
+    @discardableResult
+    func adoptHardwareRecording(device: UUID, filename: String, source: String, processing: Bool, serviceURL: String) throws -> Bool {
+        try queue.sync {
+            guard state.error == nil, XinlikaCaptureAdmission.validFilename(filename) else { throw RecordingControlError.stateUnknown }
+            let deviceID = device.uuidString.lowercased(), file = XinlikaCaptureAdmission.fileKey(filename)
+            if state.sessions.contains(where: { $0.deviceID == deviceID && XinlikaCaptureAdmission.fileKey($0.cardFile) == file }) { return false }
+            guard state.sessions.last.map({ ["completed", "failed"].contains($0.status) }) ?? true else { throw RecordingControlError.busy }
+            state.sessions.append(Session(id: UUID().uuidString.lowercased(), deviceID: deviceID,
+                startedAt: Self.stamp(), cardFile: filename, batchSeconds: 60, sourceKind: source, processing: processing,
+                status: "waiting_audio", captureOrigin: "hardware", gaps: 1, serviceURL: serviceURL,
+                automaticReference: true, unresolvedGap: true))
+            // Receiving begins now; the earlier card bytes must be reconciled after save.
+            try enqueue(state.sessions.count - 1, fields: ["kind": "gap", "at": Self.stamp(), "reason": "hardware_recording_precedes_capture"])
+            try persist()
+            return true
         }
     }
     func ownedFile(_ name: String, waiting: Bool = false) throws {

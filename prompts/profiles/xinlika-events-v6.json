@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "name": "xinlika-events-v6",
+  "accepted": true,
+  "validation_file": "prompts/profiles/evidence/xinlika-events-v6-interest-r4.json",
+  "validation_sha256": "3604ef0f1ab0eb444d81b8703ce014061aaf98da84ce72cef8656fb5dc378b63",
+  "bundle": "prompts/versions/xinlika-events-v6/bundle.json",
+  "bundle_sha256": "0d75b39c818fa500fe176659d6fe353a3f51aedb24d47c7a56cbf8715bc7d3aa",
+  "settings": {
+    "analysis_strategy": "incremental",
+    "rolling_review": true,
+    "cross_conversation_review": true,
+    "complete_events": true
+  },
+  "model_settings": {
+    "structured_incremental": true
+  },
+  "engine_sha256": {
+    "scripts/heartball_agent_runtime.py": "6183f39dbac8922b5215fee38b71b7da1e292cd728e4ccd2722cc9dabe1975d4",
+    "scripts/heartball_agent_store.py": "7429d3c96e9cfb5ac72695e9b086452a6cac740b533c0b267828d3ee875969c2",
+    "scripts/heartball_day.py": "6c08b5e87f8086c4f0143b7d64b3ac409ee1dc68fa26fe903565b66c2a908efb",
+    "scripts/heartball_fragment_projection.py": "88031c48c8634a98ff974ee828ef6e916e9d4227c11fb2f0ed75003b810fec43",
+    "scripts/heartball_incremental.py": "d85e6a7e73d839a6af36b4f8c4d0cec843a385e492c876b6555ec36b1f66750a",
+    "scripts/heartball_incremental_contract.py": "7a460c6a52ded5f7787d49c8f02db33cf9c120fc0013eff8b068f4a2783cc9c8",
+    "scripts/heartball_incremental_review.py": "2a807e6f50816c75932df161349e9d7543553765b684a1560589cb2910d7415f",
+    "scripts/heartball_incremental_topics.py": "b1b14388874d1cc23a1d4871b6a463896087e1eedf71b07130291c5576abcb9c",
+    "scripts/heartball_interest.py": "ba47caa7725aac81082052a6c5f16beed83945b918d3b152f1e1c80bb807b526",
+    "scripts/heartball_native_processing.py": "85d30fe9b307bf19c03990d80f3c53f376b886f834c9aae7fef68d1a90ed1c97",
+    "scripts/heartball_organization.py": "4450ba086b918d288a5e74caba2064f44f690cbc877f4c147ca4c673213e3c4e",
+    "scripts/heartball_processing_profiles.py": "565560024eed13a66ad31e23710b8b211218e408b9f07614847a1724778b0f6c",
+    "scripts/heartball_shared.py": "94651a94cc19e38a8c8d760603a83391a04fd796190d9228cbe52fd268c3a753",
+    "scripts/heartball_shared_handoff.py": "5d2220f56a888b87f610a1024c464417c1eef11c3c2551bf9252814944c81bbe",
+    "scripts/heartball_http.py": "48429488b1bd96d13b810cd438493eb95ce6415e28a4f557bf2b7374b83b0968"
+  },
+  "profile_revision": 4,
+  "previous_profile_sha256": "719f20521de15585722fbc6fbd290c27f3fa4d2e3aa520c9d56f01da7fc9b6c7",
+  "public_packaging": {
+    "date": "2026-10-26",
+    "source_profile_revision": 4,
+    "changes": [
+      "Pin extracted HTTP handler instead of Mac hardware daemon",
+      "Preserve generic ASR in classic/native and handoff configuration"
+    ],
+    "new_semantic_quality_claim": false,
+    "ASR_calls": 0
+  }
+}

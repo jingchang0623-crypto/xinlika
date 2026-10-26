@@ -2,13 +2,16 @@
 // See clients/LICENSE and clients/PROVENANCE.md for source and authorization.
 import Foundation
 
-/// Device filename clocks and conservative continuation heuristics.
-/// Some observed files roll near three hours; other captures ran longer in one
-/// file. This threshold is a candidate filter, never a universal hardware limit
-/// or independent proof of microphone continuity.
+/// 录音的真实起始时刻，以及「被设备切开的同一场会议」的识别与拼接。
+///
+/// 两件事都源自同一个事实：**录音笔有 3 小时上限**，到点自动断开、隔 1 秒开下一条。
+/// 于是一场三个半小时的会在深脑里变成两场互不相干的会——说话人各认一遍、
+/// 洞察各出一份、承诺分散在两处。而深脑那边记的时间还不是录音时间，
+/// 是上传时间（`recording_sessions.started_at` 是 `default now()`，
+/// 建会话接口压根不收 startedAt）。
 public enum Continuation {
 
-    /// Observed near-three-hour rollover candidate threshold, not a hard limit.
+    /// 录音笔的单文件上限。实测这条 3 小时录音是 10801 秒。
     ///
     /// 用「≥ 10700」而不是「== 10801」：固件版本之间可能差几秒，
     /// 卡死一个精确值会让判据在别的设备上静默失效。

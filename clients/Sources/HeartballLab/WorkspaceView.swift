@@ -20,7 +20,7 @@ private enum WorkspacePage: String, CaseIterable, Identifiable {
     }
     var subtitle: String {
         switch self {
-        case .today: return "值得留意的变化，以及下一步。"
+        case .today: return "这一天发生的事。"
         case .topics: return "跨对话的进展。"
         case .agent: return "随时问问你的记录。"
         case .records: return "按录音会话归集，重点片段独立留下。"
@@ -53,6 +53,7 @@ struct LabView: View {
     @State private var sharedServerAddress = ""
     @State private var sharedDeviceToken = ""
     @State private var showingText = false
+    @State private var showingDayPicker = false
     @State private var editingClaim: HeartballAgentState.Claim?
     @State private var editingDocument: HeartballAgentState.Document?
 
@@ -238,10 +239,25 @@ struct LabView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .firstTextBaseline, spacing: 12) {
                     Text(page.rawValue).font(.system(size: 24, weight: .medium))
-                    if page == .today { Text(Date.now, format: .dateTime.month().day().weekday(.wide)).foregroundStyle(XinlikaPalette.muted) }
-                }
-                if page == .today, let day = model.agentState?.today {
-                    Text("\(day.groups.count) 组记录 · \(day.eventCount) 个事项").font(.system(size: 12)).foregroundStyle(.secondary)
+                    if page == .today {
+                        Button { showingDayPicker = true } label: {
+                            HStack(spacing: 5) {
+                                Text(model.selectedDay ?? .now, format: .dateTime.month().day().weekday(.wide))
+                                Image(systemName: "chevron.down").font(.caption)
+                            }.foregroundStyle(XinlikaPalette.muted)
+                        }.buttonStyle(.plain)
+                        .popover(isPresented: $showingDayPicker) {
+                            VStack(spacing: 14) {
+                                DatePicker("记录日期", selection: Binding(get:{model.selectedDay ?? .now},set:{value in Task { await model.selectDay(value) }}),in: ...Date.now,displayedComponents: .date)
+                                    .datePickerStyle(.graphical)
+                                HStack {
+                                    Button("今天") { showingDayPicker = false; Task { await model.selectDay(nil) } }
+                                    Spacer()
+                                    Button("完成") { showingDayPicker = false }
+                                }
+                            }.padding(18).frame(width: 300)
+                        }
+                    }
                 }
             }
             Spacer(minLength: 0)
@@ -252,10 +268,21 @@ struct LabView: View {
         }.padding(24)
     }
     @ViewBuilder private var notices: some View {
-        if let message = model.connectionMessage { notice(message) }
-        if let message = model.message { notice(message) }
-        if let error = model.state?.session?.error { notice(error) }
-        if let gaps = model.state?.session?.gapCount, gaps > 0 { notice("本次检测到 \(gaps) 次断连，已保留缺口信息。") }
+        if page == .today {
+            if model.connectionMessage != nil || (model.running && model.state?.session?.error != nil) {
+                HStack(spacing: 8) {
+                    Image(systemName: "exclamationmark.circle")
+                    Text("记录同步需要处理")
+                    Spacer()
+                    Button("查看") { go(.device) }
+                }.font(.system(size: 12)).foregroundStyle(.secondary).padding(.horizontal,24).padding(.bottom,12)
+            }
+        } else {
+            if let message = model.connectionMessage { notice(message) }
+            if let message = model.message { notice(message) }
+            if let error = model.state?.session?.error { notice(error) }
+            if let gaps = model.state?.session?.gapCount, gaps > 0 { notice("本次检测到 \(gaps) 次断连，已保留缺口信息。") }
+        }
     }
     private func notice(_ message: String) -> some View {
         HStack(alignment: .top) {
@@ -300,12 +327,11 @@ struct LabView: View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 0) {
                 if !waitingJobs.isEmpty { Label("正在整理新内容", systemImage: "sparkle").font(.system(size: 12)).foregroundStyle(.secondary).padding(.vertical, 12) }
-                if let day = model.agentState?.today {
-                    if day.groups.isEmpty { WorkspaceEmpty(title: "今天还没有整理好的事项", detail: "开始记录后，会自动出现在这里。") }
-                    ForEach(day.groups.flatMap(\.events).sorted { ($0.recordingDate ?? .distantPast, $0.id) > ($1.recordingDate ?? .distantPast, $1.id) }) { event in
+                if let day = model.agentState?.today, day.date == selectedDayKey {
+                    if day.timelineEvents.isEmpty { WorkspaceEmpty(title: "今天还没有整理好的事项", detail: "开始记录后，会自动出现在这里。") }
+                    ForEach(day.timelineEvents) { event in
                         Button { selectedEvent = event } label: { eventRow(event) }
                             .buttonStyle(.plain).accessibilityIdentifier("today-event-" + event.id)
-                        Divider().padding(.vertical, 8)
                     }
                     if day.unknownTimeCount > 0 {
                         Button("\(day.unknownTimeCount) 条录制时间待核对", systemImage: "clock.badge.questionmark") { go(.records) }
@@ -315,6 +341,10 @@ struct LabView: View {
             }
             .padding(.horizontal, 24).padding(.bottom, 24)
         }
+    }
+    private var selectedDayKey: String {
+        let f=DateFormatter();f.calendar=Calendar(identifier:.gregorian);f.locale=Locale(identifier:"en_US_POSIX");f.timeZone = .current;f.dateFormat="yyyy-MM-dd"
+        return f.string(from:model.selectedDay ?? .now)
     }
     private var agentWorkspace: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -335,22 +365,29 @@ struct LabView: View {
     }
     private func eventRow(_ event: HeartballAgentState.SemanticEvent, compact: Bool = false) -> some View {
         HStack(alignment: .top, spacing: 14) {
-            Circle().fill(event.kind == "focus" || !attachedFocuses(event).isEmpty ? XinlikaPalette.signal : Color.secondary.opacity(0.35))
-                .frame(width: 6, height: 6).padding(.top, 8)
+            VStack(spacing: 10) {
+                Circle().fill(event.kind == "focus" ? Color.orange : Color.brown.opacity(0.7)).frame(width: 8, height: 8)
+                Rectangle().fill(.quaternary).frame(width: 1).frame(maxHeight: .infinity)
+            }.frame(width: 12).padding(.top, 20)
             VStack(alignment: .leading, spacing: 8) {
+                if !compact, event.showsTimelineSummary, let category = event.categoryLabel {
+                    Text(category).font(.system(size: 11)).foregroundStyle(.secondary)
+                }
                 HStack(alignment: .firstTextBaseline, spacing: 20) {
                     Text(event.title).font(.system(size: 16, weight: .medium)).multilineTextAlignment(.leading).lineLimit(2)
                     Spacer(minLength: 12)
-                    Text(eventDate(event)).font(.system(size: 12)).foregroundStyle(.secondary).fixedSize()
+                    Text(event.recordingDate?.formatted(.dateTime.hour(.twoDigits(amPM: .omitted)).minute(.twoDigits)) ?? "时间待核对")
+                        .font(.system(size: 12)).foregroundStyle(.secondary).monospacedDigit().fixedSize()
                 }
-                if !compact && (event.sources.count > 1 || event.kind == "focus") {
+                if !compact && event.showsTimelineSummary {
                     Text(event.summary).font(.system(size: 13)).foregroundStyle(.secondary).lineLimit(2).multilineTextAlignment(.leading)
                 }
                 if event.kind == "focus" || !attachedFocuses(event).isEmpty {
-                    Label("重点", systemImage: "bookmark.fill").font(.system(size: 11)).foregroundStyle(.secondary)
+                    Label("重点", systemImage: "bookmark.fill").font(.system(size: 11)).foregroundStyle(.orange)
                 }
-            }
-        }.frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 10).contentShape(.rect)
+            }.padding(16).frame(maxWidth: .infinity, alignment: .leading)
+                .background(XinlikaPalette.surface, in: .rect(cornerRadius: 16))
+        }.frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 6).contentShape(.rect)
     }
     private func eventDetail(_ event: HeartballAgentState.SemanticEvent) -> some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -393,7 +430,7 @@ struct LabView: View {
                         Button { selectedTopicID = topic.id } label: {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text(topic.title).fontWeight(.medium)
-                                Text("\(topic.conversationCount) 次对话").font(.system(size: 12)).foregroundStyle(.secondary)
+                                Text("\(topic.conversationCount) 段记录").font(.system(size: 12)).foregroundStyle(.secondary)
                             }.frame(maxWidth: .infinity, alignment: .leading).padding(14)
                                 .background((selectedTopicID ?? topics.first?.id) == topic.id ? XinlikaPalette.active : .clear, in: .rect(cornerRadius: 6))
                         }.buttonStyle(.plain)

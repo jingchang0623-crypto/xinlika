@@ -63,8 +63,9 @@ class EventMerges(BaseModel):
 
 
 class EventMergeStore:
-    def __init__(self, agent, refine=False):
+    def __init__(self, agent, refine=False, preserve_identity=False):
         self.agent, self.db, self.lock = agent, agent.db, agent.lock
+        self.preserve_identity=preserve_identity
         with self.lock, agent.store.transaction():
             exists = self.db.execute("SELECT 1 FROM sqlite_master WHERE name='workspace_event_scans'").fetchone()
             self.db.execute('CREATE TABLE IF NOT EXISTS workspace_event_scans(session_id TEXT PRIMARY KEY,document_count INTEGER,finished INTEGER)')
@@ -225,7 +226,13 @@ class EventMergeStore:
                 eid = stable('merged-event:' + key + ':' + str(index))
                 ordered = sorted(sources.values(), key=lambda s:event_sort_key(recording_time(self.db,s['doc'])))
                 occurred = recording_time(self.db,ordered[0]['doc'])['occurred_at']
-                self.db.execute("INSERT INTO workspace_events VALUES(?,?,'ambient',?,?,?,?,'active',1,?,?)", (eid,context['session_id'],proposal['title'],proposal['summary'],source_kind,occurred,now(),now()))
+                if self.preserve_identity:
+                    eid=min(proposal['events'],key=lambda ref:(event_sort_key(candidates[ref['id']]),ref['id']))['id']
+                    self.db.execute('UPDATE workspace_events SET title=?,summary=?,occurred_at=?,version=version+1,updated_at=? WHERE id=?',(proposal['title'],proposal['summary'],occurred,now(),eid))
+                    self.db.execute('DELETE FROM workspace_event_sources WHERE event_id=?',(eid,))
+                    self.db.execute('DELETE FROM workspace_refined_ranges WHERE event_id=?',(eid,))
+                else:
+                    self.db.execute("INSERT INTO workspace_events VALUES(?,?,'ambient',?,?,?,?,'active',1,?,?)", (eid,context['session_id'],proposal['title'],proposal['summary'],source_kind,occurred,now(),now()))
                 for source in ordered:
                     doc, spans = source['doc'], sorted(source['spans'])
                     ranges=[]
@@ -237,12 +244,17 @@ class EventMergeStore:
                         self.db.execute('INSERT INTO workspace_refined_ranges VALUES(?,?,?,?,?,?)',(eid,doc['id'],doc['revision'],begin,end,doc['text'][begin:end]))
                 for ref in proposal['events']:
                     self.agent._invalidate_advice(ref['id'])
+                    if self.preserve_identity and ref['id']==eid:continue
                     self.db.execute("UPDATE workspace_events SET status='merged',version=version+1 WHERE id=?", (ref['id'],))
                     self.db.execute('INSERT INTO workspace_event_merge_parents VALUES(?,?,?)', (key,ref['id'],eid))
-                self.db.execute('INSERT OR IGNORE INTO workspace_event_merge_coverage VALUES(?,1)',(eid,))
+                version=self.db.execute('SELECT version FROM workspace_events WHERE id=?',(eid,)).fetchone()[0]
+                self.db.execute('INSERT OR IGNORE INTO workspace_event_merge_coverage VALUES(?,?)',(eid,version))
                 for topic_index,tid in enumerate(sorted(topic_ids)):
                     self.agent._invalidate_advice(tid)
-                    self.db.execute('INSERT INTO '+('workspace_event_topics' if topic_index==0 else 'workspace_event_topic_lineage')+' VALUES(?,?)', (eid,tid))
+                    if self.preserve_identity:
+                        self.db.execute('INSERT OR IGNORE INTO workspace_event_topic_lineage VALUES(?,?)',(eid,tid))
+                    else:
+                        self.db.execute('INSERT INTO '+('workspace_event_topics' if topic_index==0 else 'workspace_event_topic_lineage')+' VALUES(?,?)', (eid,tid))
                     self.db.execute('UPDATE workspace_topics SET version=version+1,updated_at=? WHERE id=?', (now(),tid))
             inputs=context['events'] if context.get('final_window') else context['events'][:-2]
             for event in inputs:self.db.execute('INSERT OR IGNORE INTO workspace_event_merge_coverage VALUES(?,?)',(event['id'],event['version']))

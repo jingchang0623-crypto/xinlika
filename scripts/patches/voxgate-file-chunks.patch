@@ -1,0 +1,141 @@
+diff --git a/cmd/voxgate/serve.go b/cmd/voxgate/serve.go
+index de2700b..70920bc 100644
+--- a/cmd/voxgate/serve.go
++++ b/cmd/voxgate/serve.go
+@@ -8,10 +8,12 @@ import (
+ 	"fmt"
+ 	"net/http"
+ 	"os"
++	"time"
+ 
+ 	"github.com/WEIFENG2333/voxgate/internal/asr"
+ 	"github.com/WEIFENG2333/voxgate/internal/config"
+ 	"github.com/WEIFENG2333/voxgate/internal/server"
++	"github.com/WEIFENG2333/voxgate/internal/transcriber"
+ 	"github.com/WEIFENG2333/voxgate/internal/transcription"
+ )
+ 
+@@ -22,12 +24,17 @@ func serve(args []string, cfg config.Config, g globalFlags) int {
+ 	authToken := fs.String("auth-token", cfg.Server.AuthToken, "optional bearer token")
+ 	maxConc := fs.Int("max-concurrency", cfg.Server.MaxConcurrency, "max concurrent requests")
+ 	timeout := fs.Duration("request-timeout", config.ServerRequestTimeout(cfg), "request timeout")
++	chunkDuration := fs.Duration("chunk-duration", transcriber.DefaultChunkDuration, "file ASR chunk duration (at least 1s)")
+ 	if err := fs.Parse(args); err != nil {
+ 		if errors.Is(err, flag.ErrHelp) {
+ 			return 0
+ 		}
+ 		return 2
+ 	}
++	if *chunkDuration < time.Second || *chunkDuration%time.Second != 0 {
++		printErr("invalid_args", fmt.Errorf("chunk-duration must be a positive whole number of seconds"))
++		return 2
++	}
+ 
+ 	traceWriter, err := openTraceWriter(g.traceASRPath)
+ 	if err != nil {
+@@ -44,6 +51,7 @@ func serve(args []string, cfg config.Config, g globalFlags) int {
+ 		AuthToken:         *authToken,
+ 		MaxConcurrency:    *maxConc,
+ 		RequestTimeout:    *timeout,
++		ChunkDuration:     *chunkDuration,
+ 		CredentialPath:    cfg.CredentialPath,
+ 		EnablePunctuation: cfg.ASR.EnablePunctuation,
+ 		EnableThreePass:   cfg.ASR.EnableThreePass,
+diff --git a/internal/server/server.go b/internal/server/server.go
+index 7eb9f75..e4da70a 100644
+--- a/internal/server/server.go
++++ b/internal/server/server.go
+@@ -27,6 +27,7 @@ type Config struct {
+ 	AuthToken               string
+ 	MaxConcurrency          int
+ 	RequestTimeout          time.Duration
++	ChunkDuration           time.Duration
+ 	CredentialPath          string
+ 	EnablePunctuation       bool
+ 	EnableThreePass         bool
+@@ -223,6 +224,7 @@ func (s *Server) transcriptionService() transcription.Service {
+ 		EnableThreePass:   s.Config.EnableThreePass,
+ 		EnableTwoPass:     s.Config.EnableTwoPass,
+ 		RequestTimeout:    s.Config.RequestTimeout,
++		ChunkDuration:     s.Config.ChunkDuration,
+ 		TraceWriter:       s.Config.TraceWriter,
+ 	})
+ }
+diff --git a/internal/transcription/service.go b/internal/transcription/service.go
+index c09b29e..9eda753 100644
+--- a/internal/transcription/service.go
++++ b/internal/transcription/service.go
+@@ -253,6 +253,7 @@ func (s Service) Runner() transcriber.Runner {
+ 		WebSocketURL:   s.Config.WebSocketURL,
+ 		AudioFormat:    s.Config.AudioFormat,
+ 		ChunkDuration:  s.Config.ChunkDuration,
++		ChunkThreshold: s.Config.ChunkDuration,
+ 		TraceWriter:    s.Config.TraceWriter,
+ 	}}
+ }
+diff --git a/internal/server/minute_batch_test.go b/internal/server/minute_batch_test.go
+new file mode 100644
+index 0000000..9cbb705
+--- /dev/null
++++ b/internal/server/minute_batch_test.go
+@@ -0,0 +1,60 @@
++package server
++
++import (
++	"encoding/binary"
++	"encoding/json"
++	"net/http"
++	"net/http/httptest"
++	"path/filepath"
++	"strings"
++	"testing"
++	"time"
++
++	"github.com/WEIFENG2333/voxgate/internal/asr"
++)
++
++func TestMinuteBatchUsesConfiguredChunksBelowThirtySeconds(t *testing.T) {
++	wsURL, closeWS := mockASRServer(t, "完整片段。")
++	defer closeWS()
++	creds := filepath.Join(t.TempDir(), "creds.json")
++	if err := asr.SaveCredentials(creds, asr.Credentials{
++		DeviceID: "1", Token: "t", TokenUpdatedAtMS: time.Now().UnixMilli(),
++	}); err != nil {
++		t.Fatal(err)
++	}
++	// Exercise the configured threshold as well as stitching across sessions.
++	wav := minimalWAV()[:44]
++	wav = append(wav, make([]byte, 16000*2*5/2)...)
++	binary.LittleEndian.PutUint32(wav[4:8], uint32(len(wav)-8))
++	binary.LittleEndian.PutUint32(wav[40:44], uint32(len(wav)-44))
++	srv := New(Config{CredentialPath: creds, WebSocketURL: wsURL,
++		ChunkDuration: time.Second, RequestTimeout: 10 * time.Second})
++	for _, stream := range []bool{false, true} {
++		fields := []field{}
++		if stream {
++			fields = append(fields, field{"stream", "true"})
++		}
++		body, contentType := multipartBody(t, "minute-batch.wav", wav, fields...)
++		request := httptest.NewRequest(http.MethodPost, "/v1/audio/transcriptions", body)
++		request.Header.Set("Content-Type", contentType)
++		response := httptest.NewRecorder()
++		srv.Handler().ServeHTTP(response, request)
++		if response.Code != http.StatusOK {
++			t.Fatalf("stream=%v: HTTP %d: %s", stream, response.Code, response.Body.String())
++		}
++		want := strings.Repeat("完整片段。", 3)
++		if stream {
++			if !strings.Contains(response.Body.String(), `"text":"`+want+`"`) {
++				t.Fatalf("stream lost chunk text: %s", response.Body.String())
++			}
++		} else {
++			var result map[string]string
++			if err := json.Unmarshal(response.Body.Bytes(), &result); err != nil {
++				t.Fatal(err)
++			}
++			if result["text"] != want {
++				t.Fatalf("text=%q, want %q", result["text"], want)
++			}
++		}
++	}
++}

@@ -112,9 +112,7 @@ class Extraction(BaseModel):
     events: list[SemanticEvent] = Field(default_factory=list, max_length=8)
 
 
-def source_spans(text):
-    pieces=re.findall(r'.+?(?:[。！？\n]|$)',text,re.S)
-    return [piece[i:i+600] for piece in pieces for i in range(0,len(piece),600)]
+from heartball_source_spans import source_spans
 
 
 def resolve_events(result, doc, context):
@@ -651,12 +649,11 @@ class Processor:
     @classmethod
     def configured(cls, store, path):
         cfg = json.loads(path.read_text()) if path.exists() else {}
-        if cfg.get('asr') and cfg.get('voxgate_config'):
-            raise ValueError('Choose one ASR adapter, not both asr and voxgate_config')
-        from heartball_asr import CompatibleASR
-        return cls(store, ModelAdapter(cfg["model"]) if cfg.get("model") else None,
-                   CompatibleASR(cfg['asr']) if cfg.get('asr') else
-                   VoxgateAdapter(Path(cfg["voxgate_config"]).expanduser()) if cfg.get("voxgate_config") else None)
+        asr = configured_asr(cfg)
+        if cfg.get('agent_runtime'):
+            from heartball_native_processing import NativeProcessor
+            return NativeProcessor(store, cfg['agent_runtime'], asr)
+        return cls(store, ModelAdapter(cfg["model"]) if cfg.get("model") else None, asr)
 
     def _extract(self, state):
         if state['document']['text'].strip() and state['document']['kind']!='focus' and not has_semantic_content(state['document']['text']):
@@ -956,3 +953,15 @@ class Processor:
             self.checkpoint_db.close()
             self.reconcile_db.close()
             self.personal_checkpoint_db.close()
+
+
+def configured_asr(configuration):
+    """Share generic ASR configuration across classic/native and rolling handoff."""
+    if configuration.get('asr') and configuration.get('voxgate_config'):
+        raise ValueError('Choose one ASR adapter, not both asr and voxgate_config')
+    if configuration.get('asr'):
+        from heartball_asr import CompatibleASR
+        return CompatibleASR(configuration['asr'])
+    if configuration.get('voxgate_config'):
+        return VoxgateAdapter(Path(configuration['voxgate_config']).expanduser())
+    return None

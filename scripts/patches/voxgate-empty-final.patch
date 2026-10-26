@@ -1,0 +1,109 @@
+diff --git a/internal/transcriber/transcriber.go b/internal/transcriber/transcriber.go
+--- a/internal/transcriber/transcriber.go
++++ b/internal/transcriber/transcriber.go
+@@ -288,6 +288,7 @@
+ func collect(events <-chan asr.Event) (asr.Result, error) {
+ 	var result asr.Result
+ 	var full string
++	var completed bool
+ 	var end float64
+ 	for ev := range events {
+ 		if ev.Type == asr.EventError && ev.Error != nil {
+@@ -306,6 +307,7 @@
+ 				result.Extra = ev.Extra
+ 			}
+ 		case asr.EventTranscriptDone:
++			completed = true
+ 			if ev.Text != "" {
+ 				full = ev.Text
+ 			}
+@@ -321,6 +323,11 @@
+ 	}
+ 	result.Text = full
+ 	if strings.TrimSpace(result.Text) == "" {
++		// A clean upstream final response with no recognized words is a valid
++		// empty result, not a retryable HTTP 500. It does not prove silence.
++		if completed {
++			return result, nil
++		}
+ 		return result, ErrEmptyTranscript
+ 	}
+ 	// The cumulative stream has no segment boundaries; expose the whole
+diff --git a/internal/transcriber/empty_result_test.go b/internal/transcriber/empty_result_test.go
+new file mode 100644
+--- /dev/null
++++ b/internal/transcriber/empty_result_test.go
+@@ -0,0 +1,32 @@
++package transcriber
++
++import (
++	"errors"
++	"github.com/WEIFENG2333/voxgate/internal/asr"
++	"testing"
++)
++
++func TestCollectCompletedEmptyResult(t *testing.T) {
++	events := make(chan asr.Event, 1)
++	events <- asr.Event{Type: asr.EventTranscriptDone, Text: "", Duration: 3.44}
++	close(events)
++	result, err := collect(events)
++	if err != nil || result.Text != "" || result.Duration != 3.44 || len(result.Segments) != 0 {
++		t.Fatalf("empty final result = %#v, error %v", result, err)
++	}
++}
++func TestCollectMissingFinalIsStillAnError(t *testing.T) {
++	events := make(chan asr.Event)
++	close(events)
++	if _, err := collect(events); !errors.Is(err, ErrEmptyTranscript) {
++		t.Fatalf("missing final: %v", err)
++	}
++}
++func TestCollectProviderFailureIsNotEmptySuccess(t *testing.T) {
++	events := make(chan asr.Event, 1)
++	events <- asr.Event{Type: asr.EventError, Error: &asr.ErrorPayload{Code: "upstream", Message: "provider failed"}}
++	close(events)
++	if _, err := collect(events); err == nil {
++		t.Fatal("provider error was swallowed")
++	}
++}
+diff --git a/internal/server/empty_result_test.go b/internal/server/empty_result_test.go
+new file mode 100644
+--- /dev/null
++++ b/internal/server/empty_result_test.go
+@@ -0,0 +1,36 @@
++package server
++
++import (
++	"encoding/json"
++	"github.com/WEIFENG2333/voxgate/internal/asr"
++	"net/http"
++	"net/http/httptest"
++	"path/filepath"
++	"testing"
++	"time"
++)
++
++func TestCompletedEmptyASRIsNotHTTP500(t *testing.T) {
++	wsURL, closeWS := mockASRServer(t, "")
++	defer closeWS()
++	creds := filepath.Join(t.TempDir(), "creds.json")
++	if err := asr.SaveCredentials(creds, asr.Credentials{DeviceID: "1", Token: "t", TokenUpdatedAtMS: time.Now().UnixMilli()}); err != nil {
++		t.Fatal(err)
++	}
++	srv := New(Config{CredentialPath: creds, WebSocketURL: wsURL, ChunkDuration: 15 * time.Second, RequestTimeout: 10 * time.Second})
++	body, contentType := multipartBody(t, "empty.wav", minimalWAV(), field{"response_format", "verbose_json"})
++	request := httptest.NewRequest(http.MethodPost, "/v1/audio/transcriptions", body)
++	request.Header.Set("Content-Type", contentType)
++	response := httptest.NewRecorder()
++	srv.Handler().ServeHTTP(response, request)
++	if response.Code != http.StatusOK {
++		t.Fatalf("HTTP %d: %s", response.Code, response.Body.String())
++	}
++	var result map[string]any
++	if err := json.Unmarshal(response.Body.Bytes(), &result); err != nil {
++		t.Fatal(err)
++	}
++	if result["text"] != "" {
++		t.Fatalf("empty result changed: %#v", result)
++	}
++}

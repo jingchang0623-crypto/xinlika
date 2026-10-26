@@ -15,7 +15,7 @@ PROMPT='''你是全天生活记录的首页编辑，判断哪些候选是真正�
 def ensure(db):
     db.execute('CREATE TABLE IF NOT EXISTS workspace_timeline_decisions(event_id TEXT PRIMARY KEY,signature TEXT NOT NULL,display TEXT NOT NULL,reason TEXT NOT NULL,created_at TEXT NOT NULL)')
     columns={r[1] for r in db.execute('pragma table_info(workspace_timeline_decisions)')}
-    for name in ('headline','abstract'):
+    for name in ('headline','abstract','category','card_style'):
         if name not in columns:db.execute('ALTER TABLE workspace_timeline_decisions ADD COLUMN '+name+' TEXT')
 
 
@@ -31,7 +31,7 @@ def visible(db,event):
     return not row or row[1]=='event' or row[0]!=signature(db,event)
 
 
-def save(db,event,display,reason,expected=None,headline=None,abstract=None):
+def save(db,event,display,reason,expected=None,headline=None,abstract=None,category=None,card_style=None):
     if display not in ('event','detail'):raise ValueError('Invalid homepage level')
     current=db.execute('SELECT * FROM workspace_events WHERE id=?',(event['id'],)).fetchone()
     if not current or current['status']!='active':raise Conflict('Event changed during homepage review')
@@ -40,7 +40,9 @@ def save(db,event,display,reason,expected=None,headline=None,abstract=None):
     ensure(db)
     if headline is not None and (not headline.strip() or len(headline)>100):raise ValueError('Invalid display headline')
     if abstract is not None and len(abstract)>650:raise ValueError('Invalid display abstract')
-    db.execute('INSERT OR REPLACE INTO workspace_timeline_decisions(event_id,signature,display,reason,created_at,headline,abstract) VALUES(?,?,?,?,?,?,?)',(event['id'],sig,'event' if event['kind']=='focus' else display,reason,now(),headline,abstract))
+    if category is not None and category not in {'conversation','work','life','travel','idea','feedback','environment'}:raise ValueError('Invalid event category')
+    if card_style is not None and card_style not in {'compact','summary'}:raise ValueError('Invalid event card style')
+    db.execute('INSERT OR REPLACE INTO workspace_timeline_decisions(event_id,signature,display,reason,created_at,headline,abstract,category,card_style) VALUES(?,?,?,?,?,?,?,?,?)',(event['id'],sig,'event' if event['kind']=='focus' else display,reason,now(),headline,abstract,category,card_style))
 
 
 def project(db,event):
@@ -49,4 +51,6 @@ def project(db,event):
     if 'headline' not in columns:return event
     row=db.execute('SELECT * FROM workspace_timeline_decisions WHERE event_id=?',(event['id'],)).fetchone()
     if not row or row['signature']!=signature(db,event):return event
-    return {**event,'title':row['headline'] or event['title'],'summary':row['abstract'] if row['abstract'] is not None else event['summary']}
+    return {**event,'title':row['headline'] or event['title'],'summary':row['abstract'] if row['abstract'] is not None else event['summary'],
+        'category':row['category'] if 'category' in columns else None,
+        'card_style':row['card_style'] if 'card_style' in columns else None}

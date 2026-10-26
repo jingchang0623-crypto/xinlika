@@ -18,7 +18,7 @@ bundle = root / '.build/XinlikaOpenSource.app'
 (bundle / 'Contents/MacOS').mkdir(parents=True, exist_ok=True)
 shutil.copy2(Path(binary_dir) / 'XinlikaMac', bundle / 'Contents/MacOS/XinlikaMac')
 info = {'CFBundleIdentifier': 'org.xinlika.mac', 'CFBundleName': '心力卡 · 开源版', 'CFBundleDisplayName': '心力卡 · 开源版',
-        'CFBundleExecutable': 'XinlikaMac', 'CFBundlePackageType': 'APPL', 'CFBundleShortVersionString': '0.2.0',
+        'CFBundleExecutable': 'XinlikaMac', 'CFBundlePackageType': 'APPL', 'CFBundleShortVersionString': '0.3.10',
         'NSBluetoothAlwaysUsageDescription': '连接你选择的录音卡。', 'NSLocalNetworkUsageDescription': '连接你配置的心力卡处理服务。',
         'NSAppTransportSecurity': {'NSAllowsLocalNetworking': True}, 'LSMinimumSystemVersion': '14.0',
         'HeartballSharedRuntimePath': str(args.connection.resolve()),

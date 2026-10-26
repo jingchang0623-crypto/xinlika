@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import sys
 from pathlib import Path
 from urllib.parse import urlparse
 from heartball_store import Store
@@ -29,6 +30,7 @@ def main():
     parser.add_argument('--asr-url')
     parser.add_argument('--asr-model')
     parser.add_argument('--asr-key-env', default='XINLIKA_ASR_API_KEY')
+    parser.add_argument('--processing-profile', choices=['xinlika-events-v6'], help='Opt in to versioned incremental Agent; install requirements-agent-runtime.txt first')
     parser.add_argument('--workspace', type=Path, default=ROOT / '.build/workspace')
     parser.add_argument('--config-dir', type=Path, default=ROOT / 'private-config')
     args = parser.parse_args()
@@ -46,6 +48,10 @@ def main():
     config = {'model': {'base_url': args.model_url, 'api_key_env': args.model_key_env, 'model': args.model}}
     if args.asr_url:
         config['asr'] = {'base_url': args.asr_url, 'api_key_env': args.asr_key_env, 'model': args.asr_model}
+    if args.processing_profile:
+        config['agent_runtime'] = {
+            'runtime': 'deepseek-harness', 'python': sys.executable, 'client_python': sys.executable,
+            'processing_profile': args.processing_profile, 'model': config.pop('model')}
     store = Store(args.workspace)
     workspace = SharedWorkspace(store, AgentStore(store))
     created = []

@@ -33,6 +33,7 @@ public final class RecorderButtonHandshake: @unchecked Sendable {
     private var checkedAt: Double = -.infinity
     private var pending: UInt8?
     private var awaitingNewFile = false
+    private var appStarting = false
 
     public init(mode: Mode) { self.mode = mode }
     private func key(_ name: String?) -> String? {
@@ -57,13 +58,32 @@ public final class RecorderButtonHandshake: @unchecked Sendable {
         lock.lock(); defer { lock.unlock() }
         baseline = Set(baselineNames.compactMap { key($0) })
         owned = []; state = 2; filename = nil; checkedAt = uptime
-        pending = nil; awaitingNewFile = false; enabled = true
+        pending = nil; awaitingNewFile = false; appStarting = false; enabled = true
+    }
+    /// A selected card's physical start request may be acknowledged after an idle
+    /// read. No existing file is owned; capture still requires independent admission.
+    public func prepareSelectedIdle(at uptime: Double) {
+        lock.lock(); defer { lock.unlock() }
+        baseline = []; owned = []; state = 2; filename = nil; checkedAt = uptime
+        pending = nil; awaitingNewFile = false; appStarting = false; enabled = true
+    }
+    /// Avoid granting a second start while the App's one start command is in flight.
+    public func reserveAppStart() {
+        lock.lock(); defer { lock.unlock() }; appStarting = true
     }
     /// Separate explicit permission for an App-created dedicated test file.
     public func claimAppCreatedFile(_ name: String) {
         lock.lock(); defer { lock.unlock() }
         guard enabled, let k = key(name), !baseline.contains(k) else { return }
-        owned.insert(k)
+        owned.insert(k); appStarting = false
+    }
+    /// The selected recorder's running file was independently confirmed twice.
+    /// This grants vendor key responses for that file, without starting/resuming it.
+    public func adoptConfirmedRecording(_ name: String, at uptime: Double) {
+        lock.lock(); defer { lock.unlock() }
+        guard let k = key(name) else { return }
+        baseline = []; owned = [k]; state = 1; filename = name; checkedAt = uptime
+        pending = nil; awaitingNewFile = false; appStarting = false; enabled = true
     }
     public func update(state newState: UInt8?, filename newName: String?, at uptime: Double) {
         lock.lock(); defer { lock.unlock() }
@@ -85,7 +105,7 @@ public final class RecorderButtonHandshake: @unchecked Sendable {
               uptime >= checkedAt, uptime - checkedAt <= 12, pending == nil else { return nil }
         let currentOwned = key(filename).map { owned.contains($0) } ?? false
         switch cmd {
-        case 1: guard state == 2 else { return nil }
+        case 1: guard state == 2, !appStarting else { return nil }
         case 3, 5: guard state == 1, currentOwned else { return nil }
         case 7: guard state == 3, currentOwned else { return nil }
         default: return nil

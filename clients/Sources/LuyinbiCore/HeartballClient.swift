@@ -66,6 +66,13 @@ public struct HeartballState: Decodable, Equatable, Sendable {
 }
 
 public struct HeartballAgentState: Decodable, Equatable, Sendable {
+    public let eventInterestProtocol: Int?
+    public struct InterestProfile: Decodable, Equatable, Sendable {
+        public let labelledEventCount: Int
+        public let readyForSuggestions: Bool
+    }
+    public let interestProfile: InterestProfile?
+
     public struct Day: Decodable, Equatable, Sendable {
         public struct Group: Decodable, Equatable, Sendable, Identifiable {
             public let id: String
@@ -86,6 +93,15 @@ public struct HeartballAgentState: Decodable, Equatable, Sendable {
         public let eventCount: Int
         public let focusCount: Int
         public let unknownTimeCount: Int
+        public let timeline: [SemanticEvent]?
+        public let timelineVersion: Int?
+        public var timelineEvents: [SemanticEvent] {
+            // New servers own admission/order; both clients use the same list.
+            if let timeline { return timeline }
+            var seen = Set<String>()
+            return groups.flatMap(\.events).filter { seen.insert($0.id).inserted }
+                .sorted { ($0.recordingDate ?? .distantPast, $0.id) > ($1.recordingDate ?? .distantPast, $1.id) }
+        }
     }
     public struct WorkspaceProgress: Decodable, Equatable, Sendable {
         public let receivedAt: String?
@@ -110,6 +126,20 @@ public struct HeartballAgentState: Decodable, Equatable, Sendable {
         public let version: Int
         public let topicId: String?
         public let sources: [Source]
+        public let category: String?
+        public let cardStyle: String?
+        public let startLocal: String?
+        public let endLocal: String?
+        public let boundaryPrecision: String?
+        public let userInterest: String?
+        public let interestVersion: Int?
+        public let suggestedInterest: String?
+        public let interestReason: String?
+        public var showsTimelineSummary: Bool { cardStyle == "summary" || kind == "focus" }
+        public var categoryLabel: String? {
+            ["conversation": "对话交流", "work": "工作讨论", "life": "生活记录", "travel": "行程",
+             "idea": "灵感想法", "feedback": "使用反馈", "environment": "环境提醒"][category ?? ""]
+        }
         public var recordingDate: Date? {
             heartballRecordingDate(occurredAt, recordedLocalTime)
         }
@@ -311,6 +341,15 @@ public actor HeartballClient {
             body["values"] = edits
         }
         return try await request("v1/feedback", body: body)
+    }
+    public struct InterestReceipt: Decodable, Equatable, Sendable {
+        public let eventId: String
+        public let interest: String
+        public let interestVersion: Int
+    }
+    public func rateEvent(requestID: String, event: String, version: Int, interestVersion: Int, value: String) async throws -> InterestReceipt {
+        try await request("v1/feedback", body: ["id":requestID,"target_id":event,"action":"rate_event",
+            "expected_version":version,"expected_interest_version":interestVersion,"values":["interest":value]])
     }
     public func submitText(_ text: String) async throws -> HeartballAgentState {
         try await request("v1/dialogues/text", body: ["id": UUID().uuidString.lowercased(), "session_id": UUID().uuidString.lowercased(),

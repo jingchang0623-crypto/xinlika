@@ -47,22 +47,22 @@ final class XinlikaCaptureTests: XCTestCase {
         let bytes = try Data(contentsOf: root.appendingPathComponent(old.file))
         try s!.acknowledge(old.id, status: "blocked")
         try s!.bindLegacyUploads(to: "http://192.168.0.114:18777")
-        try s!.begin(device: UUID(), source: "unknown", processing: true, serviceURL: "https://workspace.example.test")
+        try s!.begin(device: UUID(), source: "unknown", processing: true, serviceURL: "https://xinlika.apps.zaowuyun.com")
         try s!.ownedFile("note20261021-190000.opus")
         audio(s!, connection: UUID(), count: 80); try s!.finish(saved: true)
-        let cloud = try XCTUnwrap(s!.nextUpload(serviceURL: "https://workspace.example.test"))
+        let cloud = try XCTUnwrap(s!.nextUpload(serviceURL: "https://xinlika.apps.zaowuyun.com"))
         XCTAssertNotEqual(cloud.sessionID, old.sessionID)
         try s!.acknowledge(old.id, status: "pending")
-        XCTAssertEqual(s!.nextUpload(serviceURL: "https://workspace.example.test")?.id, cloud.id)
+        XCTAssertEqual(s!.nextUpload(serviceURL: "https://xinlika.apps.zaowuyun.com")?.id, cloud.id)
         XCTAssertEqual(s!.nextUpload(serviceURL: "http://192.168.0.114:18777")?.id, old.id)
         XCTAssertEqual(try Data(contentsOf: root.appendingPathComponent(old.file)), bytes)
         s = nil
         let reopened = try XinlikaCaptureStore(root: root)
-        try reopened.bindLegacyUploads(to: "https://workspace.example.test")
+        try reopened.bindLegacyUploads(to: "https://xinlika.apps.zaowuyun.com")
         XCTAssertEqual(reopened.nextUpload(serviceURL: "http://192.168.0.114:18777")?.id, old.id)
     }
     func testCurrentServiceCountsDoNotIncludeHeldLegacySession() {
-        let old = "http://old.example.com", cloud = "https://workspace.example.test"
+        let old = "http://old.example.com", cloud = "https://xinlika.apps.zaowuyun.com"
         let state = XinlikaCaptureStore.State(outbox: [
             .init(id: "old1", file: "a", sessionID: "old", status: "blocked", serviceURL: old),
             .init(id: "old2", file: "b", sessionID: "old", status: "pending", serviceURL: old),

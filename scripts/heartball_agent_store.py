@@ -72,6 +72,8 @@ class AgentStore:
             self.db.commit()
         from heartball_organization import OrganizationStore
         self.workspace = OrganizationStore(self)
+        from heartball_interest import ensure
+        with self.lock, self.store.transaction(): ensure(self.db)
         from heartball_recall import RecallIndex
         self.recall = RecallIndex(self.db)
         from heartball_voice import VoiceStore
@@ -423,9 +425,14 @@ class AgentStore:
             if old:
                 if old["request"] != canonical:
                     raise Conflict("Feedback ID reused with different content")
-                return
+                return {"event_id":target,**json.loads(old["after_state"])} if action == "rate_event" else None
             row = self.db.execute("SELECT * FROM claims WHERE id=?", (target,)).fetchone()
-            if row:
+            if action == "rate_event":
+                event = self.db.execute("SELECT * FROM workspace_events WHERE id=?", (target,)).fetchone()
+                if not event: raise ValueError("Unknown event")
+                from heartball_interest import rate
+                before,after = rate(self.db,dict(event),request)
+            elif row:
                 before = dict(row)
                 if request.get("expected_version") != before["version"]:
                     raise Conflict("Memory changed; refresh before correcting")
@@ -497,6 +504,7 @@ class AgentStore:
                     self.db.execute("UPDATE advice SET status='dismissed' WHERE kind=? AND status='active'", (row["kind"],))
                 after = dict(self.db.execute("SELECT * FROM advice WHERE id=?", (target,)).fetchone())
             self.db.execute("INSERT INTO feedback VALUES(?,?,?,?,?,?)", (rid, target, canonical, encoded(before), encoded(after), now()))
+        if action == "rate_event": return {"event_id":target,**after}
         self.evaluate()
 
     def evaluate(self, clock=None):
@@ -573,7 +581,10 @@ class AgentStore:
             if self.db.execute("SELECT 1 FROM sqlite_master WHERE name='workspace_activity_runs'").fetchone():
                 last=self.db.execute('SELECT status FROM workspace_activity_runs ORDER BY rowid DESC LIMIT 1').fetchone()
                 activity_progress={'status':last[0] if last else 'waiting_for_new_records','validated_issue_limit':300,'scope':'current_recording_day'}
-            return {**self.workspace.state(), "today": today, "documents": docs, "claims": claims, "advice": advice, "processingJobs": jobs,"activityProgress":activity_progress,
+            from heartball_interest import context as interest_context
+            interest = interest_context(self.db)
+            return {**self.workspace.state(), "eventInterestProtocol":1,
+                    "interestProfile":{"labelledEventCount":interest['labelled_event_count'],"readyForSuggestions":interest['ready_for_suggestions']}, "today": today, "documents": docs, "claims": claims, "advice": advice, "processingJobs": jobs,"activityProgress":activity_progress,
                     "confirmedMemoryCount": self.db.execute("SELECT COUNT(*) FROM claims WHERE status='confirmed'").fetchone()[0],
                     "answers": answers,
                     "sourcePolicy": "Explicit session permission; background/unknown sources never create personal claims"}

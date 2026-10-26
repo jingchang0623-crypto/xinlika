@@ -183,6 +183,9 @@ class OrganizationStore:
                 e['sources'] = [dict(r) for r in self.db.execute('SELECT document_id,revision,quote,precision FROM workspace_event_sources WHERE event_id=? ORDER BY rowid', (e['id'],))]
                 e['topic_id'] = next((r[0] for r in self.db.execute('SELECT topic_id FROM workspace_all_event_topics WHERE event_id=?', (e['id'],))),None)
                 e.update(self.event_clock(e['id']))
+            from heartball_interest import project as interest_project, profile_key
+            interest_profile=profile_key(self.db)
+            events=[interest_project(self.db,e,interest_profile) for e in events]
             events.sort(key=event_sort_key,reverse=True)
             events=events[:100]
             topics = [dict(r) for r in self.db.execute("SELECT * FROM workspace_topics WHERE status='active' ORDER BY updated_at DESC LIMIT 60")]

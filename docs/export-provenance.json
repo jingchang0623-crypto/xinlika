@@ -10,286 +10,28 @@
   ],
   "files": [
     {
-      "source": "scripts/heartball_prompts.py",
-      "export": "scripts/heartball_prompts.py",
-      "source_sha256": "32f0e1c035b39d3071c052a4b5f53606b90b40bd4718dc64bfae3427768fdd37",
-      "export_sha256": "32f0e1c035b39d3071c052a4b5f53606b90b40bd4718dc64bfae3427768fdd37"
-    },
-    {
-      "source": "scripts/heartball_event_refinement.py",
-      "export": "scripts/heartball_event_refinement.py",
-      "source_sha256": "b9c6dbd479337d23d5283a237fe3a4092913e637d4da362683b4b736ccd749ff",
-      "export_sha256": "b9c6dbd479337d23d5283a237fe3a4092913e637d4da362683b4b736ccd749ff"
-    },
-    {
-      "source": "scripts/heartball_acoustic_engine.py",
-      "export": "scripts/heartball_acoustic_engine.py",
-      "source_sha256": "38b354dc763d1ca8e41c26cf4a4ec834beddb3ff5579c5929bc8c5202824861a",
-      "export_sha256": "38b354dc763d1ca8e41c26cf4a4ec834beddb3ff5579c5929bc8c5202824861a"
-    },
-    {
-      "source": "scripts/heartball_mobile.py",
-      "export": "scripts/heartball_mobile.py",
-      "source_sha256": "cb23150daf0686c1cc99bdc4aef9dbc3432310df9e06001f205d2efe220ccea9",
-      "export_sha256": "cb23150daf0686c1cc99bdc4aef9dbc3432310df9e06001f205d2efe220ccea9"
-    },
-    {
-      "source": "scripts/heartball_voice.py",
-      "export": "scripts/heartball_voice.py",
-      "source_sha256": "12be3b0541eb6862904b2ff8782d19df59f9a5c70af8d996ffcba29fb89d15ca",
-      "export_sha256": "12be3b0541eb6862904b2ff8782d19df59f9a5c70af8d996ffcba29fb89d15ca"
-    },
-    {
-      "source": "scripts/heartball-import.py",
-      "export": "scripts/heartball-import.py",
-      "source_sha256": "ae6e3275f5d31605c5c9fc09bbfc40906206d7cf1580db5af442721bdaa357b6",
-      "export_sha256": "ae6e3275f5d31605c5c9fc09bbfc40906206d7cf1580db5af442721bdaa357b6"
-    },
-    {
-      "source": "scripts/heartball_event_merge.py",
-      "export": "scripts/heartball_event_merge.py",
-      "source_sha256": "b6ccdea5496b6f85862480bc2f3f7fce455188b260b9f0f9fee7a9c203dc84b2",
-      "export_sha256": "b6ccdea5496b6f85862480bc2f3f7fce455188b260b9f0f9fee7a9c203dc84b2"
-    },
-    {
-      "source": "scripts/heartball_card_segments.py",
-      "export": "scripts/heartball_card_segments.py",
-      "source_sha256": "f9f8728e2b3d2920af2f2a17a219770cf5f03e6f32a6c92998f8a3773f0eb0fc",
-      "export_sha256": "f9f8728e2b3d2920af2f2a17a219770cf5f03e6f32a6c92998f8a3773f0eb0fc"
-    },
-    {
-      "source": "scripts/heartball_recall.py",
-      "export": "scripts/heartball_recall.py",
-      "source_sha256": "f876925434e23ea831299d36c7a5f2db1530560c807824c09917485f382c677e",
-      "export_sha256": "f876925434e23ea831299d36c7a5f2db1530560c807824c09917485f382c677e"
-    },
-    {
-      "source": "scripts/heartball_agent_store.py",
-      "export": "scripts/heartball_agent_store.py",
-      "source_sha256": "9e169f0335c1c06721f0d6033065d7d89fada83a69d32c29801f298ce4619a71",
-      "export_sha256": "9e169f0335c1c06721f0d6033065d7d89fada83a69d32c29801f298ce4619a71"
-    },
-    {
-      "source": "scripts/heartball_personal_agent.py",
-      "export": "scripts/heartball_personal_agent.py",
-      "source_sha256": "aa9b20f58dc2925c972b09962f398da4351c211382e21c8f22c2272dd5bf1ece",
-      "export_sha256": "aa9b20f58dc2925c972b09962f398da4351c211382e21c8f22c2272dd5bf1ece"
-    },
-    {
-      "source": "scripts/heartball_organization.py",
-      "export": "scripts/heartball_organization.py",
-      "source_sha256": "5397915211bd6cbf1a32cfcc1693e3b6d2ea5fdaa66e23ac792e53a793e83696",
-      "export_sha256": "5397915211bd6cbf1a32cfcc1693e3b6d2ea5fdaa66e23ac792e53a793e83696"
-    },
-    {
-      "source": "scripts/heartball_activities.py",
-      "export": "scripts/heartball_activities.py",
-      "source_sha256": "795f399c3a5a1ad78c917d43574ebb9145dde8efbcebc9379478fe20edd66dbe",
-      "export_sha256": "795f399c3a5a1ad78c917d43574ebb9145dde8efbcebc9379478fe20edd66dbe"
-    },
-    {
-      "source": "scripts/heartball-shared-service.py",
-      "export": "scripts/heartball-shared-service.py",
-      "source_sha256": "a5609a633e8e90930a8389efb1a631dd340038703c241d9260a9576e02a3e1ce",
-      "export_sha256": "a5609a633e8e90930a8389efb1a631dd340038703c241d9260a9576e02a3e1ce"
-    },
-    {
-      "source": "scripts/heartball_backup.py",
-      "export": "scripts/heartball_backup.py",
-      "source_sha256": "87d307ab47a16c27e392c8121fac5823e86d6b438b5e342078d5d67d267f79a3",
-      "export_sha256": "87d307ab47a16c27e392c8121fac5823e86d6b438b5e342078d5d67d267f79a3"
-    },
-    {
-      "source": "scripts/heartball_audio_context.py",
-      "export": "scripts/heartball_audio_context.py",
-      "source_sha256": "17a17ed1cb79df2b0ea62a5b7ab5719a3f8a8ee3e6adf46160df2d268eb60111",
-      "export_sha256": "17a17ed1cb79df2b0ea62a5b7ab5719a3f8a8ee3e6adf46160df2d268eb60111"
-    },
-    {
-      "source": "scripts/heartball_day.py",
-      "export": "scripts/heartball_day.py",
-      "source_sha256": "e6c6b0ae5d89f224d8bb4040889686c5a4dbff0c0715dec870fe3e9d664a7671",
-      "export_sha256": "e6c6b0ae5d89f224d8bb4040889686c5a4dbff0c0715dec870fe3e9d664a7671"
-    },
-    {
-      "source": "scripts/heartball_acoustic_worker.py",
-      "export": "scripts/heartball_acoustic_worker.py",
-      "source_sha256": "8f56882e7a2bdce7a46afd73700c49dc06e80504f5e6c2a5d7ea8328f94c02b0",
-      "export_sha256": "8f56882e7a2bdce7a46afd73700c49dc06e80504f5e6c2a5d7ea8328f94c02b0"
-    },
-    {
-      "source": "scripts/heartball-mobile-service.py",
-      "export": "scripts/heartball-mobile-service.py",
-      "source_sha256": "142f30a036a23e84a5fcb732e9bdfdaf9b13e1efef53e1f7214905359dee2add",
-      "export_sha256": "8b85de6acc030ca009979e20f2e7c753ab1a3c8d8b7cb7db9e6890bb3f83dd71"
-    },
-    {
-      "source": "scripts/heartball_processing.py",
-      "export": "scripts/heartball_processing.py",
-      "source_sha256": "3f4e5989ee936c3ccbfee8613a11dfa4bcfb0e8e4c4dd138b518e097ba2daa41",
-      "export_sha256": "3f4e5989ee936c3ccbfee8613a11dfa4bcfb0e8e4c4dd138b518e097ba2daa41"
-    },
-    {
-      "source": "scripts/heartball_content.py",
-      "export": "scripts/heartball_content.py",
-      "source_sha256": "cf2d4e76870ae59a1e9dfa939c5c3ab32feee1f34a7aa40d61ec7541859c6e1f",
-      "export_sha256": "cf2d4e76870ae59a1e9dfa939c5c3ab32feee1f34a7aa40d61ec7541859c6e1f"
-    },
-    {
-      "source": "scripts/heartball_store.py",
-      "export": "scripts/heartball_store.py",
-      "source_sha256": "cc862c8434f2c778eb4651dbf022a8ff0af24ea2d8df40486ddc91bb349ad539",
-      "export_sha256": "cc862c8434f2c778eb4651dbf022a8ff0af24ea2d8df40486ddc91bb349ad539"
-    },
-    {
-      "source": "scripts/heartball_timeline.py",
-      "export": "scripts/heartball_timeline.py",
-      "source_sha256": "3cb86763c2189dc0830e916e3db7cfa11847562b94251561803381f7a1fe2426",
-      "export_sha256": "3cb86763c2189dc0830e916e3db7cfa11847562b94251561803381f7a1fe2426"
-    },
-    {
-      "source": "scripts/heartball_shared.py",
-      "export": "scripts/heartball_shared.py",
-      "source_sha256": "390f6e075750a765aaeba2c84cb19f2b4f45981cb6bdf934a1dcffcfea2b3ef8",
-      "export_sha256": "390f6e075750a765aaeba2c84cb19f2b4f45981cb6bdf934a1dcffcfea2b3ef8"
-    },
-    {
-      "source": "scripts/heartball_recording_time.py",
-      "export": "scripts/heartball_recording_time.py",
-      "source_sha256": "c67f1d92a8a9d535fe424e71317550cb7df3e7a981513127258ae38944db23f3",
-      "export_sha256": "c67f1d92a8a9d535fe424e71317550cb7df3e7a981513127258ae38944db23f3"
-    },
-    {
-      "source": "scripts/heartball_topics.py",
-      "export": "scripts/heartball_topics.py",
-      "source_sha256": "62c8fa6c0836b7b40e7af74c8497561754b413f15aba7e7f88ff0cd4b538e052",
-      "export_sha256": "62c8fa6c0836b7b40e7af74c8497561754b413f15aba7e7f88ff0cd4b538e052"
-    },
-    {
-      "source": "scripts/test_heartball_answer_sources.py",
-      "export": "scripts/test_heartball_answer_sources.py",
-      "source_sha256": "2ef9665b7d534f2b4fb982cb43f94e73d7411d3b29a45135a0a3ef31a06e5750",
-      "export_sha256": "2ef9665b7d534f2b4fb982cb43f94e73d7411d3b29a45135a0a3ef31a06e5750"
-    },
-    {
-      "source": "scripts/test_heartball_recording_time.py",
-      "export": "scripts/test_heartball_recording_time.py",
-      "source_sha256": "862ad300d8036e7cade7f485774b9afc190eaa150e068a0e6a92fde5b3a16be7",
-      "export_sha256": "862ad300d8036e7cade7f485774b9afc190eaa150e068a0e6a92fde5b3a16be7"
-    },
-    {
-      "source": "scripts/test_heartball_processing.py",
-      "export": "scripts/test_heartball_processing.py",
-      "source_sha256": "0971679b13443e0b475b7fce49595a1f74fac24ad77ef4f4cc5c91a98c2a1e04",
-      "export_sha256": "0971679b13443e0b475b7fce49595a1f74fac24ad77ef4f4cc5c91a98c2a1e04"
-    },
-    {
-      "source": "scripts/test_heartball_shared.py",
-      "export": "scripts/test_heartball_shared.py",
-      "source_sha256": "5c5d3091ab62731b31b20ecff89db7d6f5e4342e7e33fba66621b4b4845656b4",
-      "export_sha256": "5c5d3091ab62731b31b20ecff89db7d6f5e4342e7e33fba66621b4b4845656b4"
-    },
-    {
-      "source": "scripts/test_heartball_topics.py",
-      "export": "scripts/test_heartball_topics.py",
-      "source_sha256": "fb2eacf9993411f9e1dc5cd5ca380d11660e2dd1ca8e49095ee87d4a28d88b7f",
-      "export_sha256": "fb2eacf9993411f9e1dc5cd5ca380d11660e2dd1ca8e49095ee87d4a28d88b7f"
-    },
-    {
-      "source": "scripts/test_heartball_agent_api.py",
-      "export": "scripts/test_heartball_agent_api.py",
-      "source_sha256": "f1df1bf15173a5f43afff512f217855b1d92dd123aabda86c3987e2b667dacad",
-      "export_sha256": "51b44fc12416b186e3203063dc10e0c55c3dd91243631997d2ce773f70991eaf"
-    },
-    {
-      "source": "scripts/test_heartball_store.py",
-      "export": "scripts/test_heartball_store.py",
-      "source_sha256": "a7b9e3a6960f76b5bc6a621b6fe7c0af42659aaca7b3e3322a23b452dc0cba99",
-      "export_sha256": "a7b9e3a6960f76b5bc6a621b6fe7c0af42659aaca7b3e3322a23b452dc0cba99"
-    },
-    {
-      "source": "scripts/test_heartball_event_merge.py",
-      "export": "scripts/test_heartball_event_merge.py",
-      "source_sha256": "e388d26c15e9a3e4faf7dcad016f45ab7e3139fb41a9104732006f90cb3ad740",
-      "export_sha256": "e388d26c15e9a3e4faf7dcad016f45ab7e3139fb41a9104732006f90cb3ad740"
-    },
-    {
-      "source": "scripts/test_heartball_recall.py",
-      "export": "scripts/test_heartball_recall.py",
-      "source_sha256": "2f6f661c64b283ba10c361b8ed7eed062ff615649438387a1c941d9b9e4f7fad",
-      "export_sha256": "2f6f661c64b283ba10c361b8ed7eed062ff615649438387a1c941d9b9e4f7fad"
-    },
-    {
-      "source": "scripts/test_heartball_personal_agent.py",
-      "export": "scripts/test_heartball_personal_agent.py",
-      "source_sha256": "6282095ea6d7873df4b7b32ecd2254fca9c494145c661c71003c63af86695b78",
-      "export_sha256": "6282095ea6d7873df4b7b32ecd2254fca9c494145c661c71003c63af86695b78"
-    },
-    {
-      "source": "scripts/test_heartball_backup.py",
-      "export": "scripts/test_heartball_backup.py",
-      "source_sha256": "457278478416fb939b96bdf4f276eddba1c7d5f98531f1f1978269b77bb0db58",
-      "export_sha256": "457278478416fb939b96bdf4f276eddba1c7d5f98531f1f1978269b77bb0db58"
-    },
-    {
-      "source": "scripts/test_heartball_day.py",
-      "export": "scripts/test_heartball_day.py",
-      "source_sha256": "07f76b58e9d5cbb68bd32350a24bd676c22154811ddb939704e0945f9f576f22",
-      "export_sha256": "07f76b58e9d5cbb68bd32350a24bd676c22154811ddb939704e0945f9f576f22"
-    },
-    {
-      "source": "scripts/test_heartball_event_refinement.py",
-      "export": "scripts/test_heartball_event_refinement.py",
-      "source_sha256": "5a5e5b761c9e007833eae97dccda206a5ea8b67a52b039e5e9e03c41d3af5802",
-      "export_sha256": "5a5e5b761c9e007833eae97dccda206a5ea8b67a52b039e5e9e03c41d3af5802"
-    },
-    {
-      "source": "scripts/test_heartball_activities.py",
-      "export": "scripts/test_heartball_activities.py",
-      "source_sha256": "a29b0874573ab850552dc8fc16249e57c948712249f05990fd43f42fbe3b40b7",
-      "export_sha256": "a29b0874573ab850552dc8fc16249e57c948712249f05990fd43f42fbe3b40b7"
-    },
-    {
-      "source": "scripts/test_heartball_organization.py",
-      "export": "scripts/test_heartball_organization.py",
-      "source_sha256": "2c59fd4fe1ae9f7daa123996a2649f572dc762780bf1c3bd318cb48f8451daa8",
-      "export_sha256": "2c59fd4fe1ae9f7daa123996a2649f572dc762780bf1c3bd318cb48f8451daa8"
-    },
-    {
-      "source": "scripts/test_heartball_voice.py",
-      "export": "scripts/test_heartball_voice.py",
-      "source_sha256": "7ae7369a40c9dec925a2161307ca7a627240a5d2949ebc334107330be889ddfb",
-      "export_sha256": "7ae7369a40c9dec925a2161307ca7a627240a5d2949ebc334107330be889ddfb"
-    },
-    {
-      "source": "scripts/test_heartball_mobile.py",
-      "export": "scripts/test_heartball_mobile.py",
-      "source_sha256": "d50773a383d7004d6de8371cbcdc1d7e8be06117d55ad5b5169ca7bc4bf9e184",
-      "export_sha256": "d50773a383d7004d6de8371cbcdc1d7e8be06117d55ad5b5169ca7bc4bf9e184"
-    },
-    {
-      "source": "scripts/test_heartball_audio_context.py",
-      "export": "scripts/test_heartball_audio_context.py",
-      "source_sha256": "39c5b0d2f8a5b2ba55adb0de0ae4f0e450189ca0cb4e96d848157b745533d75a",
-      "export_sha256": "39c5b0d2f8a5b2ba55adb0de0ae4f0e450189ca0cb4e96d848157b745533d75a"
-    },
-    {
-      "source": "scripts/analyze-cb08-capture.py",
-      "export": "scripts/analyze-cb08-capture.py",
-      "source_sha256": "ddbbccbac3306115ddaa302bbb5848754b5dd9386b6843bf5ae12c650196a878",
-      "export_sha256": "ddbbccbac3306115ddaa302bbb5848754b5dd9386b6843bf5ae12c650196a878"
-    },
-    {
-      "source": "scripts/test_cb08_capture_analysis.py",
-      "export": "scripts/test_cb08_capture_analysis.py",
-      "source_sha256": "8d178a0f3b407cd060140149b40afd8dc63c6ee5f340e0c9b24a2bc13cfea531",
-      "export_sha256": "8d178a0f3b407cd060140149b40afd8dc63c6ee5f340e0c9b24a2bc13cfea531"
+      "source": "prompts/bundles/xinlika-events-v1.json",
+      "export": "prompts/bundles/xinlika-events-v1.json",
+      "source_sha256": "3600a020da5fe3b59ba9f2d7eff20345e52e6c0c684d16fd09817c6949f5afc4",
+      "export_sha256": "3600a020da5fe3b59ba9f2d7eff20345e52e6c0c684d16fd09817c6949f5afc4"
     },
     {
       "source": "prompts/personal-agent/SOURCES.md",
       "export": "prompts/personal-agent/SOURCES.md",
       "source_sha256": "1ad5d306d6313fa67dde5b50eb27624807e8f1abc8d2b2d59abbb4d391c667d6",
       "export_sha256": "1ad5d306d6313fa67dde5b50eb27624807e8f1abc8d2b2d59abbb4d391c667d6"
+    },
+    {
+      "source": "prompts/personal-agent/contract.zh-CN.md",
+      "export": "prompts/personal-agent/contract.zh-CN.md",
+      "source_sha256": "8cfa4790880dbb2e65186c5360e4df1c3beedc000f026309f0d4503f5ab61914",
+      "export_sha256": "8cfa4790880dbb2e65186c5360e4df1c3beedc000f026309f0d4503f5ab61914"
+    },
+    {
+      "source": "prompts/personal-agent/observe.zh-CN.md",
+      "export": "prompts/personal-agent/observe.zh-CN.md",
+      "source_sha256": "dcf04da1858b25cd9458f17d7fea79be803fa4927ca29bd179be805d399294f8",
+      "export_sha256": "dcf04da1858b25cd9458f17d7fea79be803fa4927ca29bd179be805d399294f8"
     },
     {
       "source": "prompts/personal-agent/respond.zh-CN.md",
@@ -304,16 +46,190 @@
       "export_sha256": "e1c6a6c3c075a2141114383cbcdad053d352fdd69d4aa42b339f75d5fb06a2d6"
     },
     {
-      "source": "prompts/personal-agent/observe.zh-CN.md",
-      "export": "prompts/personal-agent/observe.zh-CN.md",
-      "source_sha256": "dcf04da1858b25cd9458f17d7fea79be803fa4927ca29bd179be805d399294f8",
-      "export_sha256": "dcf04da1858b25cd9458f17d7fea79be803fa4927ca29bd179be805d399294f8"
+      "source": "prompts/profiles/evidence/xinlika-events-v6-interest-r4.json",
+      "export": "prompts/profiles/evidence/xinlika-events-v6-interest-r4.json",
+      "source_sha256": "3604ef0f1ab0eb444d81b8703ce014061aaf98da84ce72cef8656fb5dc378b63",
+      "export_sha256": "3604ef0f1ab0eb444d81b8703ce014061aaf98da84ce72cef8656fb5dc378b63"
     },
     {
-      "source": "prompts/personal-agent/contract.zh-CN.md",
-      "export": "prompts/personal-agent/contract.zh-CN.md",
-      "source_sha256": "8cfa4790880dbb2e65186c5360e4df1c3beedc000f026309f0d4503f5ab61914",
-      "export_sha256": "8cfa4790880dbb2e65186c5360e4df1c3beedc000f026309f0d4503f5ab61914"
+      "source": "prompts/profiles/evidence/xinlika-events-v6-live-r2.json",
+      "export": "prompts/profiles/evidence/xinlika-events-v6-live-r2.json",
+      "source_sha256": "710ec70a0ab42b6c38a38eec48fa985baeafc3326818a7ff22e7fd067223565a",
+      "export_sha256": "710ec70a0ab42b6c38a38eec48fa985baeafc3326818a7ff22e7fd067223565a"
+    },
+    {
+      "source": "prompts/profiles/evidence/xinlika-events-v6-live-r3.json",
+      "export": "prompts/profiles/evidence/xinlika-events-v6-live-r3.json",
+      "source_sha256": "1320258f9a712e2ee5d1bd401b045f10d46229e8b660ec4ed7b6322f97fec84f",
+      "export_sha256": "1320258f9a712e2ee5d1bd401b045f10d46229e8b660ec4ed7b6322f97fec84f"
+    },
+    {
+      "source": "prompts/profiles/evidence/xinlika-events-v6.json",
+      "export": "prompts/profiles/evidence/xinlika-events-v6.json",
+      "source_sha256": "6538731f0a73b004064ae2c8a7da638f3be8cf24ed3f5339e6328f269938a001",
+      "export_sha256": "6538731f0a73b004064ae2c8a7da638f3be8cf24ed3f5339e6328f269938a001"
+    },
+    {
+      "source": "prompts/profiles/xinlika-events-v6.json",
+      "export": "prompts/profiles/xinlika-events-v6.json",
+      "source_sha256": "fe037f41130da2f5ba402eb9cb9260c6d57699ca1f3e5c7dacdf06e6baf323c4",
+      "export_sha256": "fa0a40f3c2fc4c559132d296e589c9b4e847920fa32783c1f21c0ba6d896bf22"
+    },
+    {
+      "source": "prompts/skills/xinlika-context/SKILL.md",
+      "export": "prompts/skills/xinlika-context/SKILL.md",
+      "source_sha256": "c569c12f2c409bd9ea30a7a31fc5d96e04364d073ea01d8588d98b078f13a464",
+      "export_sha256": "c569c12f2c409bd9ea30a7a31fc5d96e04364d073ea01d8588d98b078f13a464"
+    },
+    {
+      "source": "prompts/skills/xinlika-incremental/SKILL.md",
+      "export": "prompts/skills/xinlika-incremental/SKILL.md",
+      "source_sha256": "6b186c2cacc020d65dd1a656057f5338d0ecd4e1ac958e38883c2a2cf44c6bde",
+      "export_sha256": "6b186c2cacc020d65dd1a656057f5338d0ecd4e1ac958e38883c2a2cf44c6bde"
+    },
+    {
+      "source": "prompts/skills/xinlika-incremental/UPSTREAM.md",
+      "export": "prompts/skills/xinlika-incremental/UPSTREAM.md",
+      "source_sha256": "7dd11f353a6f1a297bf94e1d938b0d217fb855f81088cb78121893ff1f2261f1",
+      "export_sha256": "7dd11f353a6f1a297bf94e1d938b0d217fb855f81088cb78121893ff1f2261f1"
+    },
+    {
+      "source": "prompts/skills/xinlika-rolling-review/SKILL.md",
+      "export": "prompts/skills/xinlika-rolling-review/SKILL.md",
+      "source_sha256": "0f595a4e6f2d23ad2297a95a80fe894763a31588572debfdddfdf9136252aa29",
+      "export_sha256": "0f595a4e6f2d23ad2297a95a80fe894763a31588572debfdddfdf9136252aa29"
+    },
+    {
+      "source": "prompts/skills/xinlika-rolling/SKILL.md",
+      "export": "prompts/skills/xinlika-rolling/SKILL.md",
+      "source_sha256": "ec128b65c396473645c17a203532bd5f199f77172b3b36f37b68572a9639cdbe",
+      "export_sha256": "ec128b65c396473645c17a203532bd5f199f77172b3b36f37b68572a9639cdbe"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v2/bundle.json",
+      "export": "prompts/versions/xinlika-events-v2/bundle.json",
+      "source_sha256": "fc117390166c985e7ba5e44e0620e3d31b09ea3dccbe6e2466d3a3efc5e0f8c6",
+      "export_sha256": "fc117390166c985e7ba5e44e0620e3d31b09ea3dccbe6e2466d3a3efc5e0f8c6"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v2/skills/xinlika-incremental/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v2/skills/xinlika-incremental/SKILL.md",
+      "source_sha256": "7a1c429bec521b6495b2f2a4603bf0c69005e1fc2336d9ee2b0493168e02f8fc",
+      "export_sha256": "7a1c429bec521b6495b2f2a4603bf0c69005e1fc2336d9ee2b0493168e02f8fc"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v2/skills/xinlika-rolling-review/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v2/skills/xinlika-rolling-review/SKILL.md",
+      "source_sha256": "0f595a4e6f2d23ad2297a95a80fe894763a31588572debfdddfdf9136252aa29",
+      "export_sha256": "0f595a4e6f2d23ad2297a95a80fe894763a31588572debfdddfdf9136252aa29"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v2/skills/xinlika-rolling/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v2/skills/xinlika-rolling/SKILL.md",
+      "source_sha256": "ec128b65c396473645c17a203532bd5f199f77172b3b36f37b68572a9639cdbe",
+      "export_sha256": "ec128b65c396473645c17a203532bd5f199f77172b3b36f37b68572a9639cdbe"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v3/bundle.json",
+      "export": "prompts/versions/xinlika-events-v3/bundle.json",
+      "source_sha256": "cdc7641a754823d76424d35f32d7e76a4f0c650311c39602c467ff93b81d1a37",
+      "export_sha256": "cdc7641a754823d76424d35f32d7e76a4f0c650311c39602c467ff93b81d1a37"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v3/skills/xinlika-incremental/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v3/skills/xinlika-incremental/SKILL.md",
+      "source_sha256": "91f757d011dd2ff771d5142dfa625368beda576a5fc979a5e03d569e3a70703c",
+      "export_sha256": "91f757d011dd2ff771d5142dfa625368beda576a5fc979a5e03d569e3a70703c"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v3/skills/xinlika-rolling-review/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v3/skills/xinlika-rolling-review/SKILL.md",
+      "source_sha256": "a4d96621b612ec852359a5f1c5da549c757b9108f558a3ca91a55c90c6686a30",
+      "export_sha256": "a4d96621b612ec852359a5f1c5da549c757b9108f558a3ca91a55c90c6686a30"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v3/skills/xinlika-rolling/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v3/skills/xinlika-rolling/SKILL.md",
+      "source_sha256": "54c6b2260ea30f6c43d3b70f6c304f9a549b384ff6e77850a6da62479aad4aa4",
+      "export_sha256": "54c6b2260ea30f6c43d3b70f6c304f9a549b384ff6e77850a6da62479aad4aa4"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v4/bundle.json",
+      "export": "prompts/versions/xinlika-events-v4/bundle.json",
+      "source_sha256": "b39c34f84cdf04b2abd499bd57300c60d6c777d5e085014fd4fd9ced8a4c35be",
+      "export_sha256": "b39c34f84cdf04b2abd499bd57300c60d6c777d5e085014fd4fd9ced8a4c35be"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v4/skills/xinlika-incremental/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v4/skills/xinlika-incremental/SKILL.md",
+      "source_sha256": "91f757d011dd2ff771d5142dfa625368beda576a5fc979a5e03d569e3a70703c",
+      "export_sha256": "91f757d011dd2ff771d5142dfa625368beda576a5fc979a5e03d569e3a70703c"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v4/skills/xinlika-rolling-review/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v4/skills/xinlika-rolling-review/SKILL.md",
+      "source_sha256": "bd496b689d374033f3aa87416a06a8fc5bad6621374ec65beec85675c3653647",
+      "export_sha256": "bd496b689d374033f3aa87416a06a8fc5bad6621374ec65beec85675c3653647"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v4/skills/xinlika-rolling/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v4/skills/xinlika-rolling/SKILL.md",
+      "source_sha256": "54c6b2260ea30f6c43d3b70f6c304f9a549b384ff6e77850a6da62479aad4aa4",
+      "export_sha256": "54c6b2260ea30f6c43d3b70f6c304f9a549b384ff6e77850a6da62479aad4aa4"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v5/bundle.json",
+      "export": "prompts/versions/xinlika-events-v5/bundle.json",
+      "source_sha256": "2c9a7a9eb4ecea8ca0eac7946e31ad71109508ad0c7d34481121d3d009474ce6",
+      "export_sha256": "2c9a7a9eb4ecea8ca0eac7946e31ad71109508ad0c7d34481121d3d009474ce6"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v5/skills/xinlika-incremental/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v5/skills/xinlika-incremental/SKILL.md",
+      "source_sha256": "91f757d011dd2ff771d5142dfa625368beda576a5fc979a5e03d569e3a70703c",
+      "export_sha256": "91f757d011dd2ff771d5142dfa625368beda576a5fc979a5e03d569e3a70703c"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v5/skills/xinlika-rolling-review/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v5/skills/xinlika-rolling-review/SKILL.md",
+      "source_sha256": "abfc98f807daa8c525bcf101cdaa724a8a08a6da6fd9d01d7c1d1cbe4d0c1ba6",
+      "export_sha256": "abfc98f807daa8c525bcf101cdaa724a8a08a6da6fd9d01d7c1d1cbe4d0c1ba6"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v5/skills/xinlika-rolling/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v5/skills/xinlika-rolling/SKILL.md",
+      "source_sha256": "54c6b2260ea30f6c43d3b70f6c304f9a549b384ff6e77850a6da62479aad4aa4",
+      "export_sha256": "54c6b2260ea30f6c43d3b70f6c304f9a549b384ff6e77850a6da62479aad4aa4"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v6/bundle.json",
+      "export": "prompts/versions/xinlika-events-v6/bundle.json",
+      "source_sha256": "1580fb26109bce8842b3a843d4626b7355d98032781f7e68a81d8ce1ebc5c2dd",
+      "export_sha256": "1580fb26109bce8842b3a843d4626b7355d98032781f7e68a81d8ce1ebc5c2dd"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v6/skills/xinlika-incremental/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v6/skills/xinlika-incremental/SKILL.md",
+      "source_sha256": "91f757d011dd2ff771d5142dfa625368beda576a5fc979a5e03d569e3a70703c",
+      "export_sha256": "91f757d011dd2ff771d5142dfa625368beda576a5fc979a5e03d569e3a70703c"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v6/skills/xinlika-rolling-review/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v6/skills/xinlika-rolling-review/SKILL.md",
+      "source_sha256": "abfc98f807daa8c525bcf101cdaa724a8a08a6da6fd9d01d7c1d1cbe4d0c1ba6",
+      "export_sha256": "abfc98f807daa8c525bcf101cdaa724a8a08a6da6fd9d01d7c1d1cbe4d0c1ba6"
+    },
+    {
+      "source": "prompts/versions/xinlika-events-v6/skills/xinlika-rolling/SKILL.md",
+      "export": "prompts/versions/xinlika-events-v6/skills/xinlika-rolling/SKILL.md",
+      "source_sha256": "54c6b2260ea30f6c43d3b70f6c304f9a549b384ff6e77850a6da62479aad4aa4",
+      "export_sha256": "54c6b2260ea30f6c43d3b70f6c304f9a549b384ff6e77850a6da62479aad4aa4"
+    },
+    {
+      "source": "requirements-heartball.lock",
+      "export": "requirements-heartball.lock",
+      "source_sha256": "46512415dd92785a128b5837ef872640ba5fe67844779c2618b74c7c58bcd2bd",
+      "export_sha256": "8f66cfc103740e6cb4ec57128047db0fb6d182346e3902401146647bed0ada7f"
     },
     {
       "source": "requirements-heartball.txt",
@@ -322,10 +238,646 @@
       "export_sha256": "1d2ac5d4af41ce646c4255799e47017f3b0e79bd7b184566dcef3966b8b0268b"
     },
     {
-      "source": "requirements-heartball.lock",
-      "export": "requirements-heartball.lock",
-      "source_sha256": "46512415dd92785a128b5837ef872640ba5fe67844779c2618b74c7c58bcd2bd",
-      "export_sha256": "8f66cfc103740e6cb4ec57128047db0fb6d182346e3902401146647bed0ada7f"
+      "source": "scripts/analyze-cb08-capture.py",
+      "export": "scripts/analyze-cb08-capture.py",
+      "source_sha256": "ddbbccbac3306115ddaa302bbb5848754b5dd9386b6843bf5ae12c650196a878",
+      "export_sha256": "ddbbccbac3306115ddaa302bbb5848754b5dd9386b6843bf5ae12c650196a878"
+    },
+    {
+      "source": "scripts/cb08-probe-status.py",
+      "export": "scripts/cb08-probe-status.py",
+      "source_sha256": "f5dba40791366d7bc6859ad0e52f0028b13e1cf955fb84344d0245cb428b8ef9",
+      "export_sha256": "f5dba40791366d7bc6859ad0e52f0028b13e1cf955fb84344d0245cb428b8ef9"
+    },
+    {
+      "source": "scripts/check-public-content.py",
+      "export": "scripts/check-public-content.py",
+      "source_sha256": "7767bfefba8e8180cd131a4c741da3832a2d089fc22185ad41a8df94e78eba12",
+      "export_sha256": "1cf8092ee6c9e0ded2337aac3d6c54f2c1237c1d143caac6e2bccc400f251db5"
+    },
+    {
+      "source": "scripts/compare-xinlika-agents.py",
+      "export": "scripts/compare-xinlika-agents.py",
+      "source_sha256": "cf938ee5640edb16120bc4ff3b02da1953ad05971cf789058bc8eaed717510dd",
+      "export_sha256": "cf938ee5640edb16120bc4ff3b02da1953ad05971cf789058bc8eaed717510dd"
+    },
+    {
+      "source": "scripts/compare-xinlika-day.py",
+      "export": "scripts/compare-xinlika-day.py",
+      "source_sha256": "61e178157300097688d168edc6514e613fe257f19a4b2007b2537ac36ff3b6e9",
+      "export_sha256": "61e178157300097688d168edc6514e613fe257f19a4b2007b2537ac36ff3b6e9"
+    },
+    {
+      "source": "scripts/evaluate-voxgate-real.py",
+      "export": "scripts/evaluate-voxgate-real.py",
+      "source_sha256": "a45b81f756b1257a52ee6556389fa2d31b7ec091c90a8c02daedae154f184e4a",
+      "export_sha256": "a45b81f756b1257a52ee6556389fa2d31b7ec091c90a8c02daedae154f184e4a"
+    },
+    {
+      "source": "scripts/evaluate-voxgate.py",
+      "export": "scripts/evaluate-voxgate.py",
+      "source_sha256": "48ac8a6ce200af9d78fd20800f9a3ee88e2e7899f395a687365d755142b96563",
+      "export_sha256": "48ac8a6ce200af9d78fd20800f9a3ee88e2e7899f395a687365d755142b96563"
+    },
+    {
+      "source": "scripts/evaluate-xinlika-harness2.py",
+      "export": "scripts/evaluate-xinlika-harness2.py",
+      "source_sha256": "95e60b06ff23595c27c02eee900e3032f87f6ccb3577e1e09fd4d37119e67b43",
+      "export_sha256": "95e60b06ff23595c27c02eee900e3032f87f6ccb3577e1e09fd4d37119e67b43"
+    },
+    {
+      "source": "scripts/heartball-import.py",
+      "export": "scripts/heartball-import.py",
+      "source_sha256": "ae6e3275f5d31605c5c9fc09bbfc40906206d7cf1580db5af442721bdaa357b6",
+      "export_sha256": "ae6e3275f5d31605c5c9fc09bbfc40906206d7cf1580db5af442721bdaa357b6"
+    },
+    {
+      "source": "scripts/heartball-mobile-service.py",
+      "export": "scripts/heartball-mobile-service.py",
+      "source_sha256": "142f30a036a23e84a5fcb732e9bdfdaf9b13e1efef53e1f7214905359dee2add",
+      "export_sha256": "8b85de6acc030ca009979e20f2e7c753ab1a3c8d8b7cb7db9e6890bb3f83dd71"
+    },
+    {
+      "source": "scripts/heartball-shared-service.py",
+      "export": "scripts/heartball-shared-service.py",
+      "source_sha256": "cd0ec3521576f15655266d1087280a53fb85a69bd4f882983f23f7d68e7e60bd",
+      "export_sha256": "cd0ec3521576f15655266d1087280a53fb85a69bd4f882983f23f7d68e7e60bd"
+    },
+    {
+      "source": "scripts/heartball_acoustic_engine.py",
+      "export": "scripts/heartball_acoustic_engine.py",
+      "source_sha256": "38b354dc763d1ca8e41c26cf4a4ec834beddb3ff5579c5929bc8c5202824861a",
+      "export_sha256": "38b354dc763d1ca8e41c26cf4a4ec834beddb3ff5579c5929bc8c5202824861a"
+    },
+    {
+      "source": "scripts/heartball_acoustic_worker.py",
+      "export": "scripts/heartball_acoustic_worker.py",
+      "source_sha256": "8f56882e7a2bdce7a46afd73700c49dc06e80504f5e6c2a5d7ea8328f94c02b0",
+      "export_sha256": "8f56882e7a2bdce7a46afd73700c49dc06e80504f5e6c2a5d7ea8328f94c02b0"
+    },
+    {
+      "source": "scripts/heartball_activities.py",
+      "export": "scripts/heartball_activities.py",
+      "source_sha256": "795f399c3a5a1ad78c917d43574ebb9145dde8efbcebc9379478fe20edd66dbe",
+      "export_sha256": "795f399c3a5a1ad78c917d43574ebb9145dde8efbcebc9379478fe20edd66dbe"
+    },
+    {
+      "source": "scripts/heartball_agent_runtime.py",
+      "export": "scripts/heartball_agent_runtime.py",
+      "source_sha256": "6183f39dbac8922b5215fee38b71b7da1e292cd728e4ccd2722cc9dabe1975d4",
+      "export_sha256": "6183f39dbac8922b5215fee38b71b7da1e292cd728e4ccd2722cc9dabe1975d4"
+    },
+    {
+      "source": "scripts/heartball_agent_store.py",
+      "export": "scripts/heartball_agent_store.py",
+      "source_sha256": "7429d3c96e9cfb5ac72695e9b086452a6cac740b533c0b267828d3ee875969c2",
+      "export_sha256": "7429d3c96e9cfb5ac72695e9b086452a6cac740b533c0b267828d3ee875969c2"
+    },
+    {
+      "source": "scripts/heartball_audio_context.py",
+      "export": "scripts/heartball_audio_context.py",
+      "source_sha256": "17a17ed1cb79df2b0ea62a5b7ab5719a3f8a8ee3e6adf46160df2d268eb60111",
+      "export_sha256": "17a17ed1cb79df2b0ea62a5b7ab5719a3f8a8ee3e6adf46160df2d268eb60111"
+    },
+    {
+      "source": "scripts/heartball_backup.py",
+      "export": "scripts/heartball_backup.py",
+      "source_sha256": "87d307ab47a16c27e392c8121fac5823e86d6b438b5e342078d5d67d267f79a3",
+      "export_sha256": "87d307ab47a16c27e392c8121fac5823e86d6b438b5e342078d5d67d267f79a3"
+    },
+    {
+      "source": "scripts/heartball_card_segments.py",
+      "export": "scripts/heartball_card_segments.py",
+      "source_sha256": "f9f8728e2b3d2920af2f2a17a219770cf5f03e6f32a6c92998f8a3773f0eb0fc",
+      "export_sha256": "f9f8728e2b3d2920af2f2a17a219770cf5f03e6f32a6c92998f8a3773f0eb0fc"
+    },
+    {
+      "source": "scripts/heartball_content.py",
+      "export": "scripts/heartball_content.py",
+      "source_sha256": "cf2d4e76870ae59a1e9dfa939c5c3ab32feee1f34a7aa40d61ec7541859c6e1f",
+      "export_sha256": "cf2d4e76870ae59a1e9dfa939c5c3ab32feee1f34a7aa40d61ec7541859c6e1f"
+    },
+    {
+      "source": "scripts/heartball_day.py",
+      "export": "scripts/heartball_day.py",
+      "source_sha256": "6c08b5e87f8086c4f0143b7d64b3ac409ee1dc68fa26fe903565b66c2a908efb",
+      "export_sha256": "6c08b5e87f8086c4f0143b7d64b3ac409ee1dc68fa26fe903565b66c2a908efb"
+    },
+    {
+      "source": "scripts/heartball_event_merge.py",
+      "export": "scripts/heartball_event_merge.py",
+      "source_sha256": "72cd3b88c4f7aea8a909875401126385441f440f74f5d5562b7e9bbb202d8089",
+      "export_sha256": "72cd3b88c4f7aea8a909875401126385441f440f74f5d5562b7e9bbb202d8089"
+    },
+    {
+      "source": "scripts/heartball_event_refinement.py",
+      "export": "scripts/heartball_event_refinement.py",
+      "source_sha256": "b9c6dbd479337d23d5283a237fe3a4092913e637d4da362683b4b736ccd749ff",
+      "export_sha256": "b9c6dbd479337d23d5283a237fe3a4092913e637d4da362683b4b736ccd749ff"
+    },
+    {
+      "source": "scripts/heartball_external_import.py",
+      "export": "scripts/heartball_external_import.py",
+      "source_sha256": "5574f4ffae9ddfa0b2994c02cc415d31c960b45864a65a37d543c0000e253998",
+      "export_sha256": "5574f4ffae9ddfa0b2994c02cc415d31c960b45864a65a37d543c0000e253998"
+    },
+    {
+      "source": "scripts/heartball_fragment_projection.py",
+      "export": "scripts/heartball_fragment_projection.py",
+      "source_sha256": "88031c48c8634a98ff974ee828ef6e916e9d4227c11fb2f0ed75003b810fec43",
+      "export_sha256": "88031c48c8634a98ff974ee828ef6e916e9d4227c11fb2f0ed75003b810fec43"
+    },
+    {
+      "source": "scripts/heartball_harness2.py",
+      "export": "scripts/heartball_harness2.py",
+      "source_sha256": "87de1ad3fb3b75e387d427b1c26bdb29cdf7448dcaf137c3c1d07493e27e97a6",
+      "export_sha256": "87de1ad3fb3b75e387d427b1c26bdb29cdf7448dcaf137c3c1d07493e27e97a6"
+    },
+    {
+      "source": "scripts/heartball_harness2_evaluation.py",
+      "export": "scripts/heartball_harness2_evaluation.py",
+      "source_sha256": "23918758bc1187bc7eb570590f0b22ec63174c1d3719a6ea7d4caa37088b2da5",
+      "export_sha256": "23918758bc1187bc7eb570590f0b22ec63174c1d3719a6ea7d4caa37088b2da5"
+    },
+    {
+      "source": "scripts/heartball_harness2_safety.py",
+      "export": "scripts/heartball_harness2_safety.py",
+      "source_sha256": "0b333655494deab260e5d4edbe2e8b281aacc720a62f17551b8ca7bf1d2b9434",
+      "export_sha256": "0b333655494deab260e5d4edbe2e8b281aacc720a62f17551b8ca7bf1d2b9434"
+    },
+    {
+      "source": "scripts/heartball_incremental.py",
+      "export": "scripts/heartball_incremental.py",
+      "source_sha256": "d85e6a7e73d839a6af36b4f8c4d0cec843a385e492c876b6555ec36b1f66750a",
+      "export_sha256": "d85e6a7e73d839a6af36b4f8c4d0cec843a385e492c876b6555ec36b1f66750a"
+    },
+    {
+      "source": "scripts/heartball_incremental_contract.py",
+      "export": "scripts/heartball_incremental_contract.py",
+      "source_sha256": "7a460c6a52ded5f7787d49c8f02db33cf9c120fc0013eff8b068f4a2783cc9c8",
+      "export_sha256": "7a460c6a52ded5f7787d49c8f02db33cf9c120fc0013eff8b068f4a2783cc9c8"
+    },
+    {
+      "source": "scripts/heartball_incremental_reuse.py",
+      "export": "scripts/heartball_incremental_reuse.py",
+      "source_sha256": "baaef7ede1e43bb7552c7dd9e84dc48dee5a5eecc53012b98c9fcc3c448538ed",
+      "export_sha256": "baaef7ede1e43bb7552c7dd9e84dc48dee5a5eecc53012b98c9fcc3c448538ed"
+    },
+    {
+      "source": "scripts/heartball_incremental_review.py",
+      "export": "scripts/heartball_incremental_review.py",
+      "source_sha256": "2a807e6f50816c75932df161349e9d7543553765b684a1560589cb2910d7415f",
+      "export_sha256": "2a807e6f50816c75932df161349e9d7543553765b684a1560589cb2910d7415f"
+    },
+    {
+      "source": "scripts/heartball_incremental_topics.py",
+      "export": "scripts/heartball_incremental_topics.py",
+      "source_sha256": "b1b14388874d1cc23a1d4871b6a463896087e1eedf71b07130291c5576abcb9c",
+      "export_sha256": "b1b14388874d1cc23a1d4871b6a463896087e1eedf71b07130291c5576abcb9c"
+    },
+    {
+      "source": "scripts/heartball_interest.py",
+      "export": "scripts/heartball_interest.py",
+      "source_sha256": "ba47caa7725aac81082052a6c5f16beed83945b918d3b152f1e1c80bb807b526",
+      "export_sha256": "ba47caa7725aac81082052a6c5f16beed83945b918d3b152f1e1c80bb807b526"
+    },
+    {
+      "source": "scripts/heartball_mcp.py",
+      "export": "scripts/heartball_mcp.py",
+      "source_sha256": "622b8b2b5b77e9a46f860002d3963418b0631750209a95939dd4e62e2b3e00ab",
+      "export_sha256": "622b8b2b5b77e9a46f860002d3963418b0631750209a95939dd4e62e2b3e00ab"
+    },
+    {
+      "source": "scripts/heartball_mobile.py",
+      "export": "scripts/heartball_mobile.py",
+      "source_sha256": "cb23150daf0686c1cc99bdc4aef9dbc3432310df9e06001f205d2efe220ccea9",
+      "export_sha256": "cb23150daf0686c1cc99bdc4aef9dbc3432310df9e06001f205d2efe220ccea9"
+    },
+    {
+      "source": "scripts/heartball_native_processing.py",
+      "export": "scripts/heartball_native_processing.py",
+      "source_sha256": "85d30fe9b307bf19c03990d80f3c53f376b886f834c9aae7fef68d1a90ed1c97",
+      "export_sha256": "85d30fe9b307bf19c03990d80f3c53f376b886f834c9aae7fef68d1a90ed1c97"
+    },
+    {
+      "source": "scripts/heartball_organization.py",
+      "export": "scripts/heartball_organization.py",
+      "source_sha256": "4450ba086b918d288a5e74caba2064f44f690cbc877f4c147ca4c673213e3c4e",
+      "export_sha256": "4450ba086b918d288a5e74caba2064f44f690cbc877f4c147ca4c673213e3c4e"
+    },
+    {
+      "source": "scripts/heartball_personal_agent.py",
+      "export": "scripts/heartball_personal_agent.py",
+      "source_sha256": "aa9b20f58dc2925c972b09962f398da4351c211382e21c8f22c2272dd5bf1ece",
+      "export_sha256": "aa9b20f58dc2925c972b09962f398da4351c211382e21c8f22c2272dd5bf1ece"
+    },
+    {
+      "source": "scripts/heartball_processing.py",
+      "export": "scripts/heartball_processing.py",
+      "source_sha256": "8a91998adacbaa485173ef97a0e4f4a9657a758c4c4af24019688b8b7c7685a5",
+      "export_sha256": "cd20864ff3b00e49ead22f9274f808ace32ddbdf71073c1738539d3806807e87"
+    },
+    {
+      "source": "scripts/heartball_processing_profiles.py",
+      "export": "scripts/heartball_processing_profiles.py",
+      "source_sha256": "565560024eed13a66ad31e23710b8b211218e408b9f07614847a1724778b0f6c",
+      "export_sha256": "565560024eed13a66ad31e23710b8b211218e408b9f07614847a1724778b0f6c"
+    },
+    {
+      "source": "scripts/heartball_prompts.py",
+      "export": "scripts/heartball_prompts.py",
+      "source_sha256": "32f0e1c035b39d3071c052a4b5f53606b90b40bd4718dc64bfae3427768fdd37",
+      "export_sha256": "32f0e1c035b39d3071c052a4b5f53606b90b40bd4718dc64bfae3427768fdd37"
+    },
+    {
+      "source": "scripts/heartball_recall.py",
+      "export": "scripts/heartball_recall.py",
+      "source_sha256": "f876925434e23ea831299d36c7a5f2db1530560c807824c09917485f382c677e",
+      "export_sha256": "f876925434e23ea831299d36c7a5f2db1530560c807824c09917485f382c677e"
+    },
+    {
+      "source": "scripts/heartball_recording_time.py",
+      "export": "scripts/heartball_recording_time.py",
+      "source_sha256": "c67f1d92a8a9d535fe424e71317550cb7df3e7a981513127258ae38944db23f3",
+      "export_sha256": "c67f1d92a8a9d535fe424e71317550cb7df3e7a981513127258ae38944db23f3"
+    },
+    {
+      "source": "scripts/heartball_runtime_adapters.py",
+      "export": "scripts/heartball_runtime_adapters.py",
+      "source_sha256": "3017bb9d756ff5835523fe2af425721a06b213c363404601238ca89ec674a70a",
+      "export_sha256": "3017bb9d756ff5835523fe2af425721a06b213c363404601238ca89ec674a70a"
+    },
+    {
+      "source": "scripts/heartball_shared.py",
+      "export": "scripts/heartball_shared.py",
+      "source_sha256": "94651a94cc19e38a8c8d760603a83391a04fd796190d9228cbe52fd268c3a753",
+      "export_sha256": "94651a94cc19e38a8c8d760603a83391a04fd796190d9228cbe52fd268c3a753"
+    },
+    {
+      "source": "scripts/heartball_shared_handoff.py",
+      "export": "scripts/heartball_shared_handoff.py",
+      "source_sha256": "122414a8ab6d27bd44fe4f0373ba7ddcdc4543bdc43c40349b7705f2817891be",
+      "export_sha256": "5d2220f56a888b87f610a1024c464417c1eef11c3c2551bf9252814944c81bbe"
+    },
+    {
+      "source": "scripts/heartball_skill_bundle.py",
+      "export": "scripts/heartball_skill_bundle.py",
+      "source_sha256": "0733db42942be32dc8763448b69ac0f9ff335430ed3e2b89163cb4b3881e40a9",
+      "export_sha256": "0733db42942be32dc8763448b69ac0f9ff335430ed3e2b89163cb4b3881e40a9"
+    },
+    {
+      "source": "scripts/heartball_source_spans.py",
+      "export": "scripts/heartball_source_spans.py",
+      "source_sha256": "970c30c5b1daab2b97fbdd4025f920b9a440cec38e3f6ab6512c5f0d40e7b9d1",
+      "export_sha256": "970c30c5b1daab2b97fbdd4025f920b9a440cec38e3f6ab6512c5f0d40e7b9d1"
+    },
+    {
+      "source": "scripts/heartball_store.py",
+      "export": "scripts/heartball_store.py",
+      "source_sha256": "cc862c8434f2c778eb4651dbf022a8ff0af24ea2d8df40486ddc91bb349ad539",
+      "export_sha256": "cc862c8434f2c778eb4651dbf022a8ff0af24ea2d8df40486ddc91bb349ad539"
+    },
+    {
+      "source": "scripts/heartball_timeline.py",
+      "export": "scripts/heartball_timeline.py",
+      "source_sha256": "fc2ea70e75a65c99d34dd771bd22203f3f063d8afc1a24d45505b17fdd99232c",
+      "export_sha256": "fc2ea70e75a65c99d34dd771bd22203f3f063d8afc1a24d45505b17fdd99232c"
+    },
+    {
+      "source": "scripts/heartball_topics.py",
+      "export": "scripts/heartball_topics.py",
+      "source_sha256": "62c8fa6c0836b7b40e7af74c8497561754b413f15aba7e7f88ff0cd4b538e052",
+      "export_sha256": "62c8fa6c0836b7b40e7af74c8497561754b413f15aba7e7f88ff0cd4b538e052"
+    },
+    {
+      "source": "scripts/heartball_voice.py",
+      "export": "scripts/heartball_voice.py",
+      "source_sha256": "12be3b0541eb6862904b2ff8782d19df59f9a5c70af8d996ffcba29fb89d15ca",
+      "export_sha256": "12be3b0541eb6862904b2ff8782d19df59f9a5c70af8d996ffcba29fb89d15ca"
+    },
+    {
+      "source": "scripts/optimize-xinlika-harness2.py",
+      "export": "scripts/optimize-xinlika-harness2.py",
+      "source_sha256": "1a8a1d22d149db6666f5cf0d8115c85e33fe935689d01b02a606df2a0797e189",
+      "export_sha256": "1a8a1d22d149db6666f5cf0d8115c85e33fe935689d01b02a606df2a0797e189"
+    },
+    {
+      "source": "scripts/package-xinlika-server.py",
+      "export": "scripts/package-xinlika-server.py",
+      "source_sha256": "ea7ba6738174abf3be9ccd7a72c1198f591fcd86d41989bd8778ef18a6e7d90b",
+      "export_sha256": "ea7ba6738174abf3be9ccd7a72c1198f591fcd86d41989bd8778ef18a6e7d90b"
+    },
+    {
+      "source": "scripts/patches/voxgate-empty-final.patch",
+      "export": "scripts/patches/voxgate-empty-final.patch",
+      "source_sha256": "8705d291f3b63c31dfeef619f72e12fe94818335dc050a19f50a34d817e79f6e",
+      "export_sha256": "8705d291f3b63c31dfeef619f72e12fe94818335dc050a19f50a34d817e79f6e"
+    },
+    {
+      "source": "scripts/patches/voxgate-file-chunks.patch",
+      "export": "scripts/patches/voxgate-file-chunks.patch",
+      "source_sha256": "b2b5500fac5899a746a082760e6b86ca6db78d224efe5c780f74579af1cb146c",
+      "export_sha256": "b2b5500fac5899a746a082760e6b86ca6db78d224efe5c780f74579af1cb146c"
+    },
+    {
+      "source": "scripts/probe-xinlika-acoustics.py",
+      "export": "scripts/probe-xinlika-acoustics.py",
+      "source_sha256": "08ee9d8ec0ed876087d89d880d640a6fda00102aec8cdf55e8b1e5c0787b6783",
+      "export_sha256": "08ee9d8ec0ed876087d89d880d640a6fda00102aec8cdf55e8b1e5c0787b6783"
+    },
+    {
+      "source": "scripts/replay-xinlika-incremental.py",
+      "export": "scripts/replay-xinlika-incremental.py",
+      "source_sha256": "1a1371fa5790fdea7b938bfa0ca49d7e6a630a79a441182553d704aa531ab514",
+      "export_sha256": "1a1371fa5790fdea7b938bfa0ca49d7e6a630a79a441182553d704aa531ab514"
+    },
+    {
+      "source": "scripts/test_cb08_capture_analysis.py",
+      "export": "scripts/test_cb08_capture_analysis.py",
+      "source_sha256": "8d178a0f3b407cd060140149b40afd8dc63c6ee5f340e0c9b24a2bc13cfea531",
+      "export_sha256": "8d178a0f3b407cd060140149b40afd8dc63c6ee5f340e0c9b24a2bc13cfea531"
+    },
+    {
+      "source": "scripts/test_heartball_activities.py",
+      "export": "scripts/test_heartball_activities.py",
+      "source_sha256": "a29b0874573ab850552dc8fc16249e57c948712249f05990fd43f42fbe3b40b7",
+      "export_sha256": "a29b0874573ab850552dc8fc16249e57c948712249f05990fd43f42fbe3b40b7"
+    },
+    {
+      "source": "scripts/test_heartball_agent_api.py",
+      "export": "scripts/test_heartball_agent_api.py",
+      "source_sha256": "cc813eaf1a085cd251ec256b7d2fbdffec2a57c0bc9e2b87a1b90cd45687f2cf",
+      "export_sha256": "51b44fc12416b186e3203063dc10e0c55c3dd91243631997d2ce773f70991eaf"
+    },
+    {
+      "source": "scripts/test_heartball_agent_runtime.py",
+      "export": "scripts/test_heartball_agent_runtime.py",
+      "source_sha256": "6432f119fb8e0c9487edeff38335ea7ddf4f56d16cd5c97969d7db2d868025d6",
+      "export_sha256": "6432f119fb8e0c9487edeff38335ea7ddf4f56d16cd5c97969d7db2d868025d6"
+    },
+    {
+      "source": "scripts/test_heartball_answer_sources.py",
+      "export": "scripts/test_heartball_answer_sources.py",
+      "source_sha256": "2ef9665b7d534f2b4fb982cb43f94e73d7411d3b29a45135a0a3ef31a06e5750",
+      "export_sha256": "2ef9665b7d534f2b4fb982cb43f94e73d7411d3b29a45135a0a3ef31a06e5750"
+    },
+    {
+      "source": "scripts/test_heartball_api.py",
+      "export": "scripts/test_heartball_api.py",
+      "source_sha256": "5dd99c4b8d1fb4a6d051954af60da6d9f7d8837a666866f482d51806c2385903",
+      "export_sha256": "032d6e92b529bf5e7e4782d32052ddfd5e28073c1170036df3578fce11544e5e"
+    },
+    {
+      "source": "scripts/test_heartball_audio_context.py",
+      "export": "scripts/test_heartball_audio_context.py",
+      "source_sha256": "39c5b0d2f8a5b2ba55adb0de0ae4f0e450189ca0cb4e96d848157b745533d75a",
+      "export_sha256": "39c5b0d2f8a5b2ba55adb0de0ae4f0e450189ca0cb4e96d848157b745533d75a"
+    },
+    {
+      "source": "scripts/test_heartball_backup.py",
+      "export": "scripts/test_heartball_backup.py",
+      "source_sha256": "457278478416fb939b96bdf4f276eddba1c7d5f98531f1f1978269b77bb0db58",
+      "export_sha256": "457278478416fb939b96bdf4f276eddba1c7d5f98531f1f1978269b77bb0db58"
+    },
+    {
+      "source": "scripts/test_heartball_day.py",
+      "export": "scripts/test_heartball_day.py",
+      "source_sha256": "d1f24cb0bbf19fe21e401c52305f2f7afeee6fabe2fd51e3158486ba21c81073",
+      "export_sha256": "d1f24cb0bbf19fe21e401c52305f2f7afeee6fabe2fd51e3158486ba21c81073"
+    },
+    {
+      "source": "scripts/test_heartball_event_merge.py",
+      "export": "scripts/test_heartball_event_merge.py",
+      "source_sha256": "e388d26c15e9a3e4faf7dcad016f45ab7e3139fb41a9104732006f90cb3ad740",
+      "export_sha256": "e388d26c15e9a3e4faf7dcad016f45ab7e3139fb41a9104732006f90cb3ad740"
+    },
+    {
+      "source": "scripts/test_heartball_event_refinement.py",
+      "export": "scripts/test_heartball_event_refinement.py",
+      "source_sha256": "5a5e5b761c9e007833eae97dccda206a5ea8b67a52b039e5e9e03c41d3af5802",
+      "export_sha256": "5a5e5b761c9e007833eae97dccda206a5ea8b67a52b039e5e9e03c41d3af5802"
+    },
+    {
+      "source": "scripts/test_heartball_harness2.py",
+      "export": "scripts/test_heartball_harness2.py",
+      "source_sha256": "1da42b1f992d93b5e55b10552e3ce78c0af431be01b2c67dea2c1ab09d5369db",
+      "export_sha256": "1da42b1f992d93b5e55b10552e3ce78c0af431be01b2c67dea2c1ab09d5369db"
+    },
+    {
+      "source": "scripts/test_heartball_harness2_safety.py",
+      "export": "scripts/test_heartball_harness2_safety.py",
+      "source_sha256": "2fe7deadf02fb5a508b6ae5aff7714dd675aab2aaa1494bb6ff175f03d79beb1",
+      "export_sha256": "2fe7deadf02fb5a508b6ae5aff7714dd675aab2aaa1494bb6ff175f03d79beb1"
+    },
+    {
+      "source": "scripts/test_heartball_incremental.py",
+      "export": "scripts/test_heartball_incremental.py",
+      "source_sha256": "b5093547b73ed14b522701db69c940ac437764df30d4079e94095ac1cb03bb7d",
+      "export_sha256": "b5093547b73ed14b522701db69c940ac437764df30d4079e94095ac1cb03bb7d"
+    },
+    {
+      "source": "scripts/test_heartball_incremental_topics.py",
+      "export": "scripts/test_heartball_incremental_topics.py",
+      "source_sha256": "3b4191f10d9ca0fbf872181792a2d3ec419074785655e30d468c670531c7dfb8",
+      "export_sha256": "3b4191f10d9ca0fbf872181792a2d3ec419074785655e30d468c670531c7dfb8"
+    },
+    {
+      "source": "scripts/test_heartball_interest.py",
+      "export": "scripts/test_heartball_interest.py",
+      "source_sha256": "7b54a2b968824758fd20c2d5dff0e18e3e740a6eff988fd43adea372124b037f",
+      "export_sha256": "7b54a2b968824758fd20c2d5dff0e18e3e740a6eff988fd43adea372124b037f"
+    },
+    {
+      "source": "scripts/test_heartball_mobile.py",
+      "export": "scripts/test_heartball_mobile.py",
+      "source_sha256": "d50773a383d7004d6de8371cbcdc1d7e8be06117d55ad5b5169ca7bc4bf9e184",
+      "export_sha256": "d50773a383d7004d6de8371cbcdc1d7e8be06117d55ad5b5169ca7bc4bf9e184"
+    },
+    {
+      "source": "scripts/test_heartball_native_processing.py",
+      "export": "scripts/test_heartball_native_processing.py",
+      "source_sha256": "825c37a263301faec81e14181c332ad4ddff7169286390b81bf36f9d2e2f5342",
+      "export_sha256": "825c37a263301faec81e14181c332ad4ddff7169286390b81bf36f9d2e2f5342"
+    },
+    {
+      "source": "scripts/test_heartball_organization.py",
+      "export": "scripts/test_heartball_organization.py",
+      "source_sha256": "2c59fd4fe1ae9f7daa123996a2649f572dc762780bf1c3bd318cb48f8451daa8",
+      "export_sha256": "2c59fd4fe1ae9f7daa123996a2649f572dc762780bf1c3bd318cb48f8451daa8"
+    },
+    {
+      "source": "scripts/test_heartball_personal_agent.py",
+      "export": "scripts/test_heartball_personal_agent.py",
+      "source_sha256": "6282095ea6d7873df4b7b32ecd2254fca9c494145c661c71003c63af86695b78",
+      "export_sha256": "6282095ea6d7873df4b7b32ecd2254fca9c494145c661c71003c63af86695b78"
+    },
+    {
+      "source": "scripts/test_heartball_processing.py",
+      "export": "scripts/test_heartball_processing.py",
+      "source_sha256": "0971679b13443e0b475b7fce49595a1f74fac24ad77ef4f4cc5c91a98c2a1e04",
+      "export_sha256": "0971679b13443e0b475b7fce49595a1f74fac24ad77ef4f4cc5c91a98c2a1e04"
+    },
+    {
+      "source": "scripts/test_heartball_processing_profiles.py",
+      "export": "scripts/test_heartball_processing_profiles.py",
+      "source_sha256": "6399e09d12daa0b05feb5cb80995f16544448475ab163b7258e4d4b33afb2dc4",
+      "export_sha256": "6399e09d12daa0b05feb5cb80995f16544448475ab163b7258e4d4b33afb2dc4"
+    },
+    {
+      "source": "scripts/test_heartball_recall.py",
+      "export": "scripts/test_heartball_recall.py",
+      "source_sha256": "2f6f661c64b283ba10c361b8ed7eed062ff615649438387a1c941d9b9e4f7fad",
+      "export_sha256": "2f6f661c64b283ba10c361b8ed7eed062ff615649438387a1c941d9b9e4f7fad"
+    },
+    {
+      "source": "scripts/test_heartball_recording_time.py",
+      "export": "scripts/test_heartball_recording_time.py",
+      "source_sha256": "862ad300d8036e7cade7f485774b9afc190eaa150e068a0e6a92fde5b3a16be7",
+      "export_sha256": "862ad300d8036e7cade7f485774b9afc190eaa150e068a0e6a92fde5b3a16be7"
+    },
+    {
+      "source": "scripts/test_heartball_runtime_adapters.py",
+      "export": "scripts/test_heartball_runtime_adapters.py",
+      "source_sha256": "2f0c71908c76ca2486ebb1829c1f6c777240dd12700f82a08c9c2c48e6e82e9b",
+      "export_sha256": "2f0c71908c76ca2486ebb1829c1f6c777240dd12700f82a08c9c2c48e6e82e9b"
+    },
+    {
+      "source": "scripts/test_heartball_shared.py",
+      "export": "scripts/test_heartball_shared.py",
+      "source_sha256": "9606f763dd221a8f24cf68f8a9b5d479baea5f00cc4a41f86c2de47f144e859a",
+      "export_sha256": "9606f763dd221a8f24cf68f8a9b5d479baea5f00cc4a41f86c2de47f144e859a"
+    },
+    {
+      "source": "scripts/test_heartball_shared_handoff.py",
+      "export": "scripts/test_heartball_shared_handoff.py",
+      "source_sha256": "19e9dcf6c640bdce359c455e6afa27e70b0e160b4f64c7216e6dbe8b01c8d4a0",
+      "export_sha256": "19e9dcf6c640bdce359c455e6afa27e70b0e160b4f64c7216e6dbe8b01c8d4a0"
+    },
+    {
+      "source": "scripts/test_heartball_store.py",
+      "export": "scripts/test_heartball_store.py",
+      "source_sha256": "a7b9e3a6960f76b5bc6a621b6fe7c0af42659aaca7b3e3322a23b452dc0cba99",
+      "export_sha256": "a7b9e3a6960f76b5bc6a621b6fe7c0af42659aaca7b3e3322a23b452dc0cba99"
+    },
+    {
+      "source": "scripts/test_heartball_topics.py",
+      "export": "scripts/test_heartball_topics.py",
+      "source_sha256": "fb2eacf9993411f9e1dc5cd5ca380d11660e2dd1ca8e49095ee87d4a28d88b7f",
+      "export_sha256": "fb2eacf9993411f9e1dc5cd5ca380d11660e2dd1ca8e49095ee87d4a28d88b7f"
+    },
+    {
+      "source": "scripts/test_heartball_voice.py",
+      "export": "scripts/test_heartball_voice.py",
+      "source_sha256": "7ae7369a40c9dec925a2161307ca7a627240a5d2949ebc334107330be889ddfb",
+      "export_sha256": "7ae7369a40c9dec925a2161307ca7a627240a5d2949ebc334107330be889ddfb"
+    },
+    {
+      "source": "scripts/test_voxgate_real_preparation.py",
+      "export": "scripts/test_voxgate_real_preparation.py",
+      "source_sha256": "c19e2d667e6163324793d3c88ff3bc678150ef407dd39da827af28a2a27f90ab",
+      "export_sha256": "c19e2d667e6163324793d3c88ff3bc678150ef407dd39da827af28a2a27f90ab"
+    },
+    {
+      "source": "scripts/test_xinlika_day_comparison.py",
+      "export": "scripts/test_xinlika_day_comparison.py",
+      "source_sha256": "c3a86bf87690a9b4d4189e9225a3b58e6a8d138a081716efc9fd8e66e010e292",
+      "export_sha256": "c3a86bf87690a9b4d4189e9225a3b58e6a8d138a081716efc9fd8e66e010e292"
+    },
+    {
+      "source": "scripts/validate-xinlika-skills.py",
+      "export": "scripts/validate-xinlika-skills.py",
+      "source_sha256": "a099e6d7f1512ca40b2a9d05a186916010a4d523fc6bd1a3f55e597c03bfc304",
+      "export_sha256": "a099e6d7f1512ca40b2a9d05a186916010a4d523fc6bd1a3f55e597c03bfc304"
+    },
+    {
+      "source": "scripts/verify-heartball-agent.py",
+      "export": "scripts/verify-heartball-agent.py",
+      "source_sha256": "7a2691d679e0de9140c8f9d6837d0362b6924ead41a001e1141ee8e241db8f63",
+      "export_sha256": "7a2691d679e0de9140c8f9d6837d0362b6924ead41a001e1141ee8e241db8f63"
+    },
+    {
+      "source": "scripts/verify-heartball-event-sources.py",
+      "export": "scripts/verify-heartball-event-sources.py",
+      "source_sha256": "c0a6ebb827f911cf08e2292f534203901eac6b5621b5d1b625fdda8ce47b5d1a",
+      "export_sha256": "c0a6ebb827f911cf08e2292f534203901eac6b5621b5d1b625fdda8ce47b5d1a"
+    },
+    {
+      "source": "scripts/verify-xinlika-activities.py",
+      "export": "scripts/verify-xinlika-activities.py",
+      "source_sha256": "9efd7ed439b716ed8374dbfee2b2602aad18661eaa236363e1d11025ea5bde08",
+      "export_sha256": "9efd7ed439b716ed8374dbfee2b2602aad18661eaa236363e1d11025ea5bde08"
+    },
+    {
+      "source": "scripts/verify-xinlika-interest.py",
+      "export": "scripts/verify-xinlika-interest.py",
+      "source_sha256": "9605926daecac16c4c22bf4e66c88b38e909d5a186f1dbd1ea45a3530731f19e",
+      "export_sha256": "9605926daecac16c4c22bf4e66c88b38e909d5a186f1dbd1ea45a3530731f19e"
+    },
+    {
+      "source": "scripts/verify-xinlika-native-agent.py",
+      "export": "scripts/verify-xinlika-native-agent.py",
+      "source_sha256": "34e890d5c80e2de43ef17237724792c2ed5d17e9eb99fcc316a5fafc078e0549",
+      "export_sha256": "34e890d5c80e2de43ef17237724792c2ed5d17e9eb99fcc316a5fafc078e0549"
+    },
+    {
+      "source": "scripts/verify-xinlika-personal-agent.py",
+      "export": "scripts/verify-xinlika-personal-agent.py",
+      "source_sha256": "8d8450112964ad99364a94340bcc390239a5f7111dda904f2808686868fe4b35",
+      "export_sha256": "8d8450112964ad99364a94340bcc390239a5f7111dda904f2808686868fe4b35"
+    },
+    {
+      "source": "scripts/verify-xinlika-recorded-loop.py",
+      "export": "scripts/verify-xinlika-recorded-loop.py",
+      "source_sha256": "865d01846b7d7da04b21a7f57ef8f96baa84001dd29b72b608670aac4731cbf6",
+      "export_sha256": "865d01846b7d7da04b21a7f57ef8f96baa84001dd29b72b608670aac4731cbf6"
+    },
+    {
+      "source": "scripts/verify-xinlika-shared-recording.py",
+      "export": "scripts/verify-xinlika-shared-recording.py",
+      "source_sha256": "6008e370a00df6ab5a6292ca8d81769c2b0559b98238cca2f11c41bb0cae3117",
+      "export_sha256": "6008e370a00df6ab5a6292ca8d81769c2b0559b98238cca2f11c41bb0cae3117"
+    },
+    {
+      "source": "scripts/verify-xinlika-workspace.py",
+      "export": "scripts/verify-xinlika-workspace.py",
+      "source_sha256": "65373bc9991171c45ed7ad23af0c1011e3228ec6305bb384df89520752e66806",
+      "export_sha256": "65373bc9991171c45ed7ad23af0c1011e3228ec6305bb384df89520752e66806"
+    },
+    {
+      "source": "scripts/voxgate-local.py",
+      "export": "scripts/voxgate-local.py",
+      "source_sha256": "27ebaa706739cc57b96bd1241cba3739763a7f4cc8c703441abc2b1d222f3c18",
+      "export_sha256": "27ebaa706739cc57b96bd1241cba3739763a7f4cc8c703441abc2b1d222f3c18"
+    },
+    {
+      "source": "scripts/xinlika-import-context.py",
+      "export": "scripts/xinlika-import-context.py",
+      "source_sha256": "10aa7ac287d4b09be0bce7c213f3dde4aa3fb297c73bc92ed3abe9eae7f236da",
+      "export_sha256": "10aa7ac287d4b09be0bce7c213f3dde4aa3fb297c73bc92ed3abe9eae7f236da"
+    },
+    {
+      "source": "scripts/xinlika-mcp.py",
+      "export": "scripts/xinlika-mcp.py",
+      "source_sha256": "5bd70fcc6d7ee321319df880fa776a462cfba86e49240585bf50aeb3c99880e9",
+      "export_sha256": "5bd70fcc6d7ee321319df880fa776a462cfba86e49240585bf50aeb3c99880e9"
+    },
+    {
+      "source": "scripts/xinlika-runtime-worker.py",
+      "export": "scripts/xinlika-runtime-worker.py",
+      "source_sha256": "0306acbc2461428302ea1e7ede44fe1a808eca5330eec6e0c9755cff4caf2c63",
+      "export_sha256": "0306acbc2461428302ea1e7ede44fe1a808eca5330eec6e0c9755cff4caf2c63"
     }
-  ]
+  ],
+  "latest_sync": {
+    "date": "2026-10-26",
+    "public_base": "7c937da7ea4b055f2a30381287133f8cbd5669d1",
+    "source_snapshot": "d929e9b7ee084656afeb12edbd1e98c33b19934f",
+    "ASR_calls": 0,
+    "adaptations": [
+      "Keep public root HTTP free of hardware control",
+      "Share generic compatible ASR across classic/native/handoff paths",
+      "v6 public profile pins extracted HTTP instead of private hardware engine; frozen Skills unchanged",
+      "Keep existing public product docs, launch assets and licenses; add only recent sanitized development reports"
+    ]
+  }
 }

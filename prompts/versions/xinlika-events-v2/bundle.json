@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "version": "xinlika-events-v2-structured",
+  "root": ".",
+  "files": {
+    "incremental": "skills/xinlika-incremental/SKILL.md",
+    "rolling": "skills/xinlika-rolling/SKILL.md",
+    "review": "skills/xinlika-rolling-review/SKILL.md"
+  },
+  "sha256": {
+    "incremental": "7a1c429bec521b6495b2f2a4603bf0c69005e1fc2336d9ee2b0493168e02f8fc",
+    "rolling": "ec128b65c396473645c17a203532bd5f199f77172b3b36f37b68572a9639cdbe",
+    "review": "0f595a4e6f2d23ad2297a95a80fe894763a31588572debfdddfdf9136252aa29"
+  }
+}

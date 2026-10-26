@@ -13,3 +13,5 @@ The vendor [SonicloudTech/sonicloud_opensdk](https://github.com/SonicloudTech/so
 Source hashes and file origins are recorded in [source-manifest.json](source-manifest.json). New packaging removes the old account flow, private service addresses, development team, signing identity and old app assets. Use your own signing team and a unique bundle identifier on a physical iPhone.
 
 Apple SDKs and Xcode are platform prerequisites, not redistributed by this repository. Backend Python files outside `clients/` remain MIT. The GPL desktop daemon invokes the GPL capture executable and imports the MIT backend; distribute that combined desktop component under GPL with corresponding source and notices.
+
+The 2026-10-26 sync preserves this GPL grant, public signing/storage identities, generic-service capability checks, original-time text input and the independently re-expressed clock builder. New capture admission, persistent upload/interest queues and shared timeline sources use the same license. The refreshed manifest records both source and exported hashes; development-device evidence does not constitute a new physical test of this public packaging.

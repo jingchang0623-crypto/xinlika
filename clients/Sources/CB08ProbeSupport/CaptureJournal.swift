@@ -21,7 +21,7 @@ public final class CaptureJournal: @unchecked Sendable {
         public var failure: String?
     }
     public let directory: URL
-    private let queue = DispatchQueue(label: "org.xinlika.capture-disk")
+    private let queue = DispatchQueue(label: "shennao.cb08.capture-disk")
     private let lock = NSLock()
     private let maxPendingBytes: Int
     private let recordControlBodies: Bool

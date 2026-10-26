@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-26",
+  "repository": "jingchang0623-crypto/xinlika",
+  "base_commit": "7c937da7ea4b055f2a30381287133f8cbd5669d1",
+  "source_update_scope": "capture, durable upload/interest queues, incremental/rolling v6, source projections, MCP and file import",
+  "backend": {
+    "tests": 377,
+    "passed": 376,
+    "skipped": 1
+  },
+  "examples": {
+    "tests": 1,
+    "passed": 1,
+    "demo_checks": 5,
+    "demo_passed": 5
+  },
+  "swift": {
+    "mac_build": "passed",
+    "probe_checks": 90,
+    "probe_passed": 90,
+    "workspace_checks": 14,
+    "workspace_passed": 14,
+    "ios_simulator_build_for_testing": "passed",
+    "ios_unit_tests": 53,
+    "ios_unit_passed": 53,
+    "ios_ui_tests": 1,
+    "ios_ui_passed": 1,
+    "mac_readback": "passed: iPhone-created event, corrected source, recording day and cited answer"
+  },
+  "live_services_modified": false,
+  "hardware_operations": false,
+  "ASR_calls": 0,
+  "remote_model_calls": 0,
+  "semantic_quality_retested": false,
+  "raw_audio_or_transcripts_included": false,
+  "limitations": [
+    "Existing real-data metrics describe the development environment, not a fresh clean-public-build physical acceptance test",
+    "Homepage low-value admission and correction relation stability remain limited",
+    "No new all-day lossless or speaker-source quality claim"
+  ],
+  "security": {
+    "indexed_files_checked": 315,
+    "content_scan_findings": 0,
+    "gitleaks_staged_findings": 0,
+    "private_configurations_checked": 13,
+    "configured_secret_values_checked": 4,
+    "exact_secret_matches": 0,
+    "approved_existing_demo_video_hash_pinned": true,
+    "reports_contain_raw_values": false
+  }
+}
