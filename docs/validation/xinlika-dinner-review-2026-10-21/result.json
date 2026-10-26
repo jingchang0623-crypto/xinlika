@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-21",
+  "scope": "Read-only assessment during an ongoing physical iPhone/CB08 capture; no device control or service restart",
+  "evaluation_ground_truth": {
+    "restaurant_local_interval_approx": [
+      "22:20",
+      "23:15"
+    ],
+    "restaurant_party_size": 3,
+    "nearby_people": true,
+    "background_music": true,
+    "card_placement": "restaurant_table",
+    "outbound_and_return_road_minutes_approx": 5,
+    "ground_truth_source": "User reported; not inferred by acoustic models"
+  },
+  "snapshot": {
+    "sealed_batches": 86,
+    "sealed_audio_seconds": 5160.0,
+    "transcripts": 86,
+    "acoustic_observations": 86,
+    "voice_match_observations": 86,
+    "documents": 72,
+    "active_session_events": 62,
+    "active_event_starts_in_restaurant_interval": 46,
+    "stream_count": 1,
+    "first_audio_at": "2026-10-21T14:08:02.429Z",
+    "last_sealed_audio_at": "2026-10-21T15:34:02.584Z",
+    "reported_gaps": 0,
+    "sealed_byte_range_holes": 0,
+    "card_reference_comparison_completed": false
+  },
+  "scene_measurements": {
+    "before": {
+      "batches": 7,
+      "seconds": 420.0,
+      "vad_speech_seconds": 58.644,
+      "scene_windows": 42,
+      "music_score_ge_02_windows": 0,
+      "top1_labels": {
+        "Speech": 21,
+        "Animal": 10,
+        "Inside, small room": 4,
+        "Outside, rural or natural": 3,
+        "Computer keyboard": 2,
+        "Silence": 1,
+        "Bird": 1
+      },
+      "speaker_windows": 12,
+      "owner_candidate_windows": 0,
+      "empty_asr_batches": 3,
+      "asr_length_under_6_batches": 5,
+      "model_elapsed_seconds_max": 6.895645868964493
+    },
+    "outbound_road": {
+      "batches": 5,
+      "seconds": 300.0,
+      "vad_speech_seconds": 219.37599999999998,
+      "scene_windows": 30,
+      "music_score_ge_02_windows": 0,
+      "top1_labels": {
+        "Speech": 29,
+        "Animal": 1
+      },
+      "speaker_windows": 44,
+      "owner_candidate_windows": 0,
+      "empty_asr_batches": 0,
+      "asr_length_under_6_batches": 1,
+      "model_elapsed_seconds_max": 10.81138423550874
+    },
+    "restaurant": {
+      "batches": 55,
+      "seconds": 3300.0,
+      "vad_speech_seconds": 2904.6799999999957,
+      "scene_windows": 330,
+      "music_score_ge_02_windows": 32,
+      "top1_labels": {
+        "Speech": 330
+      },
+      "speaker_windows": 615,
+      "owner_candidate_windows": 2,
+      "empty_asr_batches": 0,
+      "asr_length_under_6_batches": 0,
+      "model_elapsed_seconds_max": 11.030270579271019
+    },
+    "return_road": {
+      "batches": 5,
+      "seconds": 300.0,
+      "vad_speech_seconds": 170.848,
+      "scene_windows": 30,
+      "music_score_ge_02_windows": 0,
+      "top1_labels": {
+        "Speech": 30
+      },
+      "speaker_windows": 36,
+      "owner_candidate_windows": 0,
+      "empty_asr_batches": 0,
+      "asr_length_under_6_batches": 0,
+      "model_elapsed_seconds_max": 9.600540301762521
+    },
+    "after": {
+      "batches": 14,
+      "seconds": 840.0,
+      "vad_speech_seconds": 172.05599999999995,
+      "scene_windows": 84,
+      "music_score_ge_02_windows": 0,
+      "top1_labels": {
+        "Speech": 49,
+        "Computer keyboard": 14,
+        "Inside, small room": 10,
+        "Animal": 3,
+        "Bird": 1,
+        "Beatboxing": 1,
+        "Outside, rural or natural": 1,
+        "Domestic animals, pets": 1,
+        "Dog": 1
+      },
+      "speaker_windows": 34,
+      "owner_candidate_windows": 0,
+      "empty_asr_batches": 3,
+      "asr_length_under_6_batches": 4,
+      "model_elapsed_seconds_max": 7.691219952888787
+    }
+  },
+  "selected_audio_checks": [
+    {
+      "sequence": 17,
+      "source_sha256": "9e615e441b8968f92dea0f92c47113493b9fd726ac845879d7c3a41f718cea36",
+      "strict_decode_passed": true,
+      "seconds": 60.0,
+      "rms_dbfs": -23.723477521075846,
+      "peak": 0.8511744141578674,
+      "clipped_fraction": 0.0
+    },
+    {
+      "sequence": 37,
+      "source_sha256": "0c3b14ae6493b973c0d1643263d1783e0191edef42440cfedfd4722477163993",
+      "strict_decode_passed": true,
+      "seconds": 60.0,
+      "rms_dbfs": -22.542371394026777,
+      "peak": 1.0015546083450317,
+      "clipped_fraction": 2.0833333333333334e-06
+    },
+    {
+      "sequence": 62,
+      "source_sha256": "e799f48f29bdd3e54ced68e57e174af513732d274747afd0e9cce20e6cc87975",
+      "strict_decode_passed": true,
+      "seconds": 60.0,
+      "rms_dbfs": -21.98610469047201,
+      "peak": 0.802588939666748,
+      "clipped_fraction": 0.0
+    },
+    {
+      "sequence": 69,
+      "source_sha256": "c848a4a4a8ab2436abca575d201b365c0989a3d6f3ef44192c291dcc6af30d0a",
+      "strict_decode_passed": true,
+      "seconds": 60.0,
+      "rms_dbfs": -23.86811542437783,
+      "peak": 0.9841678738594055,
+      "clipped_fraction": 0.0
+    }
+  ],
+  "processing_lag_seconds": {
+    "median_from_recorded_at_to_document_created": 766.28067,
+    "latest_in_snapshot": 926.230347,
+    "max_in_snapshot": 1171.82525,
+    "includes_sixty_second_batch_wait": true
+  },
+  "queue_at_snapshot": {
+    "ambient_queued": 13,
+    "ambient_running": 1,
+    "event_consolidate_queued": 15,
+    "event_consolidate_retryable": 1,
+    "activity_running_error": "APITimeoutError",
+    "personal_retryable_error": "ValueError"
+  },
+  "current_session_activity_validation_diagnostics": {
+    "current_session_validation_diagnostics": 11,
+    "types": {
+      "Activity evidence is missing, duplicated or invented": 7,
+      "Activity issues interleave": 4
+    }
+  },
+  "home_warning": {
+    "shown_count": 11,
+    "fresh_phone_outbox_checked": true,
+    "all_belong_to_old_lan_service": true,
+    "current_cloud_capture_unaccepted_outbox_count": 0,
+    "source_code_problem": "heldCount is global across service/session identities"
+  },
+  "limits": [
+    "No word-level human transcript reference or verified speaker-turn labels",
+    "615 restaurant windows are coarse VAD-selected windows, not 615 independent people or an accuracy denominator",
+    "Only two restaurant windows reached provisional owner threshold; neither true misses nor false accepts quantified",
+    "Music score threshold 0.2 is an uncalibrated inspection rule, not event accuracy",
+    "Strict decoding and low near-full-scale samples do not prove original microphone ADC quality or zero loss",
+    "Recording remains active; no full card reference downloaded",
+    "No live UI interaction or accessibility acceptance; screenshot/source review only",
+    "Reference screenshot has back navigation and may be a daily-detail list rather than the entire homepage",
+    "No production code or model threshold changed in this review"
+  ]
+}

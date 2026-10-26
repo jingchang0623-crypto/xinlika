@@ -1,0 +1,22 @@
+{
+  "captureDirectory": "<LOCAL_HOME>/Documents/ChatGPT/深脑 app/.build/cb08-captures/boundary-20261020",
+  "processIdAtStart": 88152,
+  "execSessionId": 84621,
+  "startedAt": "2026-10-20T14:59:15Z",
+  "plannedSeconds": 12000,
+  "expectedFinishApproximately": "2026-10-21T02:20:00+08:00",
+  "automationId": "cb08",
+  "status": "long_capture_analysis_complete",
+  "stopPolicy": "only original explicitly owned file; rollover identity is not auto-adopted",
+  "finishedAt": "2026-10-20T18:19:30Z",
+  "deviceIdleConfirmed": true,
+  "followupProgressFile": ".build/cb08-followup-20261021/state.json",
+  "downloadRunnerExecSession": 21735,
+  "historyAsrExecSession": 74612,
+  "evaluationRunnerExecSession": 69070,
+  "evaluationProgressFile": ".build/cb08-followup-20261021/evaluation-state.json",
+  "longReferenceComparisonFinished": true,
+  "automationStatus": "PAUSED",
+  "followupStatus": "source_and_human_reference_pending",
+  "entireFollowupComplete": false
+}

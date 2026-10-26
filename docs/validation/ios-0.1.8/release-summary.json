@@ -1,0 +1,15 @@
+{
+  "bundleIdentifier": "com.zaowuyun.shennao",
+  "version": "0.1.8",
+  "build": "9",
+  "configuration": "Release",
+  "signingVerified": true,
+  "installed": true,
+  "launchedNormally": true,
+  "syncPausePreserved": true,
+  "hardwareReport": "hardware-production.json",
+  "unitTestsPassed": 106,
+  "uniqueRecordingUITestsPassed": 9,
+  "modifiedUITestRerunPassed": 1,
+  "releaseDebugSwitchesFound": []
+}

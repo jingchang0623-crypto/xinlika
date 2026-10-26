@@ -1,0 +1,273 @@
+{
+  "validation_date": "2026-10-22",
+  "server_image": "xinlika-shared:20261022-r26-amd64",
+  "iphone_build": "0.3.7(25)",
+  "cross_file_recovery": {
+    "protocol_implemented": true,
+    "physical_files_remain_separate": true,
+    "root_clock_preserved": true,
+    "stable_child_ids": true,
+    "verified_predecessor_hash_required": true,
+    "exact_size_end_code_and_hash_required": true,
+    "automatic_phone_discovery_observed": true,
+    "phone_reused_two_cloud_archives_without_reupload": true,
+    "new_recordings_created": 0,
+    "card_files_deleted": 0,
+    "audio_control_commands_in_discovery": 0,
+    "unknown_long_gap_not_bridged": true
+  },
+  "homepage": {
+    "source_bound_reversible_admission": true,
+    "reviewed_existing_events": 278,
+    "retained_meaningful_events": 140,
+    "details_excluded_from_home": 138,
+    "recaptioned_from_own_sources": 140,
+    "original_transcripts_and_source_rows_unchanged_during_admission": true,
+    "focus_independently_visible": true,
+    "activity_container_and_drilldown_implemented": true,
+    "unclassified_files_not_treated_as_activities": true,
+    "same_day_phone_mac_snapshot_equal": true,
+    "dinner_activity_grouping": {
+      "source_issues": 50,
+      "containers": 19,
+      "meal_issues": 29,
+      "scene": "user_report_assisted_not_independent_boundary_detection"
+    },
+    "independent_unhinted_activity_boundary_acceptance": false,
+    "dinner_source_repair": {
+      "roots": 1,
+      "new_issues": 7,
+      "retained_fragment_groups": 1,
+      "review_provenance": "bounded_assistant_literal_source_inspection; automatic model candidates failed review",
+      "all_source_characters_preserved": true,
+      "old_parent_retained_superseded": true
+    },
+    "native_phone_review": {
+      "reviewed_on": "2026-10-23",
+      "installed_build": "0.3.7(25)",
+      "meal_home_time_and_separate_checkout_observed": true,
+      "meal_detail_recording_date_and_range_observed": true,
+      "overview_expansion_and_collapse_observed": true,
+      "sample_child_source_time_and_literal_quote_observed": true,
+      "all_29_event_identities_and_activity_data_unchanged": true,
+      "all_29_children_visually_audited": false
+    },
+    "rendered_home_row_counts": {
+      "2026-10-21": 24,
+      "2026-10-22": 31
+    },
+    "stale_consolidation_context_resolution": {
+      "obsolete_consolidation_context_superseded": 1,
+      "source_events_all_replaced_or_changed": true,
+      "asr_or_model_retried": false,
+      "new_audio_uploaded": false
+    }
+  },
+  "checks": {
+    "python_tests": 190,
+    "core_self_tests": 69,
+    "iphone_capture_tests": 23,
+    "iphone_device_build_passed": true,
+    "mac_build_passed": true
+  },
+  "limitations": [
+    "Device filename plus encoded samples does not independently prove ADC continuity or zero lost samples.",
+    "Afternoon real speech has not been word-level manually transcribed.",
+    "Restaurant activity boundary was assisted by user-provided approximate scene. Unhinted run still oversegments.",
+    "Activity analysis explicitly reports a limit beyond 300 visible daily issues instead of silently truncating.",
+    "17:39 to 19:53 coverage remains unresolved."
+  ],
+  "privacy": {
+    "raw_audio_text_model_outputs_private": true,
+    "whole_card_not_uploaded": true,
+    "git_commit_or_push": false
+  },
+  "afternoon_recovery": {
+    "parts": [
+      {
+        "session_id": "087c2311-4b7f-5fe0-9402-8304e460afac",
+        "archive": {
+          "status": "phone_card_bytes_verified",
+          "bytes": 21602040,
+          "sha256": "cc910d056188ed74cd647ba62af1f9734b20742c8cad9fc0f6324f4710621725"
+        },
+        "batch_count": 181,
+        "asr_jobs": [
+          {
+            "status": "completed",
+            "n": 181
+          }
+        ],
+        "document_count": 181,
+        "document_statuses": [
+          {
+            "status": "no_text",
+            "n": 19
+          },
+          {
+            "status": "review_pending",
+            "n": 157
+          },
+          {
+            "status": "transcript_only",
+            "n": 5
+          }
+        ],
+        "derived_jobs": [
+          {
+            "kind": "ambient_analysis",
+            "status": "completed",
+            "n": 181
+          },
+          {
+            "kind": "event_consolidate",
+            "status": "completed",
+            "n": 47
+          },
+          {
+            "kind": "event_consolidate",
+            "status": "superseded",
+            "n": 1
+          }
+        ],
+        "document_clock": {
+          "earliest_jd": 2461335.7086639004,
+          "latest_jd": 2461335.8336639004
+        },
+        "claims": 0
+      },
+      {
+        "session_id": "62c3cf37-b841-5408-acb6-51206012eae4",
+        "archive": {
+          "status": "phone_card_bytes_verified",
+          "bytes": 11814360,
+          "sha256": "a8aa36191214376a0878f838a826daa2ab5a1763494d3ad30125dc60955323b1"
+        },
+        "batch_count": 99,
+        "asr_jobs": [
+          {
+            "status": "completed",
+            "n": 99
+          }
+        ],
+        "document_count": 99,
+        "document_statuses": [
+          {
+            "status": "no_text",
+            "n": 4
+          },
+          {
+            "status": "review_pending",
+            "n": 95
+          }
+        ],
+        "derived_jobs": [
+          {
+            "kind": "ambient_analysis",
+            "status": "completed",
+            "n": 99
+          }
+        ],
+        "document_clock": {
+          "earliest_jd": 2461335.8336754744,
+          "latest_jd": 2461335.90173103
+        },
+        "claims": 0
+      }
+    ],
+    "active_recordings": 0,
+    "previous_completed_asr_checked": 408,
+    "prior_asr_jobs_retried": 0,
+    "snapshot_at_utc": "2026-10-22T16:02:31.745510+00:00",
+    "asr_word_accuracy_validated": false,
+    "shared_views": {
+      "2026-10-21": {
+        "phone_mac_today_equal": true,
+        "all_visible_event_ids_preserved": true,
+        "events": 55,
+        "groups": 22,
+        "unknown_recording_times": 0
+      },
+      "2026-10-22": {
+        "phone_mac_today_equal": true,
+        "all_visible_event_ids_preserved": true,
+        "events": 270,
+        "groups": 23,
+        "unknown_recording_times": 0
+      }
+    },
+    "dinner": {
+      "start_local": "2026-10-21T22:19:02.429000+08:00",
+      "end_local": "2026-10-21T23:15:02.429000+08:00",
+      "activity_kind": "meal",
+      "issues": 29,
+      "scene_boundary_assisted": true
+    }
+  },
+  "native_ui_followup_20261023": {
+    "review_date": "2026-10-23",
+    "source_recording_date": "2026-10-21",
+    "before_build24": {
+      "home_activity_visible": true,
+      "home_clock": "22:19–23:15",
+      "checkout_separate": "23:15–23:18",
+      "activity_detail_opens": true,
+      "summary_and_sources_visible": true,
+      "activity_header_recording_clock_missing": true,
+      "child_order_not_chronological": false,
+      "child_clock_missing": true,
+      "server_already_chronological": true
+    },
+    "changes_build25": {
+      "activity_recording_day_and_range": true,
+      "source_clock_child_order": true,
+      "unknown_child_clock_sorted_last": true,
+      "overview_default_three_lines_expandable": true,
+      "child_summary_default_two_lines": true,
+      "child_clock_visible": true,
+      "transcript_asr_backend_changes": false,
+      "device_build_passed": true,
+      "native_review": {
+        "completed": true,
+        "reviewed_on": "2026-10-23",
+        "recording_day_visible": "2026-10-21",
+        "recording_range_visible": "approximately 22:19-23:15",
+        "overview_expand_and_collapse_observed": true,
+        "sample_child_clocks_visible": [
+          "22:19",
+          "22:19",
+          "22:26",
+          "22:27",
+          "22:28"
+        ],
+        "representative_child_source_date_visible": "2026-10-21 22:28",
+        "representative_child_literal_source_opened": true,
+        "checkout_still_separate": "23:15-23:18",
+        "left_phone_on": "meal_activity_detail_collapsed_overview",
+        "all_29_children_visually_audited": false
+      }
+    },
+    "data_check": {
+      "source_event_count": 29,
+      "all_source_identities_unchanged": true,
+      "meal_source_envelope": [
+        "2026-10-21T22:19:02.429000+08:00",
+        "2026-10-21T23:15:02.429000+08:00"
+      ],
+      "first_five_display_clocks": [
+        "2026-10-21T22:19:02.429000+08:00",
+        "2026-10-21T22:19:02.429000+08:00",
+        "2026-10-21T22:26:02.429000+08:00",
+        "2026-10-21T22:27:02.429000+08:00",
+        "2026-10-21T22:28:02.429000+08:00"
+      ],
+      "last_display_clock": "2026-10-21T23:10:02.429000+08:00",
+      "activity_and_source_data_unchanged_by_ui_patch": true,
+      "checked_at": "2026-10-23T01:38:34.908613+00:00",
+      "previous_server_order_chronological": true
+    },
+    "installed_build": "0.3.7(25)",
+    "no_capture_interrupted": true,
+    "checked_at_utc": "2026-10-23T01:42:37.895881+00:00"
+  }
+}

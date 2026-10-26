@@ -1,0 +1,9 @@
+{
+  "cloudRestartRecovered": true,
+  "deviceCredentialPersisted": true,
+  "workspaceIdentityPersisted": true,
+  "revisionDidNotGoBackwards": true,
+  "originalTextRestored": true,
+  "onlyCloudServiceRestarted": true,
+  "phoneServiceUntouched": true
+}

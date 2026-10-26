@@ -1,0 +1,4 @@
+# Opt-in native Agent / standard MCP. Keep Hermes in a separate Python 3.14 venv.
+-r requirements-heartball.txt
+mcp==1.30.0
+deepseek-harness-sdk==0.2.1rc2

@@ -1,0 +1,6 @@
+// xcconfig 会把 // 解析成注释，用空变量隔开 URL 的两个斜杠。
+SHENNAO_API_BASE = https:/$()/shennao.zaowuyun.com
+SHENNAO_SUPABASE_URL =
+SHENNAO_SUPABASE_ANON_KEY =
+
+#include? "Local.xcconfig"

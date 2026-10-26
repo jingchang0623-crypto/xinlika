@@ -1,0 +1,26 @@
+{
+  "repository": "https://github.com/SonicloudTech/sonicloud_opensdk",
+  "commit": "f10cd9bf2a2341566d923818602ac93fb9246091",
+  "files": {
+    "pnote-ios-sdk/PNode.h": "79fa55c3f7bc0c14648444f3a1a0e6c21b58ca3608be123a9347fa18b158ff8b",
+    "pnote-ios-sdk/libPNote.a": "7b969c287ae056988455a26dabe35e97a2a4ffc0f4f8937e056884e80ae5565a",
+    "pnote-web-win&Mac-demo/recorder/device.py": "e8d4db68102c2ebfd6f501c8c286505be9233f30a39c1302d16f2568f635d23a",
+    "pnote-web-win&Mac-demo/docs/协议.md": "2ce32f6b772c3ef164be52b66a27cc719319237c1231b5de1ab56154db6fbd35",
+    "pnote-android-sdk/pnote_20260827161403.aar": "1fb794ac2631aa2278eca54ea5c6c3afec8efd7818a679398c4bbc4501f8f49e"
+  },
+  "findings": {
+    "start_record": "01 00; creates hardware file, excluded from reconnect",
+    "continue_record": "01 03 00; previous physical trial did not restore iPhone stream",
+    "start_record_only_app": "private PNode selector calls startRecordByState:withFileName: with state=3; branch bypasses startRecord/sendCMDData; local app state only",
+    "start_transcribe": "DataEncapsulation constructor emits 01 01; public SDK does not expose a caller. Dedicated physical CB08 trials restored same-file live audio; refer to first/second-round evidence.",
+    "web_demo": "realtime_start sends TYPE=1 CMD=0; no separate attach method exposed",
+    "android_start_transcribe": {
+      "constructor": "Cmd.startTranscribe creates bytes 01 01",
+      "class_constant_pool_occurrences": [
+        "com/wind/pnote/bluetooth/Cmd.class"
+      ],
+      "limitation": "No public PNote or WindBluetoothService call found; static method presence does not establish firmware support."
+    }
+  },
+  "interpretation_limit": "Only CB08 V1.0.0 is admitted in normal policy. Two physical trials are not proof for other firmware, all-day stability, or gap-free transport."
+}

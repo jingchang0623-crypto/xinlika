@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-23",
+  "timezone": "Asia/Shanghai",
+  "scope": "static_architecture_source_and_documentation_research",
+  "production_changed": false,
+  "candidate_runtime_installed_or_run": false,
+  "private_audio_uploaded": false,
+  "asr_repeated": false,
+  "recommendation": {
+    "near_term_runtime_candidate": "NousResearch/hermes-agent",
+    "composable_harness_comparison_candidate": "deepseek-ai/deepseek-harness",
+    "selection_basis": "Service interface and runtime source inspection; no real-audio comparative acceptance yet",
+    "integration": "Keep capture, ASR idempotency, business evidence ledger, durable jobs and sync; add AgentAdapter and controlled domain tools; run one production writer",
+    "memory": "One authoritative source-attributed business store; runtime working context is not personal fact authority"
+  },
+  "verified_current_source": {
+    "fixed_processing_graph": "scripts/heartball_processing.py",
+    "fixed_personal_agent_graph": "scripts/heartball_personal_agent.py",
+    "personal_claims_initial_status": "proposed",
+    "personal_memory_auto_confirmed": false,
+    "recall": "SQLite FTS5 trigram and lexical fallback"
+  },
+  "deepseek_harness": {
+    "repo": "https://github.com/deepseek-ai/deepseek-harness",
+    "commit": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "source_version": "0.2.1-rc.2",
+    "license": "MIT",
+    "release_status": "developer preview per README",
+    "integration_paths": [
+      "Python SDK / stdio JSON-RPC",
+      "Cordis plugins / MCP / Skills"
+    ],
+    "important_limits": [
+      "Webhook runtime is process-local without durable queue or built-in deduplication",
+      "Dynamic workflow scripts lack journaling and resume; session resume exists separately",
+      "Default profile composition must be reviewed; sdk-minimal is a coding-oriented minimal profile",
+      "Official DeepSeek session-log request contribution is enabled by default in shipped compositions and can be disabled"
+    ]
+  },
+  "research_outcome": "architecture_verified_and_candidate_comparison_documented",
+  "not_validated": [
+    "Candidate runtime deployment in Xinlika",
+    "Actual model tool-calling compatibility with each configured provider",
+    "Plugin ABI and profile composition compatibility under a chosen release",
+    "Real dinner and meeting grouping quality under candidate agents",
+    "Candidate task crash recovery and production resource consumption",
+    "Chinese personal memory recall quality, source attribution and correction propagation"
+  ],
+  "document": "docs/xinlika-agent-architecture-2026-10-23.md",
+  "evidence_cache": ".build/personal-agent-architecture-20261023"
+}

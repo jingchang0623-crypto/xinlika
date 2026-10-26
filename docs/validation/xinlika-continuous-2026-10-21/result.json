@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "sessionId": "b999cd96-bd44-43ac-beeb-2417e1c39663",
+  "recordingDate": "2026-10-21",
+  "timeZone": "Asia/Shanghai",
+  "finishedAt": "2026-10-21T09:04:56Z",
+  "recordingStoppedFor": "explicit_user_approved_iPhone_handoff",
+  "authorizationEvidence": {
+    "threadId": "01a15da0-2faa-7bd0-9d07-fc0b1b129b35",
+    "userMessageId": "01a15db4-8ac2-7913-86df-0ade0bb38f4e",
+    "approval": "现在保存并交给 iPhone 测试"
+  },
+  "ownedFile": "note20261021-162911.opus",
+  "status": "completed",
+  "captureOutcome": "interrupted_observation_saved",
+  "liveAudioSeconds": 2139.92,
+  "liveAudioBytes": 4279840,
+  "notificationAudioFrames": 26749,
+  "droppedSubmissions": 0,
+  "analysisProblems": [],
+  "streams": [
+    {
+      "indexedBytes": 4279840,
+      "actualBytes": 4279840,
+      "businessFrames": 26749,
+      "sha256": "27041d951508386eb0030f360ab01292eb42ad0172fd8e0cadb9c14470a4c8bc",
+      "referenceVerdict": "exact_unique_card_range_found",
+      "decode": {
+        "decoderExitCode": 0,
+        "decodedSamples": 34238720,
+        "decodedSeconds": 2139.92,
+        "expectedSamplesUnder20msBaseline": 34238720,
+        "baselineSampleCountMatches": true
+      },
+      "cardMatches": [
+        {
+          "offset": 0,
+          "length": 4279840,
+          "uniqueWithinFile": true
+        }
+      ]
+    }
+  ],
+  "unexpectedEvents": [],
+  "cardReference": {
+    "attempts": 1,
+    "endCode": 0,
+    "expectedBytes": 4279920,
+    "receivedBytes": 4279920,
+    "sizeAndEndConfirmed": true,
+    "cardFilesDeleted": 0,
+    "recordingControlCommands": 0
+  },
+  "cardAudioSeconds": 2139.96,
+  "missingLiveRanges": [
+    [
+      4279840,
+      4279920
+    ]
+  ],
+  "missingLiveSeconds": 0.04,
+  "cardTailPreserved": true,
+  "cardTailIncludedInTranscription": false,
+  "batchCount": 36,
+  "tailBatch": {
+    "sequence": 35,
+    "seconds": 39.92,
+    "reason": "capture_end"
+  },
+  "jobs": [
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null,
+      "count": 36
+    },
+    {
+      "kind": "audio_repair_review",
+      "status": "blocked_quality_review",
+      "attempts": 0,
+      "error": null,
+      "count": 1
+    },
+    {
+      "kind": "event_consolidate",
+      "status": "completed",
+      "attempts": 1,
+      "error": null,
+      "count": 5
+    },
+    {
+      "kind": "topic_reconcile",
+      "status": "completed",
+      "attempts": 1,
+      "error": null,
+      "count": 1
+    }
+  ],
+  "documents": [
+    {
+      "kind": "ambient",
+      "status": "no_text",
+      "count": 23
+    },
+    {
+      "kind": "ambient",
+      "status": "review_pending",
+      "count": 13
+    }
+  ],
+  "activeEvents": 7,
+  "allCurrentSessionEventsPresentInToday": true,
+  "linkedTopics": 0,
+  "continuousAudioProven": false,
+  "transcriptAccuracyProven": false,
+  "threeHourBoundaryTested": false,
+  "limits": [
+    "The 40ms saved-card tail is absent from live transcription and remains in local quality review",
+    "No_text documents do not prove silence, firmware VAD, or speech recognition correctness",
+    "No cross-recording topic link or automatic all-day meeting-boundary acceptance established",
+    "No two/three-hour boundary or 24-hour endurance test completed; user approved handoff after approximately 35m40s"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "devicesAndConfigurations" : [
+    {
+      "device" : {
+        "architecture" : "arm64",
+        "deviceId" : "65F68B44-C13E-4864-AE11-83D5C6C1B950",
+        "deviceName" : "iPhone 17 Pro",
+        "modelName" : "iPhone 17 Pro",
+        "osBuildNumber" : "23F77",
+        "osVersion" : "26.5",
+        "platform" : "iOS Simulator"
+      },
+      "expectedFailures" : 0,
+      "failedTests" : 1,
+      "passedTests" : 102,
+      "skippedTests" : 0,
+      "testPlanConfiguration" : {
+        "configurationId" : "1",
+        "configurationName" : "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription" : "Shennao · Built with macOS 26.5.2",
+  "expectedFailures" : 0,
+  "failedTests" : 1,
+  "finishTime" : 1788748577.114,
+  "passedTests" : 102,
+  "result" : "Failed",
+  "skippedTests" : 0,
+  "startTime" : 1788748152.601,
+  "statistics" : [
+
+  ],
+  "testFailures" : [
+    {
+      "failureText" : "Failed to tap \"取消\" Button: No matches found for Elements matching predicate '\"取消\" IN identifiers' from input {(\n    Button, identifier: 'doc.text', label: '记录', Selected,\n    Button, identifier: 'waveform', label: '设备',\n    Button, identifier: 'gearshape', label: '设置',\n    Button, identifier: 'select-all-recordings', label: '取消全选',\n    Button, label: '完成',\n    Button, label: '确认导入并分析',\n    Button, identifier: 'ignore-recordings', label: '忽略',\n    Button, identifier: 'approve-recordings', label: '导入并分析',\n    Button, identifier: 'records-menu', label: '更多',\n    Button, label: '待确认', Selected,\n    Button, label: '处理中',\n    Button, label: '已忽略',\n    Button, identifier: 'open-pending-recordings', label: '待确认 1',\n    Button, identifier: 'result-ui-fixture', label: '界面测试样例 · 产品复盘、9:30 · 10 分钟、先确保录音安全，再让分析可见。这次讨论围绕同步稳定性、结果反馈和手机阅读体验展开，优先解决阻碍日常使用的问题。、分析完成',\n    Button, identifier: 'result-ui-pending', label: '界面测试样例 · 行走中的想法、14:30 · 7 分钟、围绕专注与休息，记录下几个值得继续探索的问题。、分析中'\n)}",
+      "targetName" : "ShennaoUITests",
+      "testIdentifier" : 94,
+      "testIdentifierString" : "RecordingQueueUITests/testRestoreRequiresReviewAndCancelledApprovalDoesNotTransfer()",
+      "testIdentifierURL" : "test://com.apple.xcode/Shennao/ShennaoUITests/RecordingQueueUITests/testRestoreRequiresReviewAndCancelledApprovalDoesNotTransfer",
+      "testName" : "testRestoreRequiresReviewAndCancelledApprovalDoesNotTransfer()"
+    }
+  ],
+  "title" : "Test - Shennao",
+  "topInsights" : [
+    {
+      "category" : "Longest Test Runs",
+      "impact" : "12% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 46.19s (three standard deviations)"
+    }
+  ],
+  "totalTestCount" : 103
+}

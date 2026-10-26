@@ -1,0 +1,102 @@
+{
+  "status": "tested_combinations_completed_normal_handshake_verified_single_trials_no_hardware_focus_established",
+  "authorized_by_user": "continue full vendor button ACK and foreground/background handshake; avoid disconnect and missing onset; explore continuous focus without stop",
+  "vendor_commit": "f10cd9bf2a2341566d923818602ac93fb9246091",
+  "implementation": {
+    "shared_module": "Sources/LuyinbiCore/RecorderButtonHandshake.swift",
+    "normal_response_data": {
+      "start": "030201",
+      "save": "030401",
+      "pause": "030601",
+      "resume": "030801"
+    },
+    "app_state_data": {
+      "foreground": "001201",
+      "background": "001202"
+    },
+    "experimental_reject_save": "030402; controlled experiment completed, recording still stopped; not a production policy",
+    "response_path": "BLE observer callback, independent of query waiter and poll loop",
+    "guards": [
+      "fresh idle and complete initial catalogue",
+      "AE23 subscribed",
+      "known connection and empty request payload",
+      "fresh state <=12s",
+      "dedicated test file ownership",
+      "no auto restart",
+      "one pending accepted device action until state confirmation"
+    ]
+  },
+  "trials": [
+    {
+      "id": "foreground-normal",
+      "mode": "vendor",
+      "state": "foreground",
+      "checks": [
+        "ACK latency",
+        "disconnects",
+        "physical start/stop",
+        "unique saved-file mapping",
+        "strict decoding",
+        "live/card exact ranges and missing onset"
+      ]
+    },
+    {
+      "id": "background-normal",
+      "mode": "vendor",
+      "state": "background",
+      "checks": [
+        "same as foreground; macOS protocol announcement only, not iOS background execution"
+      ]
+    },
+    {
+      "id": "continuous-decline-save",
+      "mode": "reject-save",
+      "checks": [
+        "same physical file and increasing count",
+        "no decoder or byte gaps versus saved card",
+        "no disconnect",
+        "repeated candidate boundaries",
+        "actual device indicators",
+        "failure return effect, not assumed preservation"
+      ]
+    },
+    {
+      "id": "continuous-foreground-no-reply",
+      "mode": "observe-only with explicit foreground announcement",
+      "app_state_data": "001201",
+      "difference_from_earlier_no_reply": "earlier observe-only sent no lifecycle announcement",
+      "checks": [
+        "actual save request with awake screen",
+        "no reply sent",
+        "state/file/count beyond request timeout",
+        "live bytes and full saved card comparison",
+        "whether repeated requests possible if recording continues"
+      ],
+      "not_a_product_claim": "withholding a reply is a controlled experiment; no focus support assumed"
+    }
+  ],
+  "verification": {
+    "probe_self_test": "85/85 synthetic",
+    "capture_analysis_tests": "7/7",
+    "probe_build": "passed"
+  },
+  "updated_at": "2026-10-21T03:28:41.791505+00:00",
+  "audio_uploads": 0,
+  "card_files_deleted": 0,
+  "results": {
+    "foreground": "foreground-handshake-result.json",
+    "background": "background-handshake-result.json",
+    "continuous_reject_save": "continuous-reject-save-result.json",
+    "continuous_zero_response": "continuous-zero-response-result.json",
+    "foreground_no_reply": "continuous-foreground-no-reply-result.json",
+    "resume_while_pending": "continuous-resume-on-save-result.json",
+    "mode_switch": "mode-switch-result.json"
+  },
+  "conclusions": {
+    "normal_handshake": "no disconnect and no missing card prefix in foreground/background single trials; not iOS background verification",
+    "save_variants": "normal, 2, 0, no reply and pending resume ultimately stopped recording",
+    "mode_switch": "normal to telephone to normal retained same recording; independent event not established; normal restored",
+    "software_focus": "native App and local service tested; no hardware commands during focus actions",
+    "future_hardware_focus": "requires independently verified non-destructive event or supported firmware capability; no firmware flashing performed"
+  }
+}

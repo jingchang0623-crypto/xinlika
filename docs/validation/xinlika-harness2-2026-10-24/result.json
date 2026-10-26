@@ -1,0 +1,360 @@
+{
+  "status": "completed",
+  "upstream_commit": "1cfe254e8d25b15f37048c3730134686abe60335",
+  "input_partition": {
+    "development": {
+      "documents": 78,
+      "characters": 12898,
+      "sha256": "ac4cc67c65b8dedc13cd9580d9de2c674abb1ee19a1ba3e6f746a3565ffbecc7",
+      "dates": [
+        "2026-10-21"
+      ]
+    },
+    "holdout": {
+      "documents": 103,
+      "characters": 13440,
+      "sha256": "bae9fbc34eb7c100290fa6051cb9621ab20820b1a8b6775be43ed0bf83ca895d",
+      "dates": [
+        "2026-10-22"
+      ]
+    }
+  },
+  "source_overlap": 0,
+  "historical_exposure": "development_day_seen_in_prior_manual_tuning; holdout_excluded_from_this_optimizer_and_previous_incremental_day_corpus",
+  "method": "pre-registered literal ASR-anchor checks; structural fixtures are not quality scores; no word-accuracy or independent cross-link recall claim",
+  "candidate_sha256": "7d522f5fa54907180785b231f53fa9dbf9f84b6f3192b2a9dc3227ec1b9c0ac4",
+  "results": {
+    "development_baseline": {
+      "status": "failed",
+      "source_integrity": null,
+      "homepage_events": null,
+      "checks": [
+        {
+          "id": "financing_vs_later_delivery",
+          "kind": "different_events",
+          "result": "unscored_source_unavailable"
+        },
+        {
+          "id": "meeting_arrangement_vs_classroom_fragment",
+          "kind": "separate_sources",
+          "result": "unscored_source_unavailable"
+        },
+        {
+          "id": "business_vs_rest_and_health",
+          "kind": "different_events",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "quantity_only_off_home",
+          "kind": "fragment",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "product_feedback_stays_visible",
+          "kind": "visible",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "homework_method_and_effect_stay_together",
+          "kind": "same_event",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "cross_visual_creation_continuation",
+          "kind": "same_relation",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "cross_model_selection_is_distinct",
+          "kind": "different_relation",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "style_vs_ipad_reference",
+          "kind": "different_events",
+          "result": "unscored_incomplete_execution"
+        }
+      ],
+      "passed": 0,
+      "failed": 0,
+      "unscored": 9,
+      "independent_positive_cross_conversation": null,
+      "cost": {
+        "calls": 6,
+        "calls_with_usage": 6,
+        "prompt_tokens": 26919,
+        "completion_tokens": 2824,
+        "total_tokens": 29743,
+        "cached_tokens": 0,
+        "usage_complete": true,
+        "currency_cost": null
+      },
+      "error_type": "ValueError"
+    },
+    "development_candidate": {
+      "status": "completed",
+      "source_integrity": {
+        "expected_spans": 612,
+        "assigned_spans": 612,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "homepage_events": 47,
+      "checks": [
+        {
+          "id": "financing_vs_later_delivery",
+          "kind": "different_events",
+          "result": "unscored_source_unavailable"
+        },
+        {
+          "id": "meeting_arrangement_vs_classroom_fragment",
+          "kind": "separate_sources",
+          "result": "unscored_source_unavailable"
+        },
+        {
+          "id": "business_vs_rest_and_health",
+          "kind": "different_events",
+          "result": "passed"
+        },
+        {
+          "id": "quantity_only_off_home",
+          "kind": "fragment",
+          "result": "passed"
+        },
+        {
+          "id": "product_feedback_stays_visible",
+          "kind": "visible",
+          "result": "passed"
+        },
+        {
+          "id": "homework_method_and_effect_stay_together",
+          "kind": "same_event",
+          "result": "passed"
+        },
+        {
+          "id": "cross_visual_creation_continuation",
+          "kind": "same_relation",
+          "result": "failed"
+        },
+        {
+          "id": "cross_model_selection_is_distinct",
+          "kind": "different_relation",
+          "result": "passed"
+        },
+        {
+          "id": "style_vs_ipad_reference",
+          "kind": "different_events",
+          "result": "failed"
+        }
+      ],
+      "passed": 5,
+      "failed": 2,
+      "unscored": 2,
+      "independent_positive_cross_conversation": null,
+      "cost": {
+        "calls": 32,
+        "calls_with_usage": 32,
+        "prompt_tokens": 203668,
+        "completion_tokens": 24034,
+        "total_tokens": 227702,
+        "cached_tokens": 17144,
+        "usage_complete": true,
+        "currency_cost": null
+      }
+    },
+    "independent_baseline": {
+      "status": "completed",
+      "source_integrity": {
+        "expected_spans": 606,
+        "assigned_spans": 606,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "homepage_events": 45,
+      "checks": [
+        {
+          "id": "complete_mvp_method_and_example",
+          "kind": "same_event",
+          "result": "passed"
+        },
+        {
+          "id": "complete_ev_range_observation_and_explanation",
+          "kind": "same_event",
+          "result": "passed"
+        },
+        {
+          "id": "brief_ev_range_feedback_visible",
+          "kind": "visible",
+          "result": "passed"
+        },
+        {
+          "id": "brief_device_capability_visible",
+          "kind": "visible",
+          "result": "passed"
+        },
+        {
+          "id": "unfinished_reference_off_home",
+          "kind": "fragment",
+          "result": "passed"
+        },
+        {
+          "id": "isolated_time_question_off_home",
+          "kind": "fragment",
+          "result": "failed"
+        },
+        {
+          "id": "business_vs_etc_navigation",
+          "kind": "different_events",
+          "result": "passed"
+        },
+        {
+          "id": "cross_context_robotics_vs_parking",
+          "kind": "different_relation",
+          "result": "passed"
+        }
+      ],
+      "passed": 7,
+      "failed": 1,
+      "unscored": 0,
+      "independent_positive_cross_conversation": "not_available_in_this_independent_source_set",
+      "cost": {
+        "calls": 43,
+        "calls_with_usage": 43,
+        "prompt_tokens": 352218,
+        "completion_tokens": 32022,
+        "total_tokens": 384240,
+        "cached_tokens": 48664,
+        "usage_complete": true,
+        "currency_cost": null
+      }
+    },
+    "independent_candidate": {
+      "status": "completed",
+      "source_integrity": {
+        "expected_spans": 606,
+        "assigned_spans": 606,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "homepage_events": 48,
+      "checks": [
+        {
+          "id": "complete_mvp_method_and_example",
+          "kind": "same_event",
+          "result": "passed"
+        },
+        {
+          "id": "complete_ev_range_observation_and_explanation",
+          "kind": "same_event",
+          "result": "passed"
+        },
+        {
+          "id": "brief_ev_range_feedback_visible",
+          "kind": "visible",
+          "result": "passed"
+        },
+        {
+          "id": "brief_device_capability_visible",
+          "kind": "visible",
+          "result": "passed"
+        },
+        {
+          "id": "unfinished_reference_off_home",
+          "kind": "fragment",
+          "result": "passed"
+        },
+        {
+          "id": "isolated_time_question_off_home",
+          "kind": "fragment",
+          "result": "passed"
+        },
+        {
+          "id": "business_vs_etc_navigation",
+          "kind": "different_events",
+          "result": "passed"
+        },
+        {
+          "id": "cross_context_robotics_vs_parking",
+          "kind": "different_relation",
+          "result": "passed"
+        }
+      ],
+      "passed": 8,
+      "failed": 0,
+      "unscored": 0,
+      "independent_positive_cross_conversation": "not_available_in_this_independent_source_set",
+      "cost": {
+        "calls": 47,
+        "calls_with_usage": 47,
+        "prompt_tokens": 405562,
+        "completion_tokens": 33614,
+        "total_tokens": 439176,
+        "cached_tokens": 89072,
+        "usage_complete": true,
+        "currency_cost": null
+      }
+    }
+  },
+  "adoption": {
+    "accepted": true,
+    "reasons": [],
+    "automatic_activation": false
+  },
+  "total_actual_provider_usage": {
+    "calls": 132,
+    "calls_with_usage": 132,
+    "prompt_tokens": 1587629,
+    "completion_tokens": 96292,
+    "total_tokens": 1683921,
+    "cached_tokens": 165544,
+    "usage_complete": true,
+    "currency_cost": null,
+    "guardrail_reason": null
+  },
+  "editor_cost": {
+    "calls": 4,
+    "calls_with_usage": 4,
+    "prompt_tokens": 599262,
+    "completion_tokens": 3798,
+    "total_tokens": 603060,
+    "cached_tokens": 10664
+  },
+  "unique_solver_cost": {
+    "calls": 128,
+    "calls_with_usage": 128,
+    "prompt_tokens": 988367,
+    "completion_tokens": 92494,
+    "total_tokens": 1080861,
+    "cached_tokens": 154880
+  },
+  "cost_reconciled": true,
+  "safety": {
+    "asr_calls": 0,
+    "hardware_commands": 0,
+    "service_restarts": 0,
+    "production_writes": 0,
+    "git_commits": 0,
+    "automatic_activation": false
+  },
+  "evidence_sha256": {
+    "development_baseline": "3aae4f250221c7cdd4de6d951f485308b8aac68ccbf04ccc51f92df90294731f",
+    "development_candidate": "a63dd31cdbe9434087b8b311a0f132c78734605b4bb157c72fe9c408f9415da2",
+    "independent_baseline": "0a1488218e161c0a871f833f48edefea2af3a256f564924aea867ed3a411f0e0",
+    "independent_candidate": "fe3cff0d02e45ea31f20b91036f62bc2d72a38de1f13fc5ce89a549d16cd818b"
+  },
+  "limitations": [
+    "The independent date contains no confirmed positive cross-conversation pair; that recall remains unscored.",
+    "Development material was exposed during previous manual tuning.",
+    "ASR source text was read for labels, not re-listened; this is not speech-recognition accuracy.",
+    "Upstream k=1 adopts its sole composed final; the separate external gate preserves baseline fallback."
+  ]
+}

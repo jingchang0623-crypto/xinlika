@@ -26,6 +26,32 @@ public enum BLEError: Error, CustomStringConvertible {
     }
 }
 
+/// Opt-in, local capture tap. The normal app continues to discard live audio.
+/// A receiver must enqueue bounded work and return immediately: this runs on the BLE queue.
+public struct BLEFrameObservation: Sendable {
+    public let connectionID: UUID
+    public let source: String
+    public let frame: Proto.Frame
+    public let receivedAt: Date
+    public let uptime: TimeInterval
+
+    public init(connectionID: UUID, source: String, frame: Proto.Frame,
+                receivedAt: Date = Date(), uptime: TimeInterval = ProcessInfo.processInfo.systemUptime) {
+        self.connectionID = connectionID
+        self.source = source
+        self.frame = frame
+        self.receivedAt = receivedAt
+        self.uptime = uptime
+    }
+}
+
+public struct BLENotificationObservation: Sendable {
+    public let connectionID: UUID
+    public let source: String
+    public let isNotifying: Bool
+    public let error: String?
+}
+
 /// CoreBluetooth 封装。AE22 / AE23 各用一个 FrameParser——两路字节交织会毁掉半帧。
 public final class BLEClient: NSObject, @unchecked Sendable {
     private var central: CBCentralManager!
@@ -38,12 +64,45 @@ public final class BLEClient: NSObject, @unchecked Sendable {
         "AE22": FrameParser(name: "AE22"), "AE23": FrameParser(name: "AE23")]
 
     private var pending: [(source: String, frame: Proto.Frame)] = []
+    private let recordingReplies = RecordingReplySlot()
+    private var recordingDiagnosticHandler: (@Sendable (RecordingDiagnosticEvent) -> Void)?
+    private var frameObserver: (@Sendable (BLEFrameObservation) -> Void)?
+    private var notificationObserver: (@Sendable (BLENotificationObservation) -> Void)?
+    private var notificationStatus: [String: Bool] = [:]
+    private var captureConnectionID = UUID()
+    private var liveAudioFrames = 0
+    /// Legacy received-live-frame counter. The normal app discards these bytes;
+    /// an explicit onFrameObservation subscriber may persist its own bounded copy.
+    public var discardedLiveAudioFrameCount: Int {
+        lock.lock(); defer { lock.unlock() }; return liveAudioFrames
+    }
+    public var onRecordingDiagnostic: (@Sendable (RecordingDiagnosticEvent) -> Void)? {
+        get { lock.lock(); defer { lock.unlock() }; return recordingDiagnosticHandler }
+        set { lock.lock(); recordingDiagnosticHandler = newValue; lock.unlock() }
+    }
+    public var onFrameObservation: (@Sendable (BLEFrameObservation) -> Void)? {
+        get { lock.lock(); defer { lock.unlock() }; return frameObserver }
+        set { lock.lock(); frameObserver = newValue; lock.unlock() }
+    }
+    public var onNotificationObservation: (@Sendable (BLENotificationObservation) -> Void)? {
+        get { lock.lock(); defer { lock.unlock() }; return notificationObserver }
+        set { lock.lock(); notificationObserver = newValue; lock.unlock() }
+    }
+    public var notificationStates: [String: Bool] {
+        lock.lock(); defer { lock.unlock() }; return notificationStatus
+    }
     private var waiter: CheckedContinuation<Void, Never>?
-    private var stateWaiter: CheckedContinuation<Void, Never>?
     // 用闭包而不是直接存 continuation：delegate 可能被多次回调，闭包置 nil 后重复回调是空操作
     private var connectWaiter: ((Result<Void, Error>) -> Void)?
     private var discoverWaiter: ((Result<Void, Error>) -> Void)?
+    private var connectAttempt = UUID()
+    private var discoverAttempt = UUID()
     private var notifyReady = 0
+    private var requireKeyNotifications = false
+    private var wireBytes: [String: Int] = [:]
+    public var transportByteCounts: [String: Int] {
+        lock.lock(); defer { lock.unlock() }; return wireBytes
+    }
     private var discovered: [ObjectIdentifier: Discovered] = [:]
     private var seq: UInt8 = 0
 
@@ -60,6 +119,10 @@ public final class BLEClient: NSObject, @unchecked Sendable {
     /// 等「断干净」的人。connect() 会排在这里，避免拿到一条还没真断的连接。
     private var settleWaiters: [() -> Void] = []
     private var disconnectHandler: (@Sendable (Error?) -> Void)?
+    public var onRestore: (@Sendable (UUID) -> Void)?
+    public var onPoweredOn: (@Sendable () -> Void)?
+    public var onConnectAvailable: (@Sendable (UUID) -> Void)?
+    public private(set) var restoredIdentifier: UUID?
 
     public private(set) var mtu: Int = 0
 
@@ -74,23 +137,48 @@ public final class BLEClient: NSObject, @unchecked Sendable {
 
     /// 当前是否持有一条活着的连接。断连回调到达后立刻变 false。
     public var isConnected: Bool {
-        lock.lock(); defer { lock.unlock() }; return peripheral != nil
+        lock.lock(); defer { lock.unlock() }
+        return central?.state == .poweredOn && peripheral?.state == .connected && writeChar != nil
+    }
+    public var connectedIdentifier: UUID? {
+        lock.lock(); defer { lock.unlock() }
+        return peripheral?.state == .connected ? peripheral?.identifier : nil
+    }
+    public var connectionIdentifier: UUID {
+        lock.lock(); defer { lock.unlock() }; return captureConnectionID
     }
 
     public override init() {
         super.init()
+        #if os(iOS)
+        central = CBCentralManager(delegate: self, queue: queue, options: [
+            CBCentralManagerOptionRestoreIdentifierKey: "com.zaowuyun.shennao.ble.v1"]) // gitleaks:allow -- Public CoreBluetooth state-restoration identifier.
+        #else
         central = CBCentralManager(delegate: self, queue: queue)
+        #endif
+    }
+
+    public func knownDevice(_ id: UUID) -> Discovered? {
+        guard let p = central.retrievePeripherals(withIdentifiers: [id]).first else { return nil }
+        return Discovered(peripheral: p, name: p.name ?? "灵魂卡", rssi: 0, byService: true)
     }
 
     // MARK: - 扫描
     public func waitPoweredOn(timeout: TimeInterval = 5) async throws {
-        if central.state == .poweredOn { return }
-        await withCheckedContinuation { (c: CheckedContinuation<Void, Never>) in
-            lock.lock(); stateWaiter = c; lock.unlock()
-            queue.asyncAfter(deadline: .now() + timeout) { [weak self] in self?.resumeState() }
+        let deadline = Date().addingTimeInterval(timeout)
+        while central.state != .poweredOn && Date() < deadline {
+            try await Task.sleep(nanoseconds: 100_000_000)
         }
+        try Task.checkCancellation()
         guard central.state == .poweredOn else {
-            throw BLEError.bluetoothUnavailable("state=\(central.state.rawValue)")
+            let reason: String
+            switch central.state {
+            case .poweredOff: reason = "请在系统设置中开启蓝牙"
+            case .unauthorized: reason = "请在系统设置中允许深脑使用蓝牙"
+            case .unsupported: reason = "当前系统不支持蓝牙连接"
+            default: reason = "蓝牙尚未就绪，请稍后重试"
+            }
+            throw BLEError.bluetoothUnavailable(reason)
         }
     }
 
@@ -137,24 +225,42 @@ public final class BLEClient: NSObject, @unchecked Sendable {
     }
 
     // MARK: - 连接
-    public func connect(_ device: Discovered) async throws {
+    public func connect(_ device: Discovered, synchronizeClock: Bool = true, restoring: Bool = false, requireKeyNotifications: Bool = false) async throws {
+        try Task.checkCancellation()
+        if device.peripheral.state == .connected && !restoring { disconnect() }
         // 「断开 → 立刻重连」的竞态：cancelPeripheralConnection 只是提交请求，
         // 不等系统确认就 connect，可能复用上一条还没真断的连接——
         // 拿到的服务 / 特征还是旧的，notify 也不会重新起。
         await waitDisconnectSettled(timeout: 2)
+        try Task.checkCancellation()
         let p = device.peripheral
         p.delegate = self
         // 回调一律在锁外发（prepareForConnect 里已经解锁）
         for f in prepareForConnect(p) { f() }
-        try await withCheckedThrowingContinuation { (c: CheckedContinuation<Void, Error>) in
-            lock.lock(); connectWaiter = { r in c.resume(with: r) }; lock.unlock()
+        lock.lock(); self.requireKeyNotifications = requireKeyNotifications; lock.unlock()
+        if p.state != .connected { try await withCheckedThrowingContinuation { (c: CheckedContinuation<Void, Error>) in
+            let attempt = UUID()
+            lock.lock(); connectAttempt = attempt; connectWaiter = { r in c.resume(with: r) }; lock.unlock()
             central.connect(p, options: nil)
-        }
+            queue.asyncAfter(deadline: .now() + 12) { [weak self] in
+                self?.finishConnect(.failure(BLEError.connectFailed("连接超时")), attempt: attempt)
+            }
+        } }
+        try Task.checkCancellation()
         try await withCheckedThrowingContinuation { (c: CheckedContinuation<Void, Error>) in
-            lock.lock(); discoverWaiter = { r in c.resume(with: r) }; lock.unlock()
+            let attempt = UUID()
+            lock.lock(); discoverAttempt = attempt; discoverWaiter = { r in c.resume(with: r) }; lock.unlock()
             p.discoverServices([CBUUID(string: Proto.serviceMain)])
+            queue.asyncAfter(deadline: .now() + 12) { [weak self] in
+                self?.finishDiscover(.failure(BLEError.connectFailed("服务发现超时")), attempt: attempt)
+            }
         }
         mtu = p.maximumWriteValueLength(for: .withoutResponse) + 3
+        try Task.checkCancellation()
+        // 每次连接（含下载重连/系统恢复后的连接）都校时，早于调用方查询或下载。
+        // 此时 AE21/AE22 已就绪；0-0 无应答，不等待或消费其他命令的通知帧。
+        // A capture experiment must not alter the recorder's clock at a reconnect/rollover.
+        if synchronizeClock { try syncTime() }
     }
 
     /// 主动断开。签名保持同步不变（上层在 defer 里调，await 不了）。
@@ -165,6 +271,10 @@ public final class BLEClient: NSObject, @unchecked Sendable {
     public func disconnect() {
         guard let p = beginDisconnect() else { return }
         central.cancelPeripheralConnection(p)
+        // An intentional disconnect is filtered out by didDisconnectPeripheral. Wake pending
+        // connect/discovery here so a user pause does not wait for their twelve-second timers.
+        finishConnect(.failure(CancellationError()))
+        finishDiscover(.failure(CancellationError()))
     }
 
     // MARK: - 收发
@@ -178,6 +288,15 @@ public final class BLEClient: NSObject, @unchecked Sendable {
 
     public func send(_ type: UInt8, _ cmd: UInt8, _ params: [UInt8] = []) throws {
         try sendRaw(Proto.buildFrame(type, cmd, params, seq: nextSeq()))
+    }
+
+    /// No boolean ACK is defined for these commands; the caller reads back card state.
+    public func sendRecording(_ action: RecorderAction) throws {
+        guard isConnected else { throw BLEError.notConnected }
+        let seq = nextSeq()
+        try sendRaw(action.frame(sequence: seq))
+        let frame = Proto.Frame(seq: seq, data: [Proto.T.audio, action.request] + action.parameters)
+        if let event = RecordingDiagnosticEvent(phase: "tx", source: "AE21", frame: frame) { onRecordingDiagnostic?(event) }
     }
 
     /// 取下一帧，超时返回 nil。
@@ -207,6 +326,34 @@ public final class BLEClient: NSObject, @unchecked Sendable {
         return nil
     }
 
+    /// TYPE=3 has its own response slot, leaving file/audio frames with their existing consumer.
+    /// Firmware correlates by TYPE/CMD; do not require it to echo the request SEQ.
+    public func recordingExchange(_ command: UInt8, reply: UInt8, timeout: TimeInterval = 3) async throws -> [UInt8]? {
+        try Task.checkCancellation()
+        let token = try recordingReplies.begin(command: reply)
+        defer { recordingReplies.end(token) }
+        discardRecordingReply(reply)
+        guard isConnected else { throw BLEError.notConnected }
+        let seq = nextSeq()
+        let request = Proto.Frame(seq: seq, data: [Proto.T.key, command])
+        try sendRaw(Proto.buildFrame(Proto.T.key, command, seq: seq))
+        if let event = RecordingDiagnosticEvent(phase: "tx", source: "AE21", frame: request) { onRecordingDiagnostic?(event) }
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            try Task.checkCancellation()
+            guard isConnected else { throw BLEError.notConnected }
+            if let frame = recordingReplies.reply(for: token) { return frame.body }
+            try await Task.sleep(for: .milliseconds(20))
+        }
+        if let event = RecordingDiagnosticEvent(phase: "timeout", source: "AE21", frame: request) { onRecordingDiagnostic?(event) }
+        return nil
+    }
+
+    private func discardRecordingReply(_ command: UInt8) {
+        lock.lock(); defer { lock.unlock() }
+        pending.removeAll { $0.frame.type == Proto.T.key && $0.frame.cmd == command }
+    }
+
     public var parserStats: String {
         // 断连时会整只换掉 parsers，读的时候必须持锁，否则和换实例撞上就是数据竞争
         lock.lock()
@@ -216,9 +363,6 @@ public final class BLEClient: NSObject, @unchecked Sendable {
     }
 
     // MARK: - 内部
-    private func resumeState() {
-        lock.lock(); let w = stateWaiter; stateWaiter = nil; lock.unlock(); w?.resume()
-    }
 
     private func clearDiscovered() { lock.lock(); discovered.removeAll(); lock.unlock() }
 
@@ -290,9 +434,12 @@ public final class BLEClient: NSObject, @unchecked Sendable {
     private func prepareForConnect(_ p: CBPeripheral) -> [() -> Void] {
         lock.lock(); defer { lock.unlock() }
         peripheral = p
+        captureConnectionID = UUID()
         writeChar = nil
         notifyReady = 0
         pending.removeAll()
+        notificationStatus.removeAll()
+        wireBytes.removeAll()
         parsers = ["AE22": FrameParser(name: "AE22"), "AE23": FrameParser(name: "AE23")]
         disconnecting = nil
         let settle = settleWaiters; settleWaiters = []
@@ -305,6 +452,7 @@ public final class BLEClient: NSObject, @unchecked Sendable {
         guard let p = peripheral else { return nil }
         peripheral = nil
         writeChar = nil
+        notificationStatus.removeAll()
         disconnecting = p
         return p
     }
@@ -349,6 +497,7 @@ public final class BLEClient: NSObject, @unchecked Sendable {
         disconnecting = nil
         notifyReady = 0
         // 换新实例 = 丢掉半帧缓冲。已经解出来的完整帧（pending）**故意保留**：
+        notificationStatus.removeAll()
         // 设备发完最后一帧就断开是常态，这些字节是真收到的，
         // 丢了会让刚下完的文件被判成「无应答」。
         parsers = ["AE22": FrameParser(name: "AE22"), "AE23": FrameParser(name: "AE23")]
@@ -368,12 +517,20 @@ public final class BLEClient: NSObject, @unchecked Sendable {
         handler?(error)
     }
 
-    fileprivate func finishConnect(_ r: Result<Void, Error>) {
-        lock.lock(); let w = connectWaiter; connectWaiter = nil; lock.unlock(); w?(r)
+    fileprivate func finishConnect(_ r: Result<Void, Error>, attempt: UUID? = nil) {
+        lock.lock()
+        if let attempt, attempt != connectAttempt { lock.unlock(); return }
+        let w = connectWaiter; connectWaiter = nil; lock.unlock(); w?(r)
     }
 
-    fileprivate func finishDiscover(_ r: Result<Void, Error>) {
-        lock.lock(); let w = discoverWaiter; discoverWaiter = nil; lock.unlock(); w?(r)
+    private func isCurrent(_ p: CBPeripheral) -> Bool {
+        lock.lock(); defer { lock.unlock() }; return peripheral === p
+    }
+
+    fileprivate func finishDiscover(_ r: Result<Void, Error>, attempt: UUID? = nil) {
+        lock.lock()
+        if let attempt, attempt != discoverAttempt { lock.unlock(); return }
+        let w = discoverWaiter; discoverWaiter = nil; lock.unlock(); w?(r)
     }
 }
 
@@ -390,10 +547,26 @@ private final class OnceResume: @unchecked Sendable {
 }
 
 extension BLEClient: CBCentralManagerDelegate {
+    public func centralManager(_ c: CBCentralManager, willRestoreState dict: [String: Any]) {
+        guard let p = (dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral])?.first else { return }
+        p.delegate = self
+        lock.lock()
+        peripheral = p
+        restoredIdentifier = p.identifier
+        lock.unlock()
+        onRestore?(p.identifier)
+    }
     public func centralManagerDidUpdateState(_ c: CBCentralManager) {
-        resumeState()
+        if c.state != .poweredOn {
+            // iOS can invalidate the radio without delivering didDisconnect first.
+            // A cached CBPeripheral/AE21 must not masquerade as a usable connection.
+            lock.lock(); let current = peripheral; lock.unlock()
+            if let current { handleDisconnect(current, error: BLEError.bluetoothUnavailable("蓝牙连接已失效，等待系统恢复")) }
+            return
+        }
         // 蓝牙关掉再打开，系统会把扫描一起丢掉。广播流的消费者还在等，得把扫描重新支起来。
         if c.state == .poweredOn, hasAdvSinks() { beginScanning() }
+        if c.state == .poweredOn { onPoweredOn?() }
     }
 
     public func centralManager(_ c: CBCentralManager, didDiscover p: CBPeripheral,
@@ -407,10 +580,13 @@ extension BLEClient: CBCentralManagerDelegate {
     }
 
     public func centralManager(_ c: CBCentralManager, didConnect p: CBPeripheral) {
+        guard isCurrent(p) else { return }
         finishConnect(.success(()))
+        onConnectAvailable?(p.identifier)
     }
 
     public func centralManager(_ c: CBCentralManager, didFailToConnect p: CBPeripheral, error: Error?) {
+        guard isCurrent(p) else { return }
         finishConnect(.failure(BLEError.connectFailed(error?.localizedDescription ?? "未知")))
     }
 
@@ -422,7 +598,8 @@ extension BLEClient: CBCentralManagerDelegate {
 
 extension BLEClient: CBPeripheralDelegate {
     public func peripheral(_ p: CBPeripheral, didDiscoverServices error: Error?) {
-        guard let svc = p.services?.first else {
+        guard isCurrent(p) else { return }
+        guard error == nil, let svc = p.services?.first(where: { $0.uuid.uuidString.lowercased().hasPrefix("ae20") }) else {
             finishDiscover(.failure(BLEError.missingCharacteristic("AE20 服务")))
             return
         }
@@ -430,6 +607,8 @@ extension BLEClient: CBPeripheralDelegate {
     }
 
     public func peripheral(_ p: CBPeripheral, didDiscoverCharacteristicsFor s: CBService, error: Error?) {
+        guard isCurrent(p) else { return }
+        if let error { finishDiscover(.failure(error)); return }
         for c in s.characteristics ?? [] {
             let u = c.uuid.uuidString.lowercased()
             if u.hasPrefix("ae21") { writeChar = c }
@@ -439,21 +618,62 @@ extension BLEClient: CBPeripheralDelegate {
             finishDiscover(.failure(BLEError.missingCharacteristic("AE21")))
             return
         }
+        if requireKeyNotifications, !(s.characteristics ?? []).contains(where: { $0.uuid.uuidString.lowercased().hasPrefix("ae23") }) {
+            finishDiscover(.failure(BLEError.missingCharacteristic("AE23")))
+        }
     }
 
     public func peripheral(_ p: CBPeripheral, didUpdateNotificationStateFor c: CBCharacteristic, error: Error?) {
-        lock.lock(); notifyReady += 1; let ready = notifyReady; lock.unlock()
-        // AE22 订阅上就能开工；AE23 缺失不致命
-        if ready >= 1 { finishDiscover(.success(())) }
+        guard isCurrent(p) else { return }
+        let uuid = c.uuid.uuidString.lowercased()
+        guard uuid.hasPrefix("ae22") || uuid.hasPrefix("ae23") else { return }
+        let source = uuid.hasPrefix("ae23") ? "AE23" : "AE22"
+        lock.lock()
+        guard peripheral === p else { lock.unlock(); return }
+        notificationStatus[source] = error == nil && c.isNotifying
+        let observer = notificationObserver
+        let connection = captureConnectionID
+        lock.unlock()
+        observer?(BLENotificationObservation(connectionID: connection, source: source,
+            isNotifying: c.isNotifying, error: error?.localizedDescription))
+        guard source == "AE22" || requireKeyNotifications else { return }
+        guard error == nil, c.isNotifying else {
+            finishDiscover(.failure(BLEError.missingCharacteristic("\(source) 订阅失败")))
+            return
+        }
+        lock.lock()
+        let ready = notificationStatus["AE22"] == true && (!requireKeyNotifications || notificationStatus["AE23"] == true)
+        lock.unlock()
+        if ready { finishDiscover(.success(())) }
     }
 
     public func peripheral(_ p: CBPeripheral, didUpdateValueFor c: CBCharacteristic, error: Error?) {
+        guard isCurrent(p), error == nil else { return }
         guard let data = c.value else { return }
         let src = c.uuid.uuidString.lowercased().hasPrefix("ae23") ? "AE23" : "AE22"
         lock.lock()
+        guard peripheral === p else { lock.unlock(); return }
+        wireBytes[src, default: 0] += data.count
         let frames = parsers[src]!.feed([UInt8](data))
-        pending.append(contentsOf: frames.map { (src, $0) })
+        liveAudioFrames += frames.filter { RecordingFramePolicy.isLiveAudio($0) }.count
+        pending.append(contentsOf: frames.filter {
+            !RecordingFramePolicy.isLiveAudio($0) && !recordingReplies.receive($0)
+        }.map { (src, $0) })
+        let diagnostic = recordingDiagnosticHandler
+        let observer = frameObserver
+        let connectionID = captureConnectionID
         lock.unlock()
+        if let observer {
+            let receivedAt = Date()
+            let uptime = ProcessInfo.processInfo.systemUptime
+            for frame in frames {
+                observer(BLEFrameObservation(connectionID: connectionID, source: src, frame: frame,
+                                             receivedAt: receivedAt, uptime: uptime))
+            }
+        }
+        for frame in frames {
+            if let event = RecordingDiagnosticEvent(phase: "rx", source: src, frame: frame) { diagnostic?(event) }
+        }
     }
 
 }

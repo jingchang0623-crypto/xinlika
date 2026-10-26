@@ -23,6 +23,20 @@ public enum Proto {
     // MARK: - TYPE / CMD
     public enum T { public static let ctrl: UInt8 = 0, audio: UInt8 = 1, file: UInt8 = 2, key: UInt8 = 3 }
 
+    public enum CtrlCmd {
+        public static let syncTime: UInt8 = 0   // App → Dev，无应答
+    }
+
+    /// App → device recording controls, physically verified on CB08 V1.0.0.
+    /// TYPE=3 start/save requests in the vendor table are ignored by this firmware.
+    public enum AudioCmd {
+        public static let start: UInt8 = 0, data: UInt8 = 1, stop: UInt8 = 2
+        // App→Dev 01 01 from vendor startTranscribe; verified on CB08 V1.0.0.
+        // Unlike 01 00 it attaches live notifications to the existing card file.
+        public static let attachLive: UInt8 = 1
+        public static let pauseResume: UInt8 = 3, status: UInt8 = 4
+    }
+
     public enum FileCmd {
         public static let listReq: UInt8 = 0, listData: UInt8 = 1
         public static let importReq: UInt8 = 2, importBegin: UInt8 = 3
@@ -36,7 +50,11 @@ public enum Proto {
     }
 
     public enum KeyCmd {
+        public static let startReq: UInt8 = 1, startAck: UInt8 = 2
+        public static let saveReq: UInt8 = 3, saveAck: UInt8 = 4
+        public static let resumeReq: UInt8 = 7, resumeAck: UInt8 = 8
         public static let statusReq: UInt8 = 19, statusAck: UInt8 = 20   // 1录音中 2未录音 3暂停
+        public static let timeReq: UInt8 = 21, timeAck: UInt8 = 22
         public static let curNameReq: UInt8 = 23, curNameAck: UInt8 = 24
         public static let gainReq: UInt8 = 25, gainAck: UInt8 = 26
     }
@@ -58,7 +76,7 @@ public enum Proto {
     }
 
     // MARK: - 帧
-    public struct Frame: Equatable {
+    public struct Frame: Equatable, Sendable {
         public let seq: UInt8
         public let data: [UInt8]
         public var type: UInt8? { data.first }
@@ -75,6 +93,26 @@ public enum Proto {
         let lenBytes = [UInt8(len & 0xFF), UInt8(len >> 8)]        // LE
         let crc = crc16(lenBytes + data)
         return [magic, seq, UInt8(crc & 0xFF), UInt8(crc >> 8)] + lenBytes + data
+    }
+
+    /// 0-0 校时：公历年份 2B LE，随后月/日/时/分/秒各 1B（普通整数，非 BCD）。
+    /// 设备存的是当地墙上时间，没有 UTC 偏移字段；不能发送 Unix 时间戳或固定北京时间。
+    /// 格式参考 lomehong/record 的 recorder/protocol.py: encode_sync_time。
+    public static func buildTimeSync(_ date: Date = Date(), timeZone: TimeZone = .current,
+                                     seq: UInt8 = 0) throws -> [UInt8] {
+        guard date.timeIntervalSinceReferenceDate.isFinite else { throw ProtoError.invalidClockDate }
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timeZone
+        let c = calendar.dateComponents([.era, .year, .month, .day, .hour, .minute, .second], from: date)
+        guard c.era == 1, let year = c.year, let y = UInt16(exactly: year), year > 0,
+              let month = c.month, (1...12).contains(month),
+              let day = c.day, (1...31).contains(day),
+              let hour = c.hour, (0...23).contains(hour),
+              let minute = c.minute, (0...59).contains(minute),
+              let second = c.second, (0...59).contains(second) else { throw ProtoError.invalidClockDate }
+        return buildFrame(T.ctrl, CtrlCmd.syncTime,
+                          [UInt8(y & 0xFF), UInt8(y >> 8), UInt8(month), UInt8(day),
+                           UInt8(hour), UInt8(minute), UInt8(second)], seq: seq)
     }
 
     public static func buildImportRequest(_ filename: String, offset: UInt32 = 0,
@@ -106,8 +144,12 @@ public enum Proto {
 
     public enum ProtoError: Error, CustomStringConvertible {
         case filenameTooLong(String)
+        case invalidClockDate
         public var description: String {
-            switch self { case .filenameTooLong(let n): return "文件名超过 \(filenameFieldLen)B: \(n)" }
+            switch self {
+            case .filenameTooLong(let n): return "文件名超过 \(filenameFieldLen)B: \(n)"
+            case .invalidClockDate: return "系统日期超出设备校时协议支持的范围"
+            }
         }
     }
 

@@ -1,0 +1,21 @@
+{
+  "domain": "xinlika.apps.zaowuyun.com",
+  "image": "xinlika-shared:20261021-amd64",
+  "architecture": "amd64",
+  "hardwareControl": false,
+  "tls": "existing reviewed wildcard certificate",
+  "nginxConfigurationTestPassed": true,
+  "existingContainersUnchanged": true,
+  "existingContainerCount": 8,
+  "apiBinding": "127.0.0.1:18778",
+  "memoryLimitMiB": 768,
+  "cpuLimit": 1,
+  "checkedAt": "2026-10-21T09:52:31.493355+00:00",
+  "healthHTTPS": 200,
+  "unauthenticatedWorkspace": 401,
+  "hardwareStartRejected": 405,
+  "pythonTestsPassed": 101,
+  "macBuild": "HeartballLab 0.4.4",
+  "physicalPhoneConfigurationChanged": false,
+  "containerRestartRecovered": true
+}

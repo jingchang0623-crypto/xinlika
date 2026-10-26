@@ -1,0 +1,39 @@
+{
+  "audio" : {
+    "byteLengths" : {
+      "160" : 819
+    },
+    "bytes" : 131040,
+    "firstUptime" : 345380.99689100002,
+    "frames" : 819,
+    "lastUptime" : 345451.61923225003,
+    "maxArrivalGapSeconds" : 5.2800631250138395
+  },
+  "continuityVerdict" : "not_established_requires_decode_and_time_marked_card_reference",
+  "droppedSubmissions" : 0,
+  "finishedAt" : "2026-10-20T14:55:37Z",
+  "hardwareVadVerdict" : "not_established",
+  "outcome" : "observation_completed_hardware_claims_require_analysis",
+  "streams" : {
+    "2A05C433-8132-4250-89B4-78308E529249-AE22" : {
+      "byteLengths" : {
+        "160" : 624
+      },
+      "bytes" : 99840,
+      "firstUptime" : 345401.78848308336,
+      "frames" : 624,
+      "lastUptime" : 345451.61923225003,
+      "maxArrivalGapSeconds" : 0.1791942500276491
+    },
+    "9454411C-8C83-4832-A015-1AE7B1B29115-AE22" : {
+      "byteLengths" : {
+        "160" : 195
+      },
+      "bytes" : 31200,
+      "firstUptime" : 345380.99689100002,
+      "frames" : 195,
+      "lastUptime" : 345396.50841995835,
+      "maxArrivalGapSeconds" : 0.15000266669085249
+    }
+  }
+}

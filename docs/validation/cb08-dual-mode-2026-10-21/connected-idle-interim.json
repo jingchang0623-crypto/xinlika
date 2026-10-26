@@ -1,0 +1,66 @@
+{
+  "status": "in_progress_waiting_user_physical_save",
+  "user_report": "physical_start_performed_and_recording_indicator_active",
+  "observation_mode": "no_start_command_no_button_ack_no_foreground_announcement",
+  "start_candidate": {
+    "buttonBodyBytes": 0,
+    "buttonBodyHex": "",
+    "buttonBodyTruncated": false,
+    "buttonInterpretation": "vendor_request_candidate_not_confirmed_state_or_user_intent",
+    "buttonRequestCandidate": "start",
+    "command": 1,
+    "connection": "9EFC5E3A-7116-45AD-B87B-E1AFE5AB35D4",
+    "dataBytes": 2,
+    "event": "frame",
+    "previousSequence": 1,
+    "sequence": 27,
+    "sequenceDiscontinuity": true,
+    "source": "AE23",
+    "time": "2026-10-21T01:50:48Z",
+    "type": 3,
+    "uptime": 384765.01691966667
+  },
+  "disconnect_after_request_seconds": 1.9867647500359453,
+  "disconnects": [
+    {
+      "error": "Error Domain=CBErrorDomain Code=7 \"The specified device has disconnected from us.\" UserInfo={NSLocalizedDescription=The specified device has disconnected from us.}",
+      "event": "unexpected_disconnect",
+      "time": "2026-10-21T01:50:50Z",
+      "uptime": 384767.0036844167
+    }
+  ],
+  "first_recording_snapshot": {
+    "bytes": "9520",
+    "event": "snapshot",
+    "filename": "note20261021-095150.opus",
+    "identityStableAcrossReads": "true",
+    "phase": "periodic",
+    "seconds": "4",
+    "state": "1",
+    "time": "2026-10-21T01:50:56Z",
+    "uptime": 384772.22451570834
+  },
+  "first_live_audio": {
+    "audioBytes": 160,
+    "audioFile": "audio-CC629EA9-D536-4020-AA8E-BEFD80EAECF6-AE22.bin",
+    "audioOffset": 0,
+    "command": 1,
+    "connection": "CC629EA9-D536-4020-AA8E-BEFD80EAECF6",
+    "dataBytes": 162,
+    "event": "frame",
+    "previousSequence": 2,
+    "sequence": 0,
+    "sequenceDiscontinuity": true,
+    "source": "AE22",
+    "time": "2026-10-21T01:50:55Z",
+    "type": 1,
+    "uptime": 384772.1593134167
+  },
+  "unknown": [
+    "Cause of disconnect and whether a firmware timeout/fallback is responsible",
+    "Physical press-to-sample latency and audio missed before passive reconnection",
+    "End/save behavior and saved-file/live-stream comparison; still pending"
+  ],
+  "card_files_deleted": 0,
+  "audio_uploads": 0
+}

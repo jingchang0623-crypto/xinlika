@@ -1,0 +1,112 @@
+{
+  "status": "completed_observe_only_trial",
+  "conditions": {
+    "device_initially_idle": true,
+    "ae23_subscribed": true,
+    "hardware_start_commands": 0,
+    "button_acks_sent": 0,
+    "foreground_background_announcements": 0
+  },
+  "user_reports": {
+    "start": "recording indicator active",
+    "save": "stopped and saved"
+  },
+  "button_events": [
+    {
+      "buttonBodyBytes": 0,
+      "buttonBodyHex": "",
+      "buttonBodyTruncated": false,
+      "buttonInterpretation": "vendor_request_candidate_not_confirmed_state_or_user_intent",
+      "buttonRequestCandidate": "start",
+      "command": 1,
+      "connection": "9EFC5E3A-7116-45AD-B87B-E1AFE5AB35D4",
+      "dataBytes": 2,
+      "event": "frame",
+      "previousSequence": 1,
+      "sequence": 27,
+      "sequenceDiscontinuity": true,
+      "source": "AE23",
+      "time": "2026-10-21T01:50:48Z",
+      "type": 3,
+      "uptime": 384765.01691966667
+    },
+    {
+      "buttonBodyBytes": 0,
+      "buttonBodyHex": "",
+      "buttonBodyTruncated": false,
+      "buttonInterpretation": "vendor_request_candidate_not_confirmed_state_or_user_intent",
+      "buttonRequestCandidate": "save",
+      "command": 3,
+      "connection": "CC629EA9-D536-4020-AA8E-BEFD80EAECF6",
+      "dataBytes": 2,
+      "event": "frame",
+      "sequence": 52,
+      "source": "AE23",
+      "time": "2026-10-21T01:52:03Z",
+      "type": 3,
+      "uptime": 384839.7481192917
+    }
+  ],
+  "start_request_to_disconnect_seconds": 1.9867647500359453,
+  "save_request_to_last_live_arrival_seconds": 2.9707040833309293,
+  "save_request_to_first_idle_snapshot_seconds": 9.5907218750217,
+  "saved_filename": "note20261021-095150.opus",
+  "reference_download": {
+    "attempts": 1,
+    "cardFilesDeleted": 0,
+    "clockSync": "disabled",
+    "device": "00000000-0000-4000-8000-000000000001",
+    "downloadSeconds": 6.378115892410278,
+    "endCode": 0,
+    "expectedBytes": 150760,
+    "filename": "note20261021-095150.opus",
+    "lastError": "",
+    "overlapBytesOnResume": 160,
+    "receivedBytes": 150760,
+    "recordingControlCommands": 0,
+    "sizeAndEndConfirmed": true
+  },
+  "card_sha256": "47a15f8459b65df8e7bf730a43d3022961bc1da915014d0c79862d79f53826be",
+  "card_decoded_seconds": 75.38,
+  "card_strict_decoder_exit": 0,
+  "live_audio": {
+    "bytes": 141280,
+    "frames": 883,
+    "decode": {
+      "decoderExitCode": 0,
+      "decodedSamples": 1130240,
+      "decodedSeconds": 70.64,
+      "quietCandidateSeconds": 56.04,
+      "energyWindows": 354,
+      "energyFile": "audio-CC629EA9-D536-4020-AA8E-BEFD80EAECF6-AE22-energy.ndjson",
+      "decoderLog": "audio-CC629EA9-D536-4020-AA8E-BEFD80EAECF6-AE22-decoder.txt",
+      "warning": "Energy only; quiet speech may be below threshold; no audio removed. Offsets exclude transport gaps.",
+      "expectedSamplesUnder20msBaseline": 1130240,
+      "baselineSampleCountMatches": true
+    },
+    "card_range": {
+      "cardFile": ".build/cb08-buttons-20261021/connected-idle-reference/note20261021-095150.opus",
+      "offset": 9440,
+      "length": 141280,
+      "uniqueWithinFile": true
+    },
+    "card_prefix_not_in_live_bytes": 9440,
+    "card_suffix_not_in_live_bytes": 40,
+    "exact_unique_whole_stream_match": true
+  },
+  "journal_problems": [],
+  "measured": [
+    "AE23 start and save candidates correlated with user operations",
+    "After start request a BLE disconnect occurred, passive reconnection found a new recording and live audio",
+    "After save request the device became idle and one new file was fully saved",
+    "Captured live bytes exactly match one unique contiguous range of the saved card file"
+  ],
+  "unknown": [
+    "Why start was followed by a disconnect; timeout/fallback is a hypothesis only",
+    "Behavior with vendor ACK and foreground/background announcement; not sent in this trial",
+    "Press-to-audio sample latency and exact acoustic onset/offset; live stream omits part of saved card file",
+    "Speech content completeness; no verbatim listening review or ASR performed"
+  ],
+  "audio_uploads": 0,
+  "card_files_deleted": 0
+}

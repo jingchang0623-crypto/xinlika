@@ -1,0 +1,166 @@
+{
+  "version": "0.3.0",
+  "build": "12",
+  "sameBundleAndContainerPreserved": true,
+  "validationStatus": "partial_bluetooth_radio_reset_live_resume_failed",
+  "iOSUnitTests": 133,
+  "pythonTests": 90,
+  "livePhoneCaptureProven": true,
+  "lockedPhoneCaptureProven": true,
+  "lockedTransferAfterServiceOutageProven": true,
+  "serviceOutageSeconds": 74.6,
+  "lockProof": {
+    "receivedBytesBefore": 439520,
+    "receivedBytesDuringLockAndOutage": 591040,
+    "streams": 1,
+    "gaps": 0,
+    "nonemptyTranscriptLengths": [
+      30,
+      29
+    ]
+  },
+  "mainPhoneSession": {
+    "id": "e8148224-e66b-4058-97e5-20953be1922b",
+    "cardBytes": 1926720,
+    "cardSeconds": 963.36,
+    "fullCardIdentityAndUniqueByteAlignment": true,
+    "strictDecodeExitCode": 0,
+    "liveCoverage": [
+      [
+        0,
+        1129440
+      ],
+      [
+        1136480,
+        1190240
+      ],
+      [
+        1190880,
+        1487040
+      ]
+    ],
+    "missingLiveRanges": [
+      [
+        1129440,
+        1136480
+      ],
+      [
+        1190240,
+        1190880
+      ],
+      [
+        1487040,
+        1926720
+      ]
+    ],
+    "contextReviewRanges": [
+      [
+        1129440,
+        1136480
+      ],
+      [
+        1190240,
+        1190880
+      ]
+    ],
+    "automaticRepairBatchSeconds": [
+      60,
+      60,
+      60,
+      39.84
+    ],
+    "automaticRepairASRAndAnalysis": "completed",
+    "automaticRepairTranscriptLengths": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "shortGapSemanticRepair": "pending_context_review",
+    "focusRangesSaved": 3,
+    "nonemptyFocusDocumentChars": 15,
+    "shortFocusBoundaryASRFailures": 4,
+    "explicitAppRelaunchSameFileReception": "observed_with_gap_and_separate_stream"
+  },
+  "bluetoothRadioReset": {
+    "sameFileLiveResume": false,
+    "dedicatedSessionId": "ea2ed088-7bce-4fd2-8952-b5bf96f54d8b",
+    "receivedBytesBeforeFreeze": 121280,
+    "resumeCommand": "same_file_no_new_audio",
+    "gattResubscribe": "same_file_no_new_audio",
+    "startCommand": "changed_file_quarantined",
+    "experimentalCommandsRemoved": true,
+    "userConfirmedExperimentSaved": true,
+    "originalCardBytes": 929680,
+    "originalCardByteAlignment": true,
+    "originalCardLiveCoverage": [
+      [
+        0,
+        121280
+      ]
+    ],
+    "originalCardMissingLiveRanges": [
+      [
+        121280,
+        929680
+      ]
+    ],
+    "originalCardStrictDecodeExitCode": 0,
+    "originalCardRepairBatches": 7,
+    "repairJobSummary": [
+      {
+        "kind": "ambient_analysis",
+        "status": "completed",
+        "n": 7
+      },
+      {
+        "kind": "asr_audio",
+        "status": "completed",
+        "n": 7
+      }
+    ],
+    "repairDocumentLengths": [
+      0,
+      0,
+      46,
+      6,
+      53,
+      0,
+      64
+    ]
+  },
+  "faultSession": {
+    "id": "1916898c-ce35-433f-bd21-9c49f9b2bdb3",
+    "notCountedAsContinuousPass": true,
+    "cardBytes": 642960,
+    "liveBytes": 638400,
+    "heldMessagesPreserved": 11,
+    "fixes": [
+      "process_singleton",
+      "exclusive_writer_lock",
+      "conflicted_session_isolation"
+    ]
+  },
+  "archivedPhoneTransport": {
+    "receipts": 4,
+    "transcriptLengths": [
+      26,
+      80
+    ],
+    "documents": 2,
+    "onlyTransportEvidence": true
+  },
+  "serviceIsolation": "separate SQLite / port 18777; no hardware Engine; no Mac history exposed",
+  "macCaptureStoppedOnlyAfterExplicitHandoffApproval": true,
+  "cloudDeployed": false,
+  "published": false,
+  "notValidated": [
+    "physical_out_of_range_return",
+    "24_hour_endurance",
+    "system_terminated_automatic_background_restart",
+    "ASR_accuracy",
+    "word_precise_boundaries",
+    "all_day_automatic_meeting_boundaries",
+    "cross_recording_topic_recall"
+  ]
+}

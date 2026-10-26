@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-21",
+  "status": "source_and_code_research_complete_physical_button_tests_pending",
+  "user_requested_scenarios": [
+    "continuous_ambient_capture_and_analysis",
+    "explicit_user_started_and_stopped_focus_recording"
+  ],
+  "vendor_commit": "f10cd9bf2a2341566d923818602ac93fb9246091",
+  "source_manifest": "research/cb08-dual-mode-2026-10-21/sources/index.json",
+  "vendor_documented": {
+    "connected_button_operations_require_app_response": true,
+    "sdk_json_event_category": 8,
+    "sdk_button_event_values": [
+      1,
+      3,
+      5,
+      7
+    ],
+    "app_foreground_background_api_present": true
+  },
+  "sdk_static_candidates_not_hardware_verified": {
+    "start_response_data_hex": "030201",
+    "save_response_data_hex": "030401",
+    "pause_response_data_hex": "030601",
+    "resume_response_data_hex": "030801",
+    "app_state_data_prefix_hex": "0012"
+  },
+  "current_code_findings": [
+    "AE23 subscription attempted; connection ready depends on AE22",
+    "No dedicated inbound physical-button request acknowledgement path found",
+    "Default import minimum is 60 seconds; shorter newly discovered files enter review",
+    "Normal app disconnects after app-initiated start and does not persist live audio",
+    "Reviewed card listing has no verified focus/ambient origin field"
+  ],
+  "prototype_changes": [
+    "Candidate classification of inbound TYPE=3 commands 1/3/5/7",
+    "Journal records candidate kind and bounded control payload without ACK or inferred focus boundary",
+    "Repeated sequence values preserved; replies/queries/audio/outbound traffic excluded from candidate requests"
+  ],
+  "verification": {
+    "probe_self_test": "58/58 passed; synthetic",
+    "cb08_probe_build": "passed"
+  },
+  "physical_device_connected_this_round": false,
+  "device_commands_sent": 0,
+  "new_audio_uploaded": false,
+  "production_route_changed": false,
+  "hardware_claims": {
+    "physical_button_handshake_on_this_cb08": "not_tested",
+    "focus_and_ambient_simultaneous_support": "not_established",
+    "button_only_marks_without_changing_recorder": "not_established",
+    "offline_focus_intent_recovery": "not_established",
+    "ios_locked_button_events": "not_tested"
+  }
+}

@@ -29,6 +29,31 @@ check("帧长 36B", built.count, 36)
 check("CRC=0x209E", String(format: "0x%04X", UInt16(built[2]) | (UInt16(built[3]) << 8)), "0x209E")
 check("LEN=30", Int(UInt16(built[4]) | (UInt16(built[5]) << 8)), 30)
 
+print("\n2a. 连接校时：与参考项目 <H5B 格式 / 独立 CRC 向量对照")
+let clockDate = ISO8601DateFormatter().date(from: "2026-09-06T15:04:05Z")!
+let shanghai = TimeZone(identifier: "Asia/Shanghai")!
+let clockFrame = try Proto.buildTimeSync(clockDate, timeZone: shanghai, seq: 0x2a)
+check("0-0 整帧（年份小端、普通整数、15B）", hex(clockFrame),
+      "5a 2a 5c 8c 09 00 00 00 ea 07 09 06 17 04 05")
+check("校时帧可通过解析器 CRC 校验", FrameParser().feed(clockFrame).count, 1)
+let yearEnd = ISO8601DateFormatter().date(from: "2026-12-31T20:30:40Z")!
+check("时区换算同时跨日跨年", hex(Array(try Proto.buildTimeSync(yearEnd, timeZone: shanghai).dropFirst(8))),
+      "eb 07 01 01 04 1e 28")
+check("UTC 无额外八小时偏移", hex(Array(try Proto.buildTimeSync(yearEnd, timeZone: .gmt).dropFirst(8))),
+      "ea 07 0c 1f 14 1e 28")
+let dst = ISO8601DateFormatter().date(from: "2026-03-08T10:00:00Z")!
+check("洛杉矶夏令时切换", hex(Array(try Proto.buildTimeSync(dst, timeZone: TimeZone(identifier: "America/Los_Angeles")!).dropFirst(8))),
+      "ea 07 03 08 03 00 00")
+let leapDay = ISO8601DateFormatter().date(from: "2028-02-29T23:59:59Z")!
+check("公历闰日", hex(Array(try Proto.buildTimeSync(leapDay, timeZone: .gmt).dropFirst(8))),
+      "ec 07 02 1d 17 3b 3b")
+check("再次构帧取新的时间", hex(Array(try Proto.buildTimeSync(clockDate.addingTimeInterval(70), timeZone: shanghai).dropFirst(8))),
+      "ea 07 09 06 17 05 0f")
+var invalidClockRejected = false
+do { _ = try Proto.buildTimeSync(Date(timeIntervalSinceReferenceDate: .infinity)) }
+catch { invalidClockRejected = true }
+check("无效系统日期不触发整数转换崩溃", invalidClockRejected, true)
+
 print("\n3. 流式解析：在每一个字节位置切开都要能重组")
 let frames = [
     Proto.buildFrame(Proto.T.ctrl, 4, [87], seq: 1),
@@ -266,6 +291,24 @@ do {
     check("拼接长度相加", Continuation.concatRawPackets([a, b])?.count ?? -1, 120)
     check("除不尽 40 拒绝拼", Continuation.concatRawPackets([a, [UInt8](repeating: 3, count: 41)]) == nil, true)
     check("空段拒绝拼", Continuation.concatRawPackets([a, []]) == nil, true)
+}
+
+do {
+    let start = ISO8601DateFormatter().date(from: "2026-10-22T10:00:26Z")!
+    let end = ISO8601DateFormatter().date(from: "2026-10-22T19:53:01Z")!
+    let root = CardSegmentDiscovery.File(name: "note20261022-100026.opus", bytes: 21602000)
+    let next = CardSegmentDiscovery.File(name: "note20261022-130028.opus", bytes: 21602040)
+    check("跨语言稳定分段身份", CardSegmentDiscovery.id(root: "a1cce652-94d0-486b-8938-208effd5d353", filename: "note20261022-130028.opus"), "087c2311-4b7f-5fe0-9402-8304e460afac")
+    check("发现三小时续段", CardSegmentDiscovery.next(after: root, rootFile: root.name, startedAt: start, endedAt: end, files: [next]) == next, true)
+    let short = CardSegmentDiscovery.File(name: "note20261022-160029.opus", bytes: 11814360)
+    check("继续发现下午末段", CardSegmentDiscovery.next(after: next, rootFile: root.name, startedAt: start, endedAt: end, files: [short]) == short, true)
+    let evening = CardSegmentDiscovery.File(name: "note20261022-195302.opus", bytes: 97480)
+    check("长缺口不冒充续段", CardSegmentDiscovery.next(after: short, rootFile: root.name, startedAt: start, endedAt: end, files: [evening]) == nil, true)
+    check("歧义目录拒绝", CardSegmentDiscovery.next(after: root, rootFile: root.name, startedAt: start, endedAt: end, files: [next,next]) == nil, true)
+    check("非三小时文件不猜续段", CardSegmentDiscovery.next(after: .init(name: root.name, bytes: 8000), rootFile: root.name, startedAt: start, endedAt: end, files: [next]) == nil, true)
+    check("结束之后的新文件不导入", CardSegmentDiscovery.next(after: root, rootFile: root.name, startedAt: start, endedAt: start.addingTimeInterval(100), files: [next]) == nil, true)
+    check("错误日期拒绝", CardSegmentDiscovery.clock("note20260230-100026.opus") == nil, true)
+    check("截断扩展名只规范格式", CardSegmentDiscovery.canonical("note20261022-130028.opu"), next.name)
 }
 
 print("\n\(String(repeating: "=", count: 46))\n通过 \(passed)，失败 \(failed)")

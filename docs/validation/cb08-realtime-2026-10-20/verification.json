@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-20",
+  "checks": [
+    {
+      "command": "swift build",
+      "result": "passed_all_SwiftPM_targets"
+    },
+    {
+      "command": "swift run CB08ProbeSelfTest",
+      "passed": 36,
+      "failed": 0,
+      "kind": "synthetic"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p test_cb08_capture_analysis.py -v",
+      "passed": 7,
+      "failed": 0,
+      "kind": "synthetic_with_real_ffmpeg_decode"
+    },
+    {
+      "command": "swift run CoreSelfTest",
+      "passed": 60,
+      "failed": 0,
+      "note": "existing local golden audio sample comparison skipped because fixture directory absent"
+    }
+  ],
+  "physicalShortRun": "short-run-result.json",
+  "physicalLongRun": "running; see long-run-control.json",
+  "iosBackgroundTested": false,
+  "sourceHashes": {
+    "Package.swift": "cd68085f3e9f142c98704d4f850892b063d21e6130df8f716daac6e19e186a65",
+    "Sources/LuyinbiCore/BLEClient.swift": "cde8d68803444463d9d80e2c2c96baa86a6490d6bfcd63306b5514f8cb081ea7",
+    "Sources/LuyinbiCore/Protocol.swift": "aa30a95c7e03099db049ad7815fb5ab2b21037f352cd2e59bfeea5a0599ac19d",
+    "Sources/CB08ProbeSupport/ProbeConfiguration.swift": "050b4ac6492908d13426defab5b3cf7ec3b490df6ef774382a4b00745047d292",
+    "Sources/CB08ProbeSupport/CaptureJournal.swift": "b23bf57f5266565331c1f128e6aec7d1a12f3751120712d0ab7bb1a2a582a085",
+    "Sources/cb08-probe/main.swift": "58d40b8dbb6010fa66f75fdbd3bc5e836ed79063d86a20a0c3f455d71f44abad",
+    "Sources/CB08ProbeSelfTest/main.swift": "4e9da733902763155ea6349b9d5bd05dc52a2248e5e951a9141f160c470741c4",
+    "scripts/analyze-cb08-capture.py": "ddbbccbac3306115ddaa302bbb5848754b5dd9386b6843bf5ae12c650196a878",
+    "scripts/test_cb08_capture_analysis.py": "8d178a0f3b407cd060140149b40afd8dc63c6ee5f340e0c9b24a2bc13cfea531",
+    "scripts/cb08-probe-status.py": "f5dba40791366d7bc6859ad0e52f0028b13e1cf955fb84344d0245cb428b8ef9"
+  },
+  "longRunBinaryNote": "Already running since 22:59; later source additions do not hot-update that process. Offline analysis handles transient unknown file identity."
+}

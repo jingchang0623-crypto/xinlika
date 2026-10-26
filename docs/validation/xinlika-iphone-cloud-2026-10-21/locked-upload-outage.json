@@ -1,0 +1,33 @@
+{
+  "scope": "Only this workspace mobile ingest returns HTTP 503; BLE, processing and reads continue",
+  "secondsRequested": 75,
+  "startedAt": "2026-10-21T10:06:30.796493+00:00",
+  "paused": true,
+  "restored": true,
+  "endedAt": "2026-10-21T10:07:46.084614+00:00",
+  "configurationBytesRestored": true,
+  "before": {
+    "pending": 0,
+    "at": "2026-10-21T10:06:30.249Z",
+    "gaps": 0,
+    "status": "recording",
+    "streamCount": 1,
+    "focused": false,
+    "sessionId": "bae02a42-3f8d-4d1e-b2e8-9848c129125b",
+    "receivedBytes": 246240
+  },
+  "late": {
+    "focused": false,
+    "receivedBytes": 394080,
+    "sessionId": "bae02a42-3f8d-4d1e-b2e8-9848c129125b",
+    "streamCount": 1,
+    "at": "2026-10-21T10:07:44.233Z",
+    "status": "recording",
+    "pending": 1,
+    "gaps": 0
+  },
+  "recoveredCloudBatches": 4,
+  "allFourDeviceReceiptsAccepted": true,
+  "actualPhoneNetworkDisabled": false,
+  "bluetoothRecoveryNotEstablished": true
+}

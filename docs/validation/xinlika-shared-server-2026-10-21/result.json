@@ -1,0 +1,22 @@
+{
+  "realPhoneRecordedAudio": true,
+  "livePhoneSwitchedToSharedService": false,
+  "sourceReadOnly": true,
+  "sampleOnly": true,
+  "sharedSessionId": "eb26fa42-9d69-48c1-8608-d113261b9319",
+  "recordedAtPreserved": true,
+  "sampleSeconds": 60.0,
+  "matchingExistingASRReused": true,
+  "additionalASRRequests": 0,
+  "uploadLostReceiptReplayPassed": true,
+  "macReceivedAutomaticEvent": true,
+  "phoneProtocolCorrectionVisibleToMac": true,
+  "macProtocolCorrectionVisibleToPhone": true,
+  "staleWriteRejected": true,
+  "originalTextRestoredAfterSyncNote": true,
+  "verification": "two independent HTTP device credentials, real model, selected phone-recorded audio",
+  "limits": [
+    "Phone hardware/UI continues separate validation; no active phone configuration or service changed",
+    "Cached actual ASR was reused; this run does not establish new ASR accuracy or a new direct phone upload"
+  ]
+}

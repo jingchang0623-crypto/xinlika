@@ -1,0 +1,137 @@
+{
+  "status": "completed_single_foreground_vendor_trial",
+  "conditions": {
+    "app_state_data": "001201",
+    "button_response": "vendor",
+    "host": "macOS_protocol_experiment_not_iOS_background",
+    "recording_started_by": "physical_key_with_sdk_response",
+    "trials": 1
+  },
+  "user_reports": {
+    "start": "recording indicator active",
+    "save": "ended and saved"
+  },
+  "button_requests": [
+    {
+      "buttonBodyBytes": 0,
+      "buttonBodyHex": "",
+      "buttonBodyTruncated": false,
+      "buttonInterpretation": "vendor_request_candidate_not_confirmed_state_or_user_intent",
+      "buttonRequestCandidate": "start",
+      "command": 1,
+      "connection": "FA76DA07-8EA6-49FC-9C34-8FA546263354",
+      "dataBytes": 2,
+      "event": "frame",
+      "previousSequence": 1,
+      "sequence": 48,
+      "sequenceDiscontinuity": true,
+      "source": "AE23",
+      "time": "2026-10-21T02:09:13Z",
+      "type": 3,
+      "uptime": 385869.35859308334
+    },
+    {
+      "buttonBodyBytes": 0,
+      "buttonBodyHex": "",
+      "buttonBodyTruncated": false,
+      "buttonInterpretation": "vendor_request_candidate_not_confirmed_state_or_user_intent",
+      "buttonRequestCandidate": "save",
+      "command": 3,
+      "connection": "FA76DA07-8EA6-49FC-9C34-8FA546263354",
+      "dataBytes": 2,
+      "event": "frame",
+      "previousSequence": 49,
+      "sequence": 90,
+      "sequenceDiscontinuity": true,
+      "source": "AE23",
+      "time": "2026-10-21T02:10:07Z",
+      "type": 3,
+      "uptime": 385924.19883458334
+    }
+  ],
+  "button_responses": [
+    {
+      "connection": "FA76DA07-8EA6-49FC-9C34-8FA546263354",
+      "dataHex": "030201",
+      "enqueueDelaySeconds": "0.0002502500428818166",
+      "event": "button_response_tx",
+      "filename": "unknown",
+      "focusCandidate": "false",
+      "kind": "start",
+      "meaning": "write_enqueued_not_device_completion",
+      "requestSequence": "48",
+      "requestUptime": "385869.35859308334",
+      "sequence": "77",
+      "time": "2026-10-21T02:09:13Z",
+      "uptime": 385869.35885708337
+    },
+    {
+      "connection": "FA76DA07-8EA6-49FC-9C34-8FA546263354",
+      "dataHex": "030401",
+      "enqueueDelaySeconds": "0.000263541704043746",
+      "event": "button_response_tx",
+      "filename": "note20261021-101012.opus",
+      "focusCandidate": "false",
+      "kind": "save",
+      "meaning": "write_enqueued_not_device_completion",
+      "requestSequence": "90",
+      "requestUptime": "385924.19883458334",
+      "sequence": "118",
+      "time": "2026-10-21T02:10:07Z",
+      "uptime": 385924.1991201667
+    }
+  ],
+  "start_request_to_first_audio_arrival_seconds": 0.5103743333602324,
+  "save_request_to_last_audio_arrival_seconds": 0.06154633336700499,
+  "save_request_to_first_idle_snapshot_seconds": 5.737139833334368,
+  "disconnects": 0,
+  "response_errors": 0,
+  "unauthorized_responses": 0,
+  "reference_download": {
+    "attempts": 1,
+    "cardFilesDeleted": 0,
+    "clockSync": "disabled",
+    "device": "00000000-0000-4000-8000-000000000001",
+    "downloadSeconds": 5.829475998878479,
+    "endCode": 0,
+    "expectedBytes": 108960,
+    "filename": "note20261021-101012.opus",
+    "lastError": "",
+    "overlapBytesOnResume": 160,
+    "receivedBytes": 108960,
+    "recordingControlCommands": 0,
+    "sizeAndEndConfirmed": true
+  },
+  "card_sha256": "4b8f31170675c25cabd167a2a707bdd81e5682a2d58c9cd7a0dd0053e0447db4",
+  "decoded_seconds": 54.48,
+  "live_audio": {
+    "frames": 681,
+    "bytes": 108960,
+    "strict_decoder_exit": 0,
+    "whole_card_file_equal": true,
+    "unique_card_range": {
+      "cardFile": ".build/cb08-buttons-20261021/vendor-foreground-reference/note20261021-101012.opus",
+      "offset": 0,
+      "length": 108960,
+      "uniqueWithinFile": true
+    },
+    "missing_card_prefix_bytes": 0,
+    "missing_card_suffix_bytes": 0
+  },
+  "journal_problems": [],
+  "catalog_files_before": 34,
+  "catalog_files_after": 35,
+  "preexisting_entries_unchanged": true,
+  "final_state": 2,
+  "probe_disconnected": true,
+  "verdict": "No disconnect and complete live/card byte equality in this single trial; not a reliability or acoustic-onset qualification",
+  "unknown": [
+    "Physical button-to-microphone sampling latency",
+    "Whether speech before recording startup is captured; no pre-roll established",
+    "Spoken marker completeness and ASR quality; no listening/ASR performed",
+    "Whether ACK or foreground notification individually caused the improvement; both changed relative to observe-only trial",
+    "Background protocol behavior, iOS lifecycle and long-term repeatability"
+  ],
+  "audio_uploads": 0,
+  "card_files_deleted": 0
+}

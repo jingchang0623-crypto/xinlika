@@ -14,6 +14,19 @@ let package = Package(
         .executableTarget(name: "CleanupSelfTest", dependencies: ["LuyinbiCore"]),
         .executableTarget(name: "VoiceSelfTest", dependencies: ["LuyinbiCore"]),
         .executableTarget(name: "AuditSelfTest", dependencies: ["LuyinbiCore"]),
+        .target(name: "CB08ProbeSupport", dependencies: ["LuyinbiCore"]),
+        .executableTarget(name: "CB08ProbeSelfTest", dependencies: ["CB08ProbeSupport", "LuyinbiCore"]),
+        .executableTarget(name: "HeartballLab", dependencies: ["LuyinbiCore"]),
+        .executableTarget(name: "HeartballClientCheck", dependencies: ["LuyinbiCore"]),
+        .executableTarget(name: "XinlikaWorkspaceCheck", dependencies: ["LuyinbiCore"]),
+        // Separate local experiment: no cloud, file deletion, or production UI changes.
+        .executableTarget(
+            name: "cb08-probe", dependencies: ["CB08ProbeSupport", "LuyinbiCore"],
+            exclude: ["Info.plist"],
+            linkerSettings: [.unsafeFlags([
+                "-Xlinker", "-sectcreate", "-Xlinker", "__TEXT", "-Xlinker", "__info_plist",
+                "-Xlinker", "Sources/cb08-probe/Info.plist",
+            ])]),
         // 菜单栏 + 主窗口。
         // 这里**不**用 -sectcreate 嵌 Info.plist：
         //   1. 正常 .app 读的是 Contents/Info.plist，嵌一份等于留两个真相；

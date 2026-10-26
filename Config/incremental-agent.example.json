@@ -1,0 +1,23 @@
+{
+  "agent_runtime": {
+    "analysis_strategy": "incremental",
+    "runtime": "hermes",
+    "python": "/opt/xinlika/hermes-venv/bin/python",
+    "client_python": "/opt/xinlika/venv/bin/python",
+    "timeout_seconds": 240,
+    "coalesce_seconds": 180,
+    "max_documents": 8,
+    "max_characters": 2200,
+    "analysis_window_seconds": 300,
+    "rolling_review": true,
+    "proactive_feedback": false,
+    "model": {
+      "base_url": "https://your-model-provider.example/v1",
+      "model": "your-model",
+      "api_key_file": "/private/xinlika/model-key",
+      "max_tokens": 12000,
+      "capture_model_payloads": false
+    }
+  },
+  "voxgate_config": "/private/xinlika/voxgate.json"
+}

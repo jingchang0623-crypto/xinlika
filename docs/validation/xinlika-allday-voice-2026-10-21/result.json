@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-21",
+  "scope": "Three real solo enrollment sessions plus independent real owner speech and user-operated video playback, captured by physical CB08 via iPhone",
+  "enrollment": {
+    "status": "registered",
+    "profile_version": 1,
+    "samples": [
+      {
+        "slot": 1,
+        "status": "ready",
+        "speech_seconds": 37.596000000000004,
+        "windows": 10,
+        "quality_gate": "accepted"
+      },
+      {
+        "slot": 2,
+        "status": "ready",
+        "speech_seconds": 31.088,
+        "windows": 7,
+        "quality_gate": "accepted"
+      },
+      {
+        "slot": 3,
+        "status": "ready",
+        "speech_seconds": 59.852000000000004,
+        "windows": 13,
+        "quality_gate": "accepted"
+      }
+    ],
+    "training_sessions": 2,
+    "independent_consistency_holdout_sessions": 1,
+    "initial_21_2_second_attempt_rejected": true,
+    "unknown_intervening_test_file_manually_saved_by_user": true,
+    "file_switch_cause_verified": false
+  },
+  "independent_owner_test": {
+    "observed_audio_seconds": 86.72,
+    "speech_windows": 7,
+    "similar_to_owner_windows": 7,
+    "similarity_min": 0.8200641539065732,
+    "similarity_max": 0.9268532999442247,
+    "used_for_training": false,
+    "card_only_tail_bytes": 160
+  },
+  "real_video_playback_test": {
+    "observed_audio_seconds": 87.36,
+    "speech_windows": 12,
+    "similar_to_owner_windows": 0,
+    "similarity_min": 0.3583286088617083,
+    "similarity_max": 0.5824290255052623,
+    "source_prelabelled_before_automatic_processing": false,
+    "scene_model_reliably_detected_playback": false,
+    "automatic_source_kind": "unknown",
+    "personal_claims_written": 0,
+    "unsupported_duration_preface_observed": true,
+    "card_only_tail_bytes": 40,
+    "post_test_source_annotation": "User-confirmed playback; existing feedback API reclassifies text records, preserves originals, and reprocesses without ASR",
+    "unsupported_duration_preface_removed_from_current_revision": true
+  },
+  "worker_restart": {
+    "before": {
+      "jobs": 11,
+      "observations": 13,
+      "profile": 1,
+      "transcripts": 26
+    },
+    "after": {
+      "jobs": 11,
+      "observations": 13,
+      "profile": 1,
+      "transcripts": 26
+    },
+    "same_ledger": true,
+    "new_asr_calls": 0
+  },
+  "engineering_checks": {
+    "python_tests_passed": 151,
+    "core_tests_passed": 60,
+    "mac_build_passed": true,
+    "iphone_signed_build": "0.3.5(19)",
+    "separate_acoustic_container": true,
+    "runtime_network": "none",
+    "memory_limit_mib": 768,
+    "observed_memory_mib_after_real_batches": 311.2,
+    "sixty_second_batch_elapsed_seconds": [
+      7.907406716607511,
+      7.649391659535468
+    ]
+  },
+  "limits": [
+    "Operational threshold 0.78 is provisional, not population accuracy or a field-calibrated threshold",
+    "Coarse VAD-selected windows are not verified word or speaker-turn boundaries",
+    "Owner replay can match; actual owner replay trial has not been run",
+    "Room/speech labels did not identify this real video as device playback",
+    "Existing real meeting evidence is retained, but source-classification accuracy is not accepted",
+    "No commute recording was available; user chose later field validation",
+    "No all-day battery, classification accuracy or zero-sample-loss claim",
+    "Tiny card-only tail ranges remain preserved with semantic repair review, not silently treated as live zero loss",
+    "Stopping enrollment does not erase raw recordings or existing backups"
+  ],
+  "deployment": {
+    "image": "xinlika-shared:20261021-r10-amd64",
+    "healthy": true,
+    "previousContainerRetainedStopped": true,
+    "otherContainersUnchanged": true,
+    "backup_verified": true,
+    "acoustic_worker_image": "xinlika-acoustics:20261021-v2",
+    "worker_and_api_healthy": true
+  },
+  "validation_data_published": false,
+  "closeout": {
+    "active_capture_sessions": 0,
+    "queued_running_retryable_processing_jobs": 0,
+    "transcripts": 26,
+    "personal_claims": 0,
+    "all_acoustic_jobs_completed": 11,
+    "post_annotation_background_events_present": true,
+    "post_annotation_media_activity_present": true,
+    "source_annotation_reused_existing_transcripts": true,
+    "source_annotation_is_not_automatic_classification_acceptance": true
+  }
+}

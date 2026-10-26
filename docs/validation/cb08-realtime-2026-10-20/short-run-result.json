@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-20",
+  "firmware": "V1.0.0",
+  "powerState": "110 (charging)",
+  "experiment": "70-second local capture; planned disconnect after 15 seconds; reconnect subscribe only",
+  "audioFrames": 819,
+  "audioBytes": 131040,
+  "cardFileBytes": 141560,
+  "sameFileAfterReconnect": true,
+  "rearmCommandsActuallySent": [],
+  "decodedStreams": [
+    {
+      "file": "audio-9454411C-8C83-4832-A015-1AE7B1B29115-AE22.bin",
+      "decodedSeconds": 15.6,
+      "decoderExitCode": 0,
+      "baselineSampleCountMatches": true,
+      "exactCardMatches": [
+        {
+          "cardFile": ".build/cb08-captures/short-resume-reference-20261020/note20261020-225523.opus",
+          "offset": 0,
+          "length": 31200,
+          "uniqueWithinFile": true
+        }
+      ]
+    },
+    {
+      "file": "audio-2A05C433-8132-4250-89B4-78308E529249-AE22.bin",
+      "decodedSeconds": 49.92,
+      "decoderExitCode": 0,
+      "baselineSampleCountMatches": true,
+      "exactCardMatches": [
+        {
+          "cardFile": ".build/cb08-captures/short-resume-reference-20261020/note20261020-225523.opus",
+          "offset": 41600,
+          "length": 99840,
+          "uniqueWithinFile": true
+        }
+      ]
+    }
+  ],
+  "cardGapBytesAtReconnect": 10400,
+  "cardGapSecondsUnderVerified20ms40ByteFormat": 5.2,
+  "cardTailNotReceivedBytes": 120,
+  "cardTailNotReceivedSeconds": 0.06,
+  "reconnectVerdict": "same recording live delivery restored in this run; disconnected interval not automatically replayed",
+  "silenceCandidateSecondsAtMinus50Dbfs": 36.72,
+  "silenceScope": "host energy measurement only; no controlled room silence or hardware VAD calibration",
+  "threeHourVerdict": "pending separate physical long run",
+  "cardFilesDeleted": 0,
+  "rawAudioLocation": "<LOCAL_HOME>/Documents/ChatGPT/深脑 app/.build/cb08-captures/short-resume-20261020",
+  "referenceAudioLocation": "<LOCAL_HOME>/Documents/ChatGPT/深脑 app/.build/cb08-captures/short-resume-reference-20261020",
+  "audioInGit": false,
+  "cloudCalls": 0
+}

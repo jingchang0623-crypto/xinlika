@@ -1,0 +1,36 @@
+{
+  "phone_version": "0.3.4 (16)",
+  "phone_saved": true,
+  "phone_pending_uploads": 0,
+  "phone_automatic_references_pending": 0,
+  "old_outbox_entries_unchanged": 56,
+  "tests": {
+    "iOS": {
+      "passed": 140,
+      "failed": 0
+    },
+    "CoreSelfTest": {
+      "passed": 60,
+      "failed": 0
+    },
+    "voxgate_all_packages": 10,
+    "debug_device_build": true,
+    "release_device_build": true
+  },
+  "cloud_image": "xinlika-shared:20261021-r3-amd64",
+  "cloud_healthy": true,
+  "other_running_containers_unchanged": true,
+  "previous_image_retained_stopped": true,
+  "voxgate_binary_sha256": "6b3b426c7edb9bfa4064c92fc494aff9bf8f9f6831dcf78672461efdc97e5cbf",
+  "split_patch_rebuild_binary_identical": true,
+  "patches": {
+    "voxgate-file-chunks.patch": "b2b5500fac5899a746a082760e6b86ca6db78d224efe5c780f74579af1cb146c",
+    "voxgate-empty-final.patch": "8705d291f3b63c31dfeef619f72e12fe94818335dc050a19f50a34d817e79f6e"
+  },
+  "limits": [
+    "Disconnect interval requires saved-card repair, not zero-loss live recording",
+    "0.1s and 0.04s tail bytes are preserved; contextual semantic repair still pending",
+    "No all-day stability, other firmware, same-session repeated disconnect, or real partial-download process-death pass",
+    "Playback audio only validates transport and processing state; not ASR semantic accuracy"
+  ]
+}

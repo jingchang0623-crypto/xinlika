@@ -1,0 +1,54 @@
+{
+  "experiment": "offline_hardware_button",
+  "user_report": "started_then_ended_and_saved",
+  "before_files": 31,
+  "after_files": 32,
+  "new_files": [
+    {
+      "bytes": 51720,
+      "isCurrentFile": false,
+      "name": "note20261021-094723.",
+      "seconds": 25
+    }
+  ],
+  "changed_preexisting_files": [],
+  "state_before_download": 2,
+  "reference": {
+    "attempts": 1,
+    "cardFilesDeleted": 0,
+    "clockSync": "disabled",
+    "device": "00000000-0000-4000-8000-000000000001",
+    "downloadSeconds": 2.459797978401184,
+    "endCode": 0,
+    "expectedBytes": 51720,
+    "filename": "note20261021-094723.opus",
+    "lastError": "",
+    "overlapBytesOnResume": 160,
+    "receivedBytes": 51720,
+    "recordingControlCommands": 0,
+    "sizeAndEndConfirmed": true
+  },
+  "raw_sha256": "b92b2313d3c6a80c2365b3d07cb6f99bf4db0e5a6a201d810f3e3e3a834a70b1",
+  "packets_40byte_20ms": 1293,
+  "decode": {
+    "decoderExitCode": 0,
+    "decodedSamples": 413760,
+    "decodedSeconds": 25.86,
+    "quietCandidateSeconds": 16.06,
+    "energyWindows": 130,
+    "energyFile": "offline-energy.ndjson",
+    "decoderLog": "offline-decoder.txt",
+    "warning": "Energy only; quiet speech may be below threshold; no audio removed. Offsets exclude transport gaps."
+  },
+  "measured": [
+    "One new saved file after user-reported physical start/end while probe disconnected",
+    "Exact expected bytes and end code 0 downloaded; strict decode succeeded"
+  ],
+  "unknown": [
+    "Physical press-to-sample latency",
+    "Whether the user script is fully present; no verbatim listening review performed",
+    "Real-time event boundaries while offline; no event connection existed"
+  ],
+  "audio_uploads": 0,
+  "card_files_deleted": 0
+}

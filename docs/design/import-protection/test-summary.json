@@ -1,0 +1,14 @@
+{
+  "version": "0.1.5 (6)",
+  "iOSUnitTests": 84,
+  "iOSUITests": 19,
+  "unresolvedFailures": 0,
+  "iOSSkipped": 0,
+  "macOSAssertions": 149,
+  "macOSSampleDependentGroupsSkipped": 3,
+  "evidence": {
+    "regression": "regression-summary.json",
+    "recordingQueueAfterAlertFix": "queue-final-summary.json"
+  },
+  "qualification": "Full regression passed 102/103; the remaining cancellation UI case was corrected by using a native alert. All four recording queue UI cases then passed against the final UI. No hardware transfer or live cloud billing assertions are claimed."
+}

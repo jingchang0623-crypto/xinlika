@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "evidence": "Replay of existing actual video-meeting transcripts, no synthetic dialogues or new recording",
+  "sessions": [
+    {
+      "sessionId": "8d56ec21-8be4-4e94-80c2-4295bcf07102",
+      "ordinaryEventsBefore": 3,
+      "ordinaryEventsAfter": 2,
+      "sourceDocumentsUnchanged": true,
+      "literalSourcesVerified": true,
+      "earliestRecordingAnchorPreserved": true,
+      "focusUnchanged": true,
+      "mergedEventIds": [
+        "e31ebd96-d70b-500b-9f76-08007ff2e8b8"
+      ]
+    },
+    {
+      "sessionId": "e272a3ab-e7ee-46c2-b91c-6cd305e7d97a",
+      "ordinaryEventsBefore": 1,
+      "ordinaryEventsAfter": 1,
+      "sourceDocumentsUnchanged": true,
+      "literalSourcesVerified": true,
+      "earliestRecordingAnchorPreserved": true,
+      "focusUnchanged": true,
+      "mergedEventIds": []
+    },
+    {
+      "sessionId": "fc3b83ed-7b6f-4829-a6ca-da6a1665ce23",
+      "ordinaryEventsBefore": 6,
+      "ordinaryEventsAfter": 4,
+      "sourceDocumentsUnchanged": true,
+      "literalSourcesVerified": true,
+      "earliestRecordingAnchorPreserved": true,
+      "focusUnchanged": true,
+      "mergedEventIds": [
+        "14955332-4b4f-56d0-a515-0d6fc14ef7ec",
+        "e4015cd3-e5b7-5e84-9f5c-b2b7004a770c"
+      ]
+    }
+  ],
+  "newASRJobs": 0,
+  "noASRRepeated": true,
+  "mergeJobs": [
+    {
+      "id": "9486164f-3a64-58ba-be35-e5bf1e0dfba0",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "id": "3cc7b22e-65ae-5980-87ce-37833c7faac2",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "id": "f0b281a3-52ff-5f70-98e4-c1c0ee9fa5e4",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    }
+  ],
+  "validationPassed": true,
+  "pythonTestsPassed": 68,
+  "nativeBuildPassed": true,
+  "limits": [
+    "Grouping is model output, not a human accuracy rate",
+    "The earlier cross-recording topic-linking failure remains a separate open item"
+  ],
+  "nativeClientAPIAndWAVPassed": true,
+  "appSignatureVerified": true,
+  "appVersion": "0.4.2",
+  "nativeUI": {
+    "todayHasChat": false,
+    "centralTab": "记忆和聊天",
+    "sections": [
+      "聊天",
+      "记忆",
+      "约定"
+    ],
+    "compactAndExpandedRowsVerified": true,
+    "firstEventVisible": true
+  }
+}

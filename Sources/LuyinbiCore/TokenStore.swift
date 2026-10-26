@@ -1,4 +1,7 @@
 import Foundation
+#if os(iOS)
+import Security
+#endif
 
 /// 登录凭证的存放。
 ///
@@ -12,11 +15,16 @@ import Foundation
 ///
 /// 存的是 refresh token 不是密码：泄露了可以在深脑那边吊销，密码从头到尾不落盘。
 public enum TokenStore {
+#if os(iOS)
+    private static let keychainService = "com.zaowuyun.shennao.credentials"
+    private static let keychainAccount = "session"
+#else
     private static var dir: URL {
         FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("深脑")
     }
     private static var file: URL { dir.appendingPathComponent("credentials.json") }
+#endif
 
     private struct Blob: Codable {
         var refreshToken: String?
@@ -25,17 +33,50 @@ public enum TokenStore {
     }
 
     private static func read() -> Blob {
+#if os(iOS)
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: keychainService,
+            kSecAttrAccount as String: keychainAccount,
+            kSecReturnData as String: true,
+            kSecMatchLimit as String: kSecMatchLimitOne,
+        ]
+        var item: CFTypeRef?
+        guard SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess,
+              let data = item as? Data,
+              let blob = try? JSONDecoder().decode(Blob.self, from: data) else { return Blob() }
+        return blob
+#else
         guard let d = try? Data(contentsOf: file),
               let b = try? JSONDecoder().decode(Blob.self, from: d) else { return Blob() }
         return b
+#endif
     }
 
-    private static func write(_ b: Blob) {
-        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-        guard let d = try? JSONEncoder().encode(b) else { return }
-        try? d.write(to: file, options: .atomic)
-        // 0600：别让同机器上的其他用户读到
-        try? FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)
+    private static func write(_ b: Blob) -> Bool {
+#if os(iOS)
+        guard let data = try? JSONEncoder().encode(b) else { return false }
+        let base: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: keychainService,
+            kSecAttrAccount as String: keychainAccount,
+        ]
+        let updated = SecItemUpdate(base as CFDictionary,
+                                    [kSecValueData as String: data] as CFDictionary)
+        if updated == errSecSuccess { return true }
+        guard updated == errSecItemNotFound else { return false }
+        var add = base
+        add[kSecValueData as String] = data
+        add[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+        return SecItemAdd(add as CFDictionary, nil) == errSecSuccess
+#else
+        do {
+            try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+            try JSONEncoder().encode(b).write(to: file, options: .atomic)
+            try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)
+            return true
+        } catch { return false }
+#endif
     }
 
     public static func get(_ key: String = "refresh_token") -> String? {
@@ -55,13 +96,32 @@ public enum TokenStore {
         case "org_id":  b.orgId = value
         default:        b.refreshToken = value
         }
-        write(b)
-        return true
+        return write(b)
+    }
+
+    /// 一次保存完整身份，避免新账号沿用旧账号的组织缓存。
+    public static func saveSession(refresh: String, email: String, orgId: String) -> Bool {
+        write(Blob(refreshToken: refresh, email: email, orgId: orgId))
     }
 
     public static func clear() {
+#if os(iOS)
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: keychainService,
+            kSecAttrAccount as String: keychainAccount,
+        ]
+        SecItemDelete(query as CFDictionary)
+#else
         try? FileManager.default.removeItem(at: file)
+#endif
     }
 
-    public static var path: String { file.path }
+    public static var path: String {
+#if os(iOS)
+        return "Keychain://\(keychainService)/\(keychainAccount)"
+#else
+        return file.path
+#endif
+    }
 }

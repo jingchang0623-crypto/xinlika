@@ -1,0 +1,324 @@
+{
+  "checked_at_utc": "2026-10-22T16:02:31.745510+00:00",
+  "user_report": {
+    "approximate_error_local": "11:45",
+    "message": "Bluetooth or channel error; exact text unavailable",
+    "evening_phone_reboot": true,
+    "headset_also_failed_to_connect": true,
+    "card_remained_powered": true,
+    "card_not_manually_stopped": true
+  },
+  "phone_receive_evidence": {
+    "first_local": "2026-10-22T10:00:27.095+08:00",
+    "last_local": "2026-10-22T12:04:40.865+08:00",
+    "journal_rows": 93173,
+    "bytes": 14907680,
+    "arrival_gaps_over_2_seconds": 0,
+    "disconnect_local": "2026-10-22T12:04:45.029+08:00",
+    "process_interruption_notification_local": "2026-10-22T12:19:50.501+08:00",
+    "eleven_forty_five_was_not_observed_end": true,
+    "zero_sample_loss_proven": false
+  },
+  "morning_initial_card_file": {
+    "session_id": "a1cce652-94d0-486b-8938-208effd5d353",
+    "bytes": 21602000,
+    "sha256": "003fd09919772f6eeb69b3b099b05c0e3f531ecc6782c2c96ed07d0a1ef82342",
+    "frames_40_bytes": 540050,
+    "decoded_samples_16khz": 172816000,
+    "decoded_seconds": 10801.0,
+    "strict_decode_passed": true,
+    "live_byte_ranges": [
+      [
+        0,
+        14907680
+      ]
+    ],
+    "recovered_byte_ranges": [
+      [
+        14907680,
+        21602000
+      ]
+    ],
+    "recovered_seconds": 3347.16,
+    "automatic_repair_batches": 56,
+    "asr_called_by_this_validation": false,
+    "scope": "This saved card file only; not independent ADC, word, speaker, afternoon coverage or scene accuracy."
+  },
+  "morning_automatic_repair_asr": {
+    "completed": 56,
+    "original_asr_repeated": false
+  },
+  "afternoon_local_backups": [
+    {
+      "filename": "note20261022-130028.opus",
+      "bytes": 21602040,
+      "sha256": "cc910d056188ed74cd647ba62af1f9734b20742c8cad9fc0f6324f4710621725",
+      "frames": 540051,
+      "decoded_samples_16khz": 172816320,
+      "decoded_seconds": 10801.02,
+      "strict_decode_passed": true,
+      "exact_size_and_end_code": true,
+      "recording_control_commands": 0,
+      "card_files_deleted": 0,
+      "asr_called": true,
+      "uploaded": true
+    },
+    {
+      "filename": "note20261022-160029.opus",
+      "bytes": 11814360,
+      "sha256": "a8aa36191214376a0878f838a826daa2ab5a1763494d3ad30125dc60955323b1",
+      "frames": 295359,
+      "decoded_samples_16khz": 94514880,
+      "decoded_seconds": 5907.18,
+      "strict_decode_passed": true,
+      "exact_size_and_end_code": true,
+      "recording_control_commands": 0,
+      "card_files_deleted": 0,
+      "asr_called": true,
+      "uploaded": true
+    }
+  ],
+  "card_catalog": {
+    "complete": true,
+    "state_before": 2,
+    "state_after": 2,
+    "recording_control_commands": 0,
+    "clock_sync": "disabled",
+    "card_files_deleted": 0,
+    "prior_48_files_still_present_same_size": true,
+    "added_files": 23,
+    "today_files": 6,
+    "extra_backdated_continuation_found": false
+  },
+  "additional_today_files": {
+    "084601": "complete_exact_size_end_code_strict_decode",
+    "195302": "complete_exact_size_end_code_strict_decode"
+  },
+  "findings": {
+    "afternoon_recording_exists": true,
+    "automatic_recovery_discovers_following_physical_segments": true,
+    "afternoon_segments_uploaded_or_transcribed": true,
+    "latest_afternoon_encoded_end_using_device_filename": "approximately 17:38:56, conditional on filename clock and no internal time compression",
+    "coverage_to_evening_verified": false,
+    "exact_bluetooth_root_cause_proven": false,
+    "conditional_uncovered_interval": {
+      "start_local": "2026-10-22T17:38:56.741+08:00",
+      "end_local": "2026-10-22T19:53:01.264+08:00",
+      "seconds": 8044.523,
+      "positive_audio_coverage_found": false,
+      "cause_proven": false
+    }
+  },
+  "privacy": {
+    "raw_audio_local_ignored_build": true,
+    "whole_card_uploaded": false,
+    "new_asr_for_afternoon": true,
+    "authorized_scope": "the two recovered afternoon segments only; previously completed ASR not repeated"
+  },
+  "limitations": [
+    "File download size/end code and successful decoding do not independently prove microphone continuity or speech accuracy.",
+    "Device filename plus encoded length is not independently calibrated wall-clock coverage.",
+    "The interval between afternoon estimated end and evening restart remains unexplained.",
+    "Phone automatically discovered and reused the two already archived cloud segments; this is not a fresh full phone retransmission test."
+  ],
+  "additional_local_backups": [
+    {
+      "filename": "note20261022-084601.opus",
+      "bytes": 8912440,
+      "sha256": "182970419d54cddd167a5ac456a67f2ab7e5b49c7f1660eb40079c5955607d7a",
+      "frames": 222811,
+      "decoded_samples_16khz": 71299520,
+      "decoded_seconds": 4456.22,
+      "strict_decode_passed": true,
+      "exact_size_and_end_code": true,
+      "recording_control_commands": 0,
+      "card_files_deleted": 0,
+      "asr_called": false,
+      "uploaded": false
+    },
+    {
+      "filename": "note20261022-195302.opus",
+      "bytes": 97480,
+      "sha256": "e1d803283177d32eb2b91daaf3d5860f3f8531593d74b7fe210d1fd45313f80f",
+      "frames": 2437,
+      "decoded_samples_16khz": 779840,
+      "decoded_seconds": 48.74,
+      "strict_decode_passed": true,
+      "exact_size_and_end_code": true,
+      "recording_control_commands": 0,
+      "card_files_deleted": 0,
+      "asr_called": false,
+      "uploaded": false
+    }
+  ],
+  "evening_card_file": {
+    "session_id": "f78c34d2-c102-41ea-a4cd-1c10e46c3613",
+    "bytes": 11211280,
+    "sha256": "420b241ffd8fa7fb70cf8714c2b4e18cb24940c9403be7b62a5e0a23732debde",
+    "frames_40_bytes": 280282,
+    "decoded_samples_16khz": 89690240,
+    "decoded_seconds": 5605.64,
+    "strict_decode_passed": true,
+    "live_byte_ranges": [
+      [
+        0,
+        1658560
+      ],
+      [
+        1659200,
+        2888640
+      ],
+      [
+        2889280,
+        11211200
+      ]
+    ],
+    "recovered_byte_ranges": [
+      [
+        1658560,
+        1659200
+      ],
+      [
+        2888640,
+        2889280
+      ],
+      [
+        11211200,
+        11211280
+      ]
+    ],
+    "recovered_seconds": 0.68,
+    "automatic_repair_batches": 0,
+    "asr_called_by_this_validation": false,
+    "scope": "This saved card file only; not independent ADC, word, speaker, afternoon coverage or scene accuracy."
+  },
+  "all_six_catalogued_today_files": {
+    "fully_backed_up_or_archived": true,
+    "exact_file_size_confirmed": true,
+    "strict_decode_passed": true,
+    "independent_microphone_continuity_proven": false,
+    "wall_clock_coverage_complete_proven": false
+  },
+  "afternoon_cloud_recovery": {
+    "parts": [
+      {
+        "session_id": "087c2311-4b7f-5fe0-9402-8304e460afac",
+        "archive": {
+          "status": "phone_card_bytes_verified",
+          "bytes": 21602040,
+          "sha256": "cc910d056188ed74cd647ba62af1f9734b20742c8cad9fc0f6324f4710621725"
+        },
+        "batch_count": 181,
+        "asr_jobs": [
+          {
+            "status": "completed",
+            "n": 181
+          }
+        ],
+        "document_count": 181,
+        "document_statuses": [
+          {
+            "status": "no_text",
+            "n": 19
+          },
+          {
+            "status": "review_pending",
+            "n": 157
+          },
+          {
+            "status": "transcript_only",
+            "n": 5
+          }
+        ],
+        "derived_jobs": [
+          {
+            "kind": "ambient_analysis",
+            "status": "completed",
+            "n": 181
+          },
+          {
+            "kind": "event_consolidate",
+            "status": "completed",
+            "n": 47
+          },
+          {
+            "kind": "event_consolidate",
+            "status": "superseded",
+            "n": 1
+          }
+        ],
+        "document_clock": {
+          "earliest_jd": 2461335.7086639004,
+          "latest_jd": 2461335.8336639004
+        },
+        "claims": 0
+      },
+      {
+        "session_id": "62c3cf37-b841-5408-acb6-51206012eae4",
+        "archive": {
+          "status": "phone_card_bytes_verified",
+          "bytes": 11814360,
+          "sha256": "a8aa36191214376a0878f838a826daa2ab5a1763494d3ad30125dc60955323b1"
+        },
+        "batch_count": 99,
+        "asr_jobs": [
+          {
+            "status": "completed",
+            "n": 99
+          }
+        ],
+        "document_count": 99,
+        "document_statuses": [
+          {
+            "status": "no_text",
+            "n": 4
+          },
+          {
+            "status": "review_pending",
+            "n": 95
+          }
+        ],
+        "derived_jobs": [
+          {
+            "kind": "ambient_analysis",
+            "status": "completed",
+            "n": 99
+          }
+        ],
+        "document_clock": {
+          "earliest_jd": 2461335.8336754744,
+          "latest_jd": 2461335.90173103
+        },
+        "claims": 0
+      }
+    ],
+    "active_recordings": 0,
+    "previous_completed_asr_checked": 408,
+    "prior_asr_jobs_retried": 0,
+    "snapshot_at_utc": "2026-10-22T16:02:31.745510+00:00",
+    "asr_word_accuracy_validated": false,
+    "shared_views": {
+      "2026-10-21": {
+        "phone_mac_today_equal": true,
+        "all_visible_event_ids_preserved": true,
+        "events": 55,
+        "groups": 22,
+        "unknown_recording_times": 0
+      },
+      "2026-10-22": {
+        "phone_mac_today_equal": true,
+        "all_visible_event_ids_preserved": true,
+        "events": 270,
+        "groups": 23,
+        "unknown_recording_times": 0
+      }
+    },
+    "dinner": {
+      "start_local": "2026-10-21T22:19:02.429000+08:00",
+      "end_local": "2026-10-21T23:15:02.429000+08:00",
+      "activity_kind": "meal",
+      "issues": 29,
+      "scene_boundary_assisted": true
+    }
+  }
+}

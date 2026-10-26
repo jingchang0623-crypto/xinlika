@@ -1,0 +1,12 @@
+{
+  "physicalIPhoneUIEdited": true,
+  "phoneEditSeenInNativeMac": true,
+  "nativeMacUIEdited": true,
+  "macEditSeenInPhysicalIPhoneUI": true,
+  "phoneUIRestoredOriginalText": true,
+  "originalTextExactMatch": true,
+  "sourceAudioUnchanged": true,
+  "timestampPreserved": true,
+  "bothClientsUsedHTTPSSharedWorkspace": true,
+  "notOnlyHTTPTestClients": true
+}

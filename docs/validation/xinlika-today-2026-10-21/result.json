@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "appVersion": "0.4.3",
+  "recordingDay": "2026-10-21",
+  "timeZone": "Asia/Shanghai",
+  "realData": {
+    "groups": 2,
+    "ordinaryEvents": 8,
+    "focuses": 2,
+    "meetingSamples": 3,
+    "meetingOrdinaryEvents": 7
+  },
+  "originalDocumentsUnchanged": true,
+  "noNewProcessingJobs": true,
+  "newASRCalls": 0,
+  "pythonTestsPassed": 74,
+  "nativeBuildPassed": true,
+  "nativeAPIDecodeAndWAVPassed": true,
+  "nativeUI": {
+    "todayOnly": true,
+    "meetingCollapsedByDefault": true,
+    "allSevenMeetingItemsAndIndependentFocusReachable": true,
+    "focusOriginalTextAndPlaybackControlReachable": true,
+    "noChatOnToday": true
+  },
+  "limits": [
+    "Meeting container uses explicit shared recording context; automatic meeting boundary detection in an all-day capture is not implemented",
+    "Observed sample envelope is not two hours of complete or continuous audio",
+    "Earlier cross-recording semantic association failure remains unresolved"
+  ]
+}

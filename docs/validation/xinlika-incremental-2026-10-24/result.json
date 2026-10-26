@@ -1,0 +1,231 @@
+{
+  "date": "2026-10-24",
+  "implemented_not_deployed": true,
+  "input": {
+    "day": "2026-10-21",
+    "input_sha256": "01e2b40aaf75e18ee9a7e840b1ec2f7905771f2133c5d8183d0c10a391d3842b",
+    "documents": 131,
+    "characters": 15772,
+    "source_spans": 774,
+    "source_scope": "all_available_authorized_ambient_transcripts_on_recording_day_not_24h_audio_coverage"
+  },
+  "source_integrity": {
+    "expected_spans": 774,
+    "assigned_spans": 774,
+    "missing_spans": 0,
+    "duplicate_spans": 0,
+    "stale_ranges": 0,
+    "original_documents_unchanged": true,
+    "passed": true
+  },
+  "quality": {
+    "method": "development_regression_anchors_not_accuracy_or_independent_holdout",
+    "labels_in_generation_prompts": false,
+    "checks": [
+      {
+        "id": "financing_vs_later_delivery",
+        "result": "passed"
+      },
+      {
+        "id": "meeting_arrangement_vs_classroom_fragment",
+        "result": "passed"
+      },
+      {
+        "id": "business_vs_rest_and_health",
+        "result": "passed"
+      },
+      {
+        "id": "quantity_only_off_home",
+        "result": "passed"
+      },
+      {
+        "id": "product_feedback_stays_visible",
+        "result": "passed"
+      },
+      {
+        "id": "homework_method_and_effect_stay_together",
+        "result": "passed"
+      }
+    ],
+    "same_matter_cross_conversation_link": true,
+    "different_matter_kept_separate": true,
+    "cross_conversation_metric_scope": "session_level_source_coverage_requires_manual_issue_range_review",
+    "homepage_before_rolling": 101,
+    "homepage_after_rolling": 90,
+    "card_count_is_not_quality_score": true,
+    "retained_fragment_spans": 107,
+    "approved_merges": 10,
+    "review_windows": 19,
+    "review_failures": 0
+  },
+  "final_pipeline_cost": {
+    "calls": 63,
+    "calls_with_usage": 63,
+    "prompt_tokens": 382758,
+    "completion_tokens": 44178,
+    "total_tokens": 426936,
+    "cached_tokens": 96648,
+    "uncached_prompt_tokens": 286110,
+    "active_processing_seconds": 1047.0769637490012,
+    "currency_cost": null
+  },
+  "all_phases": {
+    "run-v1": {
+      "status": "failed",
+      "cost": {
+        "calls": 25,
+        "calls_with_usage": 25,
+        "prompt_tokens": 126865,
+        "completion_tokens": 19737,
+        "total_tokens": 146602,
+        "cached_tokens": 52744,
+        "usage_complete": true,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_including_failed_attempts_no_unverified_price",
+        "seconds": 490.3407330839909
+      }
+    },
+    "run-v2": {
+      "status": "failed",
+      "cost": {
+        "calls": 5,
+        "calls_with_usage": 5,
+        "prompt_tokens": 22070,
+        "completion_tokens": 3842,
+        "total_tokens": 25912,
+        "cached_tokens": 12824,
+        "usage_complete": true,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_including_failed_attempts_no_unverified_price",
+        "seconds": 96.73816641800659
+      }
+    },
+    "run-v3": {
+      "status": "completed",
+      "cost": {
+        "calls": 41,
+        "calls_with_usage": 41,
+        "prompt_tokens": 289460,
+        "completion_tokens": 39458,
+        "total_tokens": 328918,
+        "cached_tokens": 80664,
+        "usage_complete": true,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_including_failed_attempts_no_unverified_price",
+        "seconds": 912.8376417490072
+      }
+    },
+    "run-v3-rolling-review": {
+      "windows": 19,
+      "failed": 2,
+      "approved_merges": 9,
+      "totals": {
+        "calls": 22,
+        "calls_with_usage": 22,
+        "prompt_tokens": 88911,
+        "completion_tokens": 6165,
+        "total_tokens": 95076,
+        "cached_tokens": 13936,
+        "seconds": 163.39569970699813,
+        "usage_complete": true,
+        "currency_cost": null
+      }
+    },
+    "run-v3-review-v2-rolling-review": {
+      "windows": 19,
+      "failed": 0,
+      "approved_merges": 9,
+      "totals": {
+        "calls": 19,
+        "calls_with_usage": 19,
+        "prompt_tokens": 70157,
+        "completion_tokens": 3411,
+        "total_tokens": 73568,
+        "cached_tokens": 0,
+        "seconds": 135.33323349900456,
+        "usage_complete": true,
+        "currency_cost": null
+      }
+    },
+    "run-v3-review-v3-rolling-review": {
+      "windows": 19,
+      "failed": 0,
+      "approved_merges": 10,
+      "totals": {
+        "calls": 22,
+        "calls_with_usage": 22,
+        "prompt_tokens": 93298,
+        "completion_tokens": 4720,
+        "total_tokens": 98018,
+        "cached_tokens": 15984,
+        "seconds": 134.239321999994,
+        "usage_complete": true,
+        "currency_cost": null
+      }
+    },
+    "native-hermes-control": {
+      "status": "failed",
+      "error": "model_call_budget",
+      "quality_scored": false,
+      "cost": {
+        "calls": 48,
+        "calls_with_usage": 48,
+        "prompt_tokens": 2565117,
+        "completion_tokens": 49361,
+        "total_tokens": 2614478,
+        "cached_tokens": 2206736,
+        "usage_complete": true,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_including_failed_attempts_no_unverified_price",
+        "seconds": 878.1951522499949
+      }
+    }
+  },
+  "total_observed_experiment_cost": {
+    "calls": 182,
+    "calls_with_usage": 182,
+    "prompt_tokens": 3255878,
+    "completion_tokens": 126694,
+    "total_tokens": 3382572,
+    "cached_tokens": 2382888
+  },
+  "safety": {
+    "asr_calls": 0,
+    "hardware_commands": 0,
+    "service_restarts": 0,
+    "deployments": 0,
+    "raw_audio_uploads": 0,
+    "git_commits": 0,
+    "git_pushes": 0,
+    "personal_claims_created": 0
+  },
+  "verification": {
+    "python_tests": 198,
+    "python_tests_status": "passed",
+    "swift_shared_day_decode": {
+      "passed": true,
+      "events": 90,
+      "physical_device_test": false
+    },
+    "source_only_export_checked": true,
+    "python_test_seconds": 14.22,
+    "source_only_export_current": true
+  },
+  "limitations": [
+    "Same frozen development corpus reused after format/policy fixes; no independent unseen-day validation.",
+    "Known cross-conversation checks cover one positive and one negative label and are not topic accuracy.",
+    "Some topic groupings remain broad; no claim that every homepage event is correct.",
+    "Real meeting/meal boundary detection and ambient speaker attribution are not re-validated here.",
+    "Recording-time source intervals are not word-level timestamps.",
+    "Native Hermes control exhausted 48 calls before committing; not an equal-quality successful cost baseline.",
+    "Cache hits and unit prices differ; token reductions are not currency savings.",
+    "Final hardening and rolling changes reuse frozen committed extraction; no fresh ASR or online rollout."
+  ],
+  "implementation_sha256": {
+    "scripts/heartball_incremental.py": "04c7a21038e594fa8267c89fe15f12ed0afd6111aae37f078e5b6e0fe27c7e47",
+    "scripts/heartball_incremental_reuse.py": "baaef7ede1e43bb7552c7dd9e84dc48dee5a5eecc53012b98c9fcc3c448538ed",
+    "scripts/heartball_incremental_review.py": "5e3a39f990d6485950f86fced768c893215b3367ff4589fbf52f86a6aea0231d",
+    "scripts/heartball_event_merge.py": "72cd3b88c4f7aea8a909875401126385441f440f74f5d5562b7e9bbb202d8089",
+    "prompts/skills/xinlika-incremental/SKILL.md": "6b186c2cacc020d65dd1a656057f5338d0ecd4e1ac958e38883c2a2cf44c6bde"
+  }
+}

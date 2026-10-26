@@ -1,0 +1,10 @@
+{
+  "sdk": "sherpa-onnx==1.13.8",
+  "reference_revision": "a63f82130d91d99a23a43f346104706881b31ff1",
+  "files": [
+    {"path": "silero_vad.onnx", "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6"},
+    {"path": "wespeaker_zh_cnceleb_resnet34.onnx", "sha256": "f86cd6c509f331f0e20b07bd48d1b2eb7de54202643401c4e84695ac861a0e5a"},
+    {"path": "sherpa-onnx-zipformer-small-audio-tagging-2024-04-15/model.int8.onnx", "sha256": "69304b8a1b96bbe6b7d16c24079f0732c65faf3568a14cb82a8238c709afe76c"},
+    {"path": "sherpa-onnx-zipformer-small-audio-tagging-2024-04-15/class_labels_indices.csv", "sha256": "cdd1049833c4b86127c2773ac0d14a2754b6a6d0d1798002ed5c66e699708429"}
+  ]
+}

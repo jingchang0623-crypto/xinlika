@@ -1,6 +1,14 @@
 .build/
 *.app/
 .DS_Store
+.build/
+build/
+DerivedData/
+Shennao.xcodeproj/
+Config/Local.xcconfig
+*.xcarchive
+*.ipa
+*.mobileprovision
 __pycache__/
 *.pyc
 # 凭证与录音本体绝不进仓
@@ -15,3 +23,43 @@ icon/*.iconset/
 icon/*.icns
 icon/make-icon
 icon/preview-*.png
+
+# Local research captures and device screenshots are not public project assets.
+/research/
+/docs/**/*.png
+/docs/**/*.jpg
+/docs/**/*.jpeg
+/docs/**/*.webp
+# Reviewed simulator fixture; contains no live workspace or personal records.
+!/docs/validation/xinlika-interest-2026-10-26/feedback-preview.png
+
+# Runtime data, recordings, credentials, signing material and build evidence.
+.venv/
+venv/
+node_modules/
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.db
+*.db-*
+*.cb08
+*.wav
+*.pcm
+*.aac
+*.mp3
+*.flac
+*.mp4
+*.mov
+*.p8
+*.p12
+*.pem
+*.key
+*.keystore
+*.xcresult/
+*.dSYM/
+xcuserdata/
+*-private.json
+*-private.jsonl

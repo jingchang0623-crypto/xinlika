@@ -1,0 +1,21 @@
+{
+  "voxgate_config": "/private/xinlika/voxgate.json",
+  "agent_runtime": {
+    "runtime": "hermes",
+    "python": "/opt/xinlika/hermes-venv/bin/python",
+    "client_python": "/opt/xinlika/venv/bin/python",
+    "timeout_seconds": 240,
+    "coalesce_seconds": 180,
+    "max_documents": 20,
+    "max_characters": 10000,
+    "proactive_feedback": true,
+    "model": {
+      "base_url": "https://ark.cn-beijing.volces.com/api/plan/v3",
+      "api_key_file": "/private/xinlika/model-key",
+      "model": "doubao-seed-2.1-pro",
+      "max_tokens": 12000,
+      "capture_model_payloads": false,
+      "extra_body": {"thinking": {"type": "disabled"}}
+    }
+  }
+}

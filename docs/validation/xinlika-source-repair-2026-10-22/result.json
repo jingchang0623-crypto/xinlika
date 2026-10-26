@@ -1,0 +1,198 @@
+{
+  "checked_at_utc": "2026-10-22T14:31:42.578055+00:00",
+  "goal_complete": false,
+  "cloud": {
+    "server_image": "xinlika-shared:20261022-r21-amd64",
+    "model_profile": {
+      "source_refinement_enabled": false,
+      "model": "doubao-seed-2.1-pro",
+      "review_model": "deepseek-v4.1-flash",
+      "actual_model_call_ok": true
+    },
+    "source_case_suite": {
+      "passed": true,
+      "checks": [
+        {
+          "case_id": "financing_vs_later_delivery",
+          "kind": "different_events",
+          "passed": true
+        },
+        {
+          "case_id": "meeting_arrangement_vs_classroom_fragment",
+          "kind": "separate_sources",
+          "passed": true
+        },
+        {
+          "case_id": "business_vs_rest_and_health",
+          "kind": "different_events",
+          "passed": true
+        },
+        {
+          "case_id": "quantity_only_off_home",
+          "kind": "fragment",
+          "passed": true
+        },
+        {
+          "case_id": "product_feedback_stays_visible",
+          "kind": "visible",
+          "passed": true
+        },
+        {
+          "case_id": "homework_method_and_effect_stay_together",
+          "kind": "same_event",
+          "passed": true
+        }
+      ],
+      "scope": "Specified literal source relationships only; not word/speaker accuracy or general semantic accuracy."
+    },
+    "phone_mac_same_day_ids": true,
+    "day_events": 67,
+    "worker_error": null,
+    "active_recordings": 0,
+    "pending_jobs": 0
+  },
+  "checks": {
+    "python": 180,
+    "core": 60,
+    "workspace_recording_clock": 10,
+    "mac_build": true,
+    "iphone_build": true,
+    "real_scoped_source_acceptance": true,
+    "complete_history_replay_accepted": false,
+    "final_physical_ui": "partial_actual_review_completed"
+  },
+  "client": {
+    "version": "0.3.7",
+    "last_successful_installed_build": "22",
+    "latest_built_build": "22",
+    "latest_built_installed": true
+  },
+  "real_source_suite": {
+    "cases": 6,
+    "baseline": {
+      "passed": false,
+      "checks": [
+        {
+          "case_id": "financing_vs_later_delivery",
+          "kind": "different_events",
+          "passed": false
+        },
+        {
+          "case_id": "meeting_arrangement_vs_classroom_fragment",
+          "kind": "separate_sources",
+          "passed": false
+        },
+        {
+          "case_id": "business_vs_rest_and_health",
+          "kind": "different_events",
+          "passed": false
+        },
+        {
+          "case_id": "quantity_only_off_home",
+          "kind": "fragment",
+          "passed": false
+        },
+        {
+          "case_id": "product_feedback_stays_visible",
+          "kind": "visible",
+          "passed": true
+        },
+        {
+          "case_id": "homework_method_and_effect_stay_together",
+          "kind": "same_event",
+          "passed": true
+        }
+      ],
+      "scope": "Specified literal source relationships only; not word/speaker accuracy or general semantic accuracy."
+    },
+    "scoped_repair": {
+      "passed": true,
+      "checks": [
+        {
+          "case_id": "financing_vs_later_delivery",
+          "kind": "different_events",
+          "passed": true
+        },
+        {
+          "case_id": "meeting_arrangement_vs_classroom_fragment",
+          "kind": "separate_sources",
+          "passed": true
+        },
+        {
+          "case_id": "business_vs_rest_and_health",
+          "kind": "different_events",
+          "passed": true
+        },
+        {
+          "case_id": "quantity_only_off_home",
+          "kind": "fragment",
+          "passed": true
+        },
+        {
+          "case_id": "product_feedback_stays_visible",
+          "kind": "visible",
+          "passed": true
+        },
+        {
+          "case_id": "homework_method_and_effect_stay_together",
+          "kind": "same_event",
+          "passed": true
+        }
+      ],
+      "scope": "Specified literal source relationships only; not word/speaker accuracy or general semantic accuracy."
+    },
+    "approved_original_roots": 4,
+    "other_existing_event_rows_unchanged_at_atomic_apply": 481,
+    "original_documents_unchanged_at_apply": 419,
+    "original_transcripts_unchanged_at_apply": 408,
+    "literal_character_coverage_preserved": true,
+    "complete_replay_passed": false,
+    "scope": "Assistant reading of six literal-source relationship cases in the real dinner transcript; not user word/speaker labels or overall semantic accuracy."
+  },
+  "data": {
+    "audio_changed": false,
+    "asr_repeated": false,
+    "original_transcripts_changed": false,
+    "four_audited_source_repairs_applied_to_cloud": true,
+    "full_trial_projections_applied_to_cloud": false,
+    "real_text_and_models_ignored_build_only": true,
+    "recorder_control_commands_for_source_repair": false
+  },
+  "required_to_continue": [
+    "Complete remaining timeline granularity improvements; a few original vague items remain visible.",
+    "Complete automatic detection and recovery of subsequent physical card segments."
+  ],
+  "limitations": [
+    "Independent model review is not a ground-truth oracle",
+    "Automatic meeting/meal activity boundaries remain unaccepted",
+    "Source clocks are batch starts, not sentence-aligned boundaries",
+    "Native review verified the day, late separated delivery sources and saved-card status, not every event in the list."
+  ],
+  "physical_ui": {
+    "checked_at_utc": "2026-10-22T14:37:20.713511+00:00",
+    "installed_version": "0.3.7(22)",
+    "native_device": true,
+    "reviewed": {
+      "dinner_day_2026_10_21_opened": true,
+      "late_delivery_visible_separately": true,
+      "delivery_recording_clock_displayed": "approx 2026-10-21 23:48",
+      "delivery_detail_own_literal_sources": true,
+      "financing_not_in_delivery_quote": true,
+      "recording_saved": true,
+      "pending_uploads": 0,
+      "current_card_archive_aligned": true,
+      "new_recording_started": false
+    },
+    "screenshots_local_only": [
+      "dinner-timeline.png",
+      "delivery-own-sources.png",
+      "saved-card-reference-state.png"
+    ],
+    "not_claimed": [
+      "Complete native scrolling review of every repaired event.",
+      "No fragments remain anywhere on the day timeline.",
+      "Whole-history grouping quality accepted.",
+      "Current-file alignment covers following physical files."
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+# Build from the same reviewed application image as the API. No credentials are copied.
+ARG APPLICATION_IMAGE=xinlika-shared:local
+FROM ${APPLICATION_IMAGE}
+USER root
+COPY requirements-acoustics-linux-amd64.lock /tmp/requirements-acoustics.lock
+RUN pip install --no-cache-dir --require-hashes -r /tmp/requirements-acoustics.lock
+USER 10001:10001
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s CMD python -c "import sqlite3,time;d=sqlite3.connect('file:/data/workspace/heartball.sqlite?mode=ro',uri=True);h=d.execute('SELECT max(heartbeat) FROM acoustic_workers').fetchone()[0];assert h is not None and time.time()-h<60"
+ENTRYPOINT ["python", "/app/scripts/heartball_acoustic_worker.py"]
+CMD ["--workspace", "/data/workspace", "--models", "/models"]

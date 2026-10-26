@@ -1,0 +1,263 @@
+{
+  "date": "2026-10-21",
+  "status": "long_capture_analysis_complete",
+  "capture_finished_at": "2026-10-20T18:19:30Z",
+  "recording_mode": "TYPE=1 realtime, firmware V1.0.0",
+  "saved_file": {
+    "name": "note20261020-230024.opus",
+    "bytes": 24001840,
+    "catalog_seconds": 12000,
+    "save_confirmed": true,
+    "state_after": 2
+  },
+  "streams": [
+    {
+      "file": "audio-5E8CDF9F-BCA1-436E-8835-DD25A343C554-AE22.bin",
+      "indexedBytes": 61440,
+      "actualBytes": 61440,
+      "businessFrames": 384,
+      "sha256": "41840065b562921c6fa96e9d62a37e3d4f806c75e17b5b5bcada48fe0dfc6fc8",
+      "referenceVerdict": "exact_unique_card_range_found",
+      "decode": {
+        "decoderExitCode": 0,
+        "decodedSamples": 491520,
+        "decodedSeconds": 30.72,
+        "quietCandidateSeconds": 12.8,
+        "energyWindows": 154,
+        "energyFile": "audio-5E8CDF9F-BCA1-436E-8835-DD25A343C554-AE22-energy.ndjson",
+        "decoderLog": "audio-5E8CDF9F-BCA1-436E-8835-DD25A343C554-AE22-decoder.txt",
+        "warning": "Energy only; quiet speech may be below threshold; no audio removed. Offsets exclude transport gaps.",
+        "expectedSamplesUnder20msBaseline": 491520,
+        "baselineSampleCountMatches": true
+      },
+      "exact_card_ranges": [
+        {
+          "offset": 0,
+          "length": 61440,
+          "unique_within_file": true
+        }
+      ]
+    },
+    {
+      "file": "audio-06CC8C3D-02EE-4A78-9AEF-3BFE2D65A2B0-AE22.bin",
+      "indexedBytes": 23929920,
+      "actualBytes": 23929920,
+      "businessFrames": 149562,
+      "sha256": "59b469ace2beb03aa2f5c1412be25f18f0093dcde11c25f08b42bf2dd134bee3",
+      "referenceVerdict": "exact_unique_card_range_found",
+      "decode": {
+        "decoderExitCode": 0,
+        "decodedSamples": 191439360,
+        "decodedSeconds": 11964.96,
+        "quietCandidateSeconds": 10011.96,
+        "energyWindows": 59825,
+        "energyFile": "audio-06CC8C3D-02EE-4A78-9AEF-3BFE2D65A2B0-AE22-energy.ndjson",
+        "decoderLog": "audio-06CC8C3D-02EE-4A78-9AEF-3BFE2D65A2B0-AE22-decoder.txt",
+        "warning": "Energy only; quiet speech may be below threshold; no audio removed. Offsets exclude transport gaps.",
+        "expectedSamplesUnder20msBaseline": 191439360,
+        "baselineSampleCountMatches": true
+      },
+      "exact_card_ranges": [
+        {
+          "offset": 71840,
+          "length": 23929920,
+          "unique_within_file": true
+        }
+      ]
+    }
+  ],
+  "integrity_verdict": "indexed_audio_consistent",
+  "problems": [],
+  "file_changes": [],
+  "arrival_gaps_over_one_second": [
+    {
+      "fromUptime": 345712.47163287504,
+      "toUptime": 345717.750746125,
+      "arrivalSeconds": 5.279113249969669
+    }
+  ],
+  "dropped_submissions": 0,
+  "decode_seconds_total": 11995.679999999998,
+  "reference_comparison": "all live bytes match unique ranges in the complete saved card file",
+  "three_hour_result": {
+    "rollover_observed": false,
+    "same_file_observed_beyond_10801_seconds": true,
+    "window_card_seconds": [
+      10790,
+      10810
+    ],
+    "window_bytes": [
+      21580000,
+      21620000
+    ],
+    "window_bytes_covered_by_exact_live_card_match": 40000,
+    "window_exact_card_coverage": true,
+    "business_frames_in_window": 250,
+    "max_arrival_gap_in_window_seconds": 0.12062012497335672,
+    "first_frame": {
+      "audio_file": "audio-06CC8C3D-02EE-4A78-9AEF-3BFE2D65A2B0-AE22.bin",
+      "audio_offset": 21508160,
+      "card_start_byte": 21580000,
+      "card_end_byte": 21580160,
+      "uptime": 356471.8519587084,
+      "time": "2026-10-20T17:59:15Z",
+      "sequence": 0
+    },
+    "last_frame": {
+      "audio_file": "audio-06CC8C3D-02EE-4A78-9AEF-3BFE2D65A2B0-AE22.bin",
+      "audio_offset": 21548000,
+      "card_start_byte": 21619840,
+      "card_end_byte": 21620000,
+      "uptime": 356491.8024994167,
+      "time": "2026-10-20T17:59:35Z",
+      "sequence": 0
+    },
+    "private_frame_evidence": ".build/cb08-captures/boundary-20261020/analysis-card-final-20261021/three-hour-frames.json",
+    "frame_evidence_sha256": "f3ad4a6fac7df2969e6afac89a96ac2840b0b0308c156ab6d97ceef323eeb448",
+    "snapshots": [
+      {
+        "bytes": "21576440",
+        "event": "snapshot",
+        "filename": "note20261020-230024.opus",
+        "identityStableAcrossReads": "true",
+        "phase": "periodic",
+        "seconds": "10788",
+        "state": "1",
+        "time": "2026-10-20T17:59:13Z",
+        "uptime": 356470.12854866666
+      },
+      {
+        "bytes": "21587000",
+        "event": "snapshot",
+        "filename": "note20261020-230024.opus",
+        "identityStableAcrossReads": "true",
+        "phase": "periodic",
+        "seconds": "10793",
+        "state": "1",
+        "time": "2026-10-20T17:59:19Z",
+        "uptime": 356475.36902345833
+      },
+      {
+        "bytes": "21597560",
+        "event": "snapshot",
+        "filename": "note20261020-230024.opus",
+        "identityStableAcrossReads": "true",
+        "phase": "periodic",
+        "seconds": "10798",
+        "state": "1",
+        "time": "2026-10-20T17:59:24Z",
+        "uptime": 356480.646301875
+      },
+      {
+        "bytes": "21608040",
+        "event": "snapshot",
+        "filename": "note20261020-230024.opus",
+        "identityStableAcrossReads": "true",
+        "phase": "periodic",
+        "seconds": "10804",
+        "state": "1",
+        "time": "2026-10-20T17:59:29Z",
+        "uptime": 356485.9101367917
+      },
+      {
+        "bytes": "21618600",
+        "event": "snapshot",
+        "filename": "note20261020-230024.opus",
+        "identityStableAcrossReads": "true",
+        "phase": "periodic",
+        "seconds": "10809",
+        "state": "1",
+        "time": "2026-10-20T17:59:34Z",
+        "uptime": 356491.18662875
+      },
+      {
+        "bytes": "21629160",
+        "event": "snapshot",
+        "filename": "note20261020-230024.opus",
+        "identityStableAcrossReads": "true",
+        "phase": "periodic",
+        "seconds": "10814",
+        "state": "1",
+        "time": "2026-10-20T17:59:40Z",
+        "uptime": 356496.4580464167
+      }
+    ],
+    "interpretation": "encoded live content matches the saved card through the nominal three-hour boundary; no file rollover occurred, so cross-file rollover continuity remains untested"
+  },
+  "hardware_vad": "not established; complete local energy analysis does not establish firmware detection or voice-trigger support",
+  "raw_audio_uploaded": false,
+  "unknowns": [
+    "No independent acoustic/ADC reference; cannot establish absolute zero lost samples",
+    "No physical three-hour rollover occurred in this TYPE=1 trial; cross-file behavior and independent-button recording remain untested",
+    "Firmware VAD, controlled silence, device battery-powered all-day runtime and iOS locked-screen capture remain untested"
+  ],
+  "reference_downloads": [
+    {
+      "attempt": "initial",
+      "received_bytes": 830240,
+      "expected_bytes": 24001840,
+      "end_code": null,
+      "accepted_as_complete": false
+    },
+    {
+      "attempt": "shared_offset_retry",
+      "received_bytes_at_last_progress": 786560,
+      "failure": "BLE disconnected; no complete reference produced",
+      "accepted_as_complete": false
+    }
+  ],
+  "followup": {
+    "serial_download_runner": ".build/cb08-followup-20261021/state.json",
+    "long_reference_output": ".build/cb08-captures/boundary-reference-recovery-20261021",
+    "status": "all independent measurements finished; historical source and human ground truth pending",
+    "automation_status": "PAUSED",
+    "remaining_external_requirement": "Confirm historical sample source, participants/noise and human boundary wording before conditional app integration"
+  },
+  "verification": {
+    "probe_build": "passed",
+    "probe_logic_self_test": "48/48 passed (synthetic)",
+    "capture_analysis_tests": "7/7 passed",
+    "offline_sample_preparation_tests": "2/2 passed"
+  },
+  "reference": {
+    "name": "note20261020-230024.opus",
+    "bytes": 24001840,
+    "sha256": "c3276f294d3a0f80d293754b0661e7ba081b08042e9e1dce63b160cdbfdf6b8b",
+    "end_code": 0,
+    "size_and_end_confirmed": true,
+    "download_attempts": 1,
+    "baseline_encoded_seconds": 12000.92,
+    "strict_decode": {
+      "decoder_exit_code": 0,
+      "decoded_samples": 192014720,
+      "expected_samples_under_40B_20ms_baseline": 192014720,
+      "sample_count_matches": true,
+      "decoded_seconds": 12000.92,
+      "zero_preskip_decoding_fixture": true,
+      "independent_acoustic_reference": false,
+      "private_decoder_log": ".build/cb08-captures/boundary-20261020/analysis-card-final-20261021/complete-card-decoder.log"
+    }
+  },
+  "encoded_content_missing_from_live": [
+    {
+      "start_byte": 61440,
+      "end_byte": 71840,
+      "bytes": 10400,
+      "baseline_seconds": 5.2
+    },
+    {
+      "start_byte": 24001760,
+      "end_byte": 24001840,
+      "bytes": 80,
+      "baseline_seconds": 0.04
+    }
+  ],
+  "missing_encoded_seconds_total": 5.24,
+  "continuity_scope": "Comparison is against saved encoded card content, not an independent microphone/ADC sample reference. Planned disconnection and final save may leave quantified live gaps. No global zero-loss claim.",
+  "low_energy_observation": {
+    "threshold_dbfs": -50,
+    "quiet_candidate_seconds": 10024.759999999998,
+    "decoded_seconds": 11995.679999999998,
+    "interpretation": "Host energy only; low-energy intervals were delivered in this mode. Not speech detection, controlled silence or firmware VAD validation."
+  }
+}

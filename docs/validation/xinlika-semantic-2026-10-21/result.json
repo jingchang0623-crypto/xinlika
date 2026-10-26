@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-21",
+  "product": "心力卡",
+  "version": "0.4.0",
+  "deployed": "existing local Mac app and loopback service; not cloud",
+  "automated_checks": {
+    "python_regressions_passed": 44,
+    "swift_identity_checks_passed": 8,
+    "mac_build": true,
+    "bundle_signature_verified": true
+  },
+  "real_model_fictional_acceptance": {
+    "passed": true,
+    "checks": {
+      "same_event_continues_across_batches": true,
+      "cross_conversation_topic": true,
+      "answer_without_confirmation": true,
+      "zero_manual_confirmations": true,
+      "old_answer_invalidated": true,
+      "corrected_answer": true,
+      "no_provider_failures": true,
+      "restart_preserves_workspace": true
+    },
+    "scope": "Fictional text + real configured model; no hardware/ASR/real-user factual accuracy claim",
+    "initial_failures_preserved": true
+  },
+  "existing_audio_transcript_observation": {
+    "semantic_jobs_completed": 10,
+    "failed_semantic_jobs": 0,
+    "semantic_results": 7,
+    "topics": 2,
+    "manual_confirmation_count": 0,
+    "not_an_asr_accuracy_score": true
+  },
+  "recording_time": {
+    "no_processing_time_fallback": true,
+    "history_origins_restored": 2,
+    "history_origin_byte_ranges_verified": true,
+    "device_clock_calibrated": false,
+    "live_recording_anchor": "host_capture_start_estimate plus batch audio offset",
+    "unknown_recording_clock": "unknown, never created_at",
+    "sort_unknowns_after_recording_clocks": true,
+    "precision": "batch start or source anchor; no word-aligned event end"
+  },
+  "native_ui_observed": {
+    "today_topics_agent": true,
+    "light_and_dark": true,
+    "appearance_restored_to_system": true,
+    "source_detail_and_correction_cancel": true,
+    "natural_answer_from_existing_real_transcripts": true,
+    "answer_reference_to_topic": true,
+    "recording_time_labels_from_evidence": true,
+    "final_end_time_answer_check": true,
+    "recording_time_qa_distinguishes_device_clock_and_unknown_end": true,
+    "overlapping_focus_collapsed_into_event_marker": true
+  },
+  "hardware": {
+    "commands_sent_in_this_change": 0,
+    "capture_status": "completed",
+    "new_asr_uploads": 0,
+    "original_audio_retained": true
+  },
+  "limits": [
+    "No new all-day/background hardware acceptance",
+    "Real multi-speaker word accuracy and source attribution remain unverified",
+    "Cross-day association quality tested on fictional conversations with real model, not a longitudinal real-user accuracy study",
+    "Current native capture safety limit remains 30 minutes",
+    "Event/topic context and visible history are bounded"
+  ],
+  "source_sha256": {
+    "scripts/heartball_processing.py": "aa7b95466297d1f8d466a8f4d38872cfe7610bcbce86a61e69a71d5f20403274",
+    "scripts/heartball_organization.py": "da5f0bca94cd7eb3b778462fcc9203053fdcfbddb5b5d4d07300aa215cb34c1f",
+    "scripts/heartball_recording_time.py": "9db7977317254a0762eda8b6816408636c497d380563c34b5c7e134e1bd49d49",
+    "scripts/heartball_agent_store.py": "07a1c7c52c13ee3c2d24321085cbfd9adc28235c5a5e96759a3c90aea56594f0",
+    "scripts/heartball-import.py": "ae6e3275f5d31605c5c9fc09bbfc40906206d7cf1580db5af442721bdaa357b6",
+    "Sources/HeartballLab/WorkspaceView.swift": "2674ab5a917a22706f108d7aab391814cf2b7243dc10de18a9454ca202878d09",
+    "Sources/HeartballLab/WorkspaceComponents.swift": "2b8b824af2830cda234cedc5b6a7e490c2167c65b2ac8ddbb142b78d31082d7b",
+    "Sources/LuyinbiCore/HeartballClient.swift": "4c82ee322e1383a4f6fc698f440d9c3197a8f7fcd36ab00c3f0b95509f8e7887"
+  }
+}

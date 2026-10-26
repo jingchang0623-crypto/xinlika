@@ -1,0 +1,104 @@
+{
+  "status": "completed_observe_only_trial",
+  "user_report": "one physical operation same as group2 save; stopped and saved",
+  "conditions": {
+    "initial_state": 2,
+    "ae23_subscribed": true,
+    "start_owned_commands": 1,
+    "button_acks_sent": 0,
+    "save_commands_sent": 0,
+    "restart_commands_sent": 0,
+    "foreground_background_announcements": 0
+  },
+  "original_owned_filename": "note20261021-095427.opus",
+  "button_events": [
+    {
+      "buttonBodyBytes": 0,
+      "buttonBodyHex": "",
+      "buttonBodyTruncated": false,
+      "buttonInterpretation": "vendor_request_candidate_not_confirmed_state_or_user_intent",
+      "buttonRequestCandidate": "save",
+      "command": 3,
+      "connection": "95915822-2B49-466A-A246-E7A349CD59AA",
+      "dataBytes": 2,
+      "event": "frame",
+      "previousSequence": 18,
+      "sequence": 177,
+      "sequenceDiscontinuity": true,
+      "source": "AE23",
+      "time": "2026-10-21T01:56:50Z",
+      "type": 3,
+      "uptime": 385127.1236864167
+    }
+  ],
+  "save_request_to_last_live_arrival_seconds": 2.9694775416282937,
+  "save_request_to_first_idle_snapshot_seconds": 6.976617208332755,
+  "reference_download": {
+    "attempts": 1,
+    "cardFilesDeleted": 0,
+    "clockSync": "disabled",
+    "device": "00000000-0000-4000-8000-000000000001",
+    "downloadSeconds": 16.22695803642273,
+    "endCode": 0,
+    "expectedBytes": 412240,
+    "filename": "note20261021-095427.opus",
+    "lastError": "",
+    "overlapBytesOnResume": 160,
+    "receivedBytes": 412240,
+    "recordingControlCommands": 0,
+    "sizeAndEndConfirmed": true
+  },
+  "card_sha256": "00d833304f52a1c4a2d95cce11ad78404a153e7faa92241088dc75a25d042e87",
+  "card_decoded_seconds": 206.12,
+  "card_strict_decoder_exit": 0,
+  "live_audio": {
+    "bytes": 412160,
+    "frames": 2576,
+    "decode": {
+      "decoderExitCode": 0,
+      "decodedSamples": 3297280,
+      "decodedSeconds": 206.08,
+      "quietCandidateSeconds": 163.68,
+      "energyWindows": 1031,
+      "energyFile": "audio-95915822-2B49-466A-A246-E7A349CD59AA-AE22-energy.ndjson",
+      "decoderLog": "audio-95915822-2B49-466A-A246-E7A349CD59AA-AE22-decoder.txt",
+      "warning": "Energy only; quiet speech may be below threshold; no audio removed. Offsets exclude transport gaps.",
+      "expectedSamplesUnder20msBaseline": 3297280,
+      "baselineSampleCountMatches": true
+    },
+    "card_range": {
+      "cardFile": ".build/cb08-buttons-20261021/continuous-button-reference/note20261021-095427.opus",
+      "offset": 0,
+      "length": 412160,
+      "uniqueWithinFile": true
+    },
+    "card_prefix_not_in_live_bytes": 0,
+    "card_suffix_not_in_live_bytes": 80,
+    "exact_unique_whole_stream_match": true
+  },
+  "journal_problems": [],
+  "final_state": 2,
+  "file_list_before": 33,
+  "file_list_after": 34,
+  "preexisting_entries_unchanged": true,
+  "verdict": {
+    "button_interrupts_continuous_recording_in_this_trial": true,
+    "non_destructive_focus_marker_observed": false,
+    "independent_focus_start_end_pair_observed": false,
+    "save_request_is_exact_sample_boundary": false,
+    "full_vendor_handshake_behavior": "not_tested",
+    "automatically_restart_after_user_stop": false
+  },
+  "measured": [
+    "One AE23 save candidate after user operation, then no live audio and idle state",
+    "Original continuous file saved; no replacement recording created",
+    "All captured live bytes form one unique contiguous card-file range; no journal/write drops"
+  ],
+  "unknown": [
+    "Why save takes effect about three seconds after request in this observe-only condition",
+    "Different button gestures, vendor ACK/foreground state, repeated trials, and disconnected operations during continuous recording",
+    "Exact physical press-to-ADC timing and whether spoken before/after markers were fully captured; no verbatim listening review"
+  ],
+  "card_files_deleted": 0,
+  "audio_uploads": 0
+}

@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "date": "2026-10-24",
+  "status": "completed_with_quality_limits",
+  "deployment": {
+    "release": "xinlika-v6-r3-20261024",
+    "processing": "active",
+    "profile": "xinlika-events-v6",
+    "activatedAt": "2026-10-24T13:40:07.422109+00:00"
+  },
+  "profile_revision": 3,
+  "skill_bundle_unchanged": true,
+  "boundary_release_reused": "xinlika-v6-r2-20261024",
+  "fragment_repair": {
+    "initial_live_audit": {
+      "expected_spans": 95,
+      "assigned_spans": 95,
+      "missing_spans": 0,
+      "duplicate_spans": 0,
+      "stale_ranges": 0,
+      "original_documents_unchanged": true,
+      "passed": true
+    },
+    "final_live_audit": {
+      "expected_spans": 113,
+      "assigned_spans": 113,
+      "missing_spans": 0,
+      "duplicate_spans": 0,
+      "stale_ranges": 0,
+      "original_documents_unchanged": true,
+      "passed": true
+    },
+    "retired_assignment_history_rows": 2,
+    "documents_unchanged": true,
+    "isolated_production_copy": {
+      "before": {
+        "expected_spans": 95,
+        "assigned_spans": 95,
+        "missing_spans": 0,
+        "duplicate_spans": 1,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": false
+      },
+      "after": {
+        "expected_spans": 95,
+        "assigned_spans": 95,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "repaired_documents": 1,
+      "repeat_repairs": 0,
+      "documents_unchanged": true,
+      "asr_jobs_unchanged": true,
+      "retired_rows": 1
+    },
+    "tests_passed": 76,
+    "profile_pin_recheck_passed": true
+  },
+  "archive": {
+    "previous_long_recording": {
+      "status": "phone_card_bytes_verified",
+      "card_bytes": 57397720,
+      "sha256_matches": true,
+      "frame_count": 1434943,
+      "frame_aligned": true,
+      "live_coverage_ranges": [
+        [
+          0,
+          57005280
+        ],
+        [
+          57005280,
+          57397600
+        ]
+      ],
+      "missing_live_ranges": [
+        [
+          57397600,
+          57397720
+        ]
+      ],
+      "missing_live_seconds": 0.06,
+      "repair_batch_count": 0,
+      "context_review_range_count": 1,
+      "tail_decode_exit": 0,
+      "tail_decode_error_bytes": 0,
+      "ASR_calls": 0,
+      "limits": "Only final 1.02 seconds decoded here. Full reference hash and accepted exact live alignment verified; no full-stream audio or semantic accuracy claim."
+    },
+    "new_recordings": [
+      {
+        "status": "completed",
+        "archive_status": "phone_card_bytes_verified",
+        "card_bytes": 145440,
+        "missing_live_bytes": 160
+      },
+      {
+        "status": "completed",
+        "archive_status": "phone_card_bytes_verified",
+        "card_bytes": 232840,
+        "missing_live_bytes": 40
+      },
+      {
+        "status": "completed",
+        "archive_status": "phone_card_bytes_verified",
+        "card_bytes": 176520,
+        "missing_live_bytes": 200
+      }
+    ],
+    "full_stream_decode_tested": false,
+    "isolated_tail_ASR_called": false,
+    "subsecond_semantic_tail_review": "retained_as_raw_context_review_not_claimed_transcribed"
+  },
+  "new_real_recording_validation": {
+    "recordings": 3,
+    "nonempty_source_documents_before_corrections": 5,
+    "positive_case": "Second and third recordings discuss the same sleep-project attribution; two separate event times 21:44 and 21:48 share one active topic.",
+    "first_sample_user_confirmed_self_speech": true,
+    "first_short_sample_used_as_positive": false,
+    "cross_conversation": {
+      "common_active_topics": 1,
+      "sleep_events_still_distinct": true,
+      "other_matter_excluded": true,
+      "original_short_sample_excluded": true
+    },
+    "manually_created_relation": false,
+    "prompts_tuned_on_these_recordings": false,
+    "old_holdout_replayed": false,
+    "ASR_batch_count": 6,
+    "ASR_all_completed_once": true
+  },
+  "correction_sync": {
+    "mac_ui_edit_completed": true,
+    "phone_user_ui_restore_completed": true,
+    "phone_user_handoff_reason": "Mirroring displayed frames but clicks intermittently failed with noWindowsAvailable.",
+    "both_devices_feedback_writes_200": true,
+    "mac_ui_read_restored_original": true,
+    "both_ui_final_topic_seen": true,
+    "source_time_preserved": true,
+    "test_punctuation_fully_restored": true,
+    "two_device_api": {
+      "same_workspace": true,
+      "same_events": true,
+      "same_topics": true,
+      "phone": {
+        "restored_text_matches_original": true,
+        "recording_time_preserved": true
+      },
+      "mac": {
+        "restored_text_matches_original": true,
+        "recording_time_preserved": true
+      }
+    },
+    "association_before_correction": true,
+    "association_after_mac_edit_before_restore_observed": false,
+    "association_after_phone_restore": true,
+    "topic_reconstructed_with_current_sources": true,
+    "original_topic_id_preserved": false,
+    "final_restore_to_new_topic_seconds": 19.455094
+  },
+  "safety": {
+    "old_completed_ASR_baseline": 2050,
+    "old_completed_ASR_jobs_changed": 0,
+    "original_ASR_text_changed": 0,
+    "source_model_input_integrity": {
+      "source_versions_checked": 64,
+      "text_mismatches": 0,
+      "recording_time_mismatches": 0
+    },
+    "pending_jobs": [],
+    "native_jobs_completed": 28,
+    "native_job_errors": 0,
+    "existing_capture_controlled_during_deploy": false,
+    "three_test_captures_normally_saved": true,
+    "phone_reinstalled_or_relaunched": false,
+    "daily_source_default_restored_to_unknown": true,
+    "new_recording_left_running": false,
+    "audio_or_keys_committed": false
+  },
+  "new_observed_text_processing_usage": {
+    "incremental_usage": {
+      "calls": 8,
+      "total_tokens": 29246,
+      "prompt_tokens": 26648,
+      "completion_tokens": 2598,
+      "cached_tokens": 9864
+    },
+    "topic_reviews": {
+      "calls": 6,
+      "total_tokens": 12090,
+      "prompt_tokens": 11798,
+      "completion_tokens": 292,
+      "cached_tokens": 2672
+    }
+  },
+  "usage_limits": "Provider receipt deltas, not a complete rolling-review bill; no verified currency cost. No extra model calls for the exploratory correction-anchor mapping.",
+  "limitations": [
+    "The Mac punctuation edit did not yield an observed restored relation before the phone restored the original; after restoration a fresh review rebuilt it. Non-restoring semantic correction relation stability is not passed.",
+    "A spoken testing instruction and some vague short feedback still appeared as home events; homepage admission remains too permissive in these examples.",
+    "This is one new cross-recording positive, not an all-day recall benchmark.",
+    "Full original recording retained and hash/alignment verified, but no complete-stream decoder or word-level ground-truth accuracy evaluation."
+  ]
+}

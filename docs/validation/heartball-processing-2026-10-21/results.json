@@ -1,0 +1,384 @@
+{
+  "date": "2026-10-21",
+  "scope": "single-user native macOS + loopback service, opt-in research ASR and user-configured model",
+  "components": {
+    "voxgate": "da98bb5ff9ce913b4317081a00e9e0c51f080edf + existing 15s patch",
+    "langgraph": "1.2.16",
+    "langgraph-checkpoint-sqlite": "3.1.2",
+    "openai_python": "2.54.0",
+    "pydantic": "2.14.1",
+    "model": "intern-s2"
+  },
+  "historical_real_multispeaker": [
+    {
+      "session_id": "fbd1d358-2a9f-5ae5-9c81-4f27c8093046",
+      "selection_manifest": {
+        "original_sha256": "50863023c0d6974091f5685e1d5dbf558d679e025c8961febe39d23901440d88",
+        "selected_sha256": "9a33f3d8c8a592c10d82b915acb437824428ca7686347ffea3278b395541df72",
+        "selected_byte_range": [
+          0,
+          240000
+        ],
+        "source_kind": "live_conversation",
+        "focus": [
+          20,
+          90
+        ],
+        "occurred_at": null,
+        "asr_allowed": true,
+        "agent_allowed": true
+      },
+      "selected_seconds": 120,
+      "document_kinds": {
+        "ambient": 4,
+        "focus": 1
+      },
+      "nonempty_transcribed_batches": 4
+    },
+    {
+      "session_id": "1174842f-eef3-52fb-9ef7-66de896a3da1",
+      "selection_manifest": {
+        "original_sha256": "c1f39637fb8d4ee9d56e8e6cccc58e005e5e440d84a8788486951aec8230ce65",
+        "selected_sha256": "053210501e5633af3f7773129de96698ffa6db18c1fd0b3bccd76f24c4597c27",
+        "selected_byte_range": [
+          0,
+          240000
+        ],
+        "source_kind": "live_conversation",
+        "focus": null,
+        "occurred_at": null,
+        "asr_allowed": true,
+        "agent_allowed": true
+      },
+      "selected_seconds": 120,
+      "document_kinds": {
+        "ambient": 2
+      },
+      "nonempty_transcribed_batches": 2
+    }
+  ],
+  "spoken_positive_live_capture": {
+    "session_id": "115c72b4-c616-43ba-a82d-8b23029c5b94",
+    "status": "completed",
+    "ended_at": "2026-10-21T04:14:58.993128+00:00",
+    "owned_card_file": "note20261021-121419.opus",
+    "card_bytes": 189720,
+    "card_decoded_seconds": 94.86,
+    "received_bytes": 189600,
+    "received_encoded_seconds": 94.8,
+    "live_card_ranges": [
+      [
+        0,
+        189600
+      ]
+    ],
+    "missing_live_ranges_preserved_on_card": [
+      [
+        189600,
+        189720
+      ]
+    ],
+    "card_sha256": "da6047ebef7052bfda80d1d5507d8457329935af0c93ffe0307d907b22805c2f",
+    "capture_queue_drops": 0,
+    "strict_decode_and_reference": "passed",
+    "hardware_starts": 1,
+    "hardware_global_saves": 1,
+    "disconnects": 0,
+    "file_changes": 0,
+    "batches": [
+      {
+        "sequence": 0,
+        "seconds": 10.48,
+        "reason": "focus_start",
+        "sha256": "3c35991bc298b02bf805aea820fc7d246c8954f257c15b20d985deb74ca63333"
+      },
+      {
+        "sequence": 1,
+        "seconds": 41.28,
+        "reason": "focus_end",
+        "sha256": "e4383f598d066a83229b59fe789b480fd9c0d49f48a2cdd60f0f554c19f040ba"
+      },
+      {
+        "sequence": 2,
+        "seconds": 43.04,
+        "reason": "capture_end",
+        "sha256": "774a5faa826c22ebe51ab812c976a5e84b8ecb91aa33938ef3540c2b0bdbba3e"
+      }
+    ],
+    "focuses": [
+      {
+        "id": "57428750-6a8a-40f9-a4fb-3d55cc887703",
+        "encoded_seconds": 41.28,
+        "ranges": [
+          {
+            "stream_id": "11c08032-b86d-5c91-a497-9e71731239f5",
+            "start_byte": 20960,
+            "end_byte": 103520
+          }
+        ],
+        "document_id": "bd4edc6d-616f-5a1a-8ef6-939bb51c0810",
+        "document_text_nonempty": true,
+        "document_created_at": "2026-10-21T04:14:23.631234+00:00"
+      }
+    ],
+    "personal_claims_created": 0,
+    "as_run_code": {
+      "startedAt": "2026-10-21T04:13:06.267142+00:00",
+      "probeSha256": "84b582ee242188a0f35cc879771a61f3a961bb642c1efdb7b050264b2e62ea6c",
+      "sourceSha256": {
+        "scripts/heartball-local.py": "c85ab31b5c66df3f251fca6dea466385302647210aeebf2eace2842044854943",
+        "scripts/heartball_store.py": "77e915d8db587090aa5aa24bd68e3500fc367767acfedfbca60baa93b621156b",
+        "scripts/heartball_agent_store.py": "29b7b0ddac4b35abfe707d21864774c917c11d7d4f083e9a019cbe8d111f9093",
+        "scripts/heartball_processing.py": "9cea2cd75d0f631e432857cdf3480c98aa532d376e4ffabc40a38b18054b0406",
+        "requirements-heartball.txt": "1d2ac5d4af41ce646c4255799e47017f3b0e79bd7b184566dcef3966b8b0268b",
+        "Sources/cb08-probe/main.swift": "86b419dbfe2c774c4048d2b8ec78d9db02294433fe1118f137039a5d51c58f5a",
+        "Sources/LuyinbiCore/RecorderButtonHandshake.swift": "21a12b097d5152abea292b701ff4fdf344ef57dc0cc72c275caf686c6222a75d"
+      }
+    },
+    "before_global_stop": {
+      "capture": {
+        "id": "115c72b4-c616-43ba-a82d-8b23029c5b94",
+        "status": "recording",
+        "ended_at": null
+      },
+      "focus_document_id": "bd4edc6d-616f-5a1a-8ef6-939bb51c0810",
+      "focus_document_created_at": "2026-10-21T04:14:23.631234+00:00",
+      "focus_text_characters": 80,
+      "focus_text_sha256": "bda97a08b44230eda7eec37fce5a7edabdfedb08b478e7b3fb732f5688df9ff0",
+      "focus_result_nonempty": true,
+      "keyword_diagnostics_not_accuracy": {
+        "蓝色风车": false,
+        "紫色灯塔": false,
+        "九点四十分": false
+      },
+      "personal_claims_created": 0
+    },
+    "human_review": {
+      "confirmed_by": "user",
+      "confirmed_at": "2026-10-21T04:16:13.938188+00:00",
+      "qualitative_match": true,
+      "scope": "User confirmed excerpts basically match their just-spoken free speech; not a verbatim accuracy score",
+      "script_was_not_read": true
+    }
+  },
+  "earlier_empty_live_capture": {
+    "session_id": "a435aa11-e264-41d0-b6ff-3805a8a30ec6",
+    "status": "completed",
+    "ended_at": "2026-10-21T04:03:36.808913+00:00",
+    "owned_card_file": "note20261021-120153.opus",
+    "card_bytes": 317400,
+    "card_decoded_seconds": 158.7,
+    "received_bytes": 317280,
+    "received_encoded_seconds": 158.64,
+    "live_card_ranges": [
+      [
+        0,
+        317280
+      ]
+    ],
+    "missing_live_ranges_preserved_on_card": [
+      [
+        317280,
+        317400
+      ]
+    ],
+    "card_sha256": "08b96797bdb706cf78d67f5a8bbd35f977a5e44da19ee9b4cbcd0a12ece11b0d",
+    "capture_queue_drops": 0,
+    "strict_decode_and_reference": "passed",
+    "hardware_starts": 1,
+    "hardware_global_saves": 1,
+    "disconnects": 0,
+    "file_changes": 0,
+    "batches": [
+      {
+        "sequence": 0,
+        "seconds": 19.28,
+        "reason": "focus_start",
+        "sha256": "c633ab577cb7f00b65bb527b0f5fe82e348240481f20bccb073910fdf44e76c2"
+      },
+      {
+        "sequence": 1,
+        "seconds": 60.0,
+        "reason": "duration",
+        "sha256": "3393d3687fad3edcc11f989ddae09b66397c0407c4a767361507a9e79dbfe70b"
+      },
+      {
+        "sequence": 2,
+        "seconds": 47.6,
+        "reason": "focus_end",
+        "sha256": "5cd3d3bba6ca72618773fbd8e76d75bb9c64568101cc58122d47fce28bb2da3d"
+      },
+      {
+        "sequence": 3,
+        "seconds": 31.76,
+        "reason": "capture_end",
+        "sha256": "e6ac1a4782b2b26d90d483b6a4f70efefcd66699643e2d5bc7e435ecde5662c6"
+      }
+    ],
+    "focuses": [
+      {
+        "id": "4f60b859-5955-4c0e-af50-11d570277216",
+        "encoded_seconds": 107.6,
+        "ranges": [
+          {
+            "stream_id": "ac657225-9a80-54f0-8794-85e45490ebe2",
+            "start_byte": 38560,
+            "end_byte": 253760
+          }
+        ],
+        "document_id": "b50e7ed5-a3a0-5b5a-8021-a62644527df1",
+        "document_text_nonempty": false,
+        "document_created_at": "2026-10-21T04:03:08.646764+00:00"
+      }
+    ],
+    "personal_claims_created": 0,
+    "as_run_code": {
+      "startedAt": "2026-10-21T04:00:39.849438+00:00",
+      "probeSha256": "84b582ee242188a0f35cc879771a61f3a961bb642c1efdb7b050264b2e62ea6c",
+      "sourceSha256": {
+        "scripts/heartball-local.py": "c85ab31b5c66df3f251fca6dea466385302647210aeebf2eace2842044854943",
+        "scripts/heartball_store.py": "250e20c15cab3a8b1d155ed576f5bc500f6d7a15968fa9c7f6b0591f04a6cca3",
+        "scripts/heartball_agent_store.py": "96ebb329b3d9e7948cb9b0810d922489a276664e905f20bb14b5ce791e8b0ea8",
+        "scripts/heartball_processing.py": "1f8fae302979d7f799db5b2db430689245e4790d34ee7cc74144b46c2613f1be",
+        "requirements-heartball.txt": "1d2ac5d4af41ce646c4255799e47017f3b0e79bd7b184566dcef3966b8b0268b",
+        "Sources/cb08-probe/main.swift": "86b419dbfe2c774c4048d2b8ec78d9db02294433fe1118f137039a5d51c58f5a",
+        "Sources/LuyinbiCore/RecorderButtonHandshake.swift": "21a12b097d5152abea292b701ff4fdf344ef57dc0cc72c275caf686c6222a75d"
+      }
+    },
+    "content_result": "No usable text; orchestration-only evidence, not speech quality. Final code skips model for empty text.",
+    "before_global_stop": {
+      "capture_status": {
+        "id": "a435aa11-e264-41d0-b6ff-3805a8a30ec6",
+        "status": "recording",
+        "ended_at": null
+      },
+      "transcripts": [
+        {
+          "audio_hash": "3393d3687fad3edcc11f989ddae09b66397c0407c4a767361507a9e79dbfe70b",
+          "created_at": "2026-10-21T04:02:18.917995+00:00",
+          "provider": "voxgate:da98bb5:patched:15"
+        },
+        {
+          "audio_hash": "5cd3d3bba6ca72618773fbd8e76d75bb9c64568101cc58122d47fce28bb2da3d",
+          "created_at": "2026-10-21T04:03:05.933446+00:00",
+          "provider": "voxgate:da98bb5:patched:15"
+        },
+        {
+          "audio_hash": "c633ab577cb7f00b65bb527b0f5fe82e348240481f20bccb073910fdf44e76c2",
+          "created_at": "2026-10-21T04:01:15.969735+00:00",
+          "provider": "voxgate:da98bb5:patched:15"
+        }
+      ],
+      "documents": [
+        {
+          "id": "ec814857-0002-50e3-85b7-84d105cf0e26",
+          "kind": "ambient",
+          "created_at": "2026-10-21T04:01:21.362445+00:00"
+        },
+        {
+          "id": "d3fdb68a-f782-5ba6-901e-88c45dc460a4",
+          "kind": "ambient",
+          "created_at": "2026-10-21T04:02:21.028301+00:00"
+        },
+        {
+          "id": "b50e7ed5-a3a0-5b5a-8021-a62644527df1",
+          "kind": "focus",
+          "created_at": "2026-10-21T04:03:08.646764+00:00"
+        },
+        {
+          "id": "ac8f3395-a472-5a8d-a0fa-dbd49ed24445",
+          "kind": "ambient",
+          "created_at": "2026-10-21T04:03:14.320483+00:00"
+        }
+      ]
+    }
+  },
+  "first_failed_live_capture": {
+    "session_id": "af9e53a6-aa98-4700-a880-f2021060549f",
+    "failure": "shared SQLite connection read escaped lock; monitor exited while raw evidence continued",
+    "outcome": "dedicated original recording saved; complete card reference retained; not a real-time processing pass",
+    "raw_bytes": 209600,
+    "card_bytes": 209640,
+    "end_code": 0,
+    "strict_local_analysis_problems": [],
+    "asr_uploaded": false,
+    "fixes": [
+      "All shared connection access locked, including session/policy reads",
+      "Monitoring setup cannot fail outside cleanup handler",
+      "Processing policy persisted before hardware launch",
+      "Concurrent ingest/UI/policy regression added"
+    ]
+  },
+  "personal_agent_model_integration": {
+    "fixture": "synthetic_dialogues_not_user_memory",
+    "real_model": "intern-s2",
+    "checks": {
+      "dialogue_1_extracted_confirmed": true,
+      "dialogue_2_extracted_confirmed": true,
+      "proactive_cross_dialogue_conflict_without_chat_query": true,
+      "correction_invalidates_old_advice": true,
+      "correction_visible_to_next_model_context": true,
+      "feedback_retry_idempotent": true,
+      "real_model_query_cites_corrected_version": true,
+      "real_model_query_uses_corrected_owner_and_date": true,
+      "timer_wakes_due_followup": true,
+      "completion_cancels_stale_due_advice": true,
+      "restart_preserves_memory_feedback_and_advice": true
+    },
+    "all_passed": true,
+    "not_validated": [
+      "real ASR accuracy",
+      "general autonomous planning",
+      "push delivery outside the App"
+    ]
+  },
+  "durability": {
+    "existing_rows_preserved_after_restart_and_additional_capture": {
+      "transcripts": true,
+      "documents": true,
+      "jobs": true,
+      "claims": true,
+      "advice": true
+    },
+    "asr_cache_retry_not_retranscribed": true
+  },
+  "protected_original_capture_asr_jobs": {
+    "count": 6,
+    "all_blocked_attempts_zero": true
+  },
+  "tests": {
+    "processing_source_recovery_concurrency_and_empty": "14/14 synthetic",
+    "new_agent_http_contract": "4/4 synthetic",
+    "audio_store": "9/9",
+    "existing_http": "3/3",
+    "swift_targets": "HeartballLab and HeartballClientCheck built",
+    "native_agent_api_and_wav": "passed",
+    "native_hardware_ui_flow": "start, focus start/end, global save verified; spoken test used same HTTP contract",
+    "final_ui_relaunch": "Final App process running and typed client/WAV/signature verified; CUA final rebinding timed out twice. Earlier native capture/control/result flow verified."
+  },
+  "evidence_boundaries": {
+    "actual_speech_accuracy": "qualitative live user confirmation only; no CER/WER",
+    "historical_word_accuracy": "unverified",
+    "focus_timing": "received codec packet boundaries, not calibrated ADC/word alignment",
+    "feedback": "in-app only; evidence-based review/due/dependency rules, not general autonomous planning",
+    "memory": "real-user proposals not auto-confirmed; synthetic model check isolated from user store"
+  },
+  "card_files_deleted": 0,
+  "git_commits": 0,
+  "cloud_deployment": false,
+  "external_tracing": false,
+  "post_capture_refinements": [
+    "Empty ASR text skips model and shows no_text, not a fabricated summary",
+    "Equal native snapshots no longer replace UI state every poll; build checked"
+  ],
+  "final_state": {
+    "capture_status": "completed",
+    "focus_processing_status": "completed",
+    "no_active_processing_jobs": true,
+    "worker_error": null,
+    "documents": 16,
+    "real_user_confirmed_memory_count": 0,
+    "key_not_in_public_sources_or_docs": true,
+    "signature_verified": true
+  }
+}

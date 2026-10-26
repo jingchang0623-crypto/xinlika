@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-21",
+  "reference": "https://todayai.cn/",
+  "reference_scope": "public interactive marketing demo, not authenticated product",
+  "native_build": "passed",
+  "signature": "passed",
+  "loopback_descriptor_fields_and_permissions": "passed",
+  "native_ui_checks": [
+    "four-page navigation",
+    "confirmed memory empty state",
+    "focus filter: 3 documents",
+    "transcript and original audio controls visible",
+    "claim correction opened and canceled",
+    "transcript correction opened and canceled",
+    "capture setup opened and canceled",
+    "question suggestion fills composer",
+    "blank question disabled"
+  ],
+  "readonly_api": {
+    "documents": 16,
+    "claims": 17,
+    "confirmed_memories": 0,
+    "answers": 0,
+    "audio_wav": "passed"
+  },
+  "capture_after_ui_checks": "completed",
+  "new_capture_started": false,
+  "new_model_query_sent": false,
+  "user_memory_modified": false,
+  "limits": [
+    "macOS native workspace only; iOS unchanged",
+    "dark appearance inspected; light appearance not visually accepted",
+    "capture continuity and ASR quality not rerun for UI change",
+    "external task execution and notification delivery not added"
+  ]
+}

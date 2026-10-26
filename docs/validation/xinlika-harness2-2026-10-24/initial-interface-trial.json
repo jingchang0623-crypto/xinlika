@@ -1,0 +1,147 @@
+{
+  "status": "failed",
+  "upstream_commit": "1cfe254e8d25b15f37048c3730134686abe60335",
+  "input_partition": {
+    "development": {
+      "documents": 78,
+      "characters": 12898,
+      "sha256": "ac4cc67c65b8dedc13cd9580d9de2c674abb1ee19a1ba3e6f746a3565ffbecc7",
+      "dates": [
+        "2026-10-21"
+      ]
+    },
+    "holdout": {
+      "documents": 103,
+      "characters": 13440,
+      "sha256": "bae9fbc34eb7c100290fa6051cb9621ab20820b1a8b6775be43ed0bf83ca895d",
+      "dates": [
+        "2026-10-22"
+      ]
+    }
+  },
+  "source_overlap": 0,
+  "historical_exposure": "development_day_seen_in_prior_manual_tuning; holdout_excluded_from_this_optimizer_and_previous_incremental_day_corpus",
+  "method": "pre-registered literal ASR-anchor checks; structural fixtures are not quality scores; no word-accuracy or independent cross-link recall claim",
+  "candidate_sha256": null,
+  "results": {
+    "development_baseline": {
+      "status": "failed",
+      "source_integrity": null,
+      "homepage_events": null,
+      "checks": [
+        {
+          "id": "financing_vs_later_delivery",
+          "kind": "different_events",
+          "result": "unscored_source_unavailable"
+        },
+        {
+          "id": "meeting_arrangement_vs_classroom_fragment",
+          "kind": "separate_sources",
+          "result": "unscored_source_unavailable"
+        },
+        {
+          "id": "business_vs_rest_and_health",
+          "kind": "different_events",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "quantity_only_off_home",
+          "kind": "fragment",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "product_feedback_stays_visible",
+          "kind": "visible",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "homework_method_and_effect_stay_together",
+          "kind": "same_event",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "cross_visual_creation_continuation",
+          "kind": "same_relation",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "cross_model_selection_is_distinct",
+          "kind": "different_relation",
+          "result": "unscored_incomplete_execution"
+        },
+        {
+          "id": "style_vs_ipad_reference",
+          "kind": "different_events",
+          "result": "unscored_incomplete_execution"
+        }
+      ],
+      "passed": 0,
+      "failed": 0,
+      "unscored": 9,
+      "independent_positive_cross_conversation": null,
+      "cost": {
+        "calls": 7,
+        "calls_with_usage": 7,
+        "prompt_tokens": 31447,
+        "completion_tokens": 6300,
+        "total_tokens": 37747,
+        "cached_tokens": 12112,
+        "usage_complete": true,
+        "currency_cost": null
+      },
+      "error_type": "ValueError"
+    }
+  },
+  "adoption": {
+    "accepted": false,
+    "reasons": [
+      "independent_test_not_completed"
+    ],
+    "automatic_activation": false
+  },
+  "total_actual_provider_usage": {
+    "calls": 27,
+    "calls_with_usage": 27,
+    "prompt_tokens": 313512,
+    "completion_tokens": 28739,
+    "total_tokens": 342251,
+    "cached_tokens": 42392,
+    "usage_complete": true,
+    "currency_cost": null,
+    "guardrail_reason": null
+  },
+  "editor_cost": {
+    "calls": 3,
+    "calls_with_usage": 3,
+    "prompt_tokens": 195619,
+    "completion_tokens": 6078,
+    "total_tokens": 201697,
+    "cached_tokens": 0
+  },
+  "unique_solver_cost": {
+    "calls": 24,
+    "calls_with_usage": 24,
+    "prompt_tokens": 117893,
+    "completion_tokens": 22661,
+    "total_tokens": 140554,
+    "cached_tokens": 42392
+  },
+  "cost_reconciled": true,
+  "safety": {
+    "asr_calls": 0,
+    "hardware_commands": 0,
+    "service_restarts": 0,
+    "production_writes": 0,
+    "git_commits": 0,
+    "automatic_activation": false
+  },
+  "evidence_sha256": {
+    "development_baseline": "605cb08a67a66e3e6c95d729037a445d70368b452db3ef967630e4e7f9c98b29"
+  },
+  "limitations": [
+    "The independent date contains no confirmed positive cross-conversation pair; that recall remains unscored.",
+    "Development material was exposed during previous manual tuning.",
+    "ASR source text was read for labels, not re-listened; this is not speech-recognition accuracy.",
+    "Upstream k=1 adopts its sole composed final; the separate external gate preserves baseline fallback."
+  ]
+}

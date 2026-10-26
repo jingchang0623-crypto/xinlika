@@ -1,0 +1,229 @@
+{
+  "day": "2026-10-21",
+  "input_sha256": "01e2b40aaf75e18ee9a7e840b1ec2f7905771f2133c5d8183d0c10a391d3842b",
+  "documents": 131,
+  "characters": 15772,
+  "source_spans": 774,
+  "source_scope": "all_available_authorized_ambient_transcripts_on_recording_day_not_24h_audio_coverage",
+  "quality_method": "project_regression_anchors_not_independent_human_gold; original source review required",
+  "labels_in_prompts": false,
+  "asr_calls": 0,
+  "results": {
+    "hermes": {
+      "status": "failed",
+      "error": "provider_transport_unavailable",
+      "seconds": 67.79060995799955,
+      "usage": {
+        "provider_model": "doubao-seed-2.1-pro",
+        "calls": 3,
+        "calls_with_usage": 0,
+        "usage_complete": false,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "guardrail_reason": "provider_transport_unavailable",
+        "guardrail_rejections": 0,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_no_unverified_price"
+      },
+      "homepage_events": 0,
+      "retained_fragment_spans": 0,
+      "checks": [
+        {
+          "id": "financing_vs_later_delivery",
+          "result": "unscored_incomplete_run"
+        },
+        {
+          "id": "meeting_arrangement_vs_classroom_fragment",
+          "result": "unscored_incomplete_run"
+        },
+        {
+          "id": "business_vs_rest_and_health",
+          "result": "unscored_incomplete_run"
+        },
+        {
+          "id": "quantity_only_off_home",
+          "result": "unscored_incomplete_run"
+        },
+        {
+          "id": "product_feedback_stays_visible",
+          "result": "unscored_incomplete_run"
+        },
+        {
+          "id": "homework_method_and_effect_stay_together",
+          "result": "unscored_incomplete_run"
+        }
+      ],
+      "span_partition": {
+        "status": "unscored_no_committed_proposal"
+      },
+      "same_matter_cross_conversation_link": null,
+      "different_matter_kept_separate": null,
+      "asr_jobs": 0
+    },
+    "deepseek-harness": {
+      "status": "failed",
+      "error": "no_committed_receipt",
+      "seconds": 27.63997854199988,
+      "usage": {
+        "provider_model": "doubao-seed-2.1-pro",
+        "calls": 1,
+        "calls_with_usage": 0,
+        "usage_complete": false,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "guardrail_reason": null,
+        "guardrail_rejections": 0,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_no_unverified_price"
+      },
+      "homepage_events": 0,
+      "retained_fragment_spans": 0,
+      "checks": [
+        {
+          "id": "financing_vs_later_delivery",
+          "result": "unscored_incomplete_run"
+        },
+        {
+          "id": "meeting_arrangement_vs_classroom_fragment",
+          "result": "unscored_incomplete_run"
+        },
+        {
+          "id": "business_vs_rest_and_health",
+          "result": "unscored_incomplete_run"
+        },
+        {
+          "id": "quantity_only_off_home",
+          "result": "unscored_incomplete_run"
+        },
+        {
+          "id": "product_feedback_stays_visible",
+          "result": "unscored_incomplete_run"
+        },
+        {
+          "id": "homework_method_and_effect_stay_together",
+          "result": "unscored_incomplete_run"
+        }
+      ],
+      "span_partition": {
+        "status": "unscored_no_committed_proposal"
+      },
+      "same_matter_cross_conversation_link": null,
+      "different_matter_kept_separate": null,
+      "asr_jobs": 0
+    }
+  },
+  "status": "implemented_locally_native_day_replay_blocked",
+  "validated_on": "2026-10-24",
+  "primary_reference": "user_provided_heartball_app_screenshots",
+  "competitor_prompt": "reverse_inference_not_internal_prompt",
+  "quality_accepted": false,
+  "selected_runtime_from_this_replay": null,
+  "live_cutover": false,
+  "real_iphone_installed": false,
+  "hardware_commands": 0,
+  "service_restarts": 0,
+  "git_commits": 0,
+  "tests": {
+    "python_relevant": {
+      "count": 159,
+      "passed": true,
+      "log": ".build/xinlika-day-editor-20261023/all-tests.log"
+    },
+    "mac_build": {
+      "passed": true
+    },
+    "iphone_simulator_build": {
+      "passed": true
+    },
+    "shared_swift_checks": {
+      "passed": true,
+      "historical_real_events_decoded": 67,
+      "semantic_acceptance": false,
+      "checks": 14
+    }
+  },
+  "ui_review": {
+    "offline_preview_only": true,
+    "dataset": "existing_prior_real_projection_not_new_native_result",
+    "iphone_simulator": true,
+    "mac_list_observed": true,
+    "final_mac_visual_check": "blocked_mac_locked",
+    "real_iphone": false
+  },
+  "skill_sha256": "e4db09bb4ec7f67cc63944da3c7466f0b343a274411a0d0651a508b2214a5f92",
+  "failed_attempts": {
+    "hermes": [
+      {
+        "attempt": "network-failure-attempt-001.json",
+        "status": "failed",
+        "error": "provider_transport_unavailable",
+        "seconds": 66.74299904199961,
+        "transport_attempts": 3,
+        "calls_with_usage": 0,
+        "usage_complete": false,
+        "currency_cost": null
+      },
+      {
+        "attempt": "network-failure-attempt-002.json",
+        "status": "failed",
+        "error": "provider_transport_unavailable",
+        "seconds": 67.79060995799955,
+        "transport_attempts": 3,
+        "calls_with_usage": 0,
+        "usage_complete": false,
+        "currency_cost": null
+      }
+    ],
+    "deepseek-harness": [
+      {
+        "attempt": "network-failure-attempt-001.json",
+        "status": "failed",
+        "error": "no_committed_receipt",
+        "seconds": 20.417955334,
+        "transport_attempts": 1,
+        "calls_with_usage": 0,
+        "usage_complete": false,
+        "currency_cost": null
+      },
+      {
+        "attempt": "network-failure-attempt-002.json",
+        "status": "failed",
+        "error": "no_committed_receipt",
+        "seconds": 27.63997854199988,
+        "transport_attempts": 1,
+        "calls_with_usage": 0,
+        "usage_complete": false,
+        "currency_cost": null
+      }
+    ]
+  },
+  "limits": [
+    "all_available_authorized_transcripts_on_recording_day_not_24h_audio_coverage",
+    "no_committed_native_results_due_to_provider_TLS_timeout",
+    "no_semantic_or_cost_winner_from_this_replay",
+    "project_regression_anchors_not_independent_human_gold",
+    "source_envelope_not_word_alignment",
+    "legacy_114_document_results_not_substituted_for_this_replay"
+  ],
+  "source_package": {
+    "files": 56,
+    "audio_files": 0,
+    "databases": 0,
+    "runtime_configs": 0,
+    "deployed": false
+  },
+  "ui_cleanup": {
+    "owned_preview_pids_stopped": [
+      57188
+    ],
+    "owned_external_temporary_directory_removed": true,
+    "owned_simulator_removed": true,
+    "other_apps_or_devices_touched": false
+  },
+  "historical_snapshot": true,
+  "superseded_by": "../xinlika-day-agent-comparison-2026-10-24/result.json"
+}

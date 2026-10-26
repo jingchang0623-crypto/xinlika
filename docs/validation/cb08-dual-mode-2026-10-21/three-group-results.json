@@ -1,0 +1,43 @@
+{
+  "experiment_groups": 3,
+  "trials_per_group": 1,
+  "mode": "observe_only_no_button_ack_no_foreground_announcement",
+  "results": {
+    "offline_active": {
+      "card_seconds": 25.86,
+      "saved": true
+    },
+    "connected_active": {
+      "card_seconds": 75.38,
+      "start_disconnect": true,
+      "live_missing_card_prefix_seconds": 4.72,
+      "live_missing_card_suffix_seconds": 0.02
+    },
+    "continuous_button": {
+      "card_seconds": 206.12,
+      "global_recording_stopped": true,
+      "live_missing_card_prefix_seconds": 0.0,
+      "live_missing_card_suffix_seconds": 0.04
+    }
+  },
+  "focus_boundaries": {
+    "button_requests_observable": true,
+    "complete_saved_file_independently_addressable": true,
+    "precise_acoustic_boundaries_verified": false,
+    "non_disruptive_hardware_focus_mode_verified": false,
+    "separate_ASR_and_app_result_created": false
+  },
+  "state_at_end": 2,
+  "probe_disconnected": true,
+  "original_and_test_files_retained": true,
+  "audio_uploads": 0,
+  "product_target": "open_source_heartball_application",
+  "next_implementation_constraints": [
+    "Keep ambient capture, focus intent, and physical recorder state separate",
+    "Do not map this tested save gesture to non-disruptive focus toggle",
+    "Use complete card file and hash to finalize physically saved active recordings",
+    "Preserve live-to-card byte ranges and gaps; notification receipt is not sample time",
+    "Validate actual vendor ACK/foreground path before concluding hardware cannot support another interaction",
+    "Do not restart recording after user stop without an explicit product setting and verified semantics"
+  ]
+}

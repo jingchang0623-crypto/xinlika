@@ -1,6 +1,19 @@
 import Foundation
 import Security
 
+
+/// Serialize refresh-token rotation across result polling and upload requests.
+actor SessionRefreshGate {
+    private var task: Task<Void, Error>?
+    func run(_ operation: @escaping () async throws -> Void) async throws {
+        if let task { return try await task.value }
+        let current = Task { try await operation() }
+        task = current
+        defer { task = nil }
+        try await current.value
+    }
+}
+
 /// 深脑客户端。走现成的录音链路，不需要给深脑加任何接口。
 ///
 /// 认证用「原生端 Bearer」通道（深脑 lib/recording/route-context.ts 明确支持）：
@@ -22,6 +35,8 @@ public enum DeepBrainError: Error, CustomStringConvertible {
     case notLoggedIn
     case http(String, Int, String)
     case badResponse(String)
+    case invalidURL(String)
+    case credentialStorage
     /// 录音链路来的转写是「权威数据」，深脑只允许服务端改。
     case canonicalReadOnly
     /// 这条已经分析过：改名要连原子主语、决策归属一起重挂，只能走网页。
@@ -32,6 +47,8 @@ public enum DeepBrainError: Error, CustomStringConvertible {
         case .notLoggedIn: return "尚未登录深脑"
         case .http(let what, let code, let body): return "\(what) 失败 HTTP \(code)：\(body.prefix(200))"
         case .badResponse(let s): return "应答不符合预期：\(s)"
+        case .invalidURL(let s): return "网络地址无效：\(s)"
+        case .credentialStorage: return "登录凭证保存失败，请解锁设备后重试"
         case .canonicalReadOnly:
             return "这条录音的说话人只能在深脑网页里指认——录音链路的数据是权威数据，客户端改不了。"
         case .alreadyAnalyzed:
@@ -80,8 +97,17 @@ public final class DeepBrain {
     /// transcript_id -> recording_session_id。指认接口按会话寻址，而 App 全程拿的是
     /// transcript_id；这个映射一条录音只查一次。
     var sessionIdCache: [String: String] = [:]
+    private let captureClient: String
+    public static let fileImportClient = "upload"
+    private let transport: URLSession
+    private let refreshGate = SessionRefreshGate()
+    private var connectedAt: Date?
 
-    public init(config: DeepBrainConfig) { self.config = config }
+    public init(config: DeepBrainConfig, captureClient: String = "macos", transport: URLSession? = nil) {
+        self.config = config
+        self.captureClient = captureClient
+        self.transport = transport ?? Self.session
+    }
 
     /// 真实录音时刻用 ISO8601 传给深脑。
     static let iso: ISO8601DateFormatter = {
@@ -114,7 +140,10 @@ public final class DeepBrain {
     func request(_ method: String, _ url: String, headers: [String: String] = [:],
                          json: Any? = nil, body: Data? = nil,
                          timeout: TimeInterval = 300) async throws -> (Int, Data) {
-        var req = URLRequest(url: URL(string: url)!, timeoutInterval: timeout)
+        guard let endpoint = URL(string: url), endpoint.scheme == "https" else {
+            throw DeepBrainError.invalidURL(url)
+        }
+        var req = URLRequest(url: endpoint, timeoutInterval: timeout)
         req.httpMethod = method
         for (k, v) in headers { req.setValue(v, forHTTPHeaderField: k) }
         if let json {
@@ -123,7 +152,7 @@ public final class DeepBrain {
         } else if let body {
             req.httpBody = body
         }
-        let (data, resp) = try await Self.session.data(for: req)
+        let (data, resp) = try await transport.data(for: req)
         return ((resp as? HTTPURLResponse)?.statusCode ?? 0, data)
     }
 
@@ -136,21 +165,31 @@ public final class DeepBrain {
 
     // MARK: - 认证
     public func connect() async throws {
+        try await refreshGate.run {
+            if self.token != nil, self.org != nil, let connectedAt = self.connectedAt,
+               Date().timeIntervalSince(connectedAt) < 300 { return }
+            try await self.refreshSession()
+        }
+    }
+
+    private func refreshSession() async throws {
         guard let refresh = TokenStore.get() else { throw DeepBrainError.notLoggedIn }
         let (st, data) = try await request(
             "POST", "\(config.supabaseUrl)/auth/v1/token?grant_type=refresh_token",
-            headers: ["apikey": config.supabaseAnonKey], json: ["refresh_token": refresh])
+            headers: ["apikey": config.supabaseAnonKey], json: ["refresh_token": refresh], timeout: 20)
         guard st < 400, let d = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
               let access = d["access_token"] as? String else {
-            throw DeepBrainError.http("刷新登录", st, "登录已失效，请用 Python 版重新登录")
+            throw DeepBrainError.http("刷新登录", st, "登录已失效，请重新登录")
         }
-        if let newRefresh = d["refresh_token"] as? String { TokenStore.set(newRefresh) }
+        try Task.checkCancellation()
+        if let newRefresh = d["refresh_token"] as? String,
+           !TokenStore.set(newRefresh) { throw DeepBrainError.credentialStorage }
         token = access
         org = try await resolveOrg(access)
+        connectedAt = Date()
     }
 
     func resolveOrg(_ access: String) async throws -> String {
-        if let cached = TokenStore.get("org_id") { return cached }
         // 2026-09-02 事故（先在安卓端撞上，这里是同一处漏洞的另一份实现）：
         // 查询原来没有 order by，账号如果有多条 membership，PostgREST
         // 不保证返回顺序——选到哪个组织全凭运气，选错了不会报任何错，
@@ -160,12 +199,11 @@ public final class DeepBrain {
         // 加 order=created_at.asc：最早那条 membership 几乎总是账号真正在用的那个。
         let (st, data) = try await request(
             "GET", "\(config.supabaseUrl)/rest/v1/memberships?select=org_id&order=created_at.asc&limit=1",
-            headers: ["apikey": config.supabaseAnonKey, "Authorization": "Bearer \(access)"])
+            headers: ["apikey": config.supabaseAnonKey, "Authorization": "Bearer \(access)"], timeout: 20)
         guard let rows = try json(st, data, "查询组织") as? [[String: Any]],
               let oid = rows.first?["org_id"] as? String else {
             throw DeepBrainError.badResponse("这个账号没有任何组织")
         }
-        TokenStore.set(oid, "org_id")
         return oid
     }
 
@@ -194,13 +232,21 @@ public final class DeepBrain {
     func authed(_ method: String, _ url: String,
                 headers: () throws -> [String: String],
                 json: Any? = nil, body: Data? = nil,
-                timeout: TimeInterval = 300) async throws -> (Int, Data) {
+                timeout: TimeInterval = 300,
+                checkContinuation: (() async throws -> Void)? = nil) async throws -> (Int, Data) {
+        try Task.checkCancellation()
+        try await checkContinuation?()
         var (st, data) = try await request(method, url, headers: try headers(),
                                            json: json, body: body, timeout: timeout)
         if st == 401 {
+            try Task.checkCancellation()
+            try await checkContinuation?()
+            connectedAt = nil
             try await connect()
             // headers 是个闭包，重算一次才能拿到刚续出来的 token。
             // 传值进来的话，重试用的还是那个已经过期的。
+            try Task.checkCancellation()
+            try await checkContinuation?()
             (st, data) = try await request(method, url, headers: try headers(),
                                            json: json, body: body, timeout: timeout)
         }
@@ -236,18 +282,28 @@ public final class DeepBrain {
                        clientRequestId: String, mime: String = "audio/ogg",
                        startedAt: Date? = nil,
                        projectId: String? = nil,
+                       onSessionCreated: ((String) async throws -> Void)? = nil,
+                       uploadPart: ((Data, URL, String, String) async throws -> Int)? = nil,
+                       checkContinuation: (() async throws -> Void)? = nil,
                        onStep: ((String) -> Void)? = nil) async throws -> UploadResult {
+        func check() async throws {
+            try Task.checkCancellation()
+            try await checkContinuation?()
+        }
+        try await check()
         onStep?("建会话")
         let (st1, d1) = try await authed("POST", "\(config.apiBase)/api/recordings", headers: { try self.authHeaders }, json: [
             "clientRequestId": clientRequestId,      // 幂等键：同一文件重传不会建两个会话
-            "title": title, "captureClient": "macos", "capabilities": ["mic"],
+            "title": title, "captureClient": captureClient, "capabilities": ["mic"],
             // 服务端目前还不收这个字段，多传无害；等接口加上就自动生效。
             // 先从客户端把真相带上，比等两边同时改要稳。
         ].merging(startedAt.map { ["startedAt": Self.iso.string(from: $0)] } ?? [:]) { a, _ in a }
-         .merging(projectId.map { ["projectId": $0] } ?? [:]) { a, _ in a })
+         .merging(projectId.map { ["projectId": $0] } ?? [:]) { a, _ in a }, checkContinuation: checkContinuation)
         guard let o1 = try json(st1, d1, "建会话") as? [String: Any],
               let session = o1["session"] as? [String: Any],
               let sid = session["id"] as? String else { throw DeepBrainError.badResponse("建会话没返回 id") }
+        // 本地先持久化会话身份，后续失败也能查询同一个会话。
+        try await onSessionCreated?(sid)
 
         // clientRequestId 是幂等键：同一文件重推会拿回同一个会话。
         // 如果它早已 stop/finalize，就不能再塞分片了（服务端会 409 INVALID_STATE）——
@@ -262,6 +318,9 @@ public final class DeepBrain {
                 + "换一个幂等键重推，或先在深脑里删掉这条会话。")
         }
         if !["recording", "uploading"].contains(existing) {
+            guard ["queued", "finalizing", "ready"].contains(existing) else {
+                throw DeepBrainError.badResponse("会话状态 \(existing) 不支持上传，请检查云端记录")
+            }
             onStep?("会话已是 \(existing)，无需重传")
             return UploadResult(sessionId: sid, chunks: session["expected_chunk_count"] as? Int ?? 0,
                                 alreadyDone: true)
@@ -272,6 +331,7 @@ public final class DeepBrain {
             Array(audio[$0..<min($0 + Self.maxChunkBytes, audio.count)])
         }
         for (seq, part) in parts.enumerated() {
+            try await check()
             onStep?("分片 \(seq + 1)/\(parts.count)")
             let started = totalMs * seq / parts.count
             let ended = max(totalMs * (seq + 1) / parts.count, started + 1)
@@ -281,7 +341,7 @@ public final class DeepBrain {
                     "sequence": seq, "idempotencyKey": "\(clientRequestId)-\(seq)",
                     "mimeType": mime, "byteLength": part.count,
                     "startedAtMs": started, "endedAtMs": ended, "uploadMode": "background",
-                ])
+                ], checkContinuation: checkContinuation)
             if st2 == 409, String(decoding: d2, as: UTF8.self).contains("CHUNK_ALREADY_VERIFIED") {
                 onStep?("分片 \(seq + 1) 已在服务端，跳过")     // 重试时的正常情况
                 continue
@@ -290,28 +350,40 @@ public final class DeepBrain {
                   let uploadUrl = ticket["uploadUrl"] as? String else {
                 throw DeepBrainError.badResponse("ticket 没有 uploadUrl")
             }
-            let (st3, d3) = try await request("PUT", uploadUrl,
-                                              headers: ["Content-Type": mime], body: Data(part), timeout: 600)
-            guard st3 < 400 else {
-                throw DeepBrainError.http("直传 COS", st3, String(decoding: d3, as: UTF8.self))
+            let st3: Int
+            try await check()
+            if let uploadPart {
+                guard let endpoint = URL(string: uploadUrl), endpoint.scheme == "https" else {
+                    throw DeepBrainError.invalidURL("上传地址不是 HTTPS")
+                }
+                st3 = try await uploadPart(Data(part), endpoint, mime, "\(clientRequestId)-\(seq)")
+            } else {
+                st3 = try await request("PUT", uploadUrl,
+                    headers: ["Content-Type": mime], body: Data(part), timeout: 600).0
             }
+            guard (200..<300).contains(st3) else {
+                throw DeepBrainError.http("直传 COS", st3, "文件上传失败，请重新取票重试")
+            }
+            try await check()
             let (st4, d4) = try await authed(
                 "POST", "\(config.apiBase)/api/recordings/\(sid)/chunks/\(seq)/complete",
-                headers: { try self.authHeaders }, json: [:])
+                headers: { try self.authHeaders }, json: [:], checkContinuation: checkContinuation)
             _ = try json(st4, d4, "确认分片 \(seq)")
         }
 
         // 必须先 stop 冻结「分片总数 + 时长」，否则 finalize 会 409。
         // 这是深脑录音链路的核心不变量：清单一旦冻结，后到的分片再也进不来。
         onStep?("冻结清单")
+        try await check()
         let (st5, d5) = try await authed("POST", "\(config.apiBase)/api/recordings/\(sid)/stop",
                                          headers: { try self.authHeaders },
-                                         json: ["durationMs": totalMs, "expectedChunkCount": parts.count])
+                                         json: ["durationMs": totalMs, "expectedChunkCount": parts.count], checkContinuation: checkContinuation)
         _ = try json(st5, d5, "冻结清单")
 
         onStep?("收尾")
+        try await check()
         let (st6, d6) = try await authed("POST", "\(config.apiBase)/api/recordings/\(sid)/finalize",
-                                         headers: { try self.authHeaders }, json: [:])
+                                         headers: { try self.authHeaders }, json: [:], checkContinuation: checkContinuation)
         _ = try json(st6, d6, "收尾")
         return UploadResult(sessionId: sid, chunks: parts.count, alreadyDone: false)
     }
@@ -392,14 +464,17 @@ public extension DeepBrain {
             throw DeepBrainError.http("登录", st,
                 body.contains("Invalid login") ? "邮箱或密码不对" : "登录失败")
         }
-        TokenStore.set(refresh)
-        TokenStore.set(email, "email")
+        let resolvedOrg = try await resolveOrg(access)
+        guard TokenStore.saveSession(refresh: refresh, email: email, orgId: resolvedOrg) else {
+            throw DeepBrainError.credentialStorage
+        }
         token = access
-        org = try await resolveOrg(access)
+        org = resolvedOrg
     }
 
     /// 退出：清掉钥匙串里的凭证。
     func signOut() {
+        connectedAt = nil
         TokenStore.clear()
         token = nil
         org = nil

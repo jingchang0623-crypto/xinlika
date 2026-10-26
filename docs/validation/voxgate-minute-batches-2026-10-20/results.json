@@ -1,0 +1,269 @@
+{
+  "source_revision": "da98bb5ff9ce913b4317081a00e9e0c51f080edf",
+  "fixture_source": "macOS say / Tingting, ten distinct synthetic Chinese passages; no personal recordings",
+  "patch_sha256": "b2b5500fac5899a746a082760e6b86ca6db78d224efe5c780f74579af1cb146c",
+  "local_base_url": "http://127.0.0.1:18765/v1",
+  "cloud_deployed": false,
+  "upstream_go_tests_passed": 98,
+  "local_authentication_checks": {
+    "no_token": 401,
+    "invalid_token": 401
+  },
+  "batches": [
+    {
+      "configuration": {
+        "asr_chunk_seconds": 30,
+        "patch": "unmodified baseline"
+      },
+      "results": [
+        {
+          "http_status": 200,
+          "elapsed_seconds": 9.805,
+          "response": {
+            "text": "[omitted from public repository: local validation content]"
+          },
+          "audio_seconds": 60,
+          "format": "ogg",
+          "file_bytes": 124824,
+          "run": 1,
+          "processing_ratio": 0.1634,
+          "expected_characters": 239,
+          "recognized_characters": 36,
+          "normalized_character_error_rate": 0.8619,
+          "checkpoints_found": 1,
+          "checkpoints_total": 4,
+          "checkpoints_in_order": false,
+          "missing_checkpoints": [
+            "云杉计划",
+            "保留原始录音",
+            "松鼠会议"
+          ]
+        },
+        {
+          "http_status": 200,
+          "elapsed_seconds": 9.455,
+          "response": {
+            "text": "[omitted from public repository: local validation content]"
+          },
+          "audio_seconds": 60,
+          "format": "ogg",
+          "file_bytes": 124824,
+          "run": 2,
+          "processing_ratio": 0.1576,
+          "expected_characters": 239,
+          "recognized_characters": 36,
+          "normalized_character_error_rate": 0.8619,
+          "checkpoints_found": 1,
+          "checkpoints_total": 4,
+          "checkpoints_in_order": false,
+          "missing_checkpoints": [
+            "云杉计划",
+            "保留原始录音",
+            "松鼠会议"
+          ]
+        },
+        {
+          "http_status": 200,
+          "elapsed_seconds": 45.012,
+          "response": {
+            "text": "[omitted from public repository: local validation content]"
+          },
+          "audio_seconds": 300,
+          "format": "ogg",
+          "file_bytes": 623304,
+          "run": 1,
+          "processing_ratio": 0.15,
+          "expected_characters": 1160,
+          "recognized_characters": 150,
+          "normalized_character_error_rate": 0.8759,
+          "checkpoints_found": 7,
+          "checkpoints_total": 20,
+          "checkpoints_in_order": false,
+          "missing_checkpoints": [
+            "云杉计划",
+            "保留原始录音",
+            "松鼠会议",
+            "海豚清单",
+            "银杏预算",
+            "避免重复计费",
+            "白鹭反馈",
+            "珊瑚旅程",
+            "青竹项目",
+            "星河备忘",
+            "展示处理进度",
+            "山茶复盘",
+            "灯塔收尾"
+          ]
+        },
+        {
+          "http_status": 200,
+          "elapsed_seconds": 47.321,
+          "response": {
+            "text": "[omitted from public repository: local validation content]"
+          },
+          "audio_seconds": 300,
+          "format": "ogg",
+          "file_bytes": 623304,
+          "run": 2,
+          "processing_ratio": 0.1577,
+          "expected_characters": 1160,
+          "recognized_characters": 150,
+          "normalized_character_error_rate": 0.8759,
+          "checkpoints_found": 7,
+          "checkpoints_total": 20,
+          "checkpoints_in_order": false,
+          "missing_checkpoints": [
+            "云杉计划",
+            "保留原始录音",
+            "松鼠会议",
+            "海豚清单",
+            "银杏预算",
+            "避免重复计费",
+            "白鹭反馈",
+            "珊瑚旅程",
+            "青竹项目",
+            "星河备忘",
+            "展示处理进度",
+            "山茶复盘",
+            "灯塔收尾"
+          ]
+        }
+      ]
+    },
+    {
+      "configuration": {
+        "asr_chunk_seconds": 15,
+        "patch_sha256": "b2b5500fac5899a746a082760e6b86ca6db78d224efe5c780f74579af1cb146c"
+      },
+      "results": [
+        {
+          "http_status": 200,
+          "elapsed_seconds": 9.819,
+          "response": {
+            "text": "[omitted from public repository: local validation content]"
+          },
+          "audio_seconds": 60,
+          "format": "ogg",
+          "file_bytes": 124824,
+          "run": 1,
+          "processing_ratio": 0.1637,
+          "expected_characters": 239,
+          "recognized_characters": 238,
+          "normalized_character_error_rate": 0.0084,
+          "checkpoints_found": 3,
+          "checkpoints_total": 4,
+          "checkpoints_in_order": false,
+          "missing_checkpoints": [
+            "云杉计划"
+          ]
+        },
+        {
+          "http_status": 200,
+          "elapsed_seconds": 9.893,
+          "response": {
+            "text": "[omitted from public repository: local validation content]"
+          },
+          "audio_seconds": 60,
+          "format": "ogg",
+          "file_bytes": 124824,
+          "run": 2,
+          "processing_ratio": 0.1649,
+          "expected_characters": 239,
+          "recognized_characters": 238,
+          "normalized_character_error_rate": 0.0084,
+          "checkpoints_found": 3,
+          "checkpoints_total": 4,
+          "checkpoints_in_order": false,
+          "missing_checkpoints": [
+            "云杉计划"
+          ]
+        },
+        {
+          "http_status": 200,
+          "elapsed_seconds": 48.191,
+          "response": {
+            "text": "[omitted from public repository: local validation content]"
+          },
+          "audio_seconds": 300,
+          "format": "ogg",
+          "file_bytes": 623304,
+          "run": 1,
+          "processing_ratio": 0.1606,
+          "expected_characters": 1160,
+          "recognized_characters": 1160,
+          "normalized_character_error_rate": 0.0043,
+          "checkpoints_found": 19,
+          "checkpoints_total": 20,
+          "checkpoints_in_order": false,
+          "missing_checkpoints": [
+            "云杉计划"
+          ]
+        },
+        {
+          "http_status": 200,
+          "elapsed_seconds": 48.016,
+          "response": {
+            "text": "[omitted from public repository: local validation content]"
+          },
+          "audio_seconds": 300,
+          "format": "ogg",
+          "file_bytes": 623304,
+          "run": 2,
+          "processing_ratio": 0.1601,
+          "expected_characters": 1160,
+          "recognized_characters": 1160,
+          "normalized_character_error_rate": 0.0043,
+          "checkpoints_found": 19,
+          "checkpoints_total": 20,
+          "checkpoints_in_order": false,
+          "missing_checkpoints": [
+            "云杉计划"
+          ]
+        }
+      ]
+    },
+    {
+      "configuration": {
+        "asr_chunk_seconds": 15,
+        "patch_sha256": "b2b5500fac5899a746a082760e6b86ca6db78d224efe5c780f74579af1cb146c"
+      },
+      "results": [
+        {
+          "http_status": 200,
+          "elapsed_seconds": 11.081,
+          "response": {
+            "text": "[omitted from public repository: local validation content]"
+          },
+          "audio_seconds": 60,
+          "format": "wav",
+          "file_bytes": 1920044,
+          "run": 1,
+          "processing_ratio": 0.1847,
+          "expected_characters": 239,
+          "recognized_characters": 238,
+          "normalized_character_error_rate": 0.0084,
+          "checkpoints_found": 3,
+          "checkpoints_total": 4,
+          "checkpoints_in_order": false,
+          "found_checkpoints_in_order": true,
+          "missing_checkpoints": [
+            "云杉计划"
+          ]
+        }
+      ]
+    }
+  ],
+  "swift_shared_ogg_smoke": {
+    "audio_bytes": 124715,
+    "elapsed_seconds": 10.059569333330728,
+    "http_status": 200,
+    "response": {
+      "text": "[omitted from public repository: local validation content]"
+    },
+    "source_audio_seconds": 60,
+    "uses_shared_ogg_wrap": true,
+    "normalized_character_error_rate": 0.0084,
+    "recognized_characters": 238
+  },
+  "incomplete_raw_rejected_before_upload": true
+}

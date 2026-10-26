@@ -1,0 +1,64 @@
+{
+  "engine": "sherpa-onnx 1.13.8 (local, separate environment)",
+  "sample_scope": "Explicit existing user-authorized segments; no new recording or card connection",
+  "real_meeting": {
+    "seconds": 59.28,
+    "scene_windows": 6,
+    "speech_intervals": 8,
+    "anonymous_clusters": 1,
+    "top_labels": [
+      "Female speech, woman speaking",
+      "Inside, small room",
+      "Narration, monologue",
+      "Speech",
+      "Typing"
+    ],
+    "model_elapsed_seconds": 1.3672972500207834,
+    "speaker_identity_verified": false,
+    "source_medium_identified": false,
+    "new_asr_calls": 0
+  },
+  "user_confirmed_background_video": {
+    "seconds": 20.0,
+    "scene_windows": 2,
+    "speech_intervals": 2,
+    "anonymous_clusters": 1,
+    "top_labels": [
+      "Computer keyboard",
+      "Inside, large room or hall",
+      "Inside, small room",
+      "Speech"
+    ],
+    "model_elapsed_seconds": 0.4284971250453964,
+    "speaker_identity_verified": false,
+    "source_medium_identified": false,
+    "new_asr_calls": 0
+  },
+  "models": [
+    {
+      "name": "silero_vad.onnx",
+      "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6"
+    },
+    {
+      "name": "wespeaker_zh_cnceleb_resnet34.onnx",
+      "sha256": "f86cd6c509f331f0e20b07bd48d1b2eb7de54202643401c4e84695ac861a0e5a"
+    },
+    {
+      "name": "model.int8.onnx",
+      "sha256": "69304b8a1b96bbe6b7d16c24079f0732c65faf3568a14cb82a8238c709afe76c"
+    }
+  ],
+  "peak_rss_bytes_for_background_probe": 369115136,
+  "rss_platform": "Darwin",
+  "classification_accuracy_accepted": false,
+  "source_filtering_enabled_in_production": false,
+  "raw_audio_uploaded": false,
+  "models_deployed_to_768MiB_cloud_container": false,
+  "limits": [
+    "No user identity inferred",
+    "Playback vs live meeting remains unknown",
+    "5s clusters are not validated diarization",
+    "Audio tagging scores and similarity threshold require field calibration",
+    "No auto-discard or semantic-memory writes"
+  ]
+}

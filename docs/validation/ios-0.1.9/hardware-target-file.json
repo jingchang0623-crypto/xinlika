@@ -1,0 +1,31 @@
+[
+  {
+    "event": "begin",
+    "mode": "read_only_catalogue",
+    "time": "2026-09-07T05:36:50Z",
+    "version": "0.1.9"
+  },
+  {
+    "event": "connected",
+    "firmware": "V1.0.0",
+    "time": "2026-09-07T05:36:53Z"
+  },
+  {
+    "event": "inspection_state",
+    "state": "2",
+    "time": "2026-09-07T05:36:53Z"
+  },
+  {
+    "bytes": "44600",
+    "event": "file",
+    "name": "note20260907-131300.",
+    "seconds": "22",
+    "time": "2026-09-07T05:36:53Z"
+  },
+  {
+    "complete": "true",
+    "count": "16",
+    "event": "inspection_end",
+    "time": "2026-09-07T05:36:53Z"
+  }
+]

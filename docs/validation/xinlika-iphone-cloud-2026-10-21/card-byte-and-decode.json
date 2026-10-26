@@ -1,0 +1,22 @@
+{
+  "cardBytes": 1192240,
+  "cardSeconds": 596.12,
+  "codecFrames": 29806,
+  "sha256Verified": true,
+  "strictDecodeExitCode": 0,
+  "liveCoverage": [
+    [
+      0,
+      641280
+    ]
+  ],
+  "missingLiveRanges": [
+    [
+      641280,
+      1192240
+    ]
+  ],
+  "missingLiveSeconds": 275.48,
+  "repairBatchCount": 5,
+  "zeroLossLiveCapture": false
+}

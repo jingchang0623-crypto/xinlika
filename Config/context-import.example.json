@@ -1,0 +1,13 @@
+{
+  "conversation_id": "replace-with-stable-chat-id",
+  "messages": [
+    {
+      "id": "replace-with-original-message-id",
+      "timestamp": "2026-10-23T12:30:00+08:00",
+      "sender": "replace-with-original-sender-id",
+      "content": "替换为实际导出原文；此文件仅说明字段，不作效果验收。",
+      "is_self": false,
+      "type": "text"
+    }
+  ]
+}

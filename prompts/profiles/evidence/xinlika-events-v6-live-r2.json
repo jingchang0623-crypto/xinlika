@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "accepted_for_opt_in_incremental_profile": true,
+  "candidate_bundle_sha256": "0d75b39c818fa500fe176659d6fe353a3f51aedb24d47c7a56cbf8715bc7d3aa",
+  "small_sample_only": true,
+  "profile_revision": 2,
+  "base_validation_file": "prompts/profiles/evidence/xinlika-events-v6.json",
+  "base_validation_sha256": "6538731f0a73b004064ae2c8a7da638f3be8cf24ed3f5339e6328f269938a001",
+  "scope": "Unchanged v6 Skills; correction-only provenance retrieval and source-update metadata. Ordinary late ASR keeps original future-evidence guard.",
+  "old_holdout_replayed": false,
+  "ASR_calls_for_validation": 0,
+  "regression_tests": 32,
+  "regression_log_sha256": "3629f77337d317e9aac15ab43a76e9eaf50909e34540060e88cd365e49efe0d3",
+  "real_current_correction_development": [
+    {
+      "model_completed": true,
+      "corrected_source_joined_original_event": false,
+      "standalone_event_created": true,
+      "context_candidate_count": 10,
+      "recording_time_preserved": true,
+      "no_ASR": true,
+      "integrity": {
+        "expected_spans": 1,
+        "assigned_spans": 1,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "calls": 2,
+      "total_tokens": 14771
+    },
+    {
+      "model_completed": true,
+      "corrected_source_joined_original_event": true,
+      "standalone_event_created": false,
+      "context_candidate_count": 10,
+      "recording_time_preserved": true,
+      "no_ASR": true,
+      "integrity": {
+        "expected_spans": 1,
+        "assigned_spans": 1,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "calls": 1,
+      "total_tokens": 7605
+    },
+    {
+      "model_completed": true,
+      "corrected_source_joined_original_event": true,
+      "standalone_event_created": false,
+      "context_candidate_count": 10,
+      "recording_time_preserved": true,
+      "no_ASR": true,
+      "integrity": {
+        "expected_spans": 1,
+        "assigned_spans": 1,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "calls": 1,
+      "total_tokens": 7598
+    }
+  ],
+  "independent_quality_claim_for_hotfix": false,
+  "original_v6_acceptance_not_rerun": true
+}

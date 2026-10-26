@@ -1,0 +1,440 @@
+{
+  "status": "implemented_with_acceptance_limits",
+  "selected_runtime": "hermes",
+  "selection_scope": "opt_in_shared_server_processor_no_live_cutover",
+  "source_corpus": {
+    "documents": 114,
+    "characters": 13886,
+    "sha256": "4caa5ea0f22e73f04f443ca0080f69079a0c87912e3c1592d2822029a487fd24",
+    "existing_real_transcripts": true,
+    "asr_calls_created": 0,
+    "labels_in_prompts": false,
+    "retrospective_not_future_blind_test": true
+  },
+  "comparison": {
+    "hermes": {
+      "organization_cost": {
+        "calls": 63,
+        "prompt_tokens": 1501213,
+        "completion_tokens": 43610,
+        "cached_tokens": 1131720,
+        "total_tokens": 1544823,
+        "seconds": 1026.1403155429289,
+        "uncached_prompt_tokens": 369493
+      },
+      "checks": [
+        {
+          "id": "financing_vs_later_delivery",
+          "result": "passed"
+        },
+        {
+          "id": "meeting_arrangement_vs_classroom_fragment",
+          "result": "passed"
+        },
+        {
+          "id": "business_vs_rest_and_health",
+          "result": "passed"
+        },
+        {
+          "id": "quantity_only_off_home",
+          "result": "passed"
+        },
+        {
+          "id": "product_feedback_stays_visible",
+          "result": "unscored_missing_literal_anchor"
+        },
+        {
+          "id": "homework_method_and_effect_stay_together",
+          "result": "failed"
+        },
+        {
+          "id": "meeting_same_specific_matter_across_conversations",
+          "result": "passed"
+        },
+        {
+          "id": "meeting_different_matter_not_linked",
+          "result": "passed"
+        }
+      ],
+      "source_documents": 114,
+      "activities_before_controlled_correction": 6,
+      "visible_issues_before_controlled_correction": 43,
+      "topics": 6,
+      "correction": {
+        "claim_still_rejected": true,
+        "version": 2,
+        "answers_committed": 1,
+        "rejected_claim_not_cited_as_active": true,
+        "method": "controlled_rejection_of_literal_real_source_not_historical_user_feedback"
+      },
+      "typed_correction_cost": {
+        "stage": "correction",
+        "status": "completed",
+        "seconds": 41.148270459030755,
+        "provider_model": "doubao-seed-2.1-pro",
+        "calls": 9,
+        "calls_with_usage": 9,
+        "usage_complete": true,
+        "prompt_tokens": 94918,
+        "completion_tokens": 817,
+        "total_tokens": 95735,
+        "cached_tokens": 63624,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_no_unverified_price"
+      }
+    },
+    "deepseek-harness": {
+      "organization_cost": {
+        "calls": 47,
+        "prompt_tokens": 1118575,
+        "completion_tokens": 48414,
+        "cached_tokens": 697013,
+        "total_tokens": 1166989,
+        "seconds": 949.373475622735,
+        "uncached_prompt_tokens": 421562
+      },
+      "checks": [
+        {
+          "id": "financing_vs_later_delivery",
+          "result": "passed"
+        },
+        {
+          "id": "meeting_arrangement_vs_classroom_fragment",
+          "result": "passed"
+        },
+        {
+          "id": "business_vs_rest_and_health",
+          "result": "unscored_missing_literal_anchor"
+        },
+        {
+          "id": "quantity_only_off_home",
+          "result": "passed"
+        },
+        {
+          "id": "product_feedback_stays_visible",
+          "result": "unscored_missing_literal_anchor"
+        },
+        {
+          "id": "homework_method_and_effect_stay_together",
+          "result": "failed"
+        },
+        {
+          "id": "meeting_same_specific_matter_across_conversations",
+          "result": "failed"
+        },
+        {
+          "id": "meeting_different_matter_not_linked",
+          "result": "passed"
+        }
+      ],
+      "source_documents": 114,
+      "activities_before_controlled_correction": 16,
+      "visible_issues_before_controlled_correction": 46,
+      "topics": 1,
+      "correction": {
+        "claim_still_rejected": true,
+        "version": 2,
+        "answers_committed": 1,
+        "rejected_claim_not_cited_as_active": true,
+        "method": "controlled_rejection_of_literal_real_source_not_historical_user_feedback"
+      },
+      "typed_correction_cost": {
+        "stage": "correction",
+        "status": "completed",
+        "seconds": 80.32296254206449,
+        "provider_model": "doubao-seed-2.1-pro",
+        "calls": 10,
+        "calls_with_usage": 10,
+        "usage_complete": true,
+        "prompt_tokens": 279674,
+        "completion_tokens": 2539,
+        "total_tokens": 282213,
+        "cached_tokens": 214464,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_no_unverified_price"
+      }
+    }
+  },
+  "selected_integration": {
+    "runtime": "hermes",
+    "source": "real_existing_meeting_and_dinner_transcripts",
+    "controlled_feedback_not_historical": true,
+    "same_phone_mac_event_projection": true,
+    "correction_synced": true,
+    "corrected_version": 3,
+    "native_answer_committed": true,
+    "answer_uses_corrected_owner": true,
+    "mcp": {
+      "tools": [
+        "search_context",
+        "read_source"
+      ],
+      "corrected_owner_visible": true,
+      "source_version_visible": true
+    },
+    "asr_jobs_created": 0,
+    "focus": {
+      "source": "existing_real_focus_transcript_no_new_asr",
+      "events": 1,
+      "source_sha256": "af50370ef39d0ab7fc38ba6e6ac7630a4762ba333e1d894f21b2cb9491eeba73",
+      "independent_focus_events": true,
+      "recording_time_retained": true,
+      "ambient_event_identities_unchanged": true
+    },
+    "bluetooth_calls": 0,
+    "live_services_restarted": 0
+  },
+  "context_preview": {
+    "full_serialized_chars": 75666,
+    "bounded_serialized_chars": 29515
+  },
+  "limits": [
+    "Previous project regression anchors are not independent human gold labels.",
+    "Home-work methods/effect granularity check failed for both; it may span different methods and remains unresolved.",
+    "A short product-feedback source remains detail; its homepage admission check is not accepted, including a targeted follow-up.",
+    "Activity counts are fragmentation indicators, not verified real-world meeting/meal boundary accuracy.",
+    "No real WeChat file, live external MCP, WorkBuddy UI or production cutover was validated.",
+    "Current Skill still misses a known same-matter relation after correction; the prior successful repair is not a stable acceptance pass."
+  ],
+  "file_import": {
+    "formats": [
+      "JSON_messages_records",
+      "timestamp_sender_TXT",
+      "table_HTML"
+    ],
+    "original_message_times": true,
+    "cross_file_deduplication": true,
+    "asr": false,
+    "real_export_provided": false
+  },
+  "mcp": {
+    "outbound_stdio_and_authenticated_shared_HTTP": true,
+    "external_client_fixture": true,
+    "live_external_source": false,
+    "workbuddy_configuration_written": false
+  },
+  "targeted_feedback_followup": {
+    "case": "product_feedback_stays_visible",
+    "visible_with_literal_source": false,
+    "time_uses_recording_day": null,
+    "method": "targeted_development_regression_not_independent_holdout",
+    "expected_label_in_model_prompt": false,
+    "asr_jobs_created": 0,
+    "timing_note": "Not assessed as a visible event because it remains detail."
+  },
+  "failed_development_attempts": [
+    {
+      "profile": "formal",
+      "runtime": "hermes",
+      "stage": "meeting-first-result",
+      "status": "failed",
+      "error": "no_committed_receipt",
+      "calls": 20,
+      "observed_tokens": 318772,
+      "usage_complete": true
+    },
+    {
+      "profile": "formal",
+      "runtime": "deepseek-harness",
+      "stage": "dinner-result",
+      "status": "failed",
+      "error": "no_committed_receipt",
+      "calls": 24,
+      "observed_tokens": 851337,
+      "usage_complete": true
+    },
+    {
+      "profile": "formal-v2",
+      "runtime": "hermes",
+      "stage": "dinner-result",
+      "status": "failed",
+      "error": "runtime_timeout",
+      "calls": 14,
+      "observed_tokens": 731716,
+      "usage_complete": false
+    },
+    {
+      "profile": "formal-v2",
+      "runtime": "deepseek-harness",
+      "stage": "dinner-result",
+      "status": "failed",
+      "error": "runtime_timeout",
+      "calls": 15,
+      "observed_tokens": 514814,
+      "usage_complete": false
+    },
+    {
+      "profile": "untyped_answer_contract",
+      "runtime": "hermes",
+      "stage": "correction",
+      "error": "no_committed_receipt",
+      "calls": 24,
+      "observed_tokens": 500464
+    },
+    {
+      "profile": "nested_tool_argument_contract",
+      "runtime": "hermes",
+      "stage": "real_focus_integration",
+      "error": "no_committed_receipt",
+      "calls": 24,
+      "observed_tokens": 661830
+    },
+    {
+      "profile": "relation_repair_provider_network_outage",
+      "runtime": "hermes",
+      "stage": "correction_relation_revalidation",
+      "error": "runtime_timeout",
+      "calls": 15,
+      "calls_with_usage": 0,
+      "usage_complete": false,
+      "seconds": 280.04362033300004,
+      "observed_tokens": null,
+      "money_cost": null,
+      "note": "Provider URLError and failed direct TLS checks; no semantic quality verdict; preserved before successful follow-up."
+    }
+  ],
+  "production_protections": [
+    "typed_flat_tool_arguments",
+    "required_answer_versions",
+    "task_local_handles",
+    "source_grant_and_revision_guards",
+    "bounded_workspace_preview",
+    "paid_call_circuit_breaker",
+    "durable_receipt_reuse",
+    "existing_reviewed_proactive_lane_retained",
+    "relation_repair_candidates_not_old_summary_truth",
+    "version_and_all_member_evidence_guard",
+    "one_relation_revalidation_per_evidence_version",
+    "provider_outage_circuit_breaker_and_durable_backoff",
+    "loopback_context_does_not_use_system_web_proxy",
+    "explicit_external_mcp_environment_forwarding_only"
+  ],
+  "model_money_cost": null,
+  "money_cost_reason": "Only observed provider token/cached usage and latency; no verified currency price or daily estimate.",
+  "production_cutover": false,
+  "hardware_operations": 0,
+  "existing_services_restarted": 0,
+  "correction_reorganization": {
+    "pending_native_jobs": 0,
+    "sources_waiting_for_current_generation": 0,
+    "visible_issues_without_valid_activity": 0,
+    "asr_jobs": 0,
+    "corrected_owner_version_three_preserved": true,
+    "same_matter_link_after_first_source_rebuild": false,
+    "method": "controlled_feedback_on_real_sources_not_historical_user_correction"
+  },
+  "tests": {
+    "passed": 112,
+    "failed": 0,
+    "scope": "domain_runtime_32_native_queue_13_model_meter_4_shared_protocol_13_legacy_processing_22_activities_13_organization_10_answer_sources_5",
+    "quality_accuracy_score": false,
+    "consolidated_final_run_passed": true
+  },
+  "packaging": {
+    "source_only": true,
+    "audio_database_private_build_files_in_package": 0,
+    "source_files": 56,
+    "packaged_scripts_match_current_source": true
+  },
+  "correction_relation_repair": {
+    "accepted_as_stable": false,
+    "intermediate_profile": {
+      "runtime": "hermes",
+      "method": "real_source_correction_repair_not_new_blind_comparison",
+      "before": {
+        "same_specific_matter_linked": false,
+        "different_matter_kept_separate": true
+      },
+      "after": {
+        "same_specific_matter_linked": true,
+        "different_matter_kept_separate": true
+      },
+      "steps": [
+        true,
+        false
+      ],
+      "source_events_memories_unchanged": true,
+      "completed_repair_tasks": 1,
+      "pending_native_jobs": 0,
+      "failed_native_jobs": 0,
+      "visible_issues_without_valid_activity": 0,
+      "corrected_memory_version_three_preserved": true,
+      "asr_jobs_created": 0,
+      "phone_mac_protocol_projection_equal": true,
+      "hardware_operations": 0,
+      "existing_service_restarts": 0,
+      "evaluation_labels_in_task": false,
+      "usage": {
+        "provider_model": "doubao-seed-2.1-pro",
+        "calls": 4,
+        "calls_with_usage": 4,
+        "usage_complete": true,
+        "prompt_tokens": 82839,
+        "completion_tokens": 599,
+        "total_tokens": 83438,
+        "cached_tokens": 30320,
+        "guardrail_reason": null,
+        "guardrail_rejections": 0,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_no_unverified_price"
+      },
+      "seconds": 61.54021812499968,
+      "assistant_evidence_review": {
+        "original_style_constraint_and_person_photo_library_events_linked": true,
+        "ipad_image_context_issue_not_a_topic_member": true,
+        "different_model_selection_matter_not_linked": true,
+        "not_independent_human_annotation": true
+      },
+      "followup_profile_note": "Source-based repair candidates were exposed after discovering the false-negative. This follow-up is not substituted into the original head-to-head comparison.",
+      "profile": "v2_before_user_facing_copy_constraint"
+    },
+    "current_profile": {
+      "runtime": "hermes",
+      "method": "real_source_correction_repair_not_new_blind_comparison",
+      "before": {
+        "same_specific_matter_linked": false,
+        "different_matter_kept_separate": true
+      },
+      "after": {
+        "same_specific_matter_linked": false,
+        "different_matter_kept_separate": true
+      },
+      "steps": [
+        true,
+        false
+      ],
+      "source_events_memories_unchanged": true,
+      "completed_repair_tasks": 1,
+      "pending_native_jobs": 0,
+      "failed_native_jobs": 0,
+      "visible_issues_without_valid_activity": 0,
+      "corrected_memory_version_three_preserved": true,
+      "asr_jobs_created": 0,
+      "phone_mac_protocol_projection_equal": true,
+      "hardware_operations": 0,
+      "existing_service_restarts": 0,
+      "evaluation_labels_in_task": false,
+      "profile": "v3_current_skill_no_internal_handles_or_invented_causality",
+      "seconds": 60.839528957999846,
+      "usage": {
+        "provider_model": "doubao-seed-2.1-pro",
+        "calls": 5,
+        "calls_with_usage": 5,
+        "usage_complete": true,
+        "prompt_tokens": 109119,
+        "completion_tokens": 433,
+        "total_tokens": 109552,
+        "cached_tokens": 63512,
+        "guardrail_reason": null,
+        "guardrail_rejections": 0,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_no_unverified_price"
+      },
+      "same_matter_relationship_acceptance": false
+    },
+    "interpretation": "Intermediate success did not reproduce after user-facing copy constraint. Current profile conservatively misses the known same-matter relation; no wrong link to the distinct matter. Not a statistical accuracy estimate.",
+    "labels_in_model_tasks": false,
+    "repeat_until_pass": false
+  },
+  "current_skill_sha256": "f579bfa06ff780bd5c8a54a5dc5a2ba2f49994fc92d3ee935e9103dc64ce9f15"
+}

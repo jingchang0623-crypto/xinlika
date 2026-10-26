@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "accepted_for_opt_in_incremental_profile": true,
+  "candidate_bundle_sha256": "0d75b39c818fa500fe176659d6fe353a3f51aedb24d47c7a56cbf8715bc7d3aa",
+  "small_sample_only": true,
+  "profile_revision": 3,
+  "base_validation_file": "prompts/profiles/evidence/xinlika-events-v6-live-r2.json",
+  "base_validation_sha256": "710ec70a0ab42b6c38a38eec48fa985baeafc3326818a7ff22e7fd067223565a",
+  "scope": "Unchanged v6 Skill. Replace current fragment projection atomically on completed full-source reallocation; retain retired rows and original task receipts. Repair only current generation with a durable complete allocation receipt. Reuse existing input boundary across host-only rollout.",
+  "old_holdout_replayed": false,
+  "ASR_calls_for_validation": 0,
+  "independent_semantic_quality_claim": false,
+  "isolated_production_snapshot": {
+    "before": {
+      "expected_spans": 95,
+      "assigned_spans": 95,
+      "missing_spans": 0,
+      "duplicate_spans": 1,
+      "stale_ranges": 0,
+      "original_documents_unchanged": true,
+      "passed": false
+    },
+    "after": {
+      "expected_spans": 95,
+      "assigned_spans": 95,
+      "missing_spans": 0,
+      "duplicate_spans": 0,
+      "stale_ranges": 0,
+      "original_documents_unchanged": true,
+      "passed": true
+    },
+    "repaired_documents": 1,
+    "repeat_repairs": 0,
+    "documents_unchanged": true,
+    "asr_jobs_unchanged": true,
+    "retired_rows": 1
+  }
+}

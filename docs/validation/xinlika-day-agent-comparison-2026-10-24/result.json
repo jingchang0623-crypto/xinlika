@@ -1,0 +1,483 @@
+{
+  "day": "2026-10-21",
+  "input_sha256": "01e2b40aaf75e18ee9a7e840b1ec2f7905771f2133c5d8183d0c10a391d3842b",
+  "documents": 131,
+  "characters": 15772,
+  "source_spans": 774,
+  "source_scope": "all_available_authorized_ambient_transcripts_on_recording_day_not_24h_audio_coverage",
+  "quality_method": "project_regression_anchors_not_independent_human_gold; original source review required",
+  "labels_in_prompts": false,
+  "asr_calls": 0,
+  "cross_conversation_metric_scope": "session_level_source_coverage_requires_manual_issue_range_review",
+  "results": {
+    "hermes": {
+      "status": "completed",
+      "error": null,
+      "seconds": 161.658715957994,
+      "usage": {
+        "provider_model": "doubao-seed-2.1-pro",
+        "calls": 14,
+        "calls_with_usage": 14,
+        "usage_complete": true,
+        "prompt_tokens": 719896,
+        "completion_tokens": 7512,
+        "total_tokens": 727408,
+        "cached_tokens": 591632,
+        "guardrail_reason": null,
+        "guardrail_rejections": 0,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_no_unverified_price"
+      },
+      "execution": {
+        "attempts": [
+          {
+            "attempt": "attempt-001",
+            "status": "failed",
+            "error": "model_call_budget",
+            "seconds": 307.3750647909983,
+            "usage": {
+              "provider_model": "doubao-seed-2.1-pro",
+              "calls": 24,
+              "calls_with_usage": 24,
+              "usage_complete": true,
+              "prompt_tokens": 1170900,
+              "completion_tokens": 12240,
+              "total_tokens": 1183140,
+              "cached_tokens": 961944,
+              "guardrail_reason": "model_call_budget",
+              "guardrail_rejections": 0,
+              "currency_cost": null,
+              "cost_basis": "provider_usage_only_no_unverified_price"
+            }
+          },
+          {
+            "attempt": "attempt-002",
+            "status": "failed",
+            "error": "invalid_tool_call_budget",
+            "seconds": 253.66098395799781,
+            "usage": {
+              "provider_model": "doubao-seed-2.1-pro",
+              "calls": 18,
+              "calls_with_usage": 18,
+              "usage_complete": true,
+              "prompt_tokens": 1073854,
+              "completion_tokens": 10743,
+              "total_tokens": 1084597,
+              "cached_tokens": 916864,
+              "guardrail_reason": "invalid_tool_call_budget",
+              "guardrail_rejections": 1,
+              "currency_cost": null,
+              "cost_basis": "provider_usage_only_no_unverified_price"
+            }
+          },
+          {
+            "attempt": "attempt-003",
+            "status": "failed",
+            "error": "invalid_tool_call_budget",
+            "seconds": 22.78991345800023,
+            "usage": {
+              "provider_model": "doubao-seed-2.1-pro",
+              "calls": 5,
+              "calls_with_usage": 5,
+              "usage_complete": true,
+              "prompt_tokens": 48777,
+              "completion_tokens": 467,
+              "total_tokens": 49244,
+              "cached_tokens": 38936,
+              "guardrail_reason": "invalid_tool_call_budget",
+              "guardrail_rejections": 1,
+              "currency_cost": null,
+              "cost_basis": "provider_usage_only_no_unverified_price"
+            }
+          },
+          {
+            "attempt": "attempt-004",
+            "status": "completed",
+            "error": null,
+            "seconds": 161.658715957994,
+            "usage": {
+              "provider_model": "doubao-seed-2.1-pro",
+              "calls": 14,
+              "calls_with_usage": 14,
+              "usage_complete": true,
+              "prompt_tokens": 719896,
+              "completion_tokens": 7512,
+              "total_tokens": 727408,
+              "cached_tokens": 591632,
+              "guardrail_reason": null,
+              "guardrail_rejections": 0,
+              "currency_cost": null,
+              "cost_basis": "provider_usage_only_no_unverified_price"
+            }
+          }
+        ],
+        "totals": {
+          "calls": 61,
+          "calls_with_usage": 61,
+          "prompt_tokens": 3013427,
+          "completion_tokens": 30962,
+          "total_tokens": 3044389,
+          "cached_tokens": 2509376,
+          "usage_complete": true,
+          "currency_cost": null,
+          "cost_basis": "provider_usage_only_including_failed_attempts_no_unverified_price",
+          "seconds": 745.4846781649903,
+          "reported_uncached_prompt_tokens": 504051
+        }
+      },
+      "homepage_events": 49,
+      "retained_fragment_spans": 72,
+      "checks": [
+        {
+          "id": "financing_vs_later_delivery",
+          "result": "passed"
+        },
+        {
+          "id": "meeting_arrangement_vs_classroom_fragment",
+          "result": "passed"
+        },
+        {
+          "id": "business_vs_rest_and_health",
+          "result": "failed"
+        },
+        {
+          "id": "quantity_only_off_home",
+          "result": "passed"
+        },
+        {
+          "id": "product_feedback_stays_visible",
+          "result": "passed"
+        },
+        {
+          "id": "homework_method_and_effect_stay_together",
+          "result": "passed"
+        }
+      ],
+      "span_partition": {
+        "expected_spans": 774,
+        "assigned_spans": 774,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "unknown_or_stale_spans": 0,
+        "passed": true
+      },
+      "same_matter_cross_conversation_link": false,
+      "different_matter_kept_separate": true,
+      "asr_jobs": 0,
+      "topics": 0
+    },
+    "deepseek-harness": {
+      "status": "completed",
+      "error": null,
+      "seconds": 33.47272512500058,
+      "usage": {
+        "provider_model": "doubao-seed-2.1-pro",
+        "calls": 8,
+        "calls_with_usage": 8,
+        "usage_complete": true,
+        "prompt_tokens": 243889,
+        "completion_tokens": 772,
+        "total_tokens": 244661,
+        "cached_tokens": 169920,
+        "guardrail_reason": null,
+        "guardrail_rejections": 0,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_no_unverified_price"
+      },
+      "execution": {
+        "attempts": [
+          {
+            "attempt": "attempt-001",
+            "status": "failed",
+            "error": "no_committed_receipt",
+            "seconds": 267.9644452920038,
+            "usage": {
+              "provider_model": "doubao-seed-2.1-pro",
+              "calls": 10,
+              "calls_with_usage": 9,
+              "usage_complete": false,
+              "prompt_tokens": 393396,
+              "completion_tokens": 2243,
+              "total_tokens": 395639,
+              "cached_tokens": 249480,
+              "guardrail_reason": null,
+              "guardrail_rejections": 0,
+              "currency_cost": null,
+              "cost_basis": "provider_usage_only_no_unverified_price"
+            }
+          },
+          {
+            "attempt": "attempt-002",
+            "status": "failed",
+            "error": "repeated_invalid_tool_call",
+            "seconds": 545.9048066249961,
+            "usage": {
+              "provider_model": "doubao-seed-2.1-pro",
+              "calls": 30,
+              "calls_with_usage": 30,
+              "usage_complete": true,
+              "prompt_tokens": 2268587,
+              "completion_tokens": 25497,
+              "total_tokens": 2294084,
+              "cached_tokens": 2062880,
+              "guardrail_reason": "repeated_invalid_tool_call",
+              "guardrail_rejections": 1,
+              "currency_cost": null,
+              "cost_basis": "provider_usage_only_no_unverified_price"
+            }
+          },
+          {
+            "attempt": "attempt-003",
+            "status": "failed",
+            "error": "model_call_budget",
+            "seconds": 260.5375152080014,
+            "usage": {
+              "provider_model": "doubao-seed-2.1-pro",
+              "calls": 24,
+              "calls_with_usage": 24,
+              "usage_complete": true,
+              "prompt_tokens": 1169894,
+              "completion_tokens": 15085,
+              "total_tokens": 1184979,
+              "cached_tokens": 1045824,
+              "guardrail_reason": "model_call_budget",
+              "guardrail_rejections": 0,
+              "currency_cost": null,
+              "cost_basis": "provider_usage_only_no_unverified_price"
+            }
+          },
+          {
+            "attempt": "attempt-004",
+            "status": "failed",
+            "error": "model_call_budget",
+            "seconds": 207.3480224590021,
+            "usage": {
+              "provider_model": "doubao-seed-2.1-pro",
+              "calls": 32,
+              "calls_with_usage": 32,
+              "usage_complete": true,
+              "prompt_tokens": 2386131,
+              "completion_tokens": 9438,
+              "total_tokens": 2395569,
+              "cached_tokens": 2239649,
+              "guardrail_reason": "model_call_budget",
+              "guardrail_rejections": 0,
+              "currency_cost": null,
+              "cost_basis": "provider_usage_only_no_unverified_price"
+            }
+          },
+          {
+            "attempt": "attempt-005",
+            "status": "completed",
+            "error": null,
+            "seconds": 33.47272512500058,
+            "usage": {
+              "provider_model": "doubao-seed-2.1-pro",
+              "calls": 8,
+              "calls_with_usage": 8,
+              "usage_complete": true,
+              "prompt_tokens": 243889,
+              "completion_tokens": 772,
+              "total_tokens": 244661,
+              "cached_tokens": 169920,
+              "guardrail_reason": null,
+              "guardrail_rejections": 0,
+              "currency_cost": null,
+              "cost_basis": "provider_usage_only_no_unverified_price"
+            }
+          }
+        ],
+        "totals": {
+          "calls": 104,
+          "calls_with_usage": 103,
+          "prompt_tokens": 6461897,
+          "completion_tokens": 53035,
+          "total_tokens": 6514932,
+          "cached_tokens": 5767753,
+          "usage_complete": false,
+          "currency_cost": null,
+          "cost_basis": "provider_usage_only_including_failed_attempts_no_unverified_price",
+          "seconds": 1315.227514709004,
+          "reported_uncached_prompt_tokens": 694144
+        }
+      },
+      "homepage_events": 71,
+      "retained_fragment_spans": 63,
+      "checks": [
+        {
+          "id": "financing_vs_later_delivery",
+          "result": "passed"
+        },
+        {
+          "id": "meeting_arrangement_vs_classroom_fragment",
+          "result": "passed"
+        },
+        {
+          "id": "business_vs_rest_and_health",
+          "result": "passed"
+        },
+        {
+          "id": "quantity_only_off_home",
+          "result": "passed"
+        },
+        {
+          "id": "product_feedback_stays_visible",
+          "result": "failed"
+        },
+        {
+          "id": "homework_method_and_effect_stay_together",
+          "result": "failed"
+        }
+      ],
+      "span_partition": {
+        "expected_spans": 774,
+        "assigned_spans": 774,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "unknown_or_stale_spans": 0,
+        "passed": true
+      },
+      "same_matter_cross_conversation_link": false,
+      "different_matter_kept_separate": true,
+      "asr_jobs": 0,
+      "topics": 4
+    }
+  },
+  "status": "completed_with_semantic_acceptance_limits",
+  "semantic_acceptance_passed": false,
+  "recorded_day": "2026-10-21",
+  "evaluated_on": "2026-10-24",
+  "provisional_selection": {
+    "runtime": "hermes",
+    "scope": "event_editor_candidate_only",
+    "live_cutover": false,
+    "basis": [
+      "short_feedback_retained",
+      "more_coherent_complete_issue_review"
+    ],
+    "not_based_on_event_count": true
+  },
+  "reference": {
+    "primary": "user_supplied_heartball_app_screenshots",
+    "skill_rules": "inferred_product_behavior_not_competitor_internal_prompt",
+    "same_semantic_skill": true,
+    "same_provider_model": "doubao-seed-2.1-pro"
+  },
+  "benchmark_limits": [
+    "staged recovery integration trial, not fixed-profile cold benchmark",
+    "includes failed attempts, compression and recovery",
+    "DeepSeek received additional bounded recovery and guided finalization",
+    "regression anchors are not independent accuracy",
+    "source dates do not prove word-level timing or hardware continuity"
+  ],
+  "baseline_before_staging": {
+    "hermes": {
+      "status": "failed",
+      "error": "runtime_timeout",
+      "seconds": 940.091470667001,
+      "usage": {
+        "provider_model": "doubao-seed-2.1-pro",
+        "calls": 14,
+        "calls_with_usage": 12,
+        "usage_complete": false,
+        "prompt_tokens": 507758,
+        "completion_tokens": 36134,
+        "total_tokens": 543892,
+        "cached_tokens": 367864,
+        "guardrail_reason": null,
+        "guardrail_rejections": 0,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_no_unverified_price"
+      }
+    },
+    "deepseek-harness": {
+      "status": "failed",
+      "error": "model_call_budget",
+      "seconds": 609.0155762909999,
+      "usage": {
+        "provider_model": "doubao-seed-2.1-pro",
+        "calls": 24,
+        "calls_with_usage": 24,
+        "usage_complete": true,
+        "prompt_tokens": 759642,
+        "completion_tokens": 27359,
+        "total_tokens": 787001,
+        "cached_tokens": 342736,
+        "guardrail_reason": "model_call_budget",
+        "guardrail_rejections": 0,
+        "currency_cost": null,
+        "cost_basis": "provider_usage_only_no_unverified_price"
+      }
+    }
+  },
+  "initial_network_failures_preserved": true,
+  "finalization_semantics": {
+    "unchanged": true,
+    "sha256": "03ce639d12ca0845273b4189bca620ed21971404ff4871f24699dcc155f86576",
+    "runtime": "deepseek-harness",
+    "finalization_only_calls": 8,
+    "comparison_fields": [
+      "issues",
+      "topics",
+      "memories",
+      "fragments"
+    ],
+    "optional_activities_repaired_by_native_agent": true,
+    "manual_semantic_rewrite": false
+  },
+  "source_integrity": {
+    "hermes": {
+      "original_document_rows_unchanged": true,
+      "document_count": 131,
+      "personal_memory_claim_count": 0
+    },
+    "deepseek-harness": {
+      "original_document_rows_unchanged": true,
+      "document_count": 131,
+      "personal_memory_claim_count": 0
+    }
+  },
+  "manual_review_limits": [
+    "Hermes business/health cards are separate but a boundary quote is assigned to the wrong event",
+    "Both outputs overbundle visual style and iPad reference subissues",
+    "Hermes introduces a technical term unsupported by frozen text; raw audio was not re-audited",
+    "DeepSeek retains a useful short feedback as fragment, hiding it from homepage",
+    "Both miss the user-confirmed same-matter association",
+    "Hermes negative association result is vacuous with zero topics",
+    "Homework granularity has judgment ambiguity",
+    "No new acceptance for memory correction, ASR, voice attribution, noise classification or BLE"
+  ],
+  "validation": {
+    "related_tests_passed": 168,
+    "mac_build": "passed",
+    "iphone_simulator_build": "passed",
+    "shared_swift_checks_per_runtime": 14,
+    "ui_surfaces": [
+      "native_mac_owned_preview",
+      "dedicated_iphone_simulator"
+    ],
+    "physical_iphone_retested": false,
+    "recording_date_display_verified": true,
+    "single_source_duplicate_time_removed": true,
+    "topic_count_label": "段记录",
+    "source_only_server_package_files": 56,
+    "deployed": false
+  },
+  "operational_invariants": {
+    "asr_calls": 0,
+    "hardware_commands": 0,
+    "recording_start_stop_commands": 0,
+    "existing_service_restarts": 0,
+    "physical_device_install": false,
+    "git_commit_push": false,
+    "raw_audio_upload": false,
+    "private_transcripts_in_public_artifacts": false
+  },
+  "cleanup": {
+    "dedicated_simulator_deleted": true,
+    "owned_temp_removed": true,
+    "other_apps_devices_services_untouched": true,
+    "private_evidence_retained": true,
+    "owned_preview_stopped": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "xinlika": {
+      "command": "/opt/xinlika/venv/bin/python",
+      "args": [
+        "/opt/xinlika/scripts/xinlika-mcp.py",
+        "--connection",
+        "/private/xinlika/context-reader.json"
+      ]
+    }
+  }
+}

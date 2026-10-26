@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "date": "2026-10-24",
+  "status": "live_enabled_with_open_validation_items",
+  "profile": "xinlika-events-v6",
+  "profile_revision": 2,
+  "skill_bundle_sha256": "0d75b39c818fa500fe176659d6fe353a3f51aedb24d47c7a56cbf8715bc7d3aa",
+  "deployment": {
+    "first_activation_local": "2026-10-24T20:22:17.999+08:00",
+    "current_activation_local": "2026-10-24T20:55:34.593436+08:00",
+    "current_release": "xinlika-v6-r2-20261024",
+    "new_inputs_only": true,
+    "old_completed_asr_jobs_checked": 2050,
+    "old_completed_asr_jobs_changed": 0,
+    "original_asr_transcripts_changed": 0,
+    "old_completed_sessions_changed": 0,
+    "capture_commands_sent": 0,
+    "phone_reinstalled_or_relaunched": false,
+    "rollback_images_retained": true
+  },
+  "checks": {
+    "focused_tests_passed": 66,
+    "mac_build_passed": true,
+    "swift_actual_day_decode_passed": true,
+    "model_input_integrity": {
+      "source_versions_checked": 55,
+      "text_mismatches": 0,
+      "recording_time_mismatches": 0
+    },
+    "final_projection_audit": {
+      "expected_spans": 95,
+      "assigned_spans": 95,
+      "missing_spans": 0,
+      "duplicate_spans": 1,
+      "stale_ranges": 0,
+      "original_documents_unchanged": true,
+      "passed": false
+    },
+    "native_jobs": {
+      "total": 20,
+      "completed": 20,
+      "errors": 0
+    },
+    "pending_queues": [],
+    "two_device_api": {
+      "phone": {
+        "restored_documents_visible": true,
+        "recording_time_preserved": true,
+        "events": 100,
+        "topics": 11
+      },
+      "mac": {
+        "restored_documents_visible": true,
+        "recording_time_preserved": true,
+        "events": 100,
+        "topics": 11
+      },
+      "same_workspace": true,
+      "same_events": true,
+      "same_topics": true
+    },
+    "actual_ui": {
+      "phone_event_detail_and_recording_clock_seen": true,
+      "phone_and_mac_topic_pages_seen": true,
+      "mac_ui_edit_seen_on_phone_event": true,
+      "phone_ui_edit_seen_in_mac_original_text": true,
+      "mac_ui_restore_submitted_and_both_credentials_read_restored_text": true,
+      "phone_ui_restored_text_final_read": false,
+      "phone_ui_final_read_limitation": "Mirroring intermittently loses window; restored text verified with both device credentials instead."
+    }
+  },
+  "correction_regression": {
+    "same_v6_skill": true,
+    "host_change": "Recall exact sibling lineage for late user corrections and identify source update as not a new occurrence. Ordinary late ASR future-event guard remains.",
+    "development_replays": 3,
+    "calls_including_failed_trial": 4,
+    "tokens_including_failed_trial": 29974,
+    "independent_quality_claim": false,
+    "old_holdout_replayed": false,
+    "test_punctuation_restored": true
+  },
+  "cost_observation": {
+    "incremental_event_receipts": {
+      "calls": 24,
+      "prompt_tokens": 212645,
+      "completion_tokens": 12106,
+      "total_tokens": 224751,
+      "cached_tokens": 52432
+    },
+    "topic_review_receipts": {
+      "calls": 10,
+      "prompt_tokens": 77050,
+      "completion_tokens": 619,
+      "total_tokens": 77669,
+      "cached_tokens": 0
+    },
+    "scope": "Observed production receipt totals include this deployment and UI correction processing; exclude isolated development replays and do not assert complete rolling-review accounting or monetary cost."
+  },
+  "recording": {
+    "status": "completed",
+    "audio_seconds_received": 28698.8,
+    "gap_count": 2,
+    "archive_status": "phone_saved_card_verification_pending",
+    "phone_ui": "saved; automatic resumable card verification in progress",
+    "zero_loss_claim": false,
+    "new_recording_started": false
+  },
+  "limitations": [
+    "New live cross-conversation reviews returned zero proposed links; fresh positive production recall is not established.",
+    "Final projection contains one span retained both as a fragment and in one active event; no missing or stale ranges, but unique-allocation audit is not fully passed.",
+    "Some low-value or vague cards remain visible; this is not an all-day homepage quality pass.",
+    "Card reference verification has not completed; sample continuity and complete recovery remain unknown.",
+    "Separate acoustic worker was restarting before this rollout; acoustic label health is not covered by this release.",
+    "Phone final restored-text UI read remains unverified although both device APIs agree."
+  ]
+}

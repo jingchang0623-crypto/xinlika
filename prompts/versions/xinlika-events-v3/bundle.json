@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "version": "xinlika-events-v3-boundaries",
+  "root": ".",
+  "files": {
+    "incremental": "skills/xinlika-incremental/SKILL.md",
+    "rolling": "skills/xinlika-rolling/SKILL.md",
+    "review": "skills/xinlika-rolling-review/SKILL.md"
+  },
+  "sha256": {
+    "incremental": "91f757d011dd2ff771d5142dfa625368beda576a5fc979a5e03d569e3a70703c",
+    "rolling": "54c6b2260ea30f6c43d3b70f6c304f9a549b384ff6e77850a6da62479aad4aa4",
+    "review": "a4d96621b612ec852359a5f1c5da549c757b9108f558a3ca91a55c90c6686a30"
+  }
+}

@@ -1,0 +1,103 @@
+[
+  {
+    "event" : "begin",
+    "mode" : "documented_type1_probe",
+    "time" : "2026-09-07T04:51:59Z",
+    "version" : "0.1.7"
+  },
+  {
+    "event" : "connected",
+    "firmware" : "V1.0.0",
+    "time" : "2026-09-07T04:52:02Z"
+  },
+  {
+    "complete" : "true",
+    "count" : "12",
+    "event" : "files_before",
+    "time" : "2026-09-07T04:52:02Z"
+  },
+  {
+    "event" : "preflight",
+    "state" : "2",
+    "time" : "2026-09-07T04:52:02Z"
+  },
+  {
+    "command" : "1-0",
+    "event" : "tx",
+    "time" : "2026-09-07T04:52:02Z"
+  },
+  {
+    "event" : "start_reply",
+    "filenameReceived" : "true",
+    "time" : "2026-09-07T04:52:02Z"
+  },
+  {
+    "event" : "after_start",
+    "state" : "1",
+    "time" : "2026-09-07T04:52:02Z"
+  },
+  {
+    "event" : "current_file",
+    "matchesReply" : "true",
+    "present" : "true",
+    "time" : "2026-09-07T04:52:02Z"
+  },
+  {
+    "event" : "disconnected",
+    "time" : "2026-09-07T04:52:04Z"
+  },
+  {
+    "event" : "after_reconnect",
+    "state" : "1",
+    "time" : "2026-09-07T04:52:09Z"
+  },
+  {
+    "event" : "reconnect_identity",
+    "sameFile" : "true",
+    "time" : "2026-09-07T04:52:09Z"
+  },
+  {
+    "bytes" : "14080",
+    "event" : "recording_time",
+    "seconds" : "7",
+    "time" : "2026-09-07T04:52:09Z"
+  },
+  {
+    "event" : "before_stop",
+    "state" : "1",
+    "time" : "2026-09-07T04:52:09Z"
+  },
+  {
+    "command" : "1-2",
+    "event" : "tx",
+    "time" : "2026-09-07T04:52:09Z"
+  },
+  {
+    "event" : "stop_reply",
+    "status" : "none",
+    "time" : "2026-09-07T04:52:11Z"
+  },
+  {
+    "event" : "after_stop",
+    "state" : "2",
+    "time" : "2026-09-07T04:52:11Z"
+  },
+  {
+    "event" : "final_state",
+    "state" : "2",
+    "time" : "2026-09-07T04:52:12Z"
+  },
+  {
+    "bytes" : "14400",
+    "complete" : "true",
+    "event" : "saved_file",
+    "found" : "true",
+    "seconds" : "7",
+    "time" : "2026-09-07T04:52:12Z"
+  },
+  {
+    "event" : "end",
+    "success" : "true",
+    "time" : "2026-09-07T04:52:12Z"
+  }
+]

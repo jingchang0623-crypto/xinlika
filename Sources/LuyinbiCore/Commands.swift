@@ -3,6 +3,12 @@ import Foundation
 /// 高层命令。全部建立在 BLEClient 之上，语义与已验证的 Python 版一致。
 public extension BLEClient {
 
+    /// 发送当前本地时间。固件对 0-0 不回应答，写入成功不代表已读回确认；不要调用 expect。
+    /// connect 默认在 AE21 可写且 AE22 订阅成功后调用；采集探针可显式禁用，避免改变实验时钟。
+    func syncTime() throws {
+        try sendRaw(Proto.buildTimeSync(seq: nextSeq()))
+    }
+
     func battery(timeout: TimeInterval = 5) async throws -> UInt8? {
         try send(Proto.T.ctrl, 3)
         return await expect(Proto.T.ctrl, 4, timeout: timeout)?.body.first
@@ -32,8 +38,7 @@ public extension BLEClient {
 
     /// 1=录音中 2=未录音 3=暂停。取不到返回 nil——调用方必须按最坏情况处理。
     func recordStatus(timeout: TimeInterval = 4) async throws -> UInt8? {
-        try send(Proto.T.key, Proto.KeyCmd.statusReq)
-        return await expect(Proto.T.key, Proto.KeyCmd.statusAck, timeout: timeout)?.body.first
+        return try await recordingExchange(Proto.KeyCmd.statusReq, reply: Proto.KeyCmd.statusAck, timeout: timeout)?.first
     }
 
     func currentFilename(timeout: TimeInterval = 4) async throws -> String? {
@@ -47,13 +52,17 @@ public extension BLEClient {
     /// 累积多帧 2-1，收到 2-18 交付。旧固件不发 2-18，退化为「空闲即收尾」。
     func fileList(idleFallback: TimeInterval = 1.5,
                   hardTimeout: TimeInterval = 30) async throws -> (entries: [FileEntry], gotDone: Bool) {
+        try Task.checkCancellation()
         try send(Proto.T.file, Proto.FileCmd.listReq)
         var entries: [FileEntry] = []
         var gotDone = false
         let deadline = Date().addingTimeInterval(hardTimeout)
         var last = Date()
         while Date() < deadline {
+            try Task.checkCancellation()
             guard let (_, f) = await nextFrame(timeout: 0.3) else {
+                try Task.checkCancellation()
+                guard isConnected else { throw BLEError.notConnected }
                 if !entries.isEmpty && Date().timeIntervalSince(last) > idleFallback { break }
                 continue
             }
@@ -94,15 +103,18 @@ public extension BLEClient {
         let resumeBudget = maxResumes
             ?? max(8, Int((expectSize.map(Double.init) ?? 0) / 1_048_576 * 2))
         for name in candidates {
+            try Task.checkCancellation()
             res.tried.append(name); res.filename = name
             var buf: [UInt8] = []
             let started = Date()
             var resumes = 0
             while true {
+                try Task.checkCancellation()
                 try sendRaw(try Proto.buildImportRequest(name, offset: UInt32(buf.count), seq: nextSeq()))
                 var stalled = false
                 var last = Date()
                 while true {
+                    try Task.checkCancellation()
                     guard let (_, f) = await nextFrame(timeout: 0.5) else {
                         if Date().timeIntervalSince(last) > idleTimeout { stalled = true; break }
                         continue

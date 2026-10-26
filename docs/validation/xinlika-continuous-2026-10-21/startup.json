@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "checkedAt": "2026-10-21T08:31:19.508824+00:00",
+  "sessionId": "b999cd96-bd44-43ac-beeb-2417e1c39663",
+  "status": "recording",
+  "ownedFile": "note20261021-162911.opus",
+  "error": null,
+  "captureLimitSeconds": 86400,
+  "batchSeconds": 60,
+  "nonemptyTranscripts": 1,
+  "activeEvents": 1,
+  "jobs": [
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    }
+  ],
+  "continuousAudioProven": false,
+  "transcriptAccuracyProven": false,
+  "startupOnly": true,
+  "heartbeatActive": true,
+  "idleSleepPreventedUntilCaptureProcessExits": true
+}

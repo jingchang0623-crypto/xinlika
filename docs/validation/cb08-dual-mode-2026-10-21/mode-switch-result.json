@@ -1,0 +1,171 @@
+{
+  "status": "completed_bidirectional_mode_switch_observation",
+  "user_reports": {
+    "original_mode": "normal",
+    "first_change_reported": "normal_to_telephone",
+    "user_report": "timer still increasing",
+    "exact_switch_time": "unknown; no raw notification timestamp identified",
+    "report_recorded_at": "2026-10-21T02:45:35.267556+00:00",
+    "latest_snapshot": {
+      "bytes": "318800",
+      "event": "snapshot",
+      "filename": "note20261021-104354.opus",
+      "identityStableAcrossReads": "true",
+      "phase": "periodic",
+      "seconds": "159",
+      "state": "1",
+      "time": "2026-10-21T02:45:34Z",
+      "uptime": 388050.84672900004
+    },
+    "ae23_frames_seen": [
+      {
+        "command": 4,
+        "connection": "A5D26BDB-F56C-499F-8FAB-C5224F713B5E",
+        "controlBodyBytes": 1,
+        "controlBodyHex": "6e",
+        "controlBodyTruncated": false,
+        "dataBytes": 3,
+        "event": "frame",
+        "sequence": 1,
+        "source": "AE23",
+        "time": "2026-10-21T02:42:44Z",
+        "type": 0,
+        "uptime": 387880.9687597917
+      },
+      {
+        "announcedFilename": "note20261021-104354.opus",
+        "command": 0,
+        "connection": "A5D26BDB-F56C-499F-8FAB-C5224F713B5E",
+        "dataBytes": 26,
+        "event": "frame",
+        "previousSequence": 1,
+        "sequence": 21,
+        "sequenceDiscontinuity": true,
+        "source": "AE23",
+        "time": "2026-10-21T02:42:54Z",
+        "type": 1,
+        "uptime": 387891.0186199167
+      }
+    ],
+    "known_switch_event_identified": false,
+    "return_to_normal": "user confirmed restored and timer increasing",
+    "acoustic_effect": "not_evaluated",
+    "return_report_recorded_at": "2026-10-21T02:48:28.739493+00:00",
+    "last_snapshot": {
+      "bytes": "658640",
+      "event": "snapshot",
+      "filename": "note20261021-104354.opus",
+      "identityStableAcrossReads": "true",
+      "phase": "periodic",
+      "seconds": "329",
+      "state": "1",
+      "time": "2026-10-21T02:48:24Z",
+      "uptime": 388220.75706770836
+    }
+  },
+  "directions": [
+    "normal_to_telephone",
+    "telephone_to_normal_restored"
+  ],
+  "exact_switch_times": "unknown; operator reports, no matching mode event identified",
+  "independent_mode_event_identified": false,
+  "button_candidates": [],
+  "ae23_frames": [
+    {
+      "command": 4,
+      "connection": "A5D26BDB-F56C-499F-8FAB-C5224F713B5E",
+      "controlBodyBytes": 1,
+      "controlBodyHex": "6e",
+      "controlBodyTruncated": false,
+      "dataBytes": 3,
+      "event": "frame",
+      "sequence": 1,
+      "source": "AE23",
+      "time": "2026-10-21T02:42:44Z",
+      "type": 0,
+      "uptime": 387880.9687597917
+    },
+    {
+      "announcedFilename": "note20261021-104354.opus",
+      "command": 0,
+      "connection": "A5D26BDB-F56C-499F-8FAB-C5224F713B5E",
+      "dataBytes": 26,
+      "event": "frame",
+      "previousSequence": 1,
+      "sequence": 21,
+      "sequenceDiscontinuity": true,
+      "source": "AE23",
+      "time": "2026-10-21T02:42:54Z",
+      "type": 1,
+      "uptime": 387891.0186199167
+    }
+  ],
+  "frame_type_command_counts": {
+    "('AE22', 0, 11)": 1,
+    "('AE23', 0, 4)": 1,
+    "('AE22', 3, 20)": 74,
+    "('AE22', 3, 22)": 69,
+    "('AE22', 2, 1)": 21,
+    "('AE22', 2, 18)": 2,
+    "('AE23', 1, 0)": 1,
+    "('AE22', 1, 1)": 4175,
+    "('AE22', 3, 24)": 128
+  },
+  "file_changes": [],
+  "disconnects": 0,
+  "save_owned_commands": 1,
+  "save_confirmation": [
+    {
+      "confirmed": "true",
+      "event": "save_owned_result",
+      "time": "2026-10-21T02:48:29Z",
+      "uptime": 388225.9904527084
+    }
+  ],
+  "reference_download": {
+    "attempts": 1,
+    "cardFilesDeleted": 0,
+    "clockSync": "disabled",
+    "device": "00000000-0000-4000-8000-000000000001",
+    "downloadSeconds": 26.084684014320374,
+    "endCode": 0,
+    "expectedBytes": 668080,
+    "filename": "note20261021-104354.opus",
+    "lastError": "",
+    "overlapBytesOnResume": 160,
+    "receivedBytes": 668080,
+    "recordingControlCommands": 0,
+    "sizeAndEndConfirmed": true
+  },
+  "card_sha256": "dd00bb77a272587ef604e97767283b67e306ecac0b5093e2d29cf5e45f9fcf62",
+  "card_decoded_seconds": 334.04,
+  "card_decoder_exit": 0,
+  "live_audio": {
+    "frames": 4175,
+    "bytes": 668000,
+    "decoder_exit": 0,
+    "unique_card_range": {
+      "cardFile": ".build/cb08-buttons-20261021/mode-switch-reference/note20261021-104354.opus",
+      "offset": 0,
+      "length": 668000,
+      "uniqueWithinFile": true
+    },
+    "missing_prefix_bytes": 0,
+    "missing_suffix_bytes": 80
+  },
+  "catalog_files_before": 40,
+  "catalog_files_after": 41,
+  "preexisting_entries_unchanged": true,
+  "journal_problems": [],
+  "final_mode": "normal_user_confirmed",
+  "final_recording_state": 2,
+  "probe_disconnected": true,
+  "verdict": "Transport and original recording continued across both reported switches; no independent focus event established",
+  "unknown": [
+    "Acoustic input selection and speech quality changes between modes",
+    "A mode getter or other firmware telemetry outside observed notification/query paths",
+    "Exact switch-to-sample mapping; cannot assign focus boundaries from these operator reports"
+  ],
+  "audio_uploads": 0,
+  "card_files_deleted": 0
+}

@@ -1,0 +1,75 @@
+{
+  "at": "2026-10-21T11:55:47.258604+00:00",
+  "scope": "Personal Agent behavioral prompts and processing loop, not a memory-framework migration",
+  "prompt_profile": {
+    "version": "xinlika-personal-agent-2026-10-21-v1",
+    "sha256": "4eb32f3989eaa08f0635d6cde78dfcf1a932b1b1bae786417f79a6bf5e40c126"
+  },
+  "unit_tests": {
+    "count": 115,
+    "passed": true,
+    "synthetic_control_flow_is_not_real_accuracy": true
+  },
+  "real_model_shadow": {
+    "local": {
+      "record_count": 7,
+      "session_count": 3,
+      "result": "quiet",
+      "references_valid": true,
+      "manual_confirmations": 0,
+      "new_asr_calls": 0,
+      "original_audio_uploaded": false,
+      "production_advice_written": false,
+      "proactive_quality_accepted": false
+    },
+    "cloud": {
+      "record_count": 3,
+      "session_count": 1,
+      "result": "quiet",
+      "references_valid": true,
+      "manual_confirmations": 0,
+      "new_asr_calls": 0,
+      "original_audio_uploaded": false,
+      "production_advice_written": false,
+      "proactive_quality_accepted": false
+    }
+  },
+  "deployment": {
+    "image": "xinlika-shared:20261021-r4-amd64",
+    "healthy": true,
+    "previous_container_retained_stopped": true,
+    "other_containers_unchanged": true,
+    "documents_preserved": 29,
+    "retranscribed_completed_audio": false,
+    "new_personal_archive_replays": 0,
+    "active_capture_at_upgrade": false,
+    "phone_restarted": false,
+    "hardware_connected": false
+  },
+  "backup": {
+    "snapshot": "20261021T114755Z-b1a2726f",
+    "verified_objects": 25,
+    "restored_batches": 22,
+    "restored_documents": 29,
+    "integrity": "ok",
+    "credentials_included": false,
+    "offhost_copy": "local_private_build",
+    "automatic_offhost_backup": false
+  },
+  "automatic_backup": {
+    "interval_hours": 6,
+    "first_run_succeeded": true,
+    "offhost_automatic": false,
+    "retention_configured": false,
+    "capacity_alerting": false
+  },
+  "limits": [
+    "Useful proactive feedback has not passed real daily-use quality evaluation",
+    "Speaker identity is not verified",
+    "Automatic meeting boundaries and topic-link recall retain prior limits",
+    "Two pre-existing tiny-tail repair reviews remain blocked",
+    "No new battery or charging-boundary test; earlier charging run was 3h20m",
+    "Single-host, single-user service; no automatic offhost disaster recovery",
+    "No external tool execution or notification push introduced"
+  ]
+}

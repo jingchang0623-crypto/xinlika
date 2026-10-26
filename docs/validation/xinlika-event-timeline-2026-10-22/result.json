@@ -1,0 +1,136 @@
+{
+  "session_id": "9823f0ec-e591-4f97-bb4b-067bde46f74c",
+  "batches": 105,
+  "documents_preserved": 105,
+  "all_prior_transcripts_unchanged": true,
+  "repeated_asr_called": false,
+  "baseline_active_events": 58,
+  "current_active_events": 48,
+  "current_displayed_events": 46,
+  "baseline_restaurant_start_events": 36,
+  "current_restaurant_start_events": 26,
+  "restaurant_count_scope": "event start only; user-supplied interval is evaluation context, not automatic activity recognition",
+  "prior_event_sources": 102,
+  "uncovered_prior_sources": 0,
+  "recording_clock_mismatches": 0,
+  "next_day_misplaced_events": 0,
+  "processing_pending": [],
+  "window_jobs": {
+    "v5": {
+      "completed": 2,
+      "failed": 0,
+      "queued": 0,
+      "running": 0,
+      "retryable": 0,
+      "superseded": 1
+    },
+    "v6": {
+      "completed": 4,
+      "failed": 1,
+      "queued": 0,
+      "running": 0,
+      "retryable": 0,
+      "superseded": 0
+    },
+    "v7": {
+      "completed": 8,
+      "failed": 1,
+      "queued": 0,
+      "running": 0,
+      "retryable": 0,
+      "superseded": 0
+    }
+  },
+  "archive_status": "phone_card_bytes_verified",
+  "live_bytes": 12522400,
+  "card_bytes": 12522480,
+  "tail_bytes": 80,
+  "strict_decode": {
+    "decoderExitCode": 0,
+    "decodedSamples": 100179840,
+    "decodedSeconds": 6261.24,
+    "quietCandidateSeconds": 1734.44,
+    "energyWindows": 31307,
+    "energyFile": "card-reference-energy.ndjson",
+    "decoderLog": "card-reference-decoder.txt",
+    "warning": "Energy only; quiet speech may be below threshold; no audio removed. Offsets exclude transport gaps.",
+    "bytes": 12522480,
+    "frames": 313062,
+    "sha256": "2160c84ea747f5f89c7052e48fae44ce01a31be501f87e5bd93654d69709fe38",
+    "asr_called": false,
+    "decode_artifacts_local_only": true
+  },
+  "tests": {
+    "python": 159,
+    "core": 60,
+    "ios_unit": 141,
+    "ios_ui_regression": 32
+  },
+  "server_image": "xinlika-shared:20261022-r17-amd64",
+  "app_version": "0.3.6 (20)",
+  "limitations": [
+    "No word-level or speaker-turn ground truth",
+    "Automatic activity boundaries unaccepted",
+    "Activity analyzer still has a 100-event context limit; complete Today query is independent",
+    "No claim of zero lost samples",
+    "Real-time latency soak of this new worker version remains untested"
+  ],
+  "inspected_at_utc": "2026-10-21T17:10:00.150212+00:00",
+  "phone_evidence": {
+    "session_completed": true,
+    "current_pending": 0,
+    "legacy_count": 11,
+    "legacy_messages_unchanged": true,
+    "reference_queued": true
+  },
+  "multi_client_api_evidence": {
+    "mac_phone_same_day_event_ids": true,
+    "displayed_day": "2026-10-21",
+    "day_event_count": 60,
+    "two_known_cross_matter_pairs_remain_separate": true,
+    "native_final_visual_check": "completed_on_physical_iphone",
+    "initial_new_timeline_native_observation": true
+  },
+  "current_pass_unmerged_quality_windows": 1,
+  "quality_fallback": "Original events are retained; failed proposals were not approved or silently dropped, and do not require per-record user confirmation.",
+  "boundary_review_regression": {
+    "real_recording_groups": 3,
+    "different_matter_groups_rejected": 2,
+    "same_matter_group_preserved": 1,
+    "scope": "Regression checks informed by observed failures, not a held-out accuracy estimate or human speaker/word ground truth."
+  },
+  "native_ui_verification": {
+    "initial_timeline_on_iphone_observed": true,
+    "final_visual_check": "completed_on_physical_iphone",
+    "latest_build_installed": true,
+    "mac_source_built": true,
+    "mac_app_relaunch_not_attempted": true,
+    "reviewed_at_utc": "2026-10-22T00:26:26.047616+00:00",
+    "day_selected": "2026-10-21",
+    "recording_saved_visible": true,
+    "pending_uploads_visible": 0,
+    "card_reference_aligned_visible": true,
+    "legacy_11_separate_collapsed_visible": true,
+    "agent_tab_visible": true,
+    "hardware_commands_issued": false
+  },
+  "semantic_acceptance": {
+    "status": "not_passed",
+    "reviewed_at_utc": "2026-10-22T00:26:26.047616+00:00",
+    "method": "Current real transcript sources, recording clocks, and physical iPhone event details; no transcript edits or invented dialogue.",
+    "current_cloud_day_events": 60,
+    "current_cloud_session_events": 46,
+    "worker_error": null,
+    "issues": [
+      "Unrelated source included in financing composite about 50 minutes later",
+      "Meeting-arrangement composite mixes unrelated content over about half an hour",
+      "Summary/source scope mismatch can move displayed event start earlier than summarized matter",
+      "Potential same-matter discussion remains split; needs concrete-object evaluation",
+      "Isolated quantity-only fragment remains on timeline"
+    ],
+    "recording_clock_precision": "source audio batch start, not sentence-aligned event boundary",
+    "raw_data_changed": false,
+    "production_projection_changed_during_review": false,
+    "scope": "Targeted review, not an overall error-rate estimate"
+  }
+}

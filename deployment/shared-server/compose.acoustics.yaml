@@ -1,0 +1,24 @@
+# Optional overlay; use the same data volume as the API, never a second ledger.
+# Existing production volume name can be supplied through XINLIKA_DATA_VOLUME.
+services:
+  xinlika-acoustics:
+    image: ${XINLIKA_ACOUSTICS_IMAGE:-xinlika-acoustics:local}
+    init: true
+    restart: unless-stopped
+    network_mode: none
+    cpus: 0.5
+    mem_limit: 768m
+    pids_limit: 96
+    stop_grace_period: 40s
+    volumes:
+      - xinlika-data:/data
+      - ${XINLIKA_ACOUSTIC_MODELS:?Set an absolute reviewed model directory}:/models:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  xinlika-data:
+    name: ${XINLIKA_DATA_VOLUME:-xinlika-shared-data}
+    external: true

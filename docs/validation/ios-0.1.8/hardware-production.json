@@ -1,0 +1,109 @@
+[
+  {
+    "event" : "begin",
+    "mode" : "production_recording_control",
+    "time" : "2026-09-07T05:10:02Z",
+    "version" : "0.1.8"
+  },
+  {
+    "event" : "connected",
+    "firmware" : "V1.0.0",
+    "time" : "2026-09-07T05:10:05Z"
+  },
+  {
+    "complete" : "true",
+    "count" : "14",
+    "event" : "files_before",
+    "time" : "2026-09-07T05:10:05Z"
+  },
+  {
+    "event" : "preflight",
+    "state" : "2",
+    "time" : "2026-09-07T05:10:05Z"
+  },
+  {
+    "command" : "1-0",
+    "event" : "tx",
+    "time" : "2026-09-07T05:10:05Z"
+  },
+  {
+    "confirmed" : "true",
+    "event" : "production_start",
+    "state" : "1",
+    "time" : "2026-09-07T05:10:06Z"
+  },
+  {
+    "event" : "after_start",
+    "state" : "1",
+    "time" : "2026-09-07T05:10:06Z"
+  },
+  {
+    "event" : "current_file",
+    "present" : "true",
+    "time" : "2026-09-07T05:10:06Z"
+  },
+  {
+    "discardedFrames" : "31",
+    "event" : "live_audio_before_disconnect",
+    "time" : "2026-09-07T05:10:08Z"
+  },
+  {
+    "event" : "disconnected",
+    "time" : "2026-09-07T05:10:08Z"
+  },
+  {
+    "event" : "after_reconnect",
+    "state" : "1",
+    "time" : "2026-09-07T05:10:14Z"
+  },
+  {
+    "event" : "reconnect_identity",
+    "sameFile" : "true",
+    "time" : "2026-09-07T05:10:14Z"
+  },
+  {
+    "event" : "live_audio_after_reconnect",
+    "framesInTwoSeconds" : "0",
+    "time" : "2026-09-07T05:10:16Z"
+  },
+  {
+    "bytes" : "20200",
+    "event" : "recording_time",
+    "seconds" : "10",
+    "time" : "2026-09-07T05:10:16Z"
+  },
+  {
+    "event" : "before_stop",
+    "state" : "1",
+    "time" : "2026-09-07T05:10:16Z"
+  },
+  {
+    "command" : "1-2",
+    "event" : "tx",
+    "time" : "2026-09-07T05:10:16Z"
+  },
+  {
+    "confirmed" : "true",
+    "event" : "production_save",
+    "state" : "2",
+    "time" : "2026-09-07T05:10:17Z"
+  },
+  {
+    "event" : "final_state",
+    "state" : "2",
+    "time" : "2026-09-07T05:10:17Z"
+  },
+  {
+    "bytes" : "20600",
+    "complete" : "true",
+    "event" : "saved_file",
+    "found" : "true",
+    "seconds" : "10",
+    "time" : "2026-09-07T05:10:17Z"
+  },
+  {
+    "event" : "end",
+    "success" : "true",
+    "time" : "2026-09-07T05:10:17Z"
+  }
+]

@@ -1,0 +1,162 @@
+{
+  "session_id": "d6dad9e7-bd6f-488c-9f31-b38c7c2dc208",
+  "card_file": "note20261021-190159.opus",
+  "version": "0.3.4 (16)",
+  "real_range_round_trip": true,
+  "app_backgrounded_before_round_trip": true,
+  "experiment_switch_used": false,
+  "firmware": "V1.0.0",
+  "counter_before_after_seconds": [
+    169,
+    171
+  ],
+  "same_file_before_after": true,
+  "full_bytes": 538960,
+  "sha256": "bf4a563057faf758ef939be4f100d469788f0404152845ee78ea293136bad8ee",
+  "encoded_frames": 13474,
+  "strict_decode": {
+    "decoderExitCode": 0,
+    "decodedSeconds": 269.48
+  },
+  "streams": [
+    {
+      "stream": "8f5ff321-53c4-4ada-898d-e79f2545953e",
+      "bytes": 211040,
+      "offset": 0,
+      "end": 211040,
+      "unique": true
+    },
+    {
+      "stream": "33b5b037-7da5-4db8-b8bc-50365c6248a8",
+      "bytes": 200960,
+      "offset": 337920,
+      "end": 538880,
+      "unique": true
+    }
+  ],
+  "missing_live_ranges": [
+    [
+      211040,
+      337920
+    ],
+    [
+      538880,
+      538960
+    ]
+  ],
+  "missing_live_seconds": [
+    63.44,
+    0.04
+  ],
+  "automatic_reference": {
+    "queued": true,
+    "attempts": 3,
+    "manual_verify_clicked": false
+  },
+  "termination_test": {
+    "recording_stopped_before_termination": true,
+    "checkpoint_at_termination": {
+      "recordID": "d6dad9e7-bd6f-488c-9f31-b38c7c2dc208",
+      "filename": "note20261021-190159.opus",
+      "committed": 538960,
+      "complete": true,
+      "hash": "bf4a563057faf758ef939be4f100d469788f0404152845ee78ea293136bad8ee",
+      "expected": 538960
+    },
+    "reference_queued_at_termination": null,
+    "relaunch_without_autostart": true,
+    "result": "completed reference finalization and queued automatically; download already complete at kill, not a partial-download process-death proof"
+  },
+  "cloud": {
+    "archive": {
+      "status": "phone_card_bytes_verified",
+      "sha256": "bf4a563057faf758ef939be4f100d469788f0404152845ee78ea293136bad8ee",
+      "bytes": 538960,
+      "liveCoverage": [
+        [
+          0,
+          211040
+        ],
+        [
+          337920,
+          538880
+        ]
+      ],
+      "missingLiveRanges": [
+        [
+          211040,
+          337920
+        ],
+        [
+          538880,
+          538960
+        ]
+      ],
+      "contextReviewRanges": [
+        [
+          538880,
+          538960
+        ]
+      ],
+      "automaticRepairRanges": [
+        {
+          "cardRange": [
+            211040,
+            331040
+          ],
+          "batchId": "5de5e2ae-1177-55a9-b570-f99bb9e7b9da"
+        },
+        {
+          "cardRange": [
+            331040,
+            337920
+          ],
+          "batchId": "d3859eeb-5a9c-59b1-9f2c-697f9cdd7be2"
+        }
+      ]
+    },
+    "asr_jobs": [
+      {
+        "id": "418a6c71-8f2f-46e7-be3b-e5e2af819bbc",
+        "status": "completed",
+        "attempts": 1,
+        "error": null
+      },
+      {
+        "id": "5793b3b6-43cc-4fef-8779-7b0806c7ae73",
+        "status": "completed",
+        "attempts": 1,
+        "error": null
+      },
+      {
+        "id": "a9125dbc-1002-4dab-ad6a-2bc5138cd8aa",
+        "status": "completed",
+        "attempts": 1,
+        "error": null
+      },
+      {
+        "id": "b4ae3d72-ab64-4bf8-92ed-b372fc124daa",
+        "status": "completed",
+        "attempts": 1,
+        "error": null
+      },
+      {
+        "id": "c62b91ed-d209-43aa-8e3b-5909a2777cf6",
+        "status": "completed",
+        "attempts": 1,
+        "error": null
+      },
+      {
+        "id": "d9ddba7a-dbdb-492c-a6a7-f1edfc157ba3",
+        "status": "completed",
+        "attempts": 1,
+        "error": null
+      }
+    ],
+    "retried_tail_characters": 0,
+    "global_running_jobs": 0,
+    "global_failed_jobs": 0,
+    "first_tail_attempts_before_fix": 4,
+    "after_fix": "Clean final ASR event with empty text retained as empty result, not silence or accuracy proof."
+  }
+}

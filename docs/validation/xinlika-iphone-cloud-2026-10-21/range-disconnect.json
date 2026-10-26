@@ -1,0 +1,44 @@
+{
+  "userConfirmedPhysicalOutOfRangeAndReturn": true,
+  "radioToggleUsed": false,
+  "disconnectObserved": true,
+  "beforeReturn": {
+    "focused": false,
+    "status": "reconnecting",
+    "message": "蓝牙已断开，卡上继续录音；缺口待核对",
+    "receivedBytes": 641280,
+    "pending": 2,
+    "gaps": 1,
+    "streamCount": 1,
+    "sessionId": "bae02a42-3f8d-4d1e-b2e8-9848c129125b",
+    "at": "2026-10-21T10:09:53.016Z"
+  },
+  "returned": {
+    "focused": false,
+    "pending": 0,
+    "sessionId": "bae02a42-3f8d-4d1e-b2e8-9848c129125b",
+    "at": "2026-10-21T10:11:19.364Z",
+    "receivedBytes": 641280,
+    "gaps": 1,
+    "status": "waiting_audio",
+    "streamCount": 1,
+    "message": "已恢复订阅，等候实时音频；断连缺口仍待核对"
+  },
+  "afterOpeningForeground": {
+    "pending": 0,
+    "at": "2026-10-21T10:13:30.583Z",
+    "receivedBytes": 641280,
+    "sessionId": "bae02a42-3f8d-4d1e-b2e8-9848c129125b",
+    "message": "已恢复订阅，等候实时音频；断连缺口仍待核对",
+    "gaps": 1,
+    "streamCount": 1,
+    "focused": false,
+    "status": "waiting_audio"
+  },
+  "sameFileIdentityCheckedByClient": true,
+  "sameFileRealtimeStreamResumed": false,
+  "startOrResumeResent": false,
+  "cardReferenceRecoveryPending": false,
+  "cardReferenceRecovered": true,
+  "missingLiveSecondsRecovered": 275.48
+}

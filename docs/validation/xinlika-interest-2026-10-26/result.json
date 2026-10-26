@@ -1,0 +1,134 @@
+{
+  "at": "2026-10-26",
+  "version": "0.3.10",
+  "build": 29,
+  "implemented": true,
+  "deployed": true,
+  "installed_on_user_iphone": true,
+  "physical_preference_acceptance_completed": false,
+  "deployment_blocker": null,
+  "tests": {
+    "ios_unit": 173,
+    "ios_ui": 3,
+    "server_regression": 145,
+    "synthetic_model_cases": 4,
+    "synthetic_model_calls": 4,
+    "asr_calls": 0,
+    "all_passed": true
+  },
+  "signed_release_verified": true,
+  "server_source_sha256": "529c2c9af2d5b994e871d4d229382f793785892d0a8fbe1acbc57ae8e0791c3c",
+  "preference_learning": "bounded explicit examples in context; not weight training",
+  "real_user_preference_improvement_measured": false,
+  "model_cases": [
+    {
+      "case": "specific-high",
+      "expected": "high",
+      "actual": [
+        "high"
+      ],
+      "expected_met": true,
+      "integrity": {
+        "expected_spans": 1,
+        "assigned_spans": 1,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "original_documents_unchanged": true
+    },
+    {
+      "case": "specific-low",
+      "expected": "low",
+      "actual": [
+        "low"
+      ],
+      "expected_met": true,
+      "integrity": {
+        "expected_spans": 1,
+        "assigned_spans": 1,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "original_documents_unchanged": true
+    },
+    {
+      "case": "same-category-is-insufficient",
+      "expected": "normal",
+      "actual": [
+        "normal"
+      ],
+      "expected_met": true,
+      "integrity": {
+        "expected_spans": 1,
+        "assigned_spans": 1,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "original_documents_unchanged": true
+    },
+    {
+      "case": "cold-start",
+      "expected": "normal",
+      "actual": [
+        "normal"
+      ],
+      "expected_met": true,
+      "integrity": {
+        "expected_spans": 1,
+        "assigned_spans": 1,
+        "missing_spans": 0,
+        "duplicate_spans": 0,
+        "stale_ranges": 0,
+        "original_documents_unchanged": true,
+        "passed": true
+      },
+      "original_documents_unchanged": true
+    }
+  ],
+  "raw_recordings_modified": false,
+  "user_preferences_fabricated": false,
+  "deployed_release": "xinlika-interest-20261026",
+  "profile_revision": 4,
+  "physical_ui_verified": true,
+  "deployed_at": "2026-10-26T03:38:50.550387+00:00",
+  "installed_version": "0.3.10",
+  "installed_build": 29,
+  "phone_preservation": {
+    "version": "0.3.10",
+    "build": "29",
+    "sessionsPreserved": 27,
+    "messageIdentitiesPreserved": 3222,
+    "connectionPreserved": true,
+    "captureStopped": true,
+    "serviceConnected": true
+  },
+  "server_preservation": {
+    "baselineASRJobs": 2840,
+    "baselineASRCache": 2840,
+    "changedASRJobs": 0,
+    "changedCachedTranscripts": 0,
+    "interestRows": 0,
+    "quickCheck": "ok"
+  },
+  "current_recording": {
+    "status": "completed",
+    "audio_seconds": 6506.0,
+    "archive_status": "phone_card_bytes_verified",
+    "pending": 0,
+    "gap_count_retained": 2,
+    "original_complete_card_preserved": true
+  },
+  "previous_container_retained_stopped": true,
+  "rollback_available": true,
+  "real_user_preference_labels_written_by_agent": 0,
+  "physical_verification_scope": "Installed version, preserved ledger/connection, live API capability, Today filters and detail rating buttons, saved recording aligned. No real user event was rated; full swipe/undo contract was tested on isolated simulator."
+}

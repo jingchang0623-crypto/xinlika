@@ -1,0 +1,176 @@
+{
+  "verified_at": "2026-10-21T12:51:54.548105+00:00",
+  "release": {
+    "image": "xinlika-shared:20261021-r8-amd64",
+    "healthy": true,
+    "previousContainerRetainedStopped": true,
+    "otherContainersUnchanged": true
+  },
+  "tests": {
+    "python": 138,
+    "core": 60,
+    "mac_build": true,
+    "iphone_build": true,
+    "phone_installed_this_round": false,
+    "new_mac_preview_launched": false,
+    "synthetic_control_tests_are_not_accuracy": true
+  },
+  "local_real_activity_shadow": {
+    "scope": "Authorized real transcript ledger + actual model, private snapshot only",
+    "input_issues": 15,
+    "groups": 3,
+    "classified_groups": 3,
+    "events": 15,
+    "focuses": 2,
+    "group_kind_counts": {
+      "conversation": 2,
+      "meeting": 1
+    },
+    "elapsed_seconds": 43.722397374978755,
+    "source_events_not_merged": true,
+    "new_asr_calls": 0,
+    "production_writes": false,
+    "duration_precision": "observed_source_envelope_not_word_or_meeting_boundary",
+    "activity_boundary_accuracy_accepted": false
+  },
+  "production": {
+    "authenticated_https_agent_and_state": 200,
+    "sqlite_quick_check": "ok",
+    "runtime_code_matches_local": true,
+    "jobs": [
+      [
+        "activity_analysis",
+        "completed",
+        2
+      ],
+      [
+        "ambient_analysis",
+        "completed",
+        22
+      ],
+      [
+        "asr_audio",
+        "completed",
+        22
+      ],
+      [
+        "audio_repair_review",
+        "blocked_quality_review",
+        2
+      ],
+      [
+        "event_consolidate",
+        "completed",
+        7
+      ],
+      [
+        "personal_analysis",
+        "completed",
+        3
+      ],
+      [
+        "semantic_analysis",
+        "completed",
+        18
+      ],
+      [
+        "text_analysis",
+        "completed",
+        7
+      ]
+    ],
+    "activity_runs": [
+      {
+        "status": "completed",
+        "issues": 13,
+        "acoustic_observations": 0
+      },
+      {
+        "status": "completed",
+        "issues": 13,
+        "acoustic_observations": 2
+      }
+    ],
+    "personal_runs": [
+      {
+        "status": "quiet",
+        "records_with_hints": 0,
+        "activities": 3
+      },
+      {
+        "status": "quiet",
+        "records_with_hints": 1,
+        "activities": 3
+      },
+      {
+        "status": "quiet",
+        "records_with_hints": 1,
+        "activities": 4
+      }
+    ],
+    "counts": {
+      "sessions": 5,
+      "transcripts": 22,
+      "documents": 29,
+      "claims": 0
+    },
+    "document_source_kind_counts": [
+      [
+        "unknown",
+        29
+      ]
+    ],
+    "today_event_count": 13,
+    "today_focus_count": 0,
+    "today_activity_count": 4,
+    "active_activity_kind_counts": [
+      [
+        "conversation",
+        4
+      ]
+    ],
+    "worker_error": null,
+    "latest_activity_job_attempts": 2,
+    "existing_tiny_audio_repair_reviews": 2
+  },
+  "acoustic_sidecar": {
+    "source": "two explicitly selected existing authorized cloud raw CB08 batches; inference on Mac",
+    "selected_seconds": [
+      60,
+      60
+    ],
+    "scene_windows": [
+      6,
+      6
+    ],
+    "vad_interval_counts": [
+      0,
+      14
+    ],
+    "anonymous_cluster_counts": [
+      0,
+      2
+    ],
+    "raw_audio_reuploaded": false,
+    "new_asr_calls": 0,
+    "metadata_observations_persisted": 2,
+    "source_policy_unchanged": true,
+    "transcripts_documents_claims_unchanged_by_import": true,
+    "real_activity_context_received_observations": 2,
+    "real_personal_context_records_with_hints": 1,
+    "classification_vs_vad_disagreement_observed": true,
+    "all_day_inference_enabled": false,
+    "owner_enrollment_present": false,
+    "automatic_discard_enabled": false
+  },
+  "limits": [
+    "Activity boundary and scene accuracy not accepted against human ground truth",
+    "Tagging scores not calibrated; live playback and video meetings remain ambiguous",
+    "Anonymous coarse clusters do not establish real speaker count or owner identity",
+    "Activity analysis bounded to Asia/Shanghai current day and at most 100 semantic issues; larger day keeps complete fallback timeline",
+    "Observed source envelope is not exact meeting boundary or proof of uninterrupted samples",
+    "Automatic full-day acoustic inference and clean owner enrollment pending",
+    "Two preexisting tiny-tail repair reviews unresolved; no claim of perfect repair",
+    "Automatic off-host backup, high availability, retention and alarms not configured"
+  ]
+}

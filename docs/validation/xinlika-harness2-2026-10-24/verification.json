@@ -1,0 +1,14 @@
+{
+  "tests_passed": 218,
+  "real_frozen_prepare_reproduces_source_hashes": true,
+  "evaluation_registration_verified": true,
+  "finished_run_retry_additional_calls": 0,
+  "provider_usage_after_local_checks": {
+    "calls": 132,
+    "total_tokens": 1683921
+  },
+  "source_only_package_check": true,
+  "candidate_unchanged_after_independent_test": true,
+  "asr_calls": 0,
+  "production_writes": 0
+}

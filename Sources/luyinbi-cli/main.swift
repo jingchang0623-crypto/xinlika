@@ -157,7 +157,7 @@ do {
         if let started { print("  录音时刻 \(started)") }
         let r = try await db.upload(audio: audio, title: base, durationSec: dur,
                                     clientRequestId: "mac-ble-\(base)\(suffix)",
-                                    startedAt: started) { print("  深脑：\($0)") }
+                                    startedAt: started, onStep: { print("  深脑：\($0)") })
         print("会话 \(r.sessionId)  分片 \(r.chunks)\(r.alreadyDone ? "（幂等重放，未重传）" : "")")
         let st = try await db.sessionState(r.sessionId)
         print("状态 \(st.status)  转写 \(st.transcriptId ?? "-")  错误 \(st.errorCode ?? "-")")

@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-21",
+  "product_target": "open_source_heartball_application",
+  "scope": "Native macOS lab + loopback processing service + CB08 real capture; not iOS or cloud production",
+  "private_evidence_directory": "<PROJECT_ROOT>/.build/heartball-lab/captures/b4bacb97-d0bd-4190-aaa7-96359eff57c7",
+  "as_run": {
+    "startedAt": "2026-10-21T03:06:03.639331+00:00",
+    "probeSha256": "a116ebbadbbc6e9135104bc02c51288e750625ce238e7e1d01079846acfedfe0",
+    "sourceSha256": {
+      "scripts/heartball-local.py": "4978b8b38aadf3aa56b1c4b07cd18ad3cb0281b9f1f9408e2b529f6b759a1165",
+      "scripts/heartball_store.py": "9de8f1440f0268d32486d3ce21418ca83105d6e755f1872337fb67190a660371",
+      "Sources/cb08-probe/main.swift": "86b419dbfe2c774c4048d2b8ec78d9db02294433fe1118f137039a5d51c58f5a",
+      "Sources/LuyinbiCore/RecorderButtonHandshake.swift": "21a12b097d5152abea292b701ff4fdf344ef57dc0cc72c275caf686c6222a75d"
+    }
+  },
+  "native_ui_actions_verified": [
+    "start continuous capture",
+    "focus start/end while capture continues",
+    "repeat focus in same stream",
+    "global stop/save",
+    "archive complete screen and three independent records"
+  ],
+  "native_api_retries": "focus end repeated through same Swift client; one focus/task retained",
+  "recording": {
+    "card_file": "note20261021-110717.opus",
+    "received_encoded_seconds": 210.96,
+    "card_decoded_seconds": 211.06,
+    "card_bytes": 422120,
+    "card_sha256": "582d67adea754d97583cfb10da5437d092386944e212209984ca0243c6e4032e",
+    "live_unique_card_ranges": [
+      [
+        0,
+        421920
+      ]
+    ],
+    "missing_live_ranges_preserved_on_card": [
+      [
+        421920,
+        422120
+      ]
+    ],
+    "capture_queue_drops": 0,
+    "capture_write_failure": null,
+    "strict_decoding": "passed",
+    "hardware_start_commands": 1,
+    "hardware_save_commands": 1,
+    "hardware_commands_during_focus_actions": 0,
+    "disconnects": 0,
+    "physical_file_changes": 0
+  },
+  "batches": [
+    {
+      "sequence": 0,
+      "bytes": 89920,
+      "seconds": 44.96,
+      "reason": "focus_end",
+      "sha256": "a5bcd73abdfd50758d93c39f2a372da03e6690354931b77f99f51c55c31beeb5"
+    },
+    {
+      "sequence": 1,
+      "bytes": 20960,
+      "seconds": 10.48,
+      "reason": "focus_end",
+      "sha256": "96ea576d80ad7a5739f258ee1a6f75cdf02be01256b46c1679d04ebf3cba567c"
+    },
+    {
+      "sequence": 2,
+      "bytes": 120000,
+      "seconds": 60.0,
+      "reason": "duration",
+      "sha256": "0812d422f28ff606a6b569cd017f2aa794231257186ff5edf220d856c406ca5a"
+    },
+    {
+      "sequence": 3,
+      "bytes": 120000,
+      "seconds": 60.0,
+      "reason": "duration",
+      "sha256": "1fc96e8f2b651eb976dd000740371af28e4e8eb6efd9b8e38dfe40f4acbca5d4"
+    },
+    {
+      "sequence": 4,
+      "bytes": 26240,
+      "seconds": 13.12,
+      "reason": "focus_end",
+      "sha256": "ecb46bfed360255d2faaffe0a7b116d05dcfcba5f0d0816e5c9a8de5ca950306"
+    },
+    {
+      "sequence": 5,
+      "bytes": 44800,
+      "seconds": 22.4,
+      "reason": "capture_end",
+      "sha256": "4a3be57007902975767a2127aae7b154c6d182e680f7ab3fd40b739563b231a3"
+    }
+  ],
+  "focuses": [
+    {
+      "id": "6e5c01be-e3cb-4c71-a6eb-28c252043d3f",
+      "encoded_audio_seconds": 26.08,
+      "ranges": [
+        {
+          "stream_id": "52b65b5c-117f-5543-8f19-8013438a8a5b",
+          "start_byte": 37760,
+          "end_byte": 89920
+        }
+      ],
+      "intersected_batch_count": 1,
+      "boundary_basis": "received_audio_packet_boundary",
+      "task_count": 1
+    },
+    {
+      "id": "05de2f55-4df1-4c26-a706-1f41140e9762",
+      "encoded_audio_seconds": 3.12,
+      "ranges": [
+        {
+          "stream_id": "52b65b5c-117f-5543-8f19-8013438a8a5b",
+          "start_byte": 104640,
+          "end_byte": 110880
+        }
+      ],
+      "intersected_batch_count": 1,
+      "boundary_basis": "received_audio_packet_boundary",
+      "task_count": 1
+    },
+    {
+      "id": "9ae2ea4f-67bf-40f6-b55c-d7fc2be7c125",
+      "encoded_audio_seconds": 77.52,
+      "ranges": [
+        {
+          "stream_id": "52b65b5c-117f-5543-8f19-8013438a8a5b",
+          "start_byte": 222080,
+          "end_byte": 377120
+        }
+      ],
+      "intersected_batch_count": 3,
+      "boundary_basis": "received_audio_packet_boundary",
+      "task_count": 1
+    }
+  ],
+  "durability": {
+    "service_restarted_after_completed_capture": true,
+    "session_focus_batch_job_ids_and_contents_preserved": true,
+    "active_capture_crash_recovery": "not physically tested; fail-closed interrupted state, no old-PID adoption"
+  },
+  "tests": {
+    "store": "9/9 synthetic",
+    "http_api": "3/3 synthetic, no hardware calls from focus endpoints",
+    "cb08_probe": "85/85 synthetic from handshake/mode preparation",
+    "capture_analysis": "7/7",
+    "native_targets": "HeartballLab, HeartballClientCheck, cb08-probe built",
+    "native_api_check_after_restart": "passed",
+    "ad_hoc_app_signature": "verified"
+  },
+  "post_run_refinements": [
+    "Live focus duration now advances; unit test",
+    "Short missing tail becomes context-repair review, never standalone ASR; one unprocessed test job metadata refined with ID retained",
+    "Focus UUID case normalization preserves idempotency",
+    "Lab 30-minute capture limit exposed in API and UI"
+  ],
+  "ui_revalidation_limit": "Original build UI actions and archive screen verified; updated build launched and native API verified, CUA rebinding repeatedly timed out after rebuild",
+  "asr_enabled": false,
+  "asr_calls": 0,
+  "external_audio_uploads": 0,
+  "personal_memory_writes": 0,
+  "card_files_deleted": 0,
+  "unknown": [
+    "Exact intention-to-ADC timing; focus uses received packet boundaries with pipeline delay, no pre/post-roll calibration",
+    "Spoken word completeness, noise quality, speaker identity and ASR accuracy",
+    "iOS background/lock-screen, battery life and all-day operation",
+    "Automatic cloud processing, semantic event/Personal Agent feedback not implemented",
+    "Hardware short press still globally saves; mode switch has no independent event established"
+  ]
+}

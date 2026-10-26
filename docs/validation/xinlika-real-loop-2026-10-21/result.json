@@ -1,0 +1,312 @@
+{
+  "schema": 1,
+  "evidenceKind": "physical_cb08_new_captures_not_synthetic_dialogue",
+  "generatedAt": "2026-10-21T07:26:34.085177+00:00",
+  "captures": [
+    {
+      "sessionId": "8d56ec21-8be4-4e94-80c2-4295bcf07102",
+      "status": "completed",
+      "ownedFile": "note20261021-144230.opus",
+      "clock": {
+        "deltaFromStartSeconds": "-0.16737699508666992",
+        "event": "clock_verification",
+        "filename": "note20261021-144230.opus",
+        "filenameAt": "2026-10-21T06:42:30Z",
+        "meaning": "new_file_start_clock_only_not_sample_or_word_alignment",
+        "startConfirmedAt": "2026-10-21T06:42:31Z",
+        "startRequestedAt": "2026-10-21T06:42:30Z",
+        "status": "new_filename_matches_host_start",
+        "time": "2026-10-21T06:42:31Z",
+        "timezone": "Asia/Shanghai",
+        "toleranceSeconds": "2",
+        "uptime": 402267.50289145834
+      },
+      "clockWriteCount": 1,
+      "clockVerified": true,
+      "droppedSubmissions": 0,
+      "writeFailure": null,
+      "integrityProblems": [],
+      "unexpectedDisconnects": 0,
+      "cardReferenceStatus": "card_verified",
+      "cardSha256": "149be248cc238ee222f77fff9a5b370a0608b9074445c351f1cc0b7d7c40dbf0",
+      "cardHashMatchesArchive": true,
+      "decodedSeconds": 101.3,
+      "liveCoverageBytes": [
+        [
+          0,
+          202560
+        ]
+      ],
+      "missingLiveRanges": [
+        [
+          202560,
+          202600
+        ]
+      ],
+      "batchHashesMatch": true,
+      "documents": [
+        {
+          "documentId": "96654b76-f911-5bd9-94a1-3afbd0e1e3d2",
+          "kind": "focus",
+          "hasText": true,
+          "recordedAt": "2026-10-21T06:43:29.280000+00:00",
+          "processedAt": "2026-10-21T06:45:04.810543+00:00",
+          "matchesRecordingAnchor": true,
+          "processingDelaySeconds": 95.530543
+        },
+        {
+          "documentId": "20b37fc1-98ab-5200-8e5f-8f08a41811e2",
+          "kind": "ambient",
+          "hasText": true,
+          "recordedAt": "2026-10-21T06:43:29.280000+00:00",
+          "processedAt": "2026-10-21T06:45:38.182570+00:00",
+          "matchesRecordingAnchor": true,
+          "processingDelaySeconds": 128.90257
+        },
+        {
+          "documentId": "11cefbb8-1f73-5e6b-8987-595505b9628a",
+          "kind": "ambient",
+          "hasText": true,
+          "recordedAt": "2026-10-21T06:42:30+00:00",
+          "processedAt": "2026-10-21T06:46:50.004111+00:00",
+          "matchesRecordingAnchor": true,
+          "processingDelaySeconds": 260.004111
+        },
+        {
+          "documentId": "de598e78-1bec-518b-a44b-f73203d2ae3c",
+          "kind": "ambient",
+          "hasText": true,
+          "recordedAt": "2026-10-21T06:44:10.560000+00:00",
+          "processedAt": "2026-10-21T06:46:56.700847+00:00",
+          "matchesRecordingAnchor": true,
+          "processingDelaySeconds": 166.140847
+        }
+      ],
+      "semanticEventCount": 4
+    },
+    {
+      "sessionId": "e272a3ab-e7ee-46c2-b91c-6cd305e7d97a",
+      "status": "completed",
+      "ownedFile": "note20261021-144458.opus",
+      "clock": {
+        "deltaFromStartSeconds": "-0.8514039516448975",
+        "event": "clock_verification",
+        "filename": "note20261021-144458.opus",
+        "filenameAt": "2026-10-21T06:44:58Z",
+        "meaning": "new_file_start_clock_only_not_sample_or_word_alignment",
+        "startConfirmedAt": "2026-10-21T06:44:59Z",
+        "startRequestedAt": "2026-10-21T06:44:58Z",
+        "status": "new_filename_matches_host_start",
+        "time": "2026-10-21T06:44:59Z",
+        "timezone": "Asia/Shanghai",
+        "toleranceSeconds": "2",
+        "uptime": 402416.22098337504
+      },
+      "clockWriteCount": 1,
+      "clockVerified": true,
+      "droppedSubmissions": 0,
+      "writeFailure": null,
+      "integrityProblems": [],
+      "unexpectedDisconnects": 0,
+      "cardReferenceStatus": "card_verified",
+      "cardSha256": "d23d029825aa5bdf4efa147d9cd797627709e893b45c70fd2e7091cef102c61f",
+      "cardHashMatchesArchive": true,
+      "decodedSeconds": 27.96,
+      "liveCoverageBytes": [
+        [
+          0,
+          55840
+        ]
+      ],
+      "missingLiveRanges": [
+        [
+          55840,
+          55920
+        ]
+      ],
+      "batchHashesMatch": true,
+      "documents": [
+        {
+          "documentId": "665e0d22-e22e-5d6d-ad26-3d6b085de39f",
+          "kind": "ambient",
+          "hasText": true,
+          "recordedAt": "2026-10-21T06:44:59+00:00",
+          "processedAt": "2026-10-21T06:47:17.786203+00:00",
+          "matchesRecordingAnchor": true,
+          "processingDelaySeconds": 138.786203
+        }
+      ],
+      "semanticEventCount": 1
+    },
+    {
+      "sessionId": "fc3b83ed-7b6f-4829-a6ca-da6a1665ce23",
+      "status": "completed",
+      "ownedFile": "note20261021-145309.opus",
+      "clock": {
+        "deltaFromStartSeconds": "-0.2813190221786499",
+        "event": "clock_verification",
+        "filename": "note20261021-145309.opus",
+        "filenameAt": "2026-10-21T06:53:09Z",
+        "meaning": "new_file_start_clock_only_not_sample_or_word_alignment",
+        "startConfirmedAt": "2026-10-21T06:53:10Z",
+        "startRequestedAt": "2026-10-21T06:53:09Z",
+        "status": "new_filename_matches_host_start",
+        "time": "2026-10-21T06:53:10Z",
+        "timezone": "Asia/Shanghai",
+        "toleranceSeconds": "2",
+        "uptime": 402906.5921408334
+      },
+      "clockWriteCount": 1,
+      "clockVerified": true,
+      "droppedSubmissions": 0,
+      "writeFailure": null,
+      "integrityProblems": [],
+      "unexpectedDisconnects": 0,
+      "cardReferenceStatus": "card_verified",
+      "cardSha256": "5605b2e6988f1c21989b6ed6064caddea3536b364d9c318bfacaba0bd874bf87",
+      "cardHashMatchesArchive": true,
+      "decodedSeconds": 257.22,
+      "liveCoverageBytes": [
+        [
+          0,
+          514400
+        ]
+      ],
+      "missingLiveRanges": [
+        [
+          514400,
+          514440
+        ]
+      ],
+      "batchHashesMatch": true,
+      "documents": [
+        {
+          "documentId": "636285e8-b937-52e2-afe0-7b85aa37b8c0",
+          "kind": "ambient",
+          "hasText": true,
+          "recordedAt": "2026-10-21T06:53:09+00:00",
+          "processedAt": "2026-10-21T06:55:00.151942+00:00",
+          "matchesRecordingAnchor": true,
+          "processingDelaySeconds": 111.151942
+        },
+        {
+          "documentId": "fe3a6088-d7f3-54e3-bd20-87ecd7bc89b9",
+          "kind": "ambient",
+          "hasText": true,
+          "recordedAt": "2026-10-21T06:54:09+00:00",
+          "processedAt": "2026-10-21T06:55:41.629011+00:00",
+          "matchesRecordingAnchor": true,
+          "processingDelaySeconds": 92.629011
+        },
+        {
+          "documentId": "1bd1cde8-049c-533b-b96d-93ced017561e",
+          "kind": "ambient",
+          "hasText": true,
+          "recordedAt": "2026-10-21T06:55:09+00:00",
+          "processedAt": "2026-10-21T06:56:44.292232+00:00",
+          "matchesRecordingAnchor": true,
+          "processingDelaySeconds": 95.292232
+        },
+        {
+          "documentId": "407639ff-a87e-5629-9d9b-8ac38ff5431d",
+          "kind": "ambient",
+          "hasText": true,
+          "recordedAt": "2026-10-21T06:56:09+00:00",
+          "processedAt": "2026-10-21T06:58:03.359768+00:00",
+          "matchesRecordingAnchor": true,
+          "processingDelaySeconds": 114.359768
+        },
+        {
+          "documentId": "075bb9b1-15a3-5dc0-a429-1e0c0bb60d3d",
+          "kind": "ambient",
+          "hasText": true,
+          "recordedAt": "2026-10-21T06:57:09+00:00",
+          "processedAt": "2026-10-21T06:59:11.867065+00:00",
+          "matchesRecordingAnchor": true,
+          "processingDelaySeconds": 122.867065
+        }
+      ],
+      "semanticEventCount": 6
+    }
+  ],
+  "focuses": [
+    {
+      "id": "5b530688-d79a-4eb3-8feb-d3799ca1eb68",
+      "status": "audio_saved",
+      "seconds": 41.28,
+      "boundaryBasis": "received_audio_packet_boundary",
+      "exactBatchRanges": true,
+      "hardwareControlsWithinFocusAudio": [],
+      "controlTimingBasis": "monotonic_arrival_of_exact_selected_audio_frames",
+      "audioReceivedPastFocusEnd": true,
+      "independentDocumentCount": 1,
+      "sourceAudioHashes": [
+        "8cec78a7bc58e7b12b92379456299e10f78a7fe15dab394488c51d3148b1245d"
+      ]
+    }
+  ],
+  "sourceFeedback": {
+    "round1": "live_conversation",
+    "round2": "live_conversation",
+    "relationship": "different_matters",
+    "provided_by": "user",
+    "round3_content": "actual_image_creation_discussion_not_ipad_followup",
+    "round1_round3_relationship": "same_matter",
+    "all_rounds_medium": "live_video_meeting",
+    "user_statement": "[omitted from public repository: local validation content]",
+    "focus_meaning": "app_marked_meeting_interval_for_independent_processing_not_a_claim_of_personal_commitment"
+  },
+  "positiveTopicIds": [],
+  "modelEvaluation": {
+    "productionModel": "intern-s2",
+    "retrospectiveJob": "completed_with_empty_topics",
+    "automaticPositiveAssociation": "failed_on_user_labeled_same_matter_pair",
+    "comparisonModel": "deepseek-v4.1-flash-1017",
+    "comparisonStatus": "blocked_quota_exceeded_429",
+    "sameDifferentMatterLabelsPassedToModels": false,
+    "meetingSourceContextPassed": true,
+    "datasetScope": "Three chunks from one ongoing live video meeting, not three independent meetings"
+  },
+  "negativeControlIncorrectTopicIds": [],
+  "answers": [
+    {
+      "id": "d1e01b20-4994-4b89-ba4c-33fbfe45547f",
+      "status": "outdated",
+      "referenceIds": [
+        "29e41572-a40d-5f7f-8a72-931fb14afa9d",
+        "8899b28d-26e3-52db-937e-ee2769cb8a3f",
+        "ac6b0b32-62f7-5789-83de-73da416848db",
+        "cd0e3f8e-869e-567c-a222-1c2e80ea866b",
+        "c4d65426-1e7a-5990-aa46-a32bea855801"
+      ]
+    },
+    {
+      "id": "6f7f41ce-bf0a-44d1-8a12-a7cf41114687",
+      "status": "ready",
+      "referenceIds": [
+        "8899b28d-26e3-52db-937e-ee2769cb8a3f",
+        "ac6b0b32-62f7-5789-83de-73da416848db"
+      ]
+    }
+  ],
+  "ordinaryConfirmationCount": 0,
+  "unknown": [
+    "No human word-level transcript or CER/WER ground truth",
+    "Recording timestamps are batch start estimates, not word or event onset alignment",
+    "Missing live card tail ranges are retained locally; no zero-loss claim",
+    "The app focus control is not a verified hardware short-press bookmark"
+  ],
+  "checks": {
+    "allCapturesSavedAndCardVerified": true,
+    "automaticClockVerifiedOnEveryNewFile": true,
+    "noDroppedWritesOrUnexpectedDisconnects": true,
+    "recordingTimeNotProcessingTime": true,
+    "allBatchHashesMatch": true,
+    "eventsAutomaticallyCreated": true,
+    "focusIndependentlyProcessed": true,
+    "differentMattersNotLinked": true,
+    "sameMatterAcrossConversationsLinked": false,
+    "realAudioQuestionAnsweredWithSources": true
+  },
+  "status": "incomplete_or_failed_checks"
+}

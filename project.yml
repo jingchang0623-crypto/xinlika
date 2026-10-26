@@ -1,0 +1,116 @@
+name: Shennao
+options:
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+configs:
+  Debug: debug
+  Release: release
+packages:
+  SwiftMarkdown:
+    url: https://github.com/swiftlang/swift-markdown.git
+    exactVersion: 0.8.0
+  # Pin the transitive parser too; regenerating the project must not silently upgrade it.
+  SwiftCmark:
+    url: https://github.com/swiftlang/swift-cmark.git
+    exactVersion: 0.8.0
+configFiles:
+  Debug: Config/Base.xcconfig
+  Release: Config/Base.xcconfig
+settings:
+  base:
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: 5.0
+    SWIFT_STRICT_CONCURRENCY: targeted
+targets:
+  Shennao:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    dependencies:
+      - package: SwiftMarkdown
+        product: Markdown
+    sources:
+      - path: iOS
+        excludes:
+          - Tests
+      - path: Sources/LuyinbiCore/Protocol.swift
+      - path: Sources/LuyinbiCore/FrameParser.swift
+      - path: Sources/LuyinbiCore/FileList.swift
+      - path: Sources/LuyinbiCore/OggWrap.swift
+      - path: Sources/LuyinbiCore/Continuation.swift
+      - path: Sources/LuyinbiCore/CardSegmentDiscovery.swift
+      - path: Sources/LuyinbiCore/BLEClient.swift
+      - path: Sources/LuyinbiCore/Commands.swift
+      - path: Sources/LuyinbiCore/RecordingControl.swift
+      - path: Sources/LuyinbiCore/RecorderButtonHandshake.swift
+      - path: Sources/LuyinbiCore/HeartballClient.swift
+      - path: Sources/LuyinbiCore/TokenStore.swift
+      - path: Sources/LuyinbiCore/DeepBrain.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zaowuyun.shennao
+        INFOPLIST_FILE: iOS/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SUPPORTS_MACCATALYST: NO
+    scheme:
+      testTargets:
+        - ShennaoTests
+        - ShennaoUITests
+  ShennaoTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: iOS/Tests
+    dependencies:
+      - target: Shennao
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zaowuyun.shennao.tests
+        GENERATE_INFOPLIST_FILE: YES
+  ShennaoUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: UITests
+    dependencies:
+      - target: Shennao
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zaowuyun.shennao.uitests
+        GENERATE_INFOPLIST_FILE: YES
+  ShennaoDesignPreview:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Design/Preview
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zaowuyun.shennao.design-preview
+        PRODUCT_NAME: ShennaoDesignPreview
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: 深脑设计预览
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+    scheme:
+      testTargets:
+        - ShennaoDesignPreviewUITests
+  ShennaoDesignPreviewUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Design/UITests
+    dependencies:
+      - target: ShennaoDesignPreview
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zaowuyun.shennao.design-preview.uitests
+        GENERATE_INFOPLIST_FILE: YES

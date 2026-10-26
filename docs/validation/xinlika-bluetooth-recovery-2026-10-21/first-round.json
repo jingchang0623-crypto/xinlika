@@ -1,0 +1,70 @@
+{
+  "session_id": "67b6e28a-5910-4c4a-a8ba-6f465a5b2587",
+  "card_file": "note20261021-185537.opus",
+  "version": "0.3.3 (15)",
+  "source": "background playback; transport validation only",
+  "real_range_round_trip": true,
+  "two_notifications": true,
+  "sdk_attach": "single TYPE=1 CMD=1 after passive wait",
+  "same_file_before_after": true,
+  "counter_before_after_seconds": [
+    103,
+    105
+  ],
+  "automatic_saved_card_reference": {
+    "queued": true,
+    "attempts": 1,
+    "manual_verify_click": false,
+    "full_bytes": 322760,
+    "sha256": "df4eae6897e6fd20fffd985f5ce4367174e6ba5e4895f8791a2147cdc120ad2c",
+    "streams": [
+      {
+        "stream": "74bce539-d3af-4348-9006-9affb129685f",
+        "bytes": 119680,
+        "offset": 0,
+        "unique": true,
+        "end": 119680
+      },
+      {
+        "stream": "a1b80f65-13a6-4159-a2b3-220372771f41",
+        "bytes": 115680,
+        "offset": 206880,
+        "unique": true,
+        "end": 322560
+      }
+    ],
+    "missing_live_ranges": [
+      [
+        119680,
+        206880
+      ],
+      [
+        322560,
+        322760
+      ]
+    ],
+    "missing_live_seconds": [
+      43.6,
+      0.1
+    ],
+    "strict_decode_exit": 0,
+    "decoded_seconds": 161.38,
+    "encoded_frames": 8069,
+    "cloud_archive_status": "phone_card_bytes_verified",
+    "asr_jobs": 3,
+    "asr_statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "quality_review": [
+      "blocked_quality_review"
+    ]
+  },
+  "limits": [
+    "No zero-loss live-continuity claim; 43.6s missing live audio repaired from card",
+    "0.1s tail preserved; contextual semantic repair remains blocked_quality_review",
+    "No ASR accuracy claim from playback",
+    "Background normal-branch repeat pending"
+  ]
+}

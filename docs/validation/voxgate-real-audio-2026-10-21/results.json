@@ -1,0 +1,419 @@
+{
+  "date": "2026-10-21",
+  "ground_truth_provided": false,
+  "verified_live_multispeaker_sample": true,
+  "verified_field_noise_sample": false,
+  "production_gate": "pending_segmentation_stability_and_noise_quality_validation",
+  "production_route_changed": false,
+  "catalog": {
+    "saved_files": 30,
+    "list_complete": true,
+    "state_before": 1,
+    "state_after": 1,
+    "same_current_file": true,
+    "recording_control_commands": 0,
+    "card_files_deleted": 0,
+    "clock_sync": "disabled",
+    "max_capture_arrival_gap_in_catalog_window_seconds": 0.2098
+  },
+  "short_card_sample": {
+    "duration_seconds": 70.78,
+    "raw_bytes": 141560,
+    "raw_sha256": "9a64e980c003b301d2a5cd87cb56c02750039c16dfa32de575edd3ec64160e27",
+    "http_status": 200,
+    "elapsed_seconds": 10.639,
+    "chunk15_characters": 157,
+    "chunk10_characters": 150,
+    "normalized_chunk15_vs_chunk10_edit_fraction": 0.4076,
+    "source_kind": "background_playback"
+  },
+  "five_minute_sample": {
+    "duration_seconds": 300,
+    "raw_sha256": "f1e574473f24df4b277f654119caef274d844c1e6017caa93e820dd756070e9e",
+    "whole_http_status": 200,
+    "whole_elapsed_seconds": 43.338,
+    "minute_runs": [
+      {
+        "start_seconds": 0,
+        "http_status": 200,
+        "elapsed_seconds": 11.325,
+        "characters": 274
+      },
+      {
+        "start_seconds": 60,
+        "http_status": 200,
+        "elapsed_seconds": 8.808,
+        "characters": 138
+      },
+      {
+        "start_seconds": 120,
+        "http_status": 200,
+        "elapsed_seconds": 7.801,
+        "characters": 83
+      },
+      {
+        "start_seconds": 180,
+        "http_status": 200,
+        "elapsed_seconds": 7.423,
+        "characters": 56
+      },
+      {
+        "start_seconds": 240,
+        "http_status": 200,
+        "elapsed_seconds": 8.981,
+        "characters": 148
+      }
+    ],
+    "normalized_whole_vs_minutes_edit_fraction": 0.01,
+    "boundary_windows": [
+      {
+        "boundary_seconds": 60,
+        "http_status": 200,
+        "longest_exact_run_fraction": 0.1
+      },
+      {
+        "boundary_seconds": 120,
+        "http_status": 200,
+        "longest_exact_run_fraction": 0.3846
+      },
+      {
+        "boundary_seconds": 180,
+        "http_status": 200,
+        "longest_exact_run_fraction": 0.2
+      },
+      {
+        "boundary_seconds": 240,
+        "http_status": 200,
+        "longest_exact_run_fraction": 0.2
+      }
+    ],
+    "source_kind": "background_playback"
+  },
+  "independent_local_asr": "Whisper base produced repetitive text on the short sample; not accepted as a reference transcript",
+  "automated_tests": {
+    "cb08_probe_self_test": "48/48 passed",
+    "python_syntax": "passed",
+    "capture_analysis_regressions": "7/7 passed",
+    "offline_review_preparation_regressions": "2/2 passed",
+    "real_selected_audio_strict_decode": "3/3 passed",
+    "real_selected_asr_comparisons": "all 30 HTTP requests returned 200 and nonempty text; not an accuracy result"
+  },
+  "private_review": ".build/voxgate-real-evaluation/minute-boundaries/review.html",
+  "historical_file_download": "three explicitly named saved historical files downloaded after idle was confirmed; exact sizes and end codes verified",
+  "acoustic_levels_dbfs": {
+    "short-card-reference": {
+      "mean_volume": -43.5,
+      "max_volume": -3.9,
+      "decode_exit": 0
+    },
+    "boundary-first300s": {
+      "mean_volume": -42.5,
+      "max_volume": -0.0,
+      "decode_exit": 0
+    }
+  },
+  "source_classification": {
+    "kind": "background_playback",
+    "confirmed_by": "user",
+    "confirmed_on": "2026-10-21",
+    "description": "Both audition excerpts are background video / game commentary",
+    "counts_as_live_conversation_validation": false
+  },
+  "authorized_followup": {
+    "authorized_on": "2026-10-21",
+    "automation_id": "cb08",
+    "status": "PAUSED",
+    "scope": "After long capture: autonomously select genuine in-person multi-speaker samples, assess noise and boundary omissions, then integrate 60s default / 300s maximum batching if quality passes",
+    "routine_reconfirmation_required": false,
+    "whole_card_upload_authorized": false,
+    "remote_cloud_deployment_configured": false,
+    "pause_reason": "Hardware/ASR heartbeat remains paused; user confirmed two multispeaker sources and requested the broader Personal Agent evolution plan in this chat.",
+    "goal_complete": false
+  },
+  "historical_followup": {
+    "fresh_catalog_saved_files": 31,
+    "state_before": 2,
+    "state_after": 2,
+    "catalog_complete": true,
+    "first_completed_file": {
+      "name": "note20260913-150320.opus",
+      "bytes": 3093520,
+      "end_code": 0
+    },
+    "selected_sample_seconds": [
+      120,
+      420
+    ],
+    "selection_source_kind": "unverified",
+    "sample_strict_decode_exit": 0,
+    "asr_report": ".build/voxgate-real-evaluation/history-asr-150320-20261021/report.json",
+    "followup_download_progress": ".build/cb08-followup-20261021/state.json",
+    "status": "two_user_confirmed_multispeaker_samples_quality_gate_pending_agent_roadmap_in_progress",
+    "first_comparison": {
+      "sample_sha256": "a2db4a7c82bab9f46a6dff88a30fd33bc372f7204e5475bff0a245a19235c222",
+      "original_sha256": "615add91c23937080cb30f9f6a11e779146734f9aaa4875dad7d2cfe8c954dac",
+      "seconds": 300,
+      "original_range_seconds": [
+        120,
+        420
+      ],
+      "all_http_200": true,
+      "normalized_output_edit_fraction": 0.0015,
+      "boundary_longest_run_fractions": [
+        0.8909,
+        0.6122,
+        0.75,
+        0.5455
+      ],
+      "source_kind": "unverified",
+      "ground_truth": null,
+      "not_an_accuracy_measure": true
+    },
+    "second_completed_file": {
+      "name": "note20260913-142643.opus",
+      "bytes": 4321320,
+      "end_code": 0,
+      "download_attempts": 5,
+      "resume_overlap_verified": true
+    },
+    "serial_evaluation_progress": ".build/cb08-followup-20261021/evaluation-state.json",
+    "first_internal_chunk_comparison": {
+      "source_sha256": "a2db4a7c82bab9f46a6dff88a30fd33bc372f7204e5475bff0a245a19235c222",
+      "chunk15_normalized_characters": 1360,
+      "chunk10_normalized_characters": 1406,
+      "normalized_output_edit_fraction": 0.064,
+      "chunk10_exit_code": 0,
+      "chunk10_elapsed_seconds": 57.705,
+      "source_kind": "unverified",
+      "ground_truth": null,
+      "interpretation": "Machine-output disagreement only; not accuracy or omission rate"
+    },
+    "human_review_requested": {
+      "sample": "history-150320",
+      "source_audition_seconds": [
+        150,
+        170
+      ],
+      "boundary_audition_seconds": [
+        175,
+        185
+      ],
+      "source_confirmed": false,
+      "reference_transcript_received": false,
+      "other_authorized_work_continues": true
+    },
+    "second_comparison": {
+      "sample_sha256": "50863023c0d6974091f5685e1d5dbf558d679e025c8961febe39d23901440d88",
+      "original_sha256": "4b191202ad0f9053572bc02307ee83fa6b0854d54ebcc70c7a04cf0323caa7fa",
+      "seconds": 300,
+      "original_range_seconds": [
+        120,
+        420
+      ],
+      "all_http_200": true,
+      "normalized_output_edit_fraction": 0.0,
+      "boundary_longest_run_fractions": [
+        0.5806,
+        0.1765,
+        1.0,
+        0.4571
+      ],
+      "source_kind": "live_conversation",
+      "ground_truth": null,
+      "not_an_accuracy_measure": true,
+      "source_confirmation": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-10-21",
+        "original_range_seconds": [
+          120,
+          420
+        ],
+        "description": "User confirmed the second and third historical candidates are multi-person scene recordings. Exact speaker identities, noise labels and verbatim reference remain unverified."
+      }
+    },
+    "comparisons": [
+      {
+        "sample_id": "150320",
+        "sample_sha256": "a2db4a7c82bab9f46a6dff88a30fd33bc372f7204e5475bff0a245a19235c222",
+        "original_sha256": "615add91c23937080cb30f9f6a11e779146734f9aaa4875dad7d2cfe8c954dac",
+        "seconds": 300,
+        "original_range_seconds": [
+          120,
+          420
+        ],
+        "all_http_200": true,
+        "normalized_output_edit_fraction": 0.0015,
+        "boundary_longest_run_fractions": [
+          0.8909,
+          0.6122,
+          0.75,
+          0.5455
+        ],
+        "source_kind": "unverified",
+        "ground_truth": null,
+        "not_an_accuracy_measure": true
+      },
+      {
+        "sample_id": "142643",
+        "sample_sha256": "50863023c0d6974091f5685e1d5dbf558d679e025c8961febe39d23901440d88",
+        "original_sha256": "4b191202ad0f9053572bc02307ee83fa6b0854d54ebcc70c7a04cf0323caa7fa",
+        "seconds": 300,
+        "original_range_seconds": [
+          120,
+          420
+        ],
+        "all_http_200": true,
+        "normalized_output_edit_fraction": 0.0,
+        "boundary_longest_run_fractions": [
+          0.5806,
+          0.1765,
+          1.0,
+          0.4571
+        ],
+        "source_kind": "live_conversation",
+        "ground_truth": null,
+        "not_an_accuracy_measure": true,
+        "source_confirmation": {
+          "confirmed_by": "user",
+          "confirmed_on": "2026-10-21",
+          "original_range_seconds": [
+            120,
+            420
+          ],
+          "description": "User confirmed the second and third historical candidates are multi-person scene recordings. Exact speaker identities, noise labels and verbatim reference remain unverified."
+        }
+      },
+      {
+        "sample_id": "152927",
+        "sample_sha256": "c1f39637fb8d4ee9d56e8e6cccc58e005e5e440d84a8788486951aec8230ce65",
+        "original_sha256": "bdc726542c74262e28b3c7bb4030d97d2ce1cf78d38569e66beaa89ef5e66182",
+        "seconds": 300,
+        "original_range_seconds": [
+          120,
+          420
+        ],
+        "all_http_200": true,
+        "normalized_output_edit_fraction": 0.0084,
+        "boundary_longest_run_fractions": [
+          0.439,
+          0.6429,
+          0.5517,
+          0.6667
+        ],
+        "source_kind": "live_conversation",
+        "ground_truth": null,
+        "not_an_accuracy_measure": true,
+        "source_confirmation": {
+          "confirmed_by": "user",
+          "confirmed_on": "2026-10-21",
+          "original_range_seconds": [
+            120,
+            420
+          ],
+          "description": "User confirmed the second and third historical candidates are multi-person scene recordings. Exact speaker identities, noise labels and verbatim reference remain unverified."
+        }
+      }
+    ],
+    "third_completed_file": {
+      "name": "note20260913-152927.opus",
+      "bytes": 9439760,
+      "end_code": 0,
+      "download_attempts": 2,
+      "resume_overlap_verified": true
+    },
+    "private_review_index": ".build/voxgate-real-evaluation/historical-review-20261021.html",
+    "independent_work_remaining": false,
+    "external_blocker": "Multispeaker source confirmed for two candidates. Segmentation stability and verbatim/noise quality remain unverified; this gate applies to production ASR promotion and autonomous derived actions, not all Personal Agent architecture work.",
+    "quality_gate_passed": false,
+    "conditional_app_integration_started": false,
+    "confirmed_multispeaker_focus": {
+      "sample_id": "142643",
+      "sample_sha256": "50863023c0d6974091f5685e1d5dbf558d679e025c8961febe39d23901440d88",
+      "source_kind": "live_conversation",
+      "source_confirmed_by": "user",
+      "original_range_seconds": [
+        120,
+        420
+      ],
+      "focused_original_ranges_seconds": [
+        [
+          235,
+          245
+        ],
+        [
+          225,
+          255
+        ],
+        [
+          230,
+          250
+        ],
+        [
+          220,
+          250
+        ],
+        [
+          210,
+          270
+        ]
+      ],
+      "all_http_200": true,
+      "repeat_235_245_normalized_text_identical": true,
+      "observed_issue": "A full phrase appears or disappears around original second 240 when window start and internal recognition cut positions change. Correct wording and omission rate remain unverified.",
+      "acoustic_levels_dbfs": {
+        "mean_volume": -23.3,
+        "max_volume": 0.0,
+        "decode_exit": 0,
+        "not_snr": true
+      },
+      "private_review": ".build/voxgate-real-evaluation/history-focus-142643-20261021/review.html",
+      "ground_truth": null,
+      "quality_gate_passed": false,
+      "chunk10_comparison": {
+        "exit_code": 0,
+        "elapsed_seconds": 49.003,
+        "audio_sha256": "50863023c0d6974091f5685e1d5dbf558d679e025c8961febe39d23901440d88",
+        "chunk_seconds": 10,
+        "normalized_characters": 810,
+        "chunk15_normalized_characters": 793,
+        "normalized_output_edit_fraction": 0.2636,
+        "interpretation": "Machine disagreement only; not CER or proof that the 10s version is correct.",
+        "ground_truth": null
+      }
+    },
+    "third_comparison": {
+      "sample_sha256": "c1f39637fb8d4ee9d56e8e6cccc58e005e5e440d84a8788486951aec8230ce65",
+      "original_sha256": "bdc726542c74262e28b3c7bb4030d97d2ce1cf78d38569e66beaa89ef5e66182",
+      "seconds": 300,
+      "original_range_seconds": [
+        120,
+        420
+      ],
+      "all_http_200": true,
+      "normalized_output_edit_fraction": 0.0084,
+      "boundary_longest_run_fractions": [
+        0.439,
+        0.6429,
+        0.5517,
+        0.6667
+      ],
+      "source_kind": "live_conversation",
+      "ground_truth": null,
+      "not_an_accuracy_measure": true,
+      "source_confirmation": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-10-21",
+        "original_range_seconds": [
+          120,
+          420
+        ],
+        "description": "User confirmed the second and third historical candidates are multi-person scene recordings. Exact speaker identities, noise labels and verbatim reference remain unverified."
+      }
+    },
+    "confirmed_multispeaker_sample_ids": [
+      "142643",
+      "152927"
+    ],
+    "first_candidate_excluded_from_multispeaker_acceptance": true
+  }
+}

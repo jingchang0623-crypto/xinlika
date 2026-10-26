@@ -1,0 +1,4 @@
+# Python 3.12 Linux x86_64 wheels; hashes verified against official PyPI JSON.
+sherpa-onnx==1.13.8 --hash=sha256:6949773017647febc0c3696dffb2c67dd3febd4737b87e3dd135a42773704a06
+sherpa-onnx-core==1.13.8 --hash=sha256:4da90acf435373d7b2ba9cc0be806e7e274d28f63f5780880b5dea6721626e36
+numpy==2.5.4 --hash=sha256:fbde6962867ee75b48b0ee29b2b9372ec5d617799dbaf38e82dc0596f2f7738a

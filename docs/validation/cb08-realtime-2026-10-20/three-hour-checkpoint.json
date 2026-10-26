@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-10-20T18:05:52.958965+00:00",
+  "status": "still_running",
+  "captureSummaryExists": false,
+  "firstSnapshotBeyondHistorical10801Seconds": {
+    "bytes": "21608040",
+    "event": "snapshot",
+    "filename": "note20261020-230024.opus",
+    "identityStableAcrossReads": "true",
+    "phase": "periodic",
+    "seconds": "10804",
+    "state": "1",
+    "time": "2026-10-20T17:59:29Z",
+    "uptime": 356485.9101367917
+  },
+  "snapshotsAroundThreeHours": [
+    {
+      "bytes": "21587000",
+      "event": "snapshot",
+      "filename": "note20261020-230024.opus",
+      "identityStableAcrossReads": "true",
+      "phase": "periodic",
+      "seconds": "10793",
+      "state": "1",
+      "time": "2026-10-20T17:59:19Z",
+      "uptime": 356475.36902345833
+    },
+    {
+      "bytes": "21597560",
+      "event": "snapshot",
+      "filename": "note20261020-230024.opus",
+      "identityStableAcrossReads": "true",
+      "phase": "periodic",
+      "seconds": "10798",
+      "state": "1",
+      "time": "2026-10-20T17:59:24Z",
+      "uptime": 356480.646301875
+    },
+    {
+      "bytes": "21608040",
+      "event": "snapshot",
+      "filename": "note20261020-230024.opus",
+      "identityStableAcrossReads": "true",
+      "phase": "periodic",
+      "seconds": "10804",
+      "state": "1",
+      "time": "2026-10-20T17:59:29Z",
+      "uptime": 356485.9101367917
+    },
+    {
+      "bytes": "21618600",
+      "event": "snapshot",
+      "filename": "note20261020-230024.opus",
+      "identityStableAcrossReads": "true",
+      "phase": "periodic",
+      "seconds": "10809",
+      "state": "1",
+      "time": "2026-10-20T17:59:34Z",
+      "uptime": 356491.18662875
+    },
+    {
+      "bytes": "21629160",
+      "event": "snapshot",
+      "filename": "note20261020-230024.opus",
+      "identityStableAcrossReads": "true",
+      "phase": "periodic",
+      "seconds": "10814",
+      "state": "1",
+      "time": "2026-10-20T17:59:40Z",
+      "uptime": 356496.4580464167
+    },
+    {
+      "bytes": "21639680",
+      "event": "snapshot",
+      "filename": "note20261020-230024.opus",
+      "identityStableAcrossReads": "true",
+      "phase": "periodic",
+      "seconds": "10819",
+      "state": "1",
+      "time": "2026-10-20T17:59:45Z",
+      "uptime": 356501.723103125
+    }
+  ],
+  "latestSnapshot": {
+    "bytes": "22368160",
+    "event": "snapshot",
+    "filename": "note20261020-230024.opus",
+    "identityStableAcrossReads": "true",
+    "phase": "periodic",
+    "seconds": "11184",
+    "state": "1",
+    "time": "2026-10-20T18:05:49Z",
+    "uptime": 356865.9476675417
+  },
+  "streamFilenameAnnouncements": [
+    {
+      "time": "2026-10-20T14:59:25Z",
+      "uptime": 345681.44901133334,
+      "connection": "5E8CDF9F-BCA1-436E-8835-DD25A343C554",
+      "announcedFilename": "note20261020-230024.opus"
+    }
+  ],
+  "interruptionOrFileChangeEvents": [],
+  "audioFramesIndexed": 139778,
+  "audioBytesIndexed": 22364480,
+  "finding": "same file observed beyond three hours in this TYPE=1 realtime recording run; no file rotation observed so far",
+  "continuityVerdict": "not_established_pending_decode_and_card_reference",
+  "scope": "This recording mode/run only; does not establish behavior of standalone recording or every firmware."
+}

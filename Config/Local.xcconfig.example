@@ -1,0 +1,7 @@
+// 复制为 Local.xcconfig 后填写。此文件不会进入 Git。
+SHENNAO_API_BASE = https:/$()/shennao.zaowuyun.com
+SHENNAO_SUPABASE_URL = https:/$()/your-supabase.example.com
+SHENNAO_SUPABASE_ANON_KEY = your-public-anon-key
+
+// Optional for physical-device signing; select your own development team.
+DEVELOPMENT_TEAM = YOUR_APPLE_TEAM_ID

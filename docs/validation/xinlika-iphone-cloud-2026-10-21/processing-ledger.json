@@ -1,0 +1,317 @@
+{
+  "sessionId": "bae02a42-3f8d-4d1e-b2e8-9848c129125b",
+  "batches": [
+    {
+      "id": "1cf3a274-3701-4bb1-84d1-4e22ebd4c2a3",
+      "sequence": 0,
+      "start_byte": 0,
+      "end_byte": 120000,
+      "sha256": "797a87df8d8214320728d983ad662cf2bb3e0d1a645fe533c24513cb571a1022",
+      "reason": "duration"
+    },
+    {
+      "id": "03736878-3eb8-4242-9870-1e05b093ba62",
+      "sequence": 1,
+      "start_byte": 120000,
+      "end_byte": 240000,
+      "sha256": "259690d5d5b247bd540e484109f122a270d2fe02851e1b150e2ec27295174c52",
+      "reason": "duration"
+    },
+    {
+      "id": "41f63ddd-29c4-4b4f-9e20-31da695f8a47",
+      "sequence": 2,
+      "start_byte": 240000,
+      "end_byte": 360000,
+      "sha256": "82702b4f4007aa009a7290c5e5dbf4fbfe4f6f7486d48db0b069292a253e7f6e",
+      "reason": "duration"
+    },
+    {
+      "id": "58dc815f-9277-477a-9822-0a60d85645dd",
+      "sequence": 3,
+      "start_byte": 360000,
+      "end_byte": 480000,
+      "sha256": "d0a97502682b59f967ff5d5bc18fcbe136ec9a74ba3bcfd247dc94095933ec38",
+      "reason": "duration"
+    },
+    {
+      "id": "a3cee880-bc8b-4a88-866c-52ab45f0c004",
+      "sequence": 4,
+      "start_byte": 480000,
+      "end_byte": 600000,
+      "sha256": "e2b33f49e6190527b92a5ef72b42cd7bed0ad9257bf7363e8e029bd560ff8cdb",
+      "reason": "duration"
+    },
+    {
+      "id": "25592226-1e37-44a0-b1ec-b45d20aa7308",
+      "sequence": 5,
+      "start_byte": 600000,
+      "end_byte": 641280,
+      "sha256": "951371f5cabc5633c57ecb9f6086559edbe16f5edf03b128a63d8d41234099b4",
+      "reason": "bluetooth_gap"
+    },
+    {
+      "id": "098547ea-9d82-55bc-a187-5f308e3381a1",
+      "sequence": 6,
+      "start_byte": 0,
+      "end_byte": 120000,
+      "sha256": "1de0947f227c525a73bfbf5a01fcafb263aca8bfa598cefe70324b39aa3a2ca0",
+      "reason": "card_gap_repair"
+    },
+    {
+      "id": "c21a4d27-b27f-5d39-85d4-04ebb4824363",
+      "sequence": 7,
+      "start_byte": 120000,
+      "end_byte": 240000,
+      "sha256": "6c9cebaf877c8412f8b6b36d9886ac23479584c5818db3bfea23e4a586e73553",
+      "reason": "card_gap_repair"
+    },
+    {
+      "id": "52ccb67e-a2c3-5d7c-988c-f979b6fac498",
+      "sequence": 8,
+      "start_byte": 240000,
+      "end_byte": 360000,
+      "sha256": "7dedaedbc7713f3afebcad161867e036b48643ad37d85fc339cd0992a48007c8",
+      "reason": "card_gap_repair"
+    },
+    {
+      "id": "34c1b399-7da7-5e3e-b8c8-9b8a4fc9a257",
+      "sequence": 9,
+      "start_byte": 360000,
+      "end_byte": 480000,
+      "sha256": "e4f487de25366f755d61fedb8487950a8989b73826c847fbdbba612f78588f86",
+      "reason": "card_gap_repair"
+    },
+    {
+      "id": "757e1460-ce7b-533d-8307-41cf0e1e2caf",
+      "sequence": 10,
+      "start_byte": 480000,
+      "end_byte": 550960,
+      "sha256": "ae2bac85117c0dc09f2f44991a37e069c2e96313d143a3e67f6268ac180ecebc",
+      "reason": "card_gap_repair"
+    }
+  ],
+  "jobs": [
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "asr_audio",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    },
+    {
+      "kind": "ambient_analysis",
+      "status": "completed",
+      "attempts": 1,
+      "error": null
+    }
+  ],
+  "documents": [
+    {
+      "id": "211f1757-5eac-58db-baf3-ed894db84216",
+      "status": "review_pending",
+      "characters": 3,
+      "occurred_at": "2026-10-21T10:04:27.155000+00:00"
+    },
+    {
+      "id": "c9aefe49-1658-5add-b58f-0caaacc2b259",
+      "status": "superseded",
+      "characters": 50,
+      "occurred_at": "2026-10-21T10:05:27.155000+00:00"
+    },
+    {
+      "id": "d3c1f676-2807-5d02-8db8-903522c206a6",
+      "status": "no_text",
+      "characters": 0,
+      "occurred_at": "2026-10-21T10:06:27.155000+00:00"
+    },
+    {
+      "id": "73e53562-7ff1-51ec-9160-0dd4ad2b7cb5",
+      "status": "review_pending",
+      "characters": 9,
+      "occurred_at": "2026-10-21T10:07:27.155000+00:00"
+    },
+    {
+      "id": "1542a4f8-dfb9-55ff-87b6-e0f674924b94",
+      "status": "no_text",
+      "characters": 0,
+      "occurred_at": "2026-10-21T10:08:27.155000+00:00"
+    },
+    {
+      "id": "146423ce-9268-590e-99f7-a6d6d6eb79b1",
+      "status": "review_pending",
+      "characters": 10,
+      "occurred_at": "2026-10-21T10:09:27.155000+00:00"
+    },
+    {
+      "id": "1f8e0024-e8b3-59a7-b58d-f84c6afd2c16",
+      "status": "review_pending",
+      "characters": 114,
+      "occurred_at": "2026-10-21T10:09:47.795000+00:00"
+    },
+    {
+      "id": "b4f26277-24d6-5ed0-a777-88c6699f6ae4",
+      "status": "no_text",
+      "characters": 0,
+      "occurred_at": "2026-10-21T10:10:47.795000+00:00"
+    },
+    {
+      "id": "25d92ac7-8fc0-5cb3-a5a9-fd431f4cdfe6",
+      "status": "review_pending",
+      "characters": 21,
+      "occurred_at": "2026-10-21T10:11:47.795000+00:00"
+    },
+    {
+      "id": "ee3ec5c5-ca6e-593b-bc06-58dcf7e2a96c",
+      "status": "review_pending",
+      "characters": 37,
+      "occurred_at": "2026-10-21T10:12:47.795000+00:00"
+    },
+    {
+      "id": "7111104e-6b0b-5437-bafb-6e66da58353f",
+      "status": "no_text",
+      "characters": 0,
+      "occurred_at": "2026-10-21T10:13:47.795000+00:00"
+    },
+    {
+      "id": "5a0a91ab-1829-5d4b-aeae-00099357bd2c",
+      "status": "superseded",
+      "characters": 69,
+      "occurred_at": "2026-10-21T10:05:27.155000+00:00"
+    },
+    {
+      "id": "d0c95b5b-ed03-52f8-8add-3be52a14c16f",
+      "status": "superseded",
+      "characters": 67,
+      "occurred_at": "2026-10-21T10:05:27.155000+00:00"
+    },
+    {
+      "id": "9f7cce39-5d2b-5da8-bcf3-b4f6fa4f7615",
+      "status": "review_pending",
+      "characters": 50,
+      "occurred_at": "2026-10-21T10:05:27.155000+00:00"
+    }
+  ],
+  "globalBlockedJobs": 0,
+  "globalUnfinishedJobsAtEarlierSnapshot": 4,
+  "globalUnfinishedJobsAfterReorganization": 0,
+  "globalBlockedJobsAfterReorganization": 0
+}
