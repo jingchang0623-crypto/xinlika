@@ -54,7 +54,16 @@ base64 < /absolute/path/distribution.p12 | tr -d '\n' | gh secret set APPLE_DIST
 
 其余文件同理；密码使用 `gh secret set APPLE_DISTRIBUTION_P12_PASSWORD --env testflight --repo jingchang0623-crypto/xinlika` 的隐藏交互输入。不要使用命令行 `--body` 携带私钥或密码。
 
-`Xinlika TestFlight` 仅手动触发，先运行完整自动检查，再安装临时钥匙串和两个分发描述文件。签名脚本校验团队、精确 Bundle ID、有效期及分发类型；按 target 指定 Manual 签名，使用同一构建号归档手机和手表，再通过 App Store Connect API 上传。
+`Xinlika TestFlight` 由手动派发或明确推送 `xinlika-testflight-*` 标签触发，先运行完整自动检查，再安装临时钥匙串和两个分发描述文件。签名脚本校验团队、精确 Bundle ID、有效期及分发类型；按 target 指定 Manual 签名，使用同一构建号归档手机和手表，再通过 App Store Connect API 上传。
+
+GitHub 的手动派发要求工作流已进入默认分支。当前验证分支与远端主线历史独立时，可在配置好 Secrets 后，通过明确发布标签启动，不必覆盖远端主线：
+
+```bash
+git tag xinlika-testflight-20261105-1 codex/apple-cloud-20261105
+git push origin refs/tags/xinlika-testflight-20261105-1
+```
+
+每次选择新的标签名并核对目标提交；普通分支 push 不会上传 TestFlight。本文档中的标签尚未创建。
 
 云端构建号为 `((run_number + 10000) / 100).((run_number + 10000) % 100).run_attempt`，第一批形如 `100.1.1`，高于本机已记录的 `34`，重试也有独立编号。若 App Store Connect 已存在更高构建号，应先提高偏移量。营销版本仍来自 `project.yml`。
 

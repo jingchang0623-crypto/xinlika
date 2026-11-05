@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "accepted_for_opt_in_incremental_profile": true,
+  "candidate_bundle_sha256": "0d75b39c818fa500fe176659d6fe353a3f51aedb24d47c7a56cbf8715bc7d3aa",
+  "small_sample_only": true,
+  "profile_revision": 7,
+  "base_validation_file": "prompts/profiles/evidence/xinlika-events-v6-watch-size-r6.json",
+  "base_validation_sha256": "2eb2ef4847d92bea162dcfc1d18e6bee4f862e3675cd2e5464f52d73e70c01ae",
+  "scope": "Add an original-uploader-only cloud audio proof that re-reads and hashes canonical Watch WAV evidence before a phone relay releases its local copy. No capture commands, ASR changes, semantic Skill changes or historical replay.",
+  "old_holdout_replayed": false,
+  "independent_semantic_quality_claim": false,
+  "ASR_calls_for_validation": 0,
+  "automated_checks": {
+    "watch_ingress_and_receipt_passed": 11
+  },
+  "limitations": [
+    "Receipt checks prove storage identity and integrity, not semantic accuracy.",
+    "Existing cloud data and owner policies remain authoritative."
+  ]
+}

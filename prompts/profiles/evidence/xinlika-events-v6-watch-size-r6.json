@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "accepted_for_opt_in_incremental_profile": true,
+  "candidate_bundle_sha256": "0d75b39c818fa500fe176659d6fe353a3f51aedb24d47c7a56cbf8715bc7d3aa",
+  "small_sample_only": true,
+  "profile_revision": 6,
+  "base_validation_file": "prompts/profiles/evidence/xinlika-events-v6-watch-r5.json",
+  "base_validation_sha256": "38f548331681df93abace67d3ad427852f92241afb7e1ae99d7797655b32daa4",
+  "scope": "Transport-only repair: accept persisted Foundation JSON envelopes with escaped base64 slashes up to 5.2 MB; keep canonical WAV size, immutable identity, existing CB08 ingress and frozen semantic Skills unchanged.",
+  "old_holdout_replayed": false,
+  "ASR_calls_for_validation": 0,
+  "independent_semantic_quality_claim": false,
+  "automated_checks": {
+    "watch_ingress_tests": 9,
+    "watch_ingress_passed": 9,
+    "maximum_escaped_minute_request_bytes_over": 5100000,
+    "maximum_application_request_bytes": 5200000
+  },
+  "limitations": [
+    "Synthetic all-minus-one PCM checks transport bounds, not ASR accuracy.",
+    "The original 23-second recording did not cover the escaped-slash full-minute boundary."
+  ]
+}

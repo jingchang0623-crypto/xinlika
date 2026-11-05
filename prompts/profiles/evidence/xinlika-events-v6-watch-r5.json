@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "accepted_for_opt_in_incremental_profile": true,
+  "candidate_bundle_sha256": "0d75b39c818fa500fe176659d6fe353a3f51aedb24d47c7a56cbf8715bc7d3aa",
+  "small_sample_only": true,
+  "profile_revision": 5,
+  "base_validation_file": "prompts/profiles/evidence/xinlika-events-v6-interest-r4.json",
+  "base_validation_sha256": "3604ef0f1ab0eb444d81b8703ce014061aaf98da84ce72cef8656fb5dc378b63",
+  "scope": "Add explicit Apple Watch PCM WAV ingress and format-aware source clocks. CB08 byte clocks and frozen semantic Skills remain unchanged. No production deployment or historical replay.",
+  "old_holdout_replayed": false,
+  "ASR_calls_for_validation": 0,
+  "independent_semantic_quality_claim": false,
+  "watch_device_validation_completed": false,
+  "automated_checks": {
+    "watch_ingress_tests": 8,
+    "watch_ingress_passed": 8,
+    "existing_ingress_regressions": 45,
+    "existing_ingress_passed": 45,
+    "watch_archive_tests": 14,
+    "watch_archive_passed": 14,
+    "backend_full_discovered": 369,
+    "backend_full_passed": 368,
+    "backend_existing_conditional_skips": 1
+  },
+  "limitations": [
+    "Synthetic transport/model fixtures do not measure ASR accuracy or semantic quality.",
+    "No paired-device WatchConnectivity, battery or background recording acceptance."
+  ]
+}
