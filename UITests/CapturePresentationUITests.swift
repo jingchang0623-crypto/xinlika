@@ -125,6 +125,7 @@ final class CapturePresentationUITests: XCTestCase {
             let app = try launch(processingStatus: status)
             let failure = app.staticTexts[message]
             XCTAssertTrue(failure.waitForExistence(timeout: 3))
+            reveal(failure, in: app)
             XCTAssertTrue(failure.isHittable)
             XCTAssertTrue(app.buttons["重试"].exists)
             attach("capture-processing-\(status)", app)
