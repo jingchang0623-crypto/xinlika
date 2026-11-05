@@ -3,23 +3,51 @@ import SwiftUI
 /// A single status and a single pause control for both transfer queues.
 struct DeviceSyncStatusView: View {
     @EnvironmentObject private var model: AppModel
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     var compact = false
 
     var body: some View {
-        HStack {
-            Label(model.compactSyncStatus, systemImage: model.processingPaused ? "pause.circle" : "arrow.triangle.2.circlepath")
-                .font(.subheadline).foregroundStyle(.secondary)
-            Spacer()
-            if model.processingPaused {
-                Button("恢复") { model.resumeAutomaticSync() }
-                    .disabled(!model.canResumeProcessing)
-                    .accessibilityLabel("恢复同步").accessibilityIdentifier("resume-automatic-sync")
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: 8) {
+                    statusLabel
+                    accessibleSyncAction
+                }
             } else {
-                Button("暂停") { model.cancelSync() }
-                    .disabled(model.isStoppingProcessing)
-                    .accessibilityLabel("暂停同步").accessibilityIdentifier("pause-automatic-sync")
+                HStack {
+                    statusLabel
+                    Spacer()
+                    accessibleSyncAction
+                }
             }
-        }.buttonStyle(.borderless)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var statusLabel: some View {
+        Label(model.compactSyncStatus, systemImage: model.processingPaused ? "pause.circle" : "arrow.triangle.2.circlepath")
+            .font(.subheadline).foregroundStyle(.secondary)
+    }
+
+    @ViewBuilder
+    private var syncAction: some View {
+        if model.processingPaused {
+            Button("恢复") { model.resumeAutomaticSync() }
+                .disabled(!model.canResumeProcessing)
+                .accessibilityLabel("恢复同步").accessibilityIdentifier("resume-automatic-sync")
+        } else {
+            Button("暂停") { model.cancelSync() }
+                .disabled(model.isStoppingProcessing)
+                .accessibilityLabel("暂停同步").accessibilityIdentifier("pause-automatic-sync")
+        }
+    }
+
+    private var accessibleSyncAction: some View {
+        syncAction
+            .buttonStyle(.bordered)
+            .controlSize(.regular)
+            .frame(minWidth: 44, minHeight: 44)
+            .contentShape(Rectangle())
     }
 }
 
