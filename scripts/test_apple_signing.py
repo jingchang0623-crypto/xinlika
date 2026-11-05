@@ -69,7 +69,9 @@ class AppleSigningTests(unittest.TestCase):
             for target, bundle in signing.TARGETS.items():
                 settings = generated["targets"][target]["settings"]["base"]
                 self.assertEqual(settings["CODE_SIGN_STYLE"], "Manual")
+                self.assertEqual(settings["CODE_SIGN_IDENTITY"], signing.SIGNING_CERTIFICATE)
                 self.assertEqual(settings["PROVISIONING_PROFILE_SPECIFIER"], exported["provisioningProfiles"][bundle])
+            self.assertEqual(exported["signingCertificate"], signing.SIGNING_CERTIFICATE)
             with self.assertRaises(ValueError):
                 signing.prepare(root, root / "spec.json", "100.1.2; unsafe")
 

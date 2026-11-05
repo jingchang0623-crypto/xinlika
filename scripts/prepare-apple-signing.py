@@ -14,6 +14,7 @@ REQUIRED = (
     "ASC_ISSUER_ID", "ASC_PRIVATE_KEY_BASE64",
 )
 TARGETS = {"Shennao": "com.zaowuyun.shennao", "XinlikaWatch": "com.zaowuyun.shennao.watchkitapp"}
+SIGNING_CERTIFICATE = "iPhone Distribution"
 
 
 def validate_profile(profile, bundle_id, team_id, now=None):
@@ -64,14 +65,14 @@ def prepare(directory, spec_path, build_number):
         profiles[bundle] = uuid
         targets[target] = {"settings": {"base": {
             "CODE_SIGN_STYLE": "Manual", "DEVELOPMENT_TEAM": team,
-            "CODE_SIGN_IDENTITY": "Apple Distribution", "PROVISIONING_PROFILE_SPECIFIER": uuid,
+            "CODE_SIGN_IDENTITY": SIGNING_CERTIFICATE, "PROVISIONING_PROFILE_SPECIFIER": uuid,
         }}}
     # Stored beside project.yml so included source/config paths keep their meaning.
     spec_path.write_text(json.dumps({"include": ["project.yml"], "targets": targets,
         "settings": {"base": {"CURRENT_PROJECT_VERSION": build_number}}}))
     with (directory / "ExportOptions.plist").open("wb") as handle:
         plistlib.dump({"method": "app-store-connect", "destination": "upload", "teamID": team,
-            "signingStyle": "manual", "signingCertificate": "Apple Distribution",
+            "signingStyle": "manual", "signingCertificate": SIGNING_CERTIFICATE,
             "provisioningProfiles": profiles, "manageAppVersionAndBuildNumber": False,
             "uploadSymbols": True}, handle)
 

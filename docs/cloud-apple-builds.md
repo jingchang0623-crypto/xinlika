@@ -31,7 +31,7 @@ gh run list --repo jingchang0623-crypto/xinlika --branch <branch>
 | Shennao | `com.zaowuyun.shennao` |
 | XinlikaWatch | `com.zaowuyun.shennao.watchkitapp` |
 
-App Store Connect 中的 iOS 应用需使用同一个手机 Bundle ID。证书需要包含私钥的 Apple Distribution `.p12`；只有公开证书不能完成签名。API 密钥需要有上传该应用的权限。
+App Store Connect 中的 iOS 应用需使用同一个手机 Bundle ID。证书需要包含私钥的发行 `.p12`；本项目当前使用 Apple Developer 中的 `iOS Distribution` 类型，其签名身份名称为 `iPhone Distribution`。只有公开证书不能完成签名。API 密钥需要有上传该应用的权限。
 
 在 GitHub 仓库的 `testflight` Environment Secrets 配置下列值。不要提交文件或把私钥、密码粘贴到聊天里。
 
