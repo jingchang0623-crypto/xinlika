@@ -1,4 +1,5 @@
 import Foundation
+import AVFoundation
 import LuyinbiCore
 
 // 本地归档体检的离线单测。
@@ -28,6 +29,19 @@ let nominalBytes = packets * OggWrap.packetLen
 let nominalSecs = 20
 let defaultBase = "note20260801-100000"
 
+// 440 Hz 合成正弦波经系统 afconvert 编码的 20ms / 16kHz 单声道 Opus 帧。
+// 按 RFC 6716 §3.2.5 的 code 3 padding 补到 CB08 的 40B 定长；不含真实录音。
+// 旧全零夹具的实际包时钟与这里声明的 20ms 不一致。
+let syntheticPacket: [UInt8] = [
+    0x4b, 0x41, 0x09, 0x3d, 0x1e, 0xce, 0x03, 0x54, 0xdf, 0x9c,
+    0x12, 0xd1, 0x48, 0x93, 0x84, 0xab, 0xda, 0x1d, 0x7f, 0xa6,
+    0x37, 0x3b, 0x4c, 0x9f, 0x82, 0xff, 0xf3, 0xc9, 0xa6, 0xd5,
+    0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+]
+func syntheticAudio(_ count: Int) -> [UInt8] {
+    (0..<count).flatMap { _ in syntheticPacket }
+}
+
 let root = URL(fileURLWithPath: NSTemporaryDirectory())
     .appendingPathComponent("audit-selftest-\(UUID().uuidString)")
 var caseNo = 0
@@ -49,7 +63,7 @@ func makeCase(base: String = defaultBase,
     try! fm.createDirectory(at: rawDir, withIntermediateDirectories: true)
 
     if let n = rawPackets {
-        let bytes = [UInt8](repeating: 0, count: n * OggWrap.packetLen + rawExtraBytes)
+        let bytes = syntheticAudio(n) + [UInt8](repeating: 0, count: rawExtraBytes)
         try! Data(bytes).write(to: rawDir.appendingPathComponent("\(base).opus"))
     }
     if rawPlaceholder {
@@ -62,9 +76,7 @@ func makeCase(base: String = defaultBase,
     if let data = oggData {
         try! data.write(to: oggURL)
     } else if let n = oggPackets {
-        // 用真的封装器造真的 Ogg/Opus：全零裸包也能被系统解码器打开，
-        // 这样「能解码」这条断言验的是真解码，不是我们自己写的魔数检查。
-        let wrapped = try! OggWrap.wrap([UInt8](repeating: 0, count: n * OggWrap.packetLen))
+        let wrapped = try! OggWrap.wrap(syntheticAudio(n))
         try! Data(wrapped).write(to: oggURL)
     }
     if oggPlaceholder {
@@ -90,6 +102,21 @@ func audit(base: String = defaultBase,
                                   oggPlaceholder: oggPlaceholder)
     return ArchiveAudit.audit(base: base, expectedBytes: bytes, expectedSeconds: secs,
                               recordedBytes: recordedBytes, dest: dest, rawDir: rawDir)
+}
+
+// MARK: - 0. 夹具校验
+print("0. 合成 Opus 夹具实际解码")
+check("每帧仍为 CB08 的 40 字节", syntheticPacket.count, OggWrap.packetLen)
+let fixture = makeCase()
+do {
+    let file = try AVAudioFile(forReading: fixture.dest.appendingPathComponent("\(defaultBase).ogg"))
+    let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: 1024)!
+    try file.read(into: buffer)
+    check("合成夹具能实际读出 PCM 帧", buffer.frameLength > 0, true)
+    check("1000 帧时长接近 20 秒", abs(Double(file.length) / file.processingFormat.sampleRate - 20) < 0.1, true)
+} catch {
+    failed += 1
+    print("  FAIL  合成 Opus 夹具解码：\(error)")
 }
 
 // MARK: - 1. 清单键解析
@@ -209,9 +236,9 @@ do {
     let rawDir = dest.appendingPathComponent("原始包")
     try! FileManager.default.createDirectory(at: rawDir, withIntermediateDirectories: true)
 
-    let wrapped = Data(try! OggWrap.wrap([UInt8](repeating: 0, count: nominalBytes)))
+    let wrapped = Data(try! OggWrap.wrap(syntheticAudio(packets)))
     // 一条完好
-    try! Data(count: nominalBytes).write(to: rawDir.appendingPathComponent("noteA-000001.opus"))
+    try! Data(syntheticAudio(packets)).write(to: rawDir.appendingPathComponent("noteA-000001.opus"))
     try! wrapped.write(to: dest.appendingPathComponent("noteA-000001.ogg"))
     // 一条裸包字节数不符
     try! Data(count: nominalBytes - 40).write(to: rawDir.appendingPathComponent("noteB-000002.opus"))

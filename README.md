@@ -94,3 +94,9 @@ iOS 与 Mac 共用 `Sources/LuyinbiCore` 中的协议、BLE、Ogg 和深脑上�
 0.1.2 已安装开发签名测试包，完成一轮锁屏下载与完整性真机验证；新增录音的后台上传、弱网和系统终止场景仍待验收。见 [0.1.2 实现与验收记录](docs/ios-0.1.2-validation.md) 和 [后续规划](docs/ios-0.1.2-plan.md)。开发签名安装不等于 TestFlight 已发布。
 
 0.1.1 历史修复与测试命令见 [iPhone 稳定性计划](docs/ios-0.1.1.md)。
+
+## 云端 iPhone／Watch 构建
+
+本机无需安装完整 Xcode。GitHub Actions 执行核心测试、iPhone／Watch 构建和模拟器验收；TestFlight 单独手动触发，需配置 Apple 签名材料。步骤与真机验收清单见 [云端构建](docs/cloud-apple-builds.md)。
+
+本地统一检查：`scripts/setup-dev.sh` 后运行 `scripts/check-project.sh`。

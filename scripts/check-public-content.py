@@ -33,9 +33,13 @@ def private_path(name):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--staged',action='store_true',help='Read the complete Git index, not working-tree content')
+    scope=parser.add_mutually_exclusive_group()
+    scope.add_argument('--staged',action='store_true',help='Read the complete Git index, not working-tree content')
+    scope.add_argument('--include-untracked',action='store_true',help='Also scan non-ignored untracked working-tree files')
     args=parser.parse_args()
-    paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+    command=['git','ls-files','-z']
+    if args.include_untracked:command+=['--cached','--others','--exclude-standard']
+    paths=subprocess.check_output(command).decode().split('\0')
     findings=[];checked=0
     for name in filter(None,paths):
         checked+=1
@@ -48,7 +52,8 @@ def main():
         for rule,pattern in PATTERNS.items():
             for match in pattern.finditer(data):findings.append((name,data.count(b'\n',0,match.start())+1,rule))
     for name,line,rule in findings:print(f'{name}:{line}: {rule}',file=sys.stderr)
-    print(f'Checked {checked} indexed files; {len(findings)} findings.')
+    label='working-tree files (including untracked)' if args.include_untracked else 'indexed files'
+    print(f'Checked {checked} {label}; {len(findings)} findings.')
     return int(bool(findings))
 
 

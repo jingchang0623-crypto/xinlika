@@ -63,3 +63,4 @@ node_modules/
 xcuserdata/
 *-private.json
 *-private.jsonl
+.ci-signing-*.json
