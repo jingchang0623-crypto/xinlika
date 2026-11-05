@@ -73,12 +73,7 @@ private struct XinlikaTodayView: View {
     }
     private var date: Date { model.selectedDay ?? .now }
     private var dateKey: String {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = .current
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: date)
+        xinlikaDayKey(date, timeZoneIdentifier: model.agent?.today?.timeZone)
     }
     var body: some View {
         List {
@@ -199,6 +194,15 @@ private struct XinlikaTodayView: View {
             }.presentationDetents([.medium, .large])
         }
     }
+}
+
+func xinlikaDayKey(_ date: Date, timeZoneIdentifier: String?) -> String {
+    let formatter = DateFormatter()
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.timeZone = timeZoneIdentifier.flatMap(TimeZone.init(identifier:)) ?? .current
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter.string(from: date)
 }
 
 private func xinlikaTimelineDate(_ text: String) -> Date? {

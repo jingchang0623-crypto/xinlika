@@ -82,4 +82,18 @@ final class XinlikaInterestTests: XCTestCase {
         XCTAssertNil(queue.localValue(eventID: "one", eventVersion: 2, version: 1, server: server))
         XCTAssertFalse(queue.pending(eventID: "one", server: server))
     }
+
+    func testDayKeyUsesSnapshotTimeZone() throws {
+        var components = DateComponents()
+        components.calendar = Calendar(identifier: .gregorian)
+        components.timeZone = TimeZone(identifier: "Asia/Shanghai")
+        components.year = 2026
+        components.month = 11
+        components.day = 5
+        components.hour = 0
+        components.minute = 30
+        let date = try XCTUnwrap(components.calendar?.date(from: components))
+
+        XCTAssertEqual(xinlikaDayKey(date, timeZoneIdentifier: "Asia/Shanghai"), "2026-11-05")
+    }
 }
