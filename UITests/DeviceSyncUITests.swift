@@ -15,10 +15,11 @@ final class DeviceSyncUITests: XCTestCase {
         app.descendants(matching: .any).matching(identifier: id).firstMatch
     }
     private func expectCalls(_ count: Int, _ app: XCUIApplication) {
-        let calls = element("sync-simulation-calls", app)
-        XCTAssertTrue(calls.waitForExistence(timeout: 5))
-        let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == %@", "模拟设备调用：\(count)"), object: calls)
-        XCTAssertEqual(XCTWaiter.wait(for: [expectation], timeout: 5), .completed)
+        let expectedLabel = "模拟设备调用：\(count)"
+        let calls = app.descendants(matching: .any)
+            .matching(NSPredicate(format: "identifier == %@ AND label == %@", "sync-simulation-calls", expectedLabel))
+            .firstMatch
+        XCTAssertTrue(calls.waitForExistence(timeout: 10), "Expected \(expectedLabel)")
     }
     private func tap(_ id: String, _ app: XCUIApplication) {
         let target = element(id, app)
