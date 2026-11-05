@@ -120,7 +120,6 @@ final class AppModel: ObservableObject {
         reloadRecords()
         status = "演示模式"
         cloudStatus = "显示本地测试样例"
-        requestAutomaticSync()
     }
     #endif
 
