@@ -34,6 +34,7 @@ struct ShennaoiOSApp: App {
         RootView()
             .environmentObject(model)
             .tint(ShennaoTheme.blue)
+            .onAppear { model.sceneChanged(active: true) }
             .onChange(of: scenePhase, initial: true) { _, phase in
                 model.sceneChanged(active: phase == .active)
             }
