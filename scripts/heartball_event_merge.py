@@ -19,7 +19,7 @@ def event_interval(db,event):
             start=dt.datetime.fromisoformat(clock.replace('Z','+00:00'))
             if start.tzinfo is None:continue
             evidence=json.loads(doc['evidence'])
-            seconds=max([max(0,e['end_byte']-e['start_byte'])/2000 for e in evidence if 'start_byte' in e and 'end_byte' in e] or [60])
+            seconds=max([max(0,e['end_byte']-e['start_byte'])/e.get('bytes_per_second',2000) for e in evidence if 'start_byte' in e and 'end_byte' in e] or [60])
             bounds.append((start.timestamp(),start.timestamp()+seconds))
         except (ValueError,TypeError,KeyError):continue
     return (min(a for a,b in bounds),max(b for a,b in bounds)) if bounds else None

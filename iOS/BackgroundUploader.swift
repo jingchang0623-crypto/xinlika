@@ -288,6 +288,11 @@ extension BackgroundUploader: URLSessionTaskDelegate, URLSessionDataDelegate {
 }
 
 final class ShennaoAppDelegate: NSObject, UIApplicationDelegate {
+    private var usesWatchCapture: Bool {
+        let environment = ProcessInfo.processInfo.environment
+        return usesXinlika && environment["XCTestConfigurationFilePath"] == nil
+            && environment["XINLIKA_TIMELINE_PREVIEW"] == nil && environment["XINLIKA_TIMELINE_PREVIEW_JSON"] == nil
+    }
     private var usesXinlika: Bool {
         let environment = ProcessInfo.processInfo.environment
         return !["SHENNAO_UI_FIXTURE", "SHENNAO_SYNC_FIXTURE", "SHENNAO_LEGACY"].contains { environment[$0] == "1" }
@@ -295,8 +300,16 @@ final class ShennaoAppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         // Restore the owner before a scene is rendered, including Bluetooth wakes.
-        if usesXinlika { _ = XinlikaModel.shared }
+        if usesXinlika {
+            _ = XinlikaModel.shared
+            if usesWatchCapture {
+                _ = WatchCapturePhoneModel.shared
+            }
+        }
         return true
+    }
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        if usesWatchCapture { WatchCapturePhoneModel.shared.resume() }
     }
     func application(_ application: UIApplication,
         handleEventsForBackgroundURLSession identifier: String,

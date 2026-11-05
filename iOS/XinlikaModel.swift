@@ -73,6 +73,7 @@ final class XinlikaModel {
     var busy = false
     var message: String?
     private var serviceReachable = false
+    var serviceResultsUnavailable: Bool { connection != nil && !serviceReachable }
     var serviceMessage: String {
         guard connection != nil else { return "尚未连接处理服务" }
         let processing = agent?.processingJobs.filter { ["queued", "running", "retryable"].contains($0.status) }.count ?? 0
@@ -138,7 +139,7 @@ final class XinlikaModel {
     var gapLabel: String { cardAligned ? "实时接收曾中断；完整卡文件已保留" : "实时接收有缺口，保存后自动补齐" }
     var captureLabel: String {
         guard recording else { return "录音已保存" }
-        return session?.status == "recording" ? "持续记录中" : "卡上录音待核对，正在恢复接收"
+        return session?.status == "recording" ? "录音中" : "卡上录音待核对，正在恢复接收"
     }
     private var client: HeartballClient? {
         guard let connection, XinlikaConnection.isAllowed(connection.baseURL) else { return nil }
@@ -207,6 +208,9 @@ final class XinlikaModel {
         let previewEnvironment = ProcessInfo.processInfo.environment
         if previewEnvironment["XINLIKA_TIMELINE_PREVIEW"] != nil || previewEnvironment["XINLIKA_TIMELINE_PREVIEW_JSON"] != nil {
             timelinePreview = true
+            if previewEnvironment["XINLIKA_RESET_INTEREST_HINT"] == "1" {
+                UserDefaults.standard.set(false, forKey: "Xinlika.InterestHintDismissed")
+            }
             interestQueue = try? XinlikaInterestQueue(file: FileManager.default.temporaryDirectory
                 .appendingPathComponent(UUID().uuidString).appendingPathComponent("interest.json"))
             do {
@@ -215,6 +219,12 @@ final class XinlikaModel {
                 let decoder = JSONDecoder(); decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let snapshot = try decoder.decode(HeartballAgentState.self, from: data)
                 agent = snapshot
+                if let preview = previewEnvironment["XINLIKA_CAPTURE_PREVIEW_JSON"] {
+                    capture = try JSONDecoder().decode(XinlikaCaptureStore.State.self, from: Data(preview.utf8))
+                }
+                if let preview = previewEnvironment["XINLIKA_REMOTE_CAPTURE_PREVIEW_JSON"] {
+                    remoteCapture = try decoder.decode(HeartballState.Session.self, from: Data(preview.utf8))
+                }
                 let f = DateFormatter(); f.calendar = Calendar(identifier: .gregorian); f.locale = Locale(identifier: "en_US_POSIX")
                 f.timeZone = TimeZone(identifier: snapshot.today?.timeZone ?? "Asia/Shanghai"); f.dateFormat = "yyyy-MM-dd"
                 selectedDay = snapshot.today.flatMap { f.date(from: $0.date) }

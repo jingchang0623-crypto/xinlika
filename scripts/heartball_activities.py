@@ -103,7 +103,7 @@ class ActivityStore:
                 if not raw:continue
                 begin=dt.datetime.fromisoformat(raw.replace('Z','+00:00'))
                 evidence=json.loads(doc['evidence'])
-                seconds=sum(max(0,r.get('end_byte',0)-r.get('start_byte',0)) for r in evidence)/2000
+                seconds=sum(max(0,r.get('end_byte',0)-r.get('start_byte',0))/r.get('bytes_per_second',2000) for r in evidence)
                 docs.append((begin,begin+dt.timedelta(seconds=seconds)))
             if not docs:continue
             e['start']=min(a for a,b in docs).isoformat();e['end']=max(b for a,b in docs).isoformat()

@@ -62,7 +62,7 @@ class Selection(Shape):
 
 class Observation(Shape):
     source_sha256: str = Field(pattern=r'^[0-9a-f]{64}$')
-    source_format: Literal['raw_cb08_40']
+    source_format: Literal['raw_cb08_40','pcm_wav_16000']
     producer_version: Literal['xinlika-sherpa-probe-v1','xinlika-sherpa-worker-v1']
     selection: Selection
     models: list[Model] = Field(min_length=1, max_length=8)
@@ -105,7 +105,7 @@ class AudioContextStore:
             if not batches or not any(self.agent.allowed(b['session_id'], 'agent') or self.agent.voice.audio_granted(b['session_id']) for b in batches):
                 raise Conflict('No authorized canonical audio matches this observation')
             length = value['selection']['start'] + value['selection']['duration']
-            if any(length > (b['end_byte']-b['start_byte'])/2000 + 1e-6 for b in batches):
+            if any(length > (b['end_byte']-b['start_byte'])/self.agent.store.byte_rate(b['session_id']) + 1e-6 for b in batches):
                 raise ValueError('Observation exceeds canonical batch duration')
             old = self.db.execute('SELECT id,payload FROM acoustic_observations WHERE slot=?', (slot,)).fetchone()
             if old:

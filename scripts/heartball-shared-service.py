@@ -40,7 +40,18 @@ class Handler(mobile_http.Handler):
         if not self.authorized():return self.reply(401,{'error':'Unauthorized'})
         if route.path=='/v1/shared/capabilities':
             return self.reply(200,{'protocolVersion':1,'workspaceMode':'single_user','sync':'revision_snapshot',
-                                   'workspaceId':self.server.shared.workspace_id,'deviceId':self.device['id'],'access':self.device['access'],'hardwareControl':False})
+                                   'watchAudioVersion':1,'watchAudioReceiptVersion':1,'workspaceId':self.server.shared.workspace_id,'deviceId':self.device['id'],'access':self.device['access'],'hardwareControl':False})
+        if route.path=='/v1/watch/audio-receipt':
+            try:
+                query=parse_qs(route.query)
+                receipt=self.server.watch.audio_receipt(query['session_id'][0],query['segment_id'][0],self.device['id'],self.server.shared.workspace_id)
+                return self.reply(200,receipt)
+            except PermissionError:return self.reply(403,{'error':'Audio receipt belongs to the original uploader'})
+            except Conflict:return self.reply(409,{'error':'Remote Watch audio changed'})
+            except KeyError:return self.reply(400,{'error':'Invalid Watch audio receipt'})
+            except LookupError:return self.reply(404,{'error':'Unknown Watch audio receipt'})
+            except (ValueError,TypeError):return self.reply(400,{'error':'Invalid Watch audio receipt'})
+            except OSError:return self.reply(503,{'error':'Remote audio verification unavailable; keep the phone copy'})
         if route.path=='/v1/shared/sync':
             query=parse_qs(route.query)
             try:
@@ -49,6 +60,20 @@ class Handler(mobile_http.Handler):
                 return self.reply(200,snapshot)
             except Conflict as error:return self.reply(409,{'error':str(error)})
             except ValueError as error:return self.reply(400,{'error':str(error)})
+        if route.path=='/v1/audio':
+            try:
+                import hashlib
+                from heartball_watch import wav_pcm
+                query=parse_qs(route.query);bid=query['batch_id'][0]
+                with self.server.engine.store.lock:
+                    row=self.server.engine.store.db.execute('SELECT * FROM batches WHERE id=?',(bid,)).fetchone()
+                    if row and Path(row['filename']).suffix=='.wav':
+                        if not self.server.mobile.agent.allowed(row['session_id'],'asr'):return self.reply(403,{'error':'Audio access revoked'})
+                        data=Path(row['filename']).read_bytes();wav_pcm(data)
+                        if hashlib.sha256(data).hexdigest()!=row['sha256']:raise ValueError('Changed Watch audio')
+                        self.send_response(200);self.send_header('Content-Type','audio/wav');self.send_header('Cache-Control','no-store')
+                        self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data);return
+            except (ValueError,KeyError):return self.reply(400,{'error':'Unknown Watch audio'})
         if route.path=='/v1/voice':
             return self.reply(200,self.server.mobile.agent.voice.status())
         if route.path=='/v1/acoustics':
@@ -105,6 +130,19 @@ class Handler(mobile_http.Handler):
                 return self.reply(200,result)
             except Conflict as error:return self.reply(409,{'error':str(error)})
             except (ValueError,KeyError,TypeError):return self.reply(400,{'error':'Invalid voice enrollment request'})
+        if self.path=='/v1/watch/ingest':
+            try:
+                length=int(self.headers.get('Content-Length','0'))
+                # Foundation JSONSerialization may escape each base64 '/' as
+                # '\/': a canonical 60-second WAV can therefore approach 5.12 MB.
+                # Keep already-persisted phone envelopes valid without rewriting.
+                if not 0<length<=5_200_000 or self.headers.get('Content-Type','').split(';')[0]!='application/json':raise ValueError('Invalid Watch upload')
+                body=json.loads(self.rfile.read(length))
+                if not isinstance(body,dict) or body['session']['workspace_id']!=self.server.shared.workspace_id:raise ValueError('Wrong Watch workspace')
+                return self.reply(200,self.server.shared.accept(self.server.watch,body,self.device['id']))
+            except Conflict as error:return self.reply(409,{'error':str(error)})
+            except (ValueError,KeyError,TypeError):return self.reply(400,{'error':'Invalid Watch evidence'})
+            except Exception:return self.reply(500,{'error':'Watch evidence retained; retry immutable message'})
         if self.path!='/v1/mobile/ingest':return super().do_POST()
         try:
             length=int(self.headers.get('Content-Length','0'))
@@ -136,6 +174,8 @@ def make_server(root,host,port,processing_config=None):
     server.processor=processor
     server.engine=SimpleNamespace(store=store,max_seconds=86400)
     server.mobile=MobileIngest(store,agent)
+    from heartball_watch import WatchIngest
+    server.watch=WatchIngest(store,agent)
     from heartball_acoustic_worker import AcousticQueue
     server.acoustic_queue=AcousticQueue(agent)
     server.shared=SharedWorkspace(store,agent)

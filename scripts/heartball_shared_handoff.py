@@ -121,6 +121,7 @@ def main():
                         VoxgateAdapter(Path(config['voxgate_config'])) if config.get('voxgate_config') else None,args.boundary_release or args.release)
                     server.processor=processor
                     server.mobile.agent=processor.agent
+                    server.watch.agent=processor.agent
                     server.shared.agent=processor.agent
                     server.acoustic_queue.agent=processor.agent
                 processor.start()

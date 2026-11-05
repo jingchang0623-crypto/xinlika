@@ -22,6 +22,8 @@ settings:
     CODE_SIGN_STYLE: Automatic
     SWIFT_VERSION: 5.0
     SWIFT_STRICT_CONCURRENCY: targeted
+    MARKETING_VERSION: "0.3.12"
+    CURRENT_PROJECT_VERSION: "34"
 targets:
   Shennao:
     type: application
@@ -30,7 +32,10 @@ targets:
     dependencies:
       - package: SwiftMarkdown
         product: Markdown
+      - target: XinlikaWatch
+        embed: true
     sources:
+      - path: SharedCapture
       - path: iOS
         excludes:
           - Tests
@@ -59,12 +64,31 @@ targets:
       testTargets:
         - ShennaoTests
         - ShennaoUITests
+  XinlikaWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "10.0"
+    sources:
+      - path: watchOS
+        excludes:
+          - Info.plist
+      - path: SharedCapture
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zaowuyun.shennao.watchkitapp
+        PRODUCT_NAME: XinlikaWatch
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_FILE: watchOS/Info.plist
+        GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: "4"
+        SKIP_INSTALL: YES
   ShennaoTests:
     type: bundle.unit-test
     platform: iOS
     deploymentTarget: "17.0"
     sources:
       - path: iOS/Tests
+      - path: Tests/WatchCaptureCoreTests
     dependencies:
       - target: Shennao
     settings:

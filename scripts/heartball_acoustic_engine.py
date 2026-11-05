@@ -38,12 +38,19 @@ class AcousticEngine:
         begun=time.monotonic();path=Path(path);source_hash=digest(path)
         if expected_hash and source_hash!=expected_hash:raise ValueError('Original acoustic audio hash changed')
         raw_size=path.stat().st_size
-        if not 0<raw_size<=600000 or raw_size%40:raise ValueError('Only sealed <=300 second CB08 batches accepted')
+        is_wav=path.suffix=='.wav'
+        if is_wav:
+            from heartball_watch import wav_pcm
+            pcm=wav_pcm(path.read_bytes());expected_seconds=len(pcm)/32000
+        else:
+            if not 0<raw_size<=600000 or raw_size%40:raise ValueError('Only sealed <=300 second CB08 batches accepted')
+            expected_seconds=raw_size/2000
         with tempfile.TemporaryDirectory(prefix='xinlika-acoustic-') as folder:
-            ogg=Path(folder)/'source.ogg';self.codec.wrap_cb08(path,ogg)
+            ogg=path if is_wav else Path(folder)/'source.ogg'
+            if not is_wav:self.codec.wrap_cb08(path,ogg)
             result=subprocess.run(['ffmpeg','-nostdin','-v','error','-xerror','-i',str(ogg),'-ar','16000','-ac','1','-f','f32le','pipe:1'],check=True,capture_output=True,timeout=30)
         samples=np.frombuffer(result.stdout,dtype=np.float32).copy();rate=16000;seconds=len(samples)/rate
-        if not len(samples) or seconds>raw_size/2000+1e-6:raise ValueError('Decoded audio length does not match canonical packet clock')
+        if not len(samples) or seconds>expected_seconds+1e-6:raise ValueError('Decoded audio length does not match canonical packet clock')
         vad=sherpa_onnx.VoiceActivityDetector(self.vad_config,buffer_size_in_seconds=310)
         for i in range(0,len(samples),self.vad_config.silero_vad.window_size):vad.accept_waveform(samples[i:i+self.vad_config.silero_vad.window_size])
         vad.flush();speech=[]
@@ -74,7 +81,7 @@ class AcousticEngine:
                     'anonymous_cluster':f'speaker_{best+1}','best_similarity_before_assignment':max(scores) if scores else None,
                     'user_identity':'not_enrolled','boundary_precision':'coarse_5s_window_not_verified_turn'})
                 vectors.append(vector.tolist())
-        observation={'source_sha256':source_hash,'source_format':'raw_cb08_40','producer_version':self.version,
+        observation={'source_sha256':source_hash,'source_format':'pcm_wav_16000' if is_wav else 'raw_cb08_40','producer_version':self.version,
             'selection':{'start':0,'duration':seconds},'models':self.models,
             'speech_intervals':[{'start_seconds':b/rate,'end_seconds':(b+len(v))/rate} for b,v in speech],
             'scene_windows':scenes,'speaker_windows':windows,'anonymous_clusters':len(centres),

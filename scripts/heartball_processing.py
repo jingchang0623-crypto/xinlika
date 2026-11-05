@@ -549,6 +549,16 @@ class VoxgateAdapter:
         spec.loader.exec_module(self.codec)
 
     def transcribe(self, raw, destination):
+        # Watch batches are canonical WAV; CB08 retains its original wrapper.
+        if raw.suffix == '.wav':
+            from heartball_watch import wav_pcm
+            wav_pcm(raw.read_bytes())
+            with raw.open('rb') as source:
+                value = self.client.audio.transcriptions.create(model='voxgate',file=('audio.wav',source,'audio/wav'),response_format='verbose_json')
+            data=value.model_dump()
+            if not isinstance(data.get('text'),str):raise ValueError('ASR returned no text field')
+            return {'text':data['text'],'segments':data.get('segments') or [],'provider':self.provider,
+                    'timing_precision':'provider_chunk_not_word_alignment','raw_response':data}
         ogg = destination.with_suffix(".ogg")
         if not ogg.exists():
             self.codec.wrap_cb08(raw, ogg)

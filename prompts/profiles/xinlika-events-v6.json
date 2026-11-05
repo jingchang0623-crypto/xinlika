@@ -2,8 +2,8 @@
   "schema": 1,
   "name": "xinlika-events-v6",
   "accepted": true,
-  "validation_file": "prompts/profiles/evidence/xinlika-events-v6-interest-r4.json",
-  "validation_sha256": "3604ef0f1ab0eb444d81b8703ce014061aaf98da84ce72cef8656fb5dc378b63",
+  "validation_file": "prompts/profiles/evidence/xinlika-events-v6-watch-relay-r7.json",
+  "validation_sha256": "53bb7a705e3b467437c2b393e33adfdf23b9671f5a162d7877fcd5742f6d69dd",
   "bundle": "prompts/versions/xinlika-events-v6/bundle.json",
   "bundle_sha256": "0d75b39c818fa500fe176659d6fe353a3f51aedb24d47c7a56cbf8715bc7d3aa",
   "settings": {
@@ -18,8 +18,8 @@
   "engine_sha256": {
     "scripts/heartball-local.py": "b2f058fbf85004368beb068a514d311bb5b8100f0b3882e5b77c7f26db0f8fae",
     "scripts/heartball_agent_runtime.py": "6183f39dbac8922b5215fee38b71b7da1e292cd728e4ccd2722cc9dabe1975d4",
-    "scripts/heartball_agent_store.py": "7429d3c96e9cfb5ac72695e9b086452a6cac740b533c0b267828d3ee875969c2",
-    "scripts/heartball_day.py": "6c08b5e87f8086c4f0143b7d64b3ac409ee1dc68fa26fe903565b66c2a908efb",
+    "scripts/heartball_agent_store.py": "ebfcf54228d4d3cadc9508666968c7ed82cb93a81779ac615e656efd0a99caee",
+    "scripts/heartball_day.py": "3a7e1fe65175e77163bef00e96c4df320d5f515d0bea694551a005b76d194e3f",
     "scripts/heartball_fragment_projection.py": "88031c48c8634a98ff974ee828ef6e916e9d4227c11fb2f0ed75003b810fec43",
     "scripts/heartball_incremental.py": "d85e6a7e73d839a6af36b4f8c4d0cec843a385e492c876b6555ec36b1f66750a",
     "scripts/heartball_incremental_contract.py": "7a460c6a52ded5f7787d49c8f02db33cf9c120fc0013eff8b068f4a2783cc9c8",
@@ -30,8 +30,17 @@
     "scripts/heartball_organization.py": "4450ba086b918d288a5e74caba2064f44f690cbc877f4c147ca4c673213e3c4e",
     "scripts/heartball_processing_profiles.py": "565560024eed13a66ad31e23710b8b211218e408b9f07614847a1724778b0f6c",
     "scripts/heartball_shared.py": "94651a94cc19e38a8c8d760603a83391a04fd796190d9228cbe52fd268c3a753",
-    "scripts/heartball_shared_handoff.py": "122414a8ab6d27bd44fe4f0373ba7ddcdc4543bdc43c40349b7705f2817891be"
+    "scripts/heartball_shared_handoff.py": "d136543f3469f8f140100e7349c011d9b8c19392c967347707a22c65ad4249d3",
+    "scripts/heartball_watch.py": "8f5091785ad2b94067bc6c34f8dbee7fc1699a59937b6c7d11f5560cddd0824d",
+    "scripts/heartball_store.py": "1765bf9b53791be79ee56f4ace228f277f0f27b338f558084de159524ae199c6",
+    "scripts/heartball_processing.py": "b88b3d0d718e1ae32cc9fdfde221bc780c68912841e049c1a9df8615393071d3",
+    "scripts/heartball_activities.py": "d57f79e7f1bae946da799475d0c74e8ac58aa59156e5a729793f1487f471b79d",
+    "scripts/heartball_event_merge.py": "bd53333f8dc607ef9b86d333fd12a1439c14a0a15a512ee08e857c66baba2da1",
+    "scripts/heartball_audio_context.py": "c1f08aa04b1a3d715c50c6e32f1a93341cfabe124526fb0e206ac603a8a1118b",
+    "scripts/heartball_acoustic_engine.py": "e361cff8c4dfd7811e5c4ba4fa25e8dd2cd4e7827c991b577b7cf771e19658cb",
+    "scripts/heartball_acoustic_worker.py": "ed61440f31fedcf517e89522e7595692e4df90047902b66db65659cdc816cd1b",
+    "scripts/heartball-shared-service.py": "d52e7938b340ef1d8cd12f13ba87605563e02f8a54785977e0bc86872f98e3e6"
   },
-  "profile_revision": 4,
-  "previous_profile_sha256": "719f20521de15585722fbc6fbd290c27f3fa4d2e3aa520c9d56f01da7fc9b6c7"
+  "profile_revision": 7,
+  "previous_profile_sha256": "8618e65c8ca32fbddd6f0d67c762c14491d7abea6e22f41b1e0387455919852e"
 }

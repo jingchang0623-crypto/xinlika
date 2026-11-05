@@ -88,7 +88,7 @@ class AcousticWorker:
                 batches=[dict(r) for r in self.agent.db.execute('SELECT * FROM batches WHERE session_id=? ORDER BY sequence',(sample['session_id'],))]
                 if not batches:continue
                 # Three short dedicated sessions, never an unbounded recording.
-                if sum(b['end_byte']-b['start_byte'] for b in batches)>600000:
+                if sum((b['end_byte']-b['start_byte'])/self.agent.store.byte_rate(b['session_id']) for b in batches)>300:
                     with self.agent.store.transaction():self.agent.db.execute("UPDATE voice_samples SET status='rejected',metrics=? WHERE id=?",(json.dumps({'quality_gate':'sample_longer_than_300_seconds'}),sample['id']))
                     continue
                 ready=all(self.agent.db.execute("SELECT 1 FROM acoustic_jobs WHERE profile=? AND audio_hash=? AND status='completed'",(self.profile,b['sha256'])).fetchone() for b in batches)

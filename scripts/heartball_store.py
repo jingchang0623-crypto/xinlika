@@ -39,6 +39,7 @@ class Store:
           id TEXT PRIMARY KEY, status TEXT NOT NULL, started_at TEXT NOT NULL,
           ended_at TEXT, batch_seconds INTEGER NOT NULL, directory TEXT NOT NULL,
           owned_file TEXT, error TEXT, archive TEXT, source_kind TEXT NOT NULL DEFAULT 'test_unverified');
+        CREATE TABLE IF NOT EXISTS audio_formats(session_id TEXT PRIMARY KEY,format TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS streams(
           id TEXT PRIMARY KEY, session_id TEXT NOT NULL, filename TEXT NOT NULL,
           received INTEGER NOT NULL DEFAULT 0, sealed INTEGER NOT NULL DEFAULT 0,
@@ -83,6 +84,11 @@ class Store:
             if row is None:
                 raise ValueError("Unknown capture session")
             return dict(row)
+
+    def byte_rate(self, sid):
+        with self.lock:
+            row=self.db.execute('SELECT format FROM audio_formats WHERE session_id=?',(sid,)).fetchone()
+            return 32000 if row and row[0]=='pcm_s16le_16000' else 2000
 
     def create_session(self, sid: str, seconds: int = 60) -> dict:
         sid = identifier(sid)
@@ -280,11 +286,11 @@ class Store:
             has_documents = self.db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='documents'").fetchone() is not None
             for f in self.db.execute("SELECT * FROM focuses WHERE session_id=? ORDER BY started_at DESC", (sid,)):
                 ranges = json.loads(f["ranges"] or "[]")
-                seconds = sum(r["end_byte"] - r["start_byte"] for r in ranges) / 2000
+                seconds = sum(r["end_byte"] - r["start_byte"] for r in ranges) / self.byte_rate(sid)
                 if f["status"] == "recording":
                     starts = json.loads(f["start_positions"])
                     seconds = sum(max(0, r["received"] // 40 * 40 - starts.get(r["id"], 0))
-                                  for r in self.db.execute("SELECT * FROM streams WHERE session_id=?", (sid,))) / 2000
+                                  for r in self.db.execute("SELECT * FROM streams WHERE session_id=?", (sid,))) / self.byte_rate(sid)
                 processing = next((r[0] for r in self.db.execute("SELECT status FROM jobs WHERE kind='focus_analysis' AND input_key=?", (f["id"],))), None)
                 if has_documents and processing == "completed":
                     doc = self.db.execute("SELECT text FROM documents WHERE input_key=?", ("focus_analysis:" + f["id"],)).fetchone()
@@ -298,12 +304,12 @@ class Store:
             clock_row = self.db.execute("SELECT payload FROM events WHERE session_id=? AND kind='clock_verification' ORDER BY id DESC LIMIT 1", (sid,)).fetchone()
             clock = json.loads(clock_row[0]) if clock_row else {}
             return {"session": {"id": sid, "status": s["status"], "startedAt": s["started_at"],
-                     "audioSeconds": size / 2000, "batchCount": len(batches), "gapCount": gaps,
+                     "audioSeconds": size / self.byte_rate(sid), "batchCount": len(batches), "gapCount": gaps,
                      "ownedFile": s["owned_file"], "error": s["error"], "archiveStatus": json.loads(s["archive"] or "{}").get("status", "pending"),
                      "batchSeconds": s["batch_seconds"],
                      "clockStatus": clock.get("status", "unverified"),
                      "clockVerifiedAt": clock.get("time"), "clockTimezone": clock.get("timezone")}, "focuses": focuses,
-                    "batches": [{"id": b["id"], "sequence": b["sequence"], "audioSeconds": (b["end_byte"] - b["start_byte"]) / 2000,
+                    "batches": [{"id": b["id"], "sequence": b["sequence"], "audioSeconds": (b["end_byte"] - b["start_byte"]) / self.byte_rate(sid),
                                  "sha256": b["sha256"], "reason": b["reason"]} for b in batches],
                     "jobs": [{"id": r["id"], "kind": r["kind"], "status": r["status"]} for r in self.db.execute("SELECT * FROM jobs") if r["input_key"] in ({b["sha256"] for b in batches} | {f["id"] for f in focuses} | set(json.loads(s["archive"] or "{}").get("repairHashes", [])) | {json.loads(s["archive"] or "{}").get("repairReviewKey")})],
                     "asrEnabled": False}

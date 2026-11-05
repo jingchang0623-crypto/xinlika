@@ -5,6 +5,8 @@ let package = Package(
     name: "Luyinbi",
     platforms: [.macOS(.v13)],
     targets: [
+        .target(name: "WatchCaptureCore", path: "SharedCapture"),
+        .testTarget(name: "WatchCaptureCoreTests", dependencies: ["WatchCaptureCore"], path: "Tests/WatchCaptureCoreTests"),
         // 纯逻辑层：帧编解码、字段解析、Ogg 封装、删除判据。不依赖任何 UI 或蓝牙，
         // 因此可以在命令行下完整自测。
         .target(name: "LuyinbiCore"),

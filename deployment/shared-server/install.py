@@ -69,7 +69,7 @@ server {
     ssl_certificate CERT/fullchain.pem;
     ssl_certificate_key CERT/privkey.pem;
     ssl_protocols TLSv1.2 TLSv1.3;
-    client_max_body_size 1m;
+    client_max_body_size 6m;
     client_body_timeout 30s;
     location / {
         proxy_pass http://127.0.0.1:18778;

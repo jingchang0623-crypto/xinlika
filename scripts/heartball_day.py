@@ -28,7 +28,7 @@ def daily_workspace(db, day=None, time_zone='Asia/Shanghai'):
             documents[doc['id']] = (clock, None, None)
             continue
         evidence = json.loads(doc['evidence'])
-        duration = sum(max(0, e.get('end_byte', 0) - e.get('start_byte', 0)) for e in evidence) / 2000
+        duration = sum(max(0, e.get('end_byte', 0) - e.get('start_byte', 0)) / e.get('bytes_per_second', 2000) for e in evidence)
         documents[doc['id']] = (clock, stamp, stamp + dt.timedelta(seconds=duration))
     sources = {}
     for row in db.execute('SELECT s.* FROM workspace_event_sources s JOIN workspace_events e ON e.id=s.event_id WHERE e.status=\'active\' ORDER BY s.rowid'):

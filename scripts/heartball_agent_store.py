@@ -215,6 +215,7 @@ class AgentStore:
                 batches = [dict(self.db.execute("SELECT * FROM batches WHERE id=?", (payload["batch_id"],)).fetchone())]
                 exact, kind = True, "ambient"
             text, evidence = "", []
+            byte_rate = self.store.byte_rate(batches[0]["session_id"])
             for b in batches:
                 t = self.db.execute("SELECT * FROM transcripts WHERE audio_hash=?", (b["sha256"],)).fetchone()
                 if t is None:
@@ -226,19 +227,23 @@ class AgentStore:
                 evidence.append({"batch_id": b["id"], "audio_hash": b["sha256"], "stream_id": b["stream_id"],
                     "start_byte": b["start_byte"], "end_byte": b["end_byte"], "text_start": start, "text_end": len(text),
                     "precision": "batch_range", "focus_exact_batches": exact})
+            if byte_rate != 2000:
+                for item in evidence:
+                    item['bytes_per_second'] = byte_rate
+                    item['capture_source'] = 'apple_watch'
             sid = batches[0]["session_id"]
             p = self._policy(sid)
             occurred_at = p.get("occurred_at")
-            if p.get("time_precision") in {"host_capture_start_estimate", "phone_receive_start_estimate"}:
+            if p.get("time_precision") in {"host_capture_start_estimate", "phone_receive_start_estimate", "watch_sample_clock"}:
                 stream = self.db.execute("SELECT first_at FROM streams WHERE id=?", (batches[0]["stream_id"],)).fetchone()
                 if stream and stream[0]:
                     try:
                         first = dt.datetime.fromisoformat(stream[0].replace("Z", "+00:00"))
-                        occurred_at = (first + dt.timedelta(seconds=batches[0]["start_byte"] / 2000)).isoformat()
+                        occurred_at = (first + dt.timedelta(seconds=batches[0]["start_byte"] / byte_rate)).isoformat()
                     except ValueError:
                         occurred_at = None
             elif occurred_at:
-                occurred_at=(dt.datetime.fromisoformat(occurred_at)+dt.timedelta(seconds=batches[0]['start_byte']/2000)).isoformat()
+                occurred_at=(dt.datetime.fromisoformat(occurred_at)+dt.timedelta(seconds=batches[0]['start_byte']/byte_rate)).isoformat()
             return {"id": stable("document:" + job["kind"] + ":" + job["input_key"]), "input_key": job["kind"] + ":" + job["input_key"],
                 "session_id": sid, "kind": kind, "text": text, "evidence": evidence,
                 "source_kind": p.get("source_kind", "unknown"), "occurred_at": occurred_at,

@@ -1,4 +1,6 @@
-最新声音辅助证据：服务端 r10 已启用新封批自动标签与三段本人声纹登记，见 [全天标签与声纹实测](xinlika-allday-voice-2026-10-21.md)。[r8 活动归集记录](xinlika-sources-and-activities-2026-10-21.md) 保留当时验证范围。
+最新部署：已升级为 `xinlika-watch-relay-20261026`，手表与录音卡共用云端处理；新增原声核验接口，让手机上传后释放暂存，见[手机中转验收](xinlika-watch-relay-2026-10-27.md)和[云端联动验收](xinlika-watch-cloud-2026-10-26.md)。下文保留初次部署及早期更新的历史记录。
+
+声音辅助的早期证据：服务端 r10 已启用新封批自动标签与三段本人声纹登记，见 [全天标签与声纹实测](xinlika-allday-voice-2026-10-21.md)。[r8 活动归集记录](xinlika-sources-and-activities-2026-10-21.md) 保留当时验证范围。
 
 # 心力卡共享服务端 · 2026-10-21
 
